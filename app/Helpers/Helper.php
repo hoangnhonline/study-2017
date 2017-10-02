@@ -185,7 +185,7 @@ class Helper
     }
     public static function showImage($image_url, $type = 'original'){
 
-        //return strpos($image_url, 'http') === false ? config('houseland.upload_url') . $type . '/' . $image_url : $image_url;        
+        //return strpos($image_url, 'http') === false ? config('study.upload_url') . $type . '/' . $image_url : $image_url;        
         return strpos($image_url, 'http') === false ? env('APP_URL') . $image_url : $image_url;        
 
     }
@@ -194,7 +194,7 @@ class Helper
         //object_type = 1 : product, 2 :article  3: project          
         $tmpArrImg = explode('/', $image_url);
                         
-        $image_url = config('houseland.upload_url_thumbs').end($tmpArrImg);           
+        $image_url = config('study.upload_url_thumbs').end($tmpArrImg);           
         if(strpos($image_url, 'http') === false){
             if($object_type == 1){
                 return env('APP_URL') . $folder. $image_url;
@@ -480,8 +480,8 @@ class Helper
 
         $basePath = $date_dir == true ? $basePath .= date('Y/m/d'). '/'  : $basePath = $basePath;        
         
-        $desPath = config('houseland.upload_path'). $basePath;
-        $desThumbsPath = config('houseland.upload_thumbs_path'). $basePath;
+        $desPath = config('study.upload_path'). $basePath;
+        $desThumbsPath = config('study.upload_thumbs_path'). $basePath;
         //set name for file
         $fileName = $file->getClientOriginalName();
         

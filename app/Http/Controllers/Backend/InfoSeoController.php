@@ -71,7 +71,7 @@ class InfoSeoController extends Controller
 
             $destionation = date('Y'). '/'. end($tmp);
             
-            File::move(config('houseland.upload_path').$dataArr['image_url'], config('houseland.upload_path').$destionation);
+            File::move(config('study.upload_path').$dataArr['image_url'], config('study.upload_path').$destionation);
             
             $dataArr['image_url'] = $destionation;
         }                
@@ -139,7 +139,7 @@ class InfoSeoController extends Controller
 
             $destionation = date('Y'). '/'. end($tmp);
             
-            File::move(config('houseland.upload_path').$dataArr['image_url'], config('houseland.upload_path').$destionation);
+            File::move(config('study.upload_path').$dataArr['image_url'], config('study.upload_path').$destionation);
             
             $dataArr['image_url'] = $destionation;
         }       

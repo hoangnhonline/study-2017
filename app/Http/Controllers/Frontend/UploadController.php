@@ -61,7 +61,7 @@ class UploadController extends Controller
         $count = 0;
         if($dataArr['myfile']){
             
-            $url = config('houseland.upload_url');
+            $url = config('study.upload_url');
 
             foreach( $dataArr['myfile'] as $file ){
                 $count++;

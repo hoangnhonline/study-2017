@@ -255,7 +255,7 @@ class ProductController extends Controller
         {
             foreach ($hinhXoaArr as $image_id_xoa) {
                 $model = ProductImg::find($image_id_xoa);
-                $urlXoa = config('houseland.upload_path')."/".$model->image_url;
+                $urlXoa = config('study.upload_path')."/".$model->image_url;
                 if(is_file($urlXoa)){
                     unlink($urlXoa);
                 }
@@ -285,7 +285,7 @@ class ProductController extends Controller
                         //dd('b', $origin_img);  
                         $tmpArrImg = explode('/', $origin_img);
                         
-                        $new_img = config('houseland.upload_thumbs_path').end($tmpArrImg);
+                        $new_img = config('study.upload_thumbs_path').end($tmpArrImg);
                        
                         if($w_img/$h_img <= $tile1){
 

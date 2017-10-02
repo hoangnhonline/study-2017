@@ -95,21 +95,21 @@ class ServicesController extends Controller
             
             $destionation = date('Y'). '/'. end($tmp);
             
-            File::move(config('houseland.upload_path').$dataArr['image_url'], config('houseland.upload_path').$destionation);
-            $img = Image::make(config('houseland.upload_path').$destionation);
+            File::move(config('study.upload_path').$dataArr['image_url'], config('study.upload_path').$destionation);
+            $img = Image::make(config('study.upload_path').$destionation);
             $w_img = $img->width();
             $h_img = $img->height();
    
             $tile = 1;
          
             if($w_img/$h_img <= $tile){
-                Image::make(config('houseland.upload_path').$destionation)->resize(50, null, function ($constraint) {
+                Image::make(config('study.upload_path').$destionation)->resize(50, null, function ($constraint) {
                         $constraint->aspectRatio();
-                })->crop(50, 50)->save(config('houseland.upload_path').$destionation);
+                })->crop(50, 50)->save(config('study.upload_path').$destionation);
             }else{
-                Image::make(config('houseland.upload_path').$destionation)->resize(null, 50, function ($constraint) {
+                Image::make(config('study.upload_path').$destionation)->resize(null, 50, function ($constraint) {
                         $constraint->aspectRatio();
-                })->crop(50, 50)->save(config('houseland.upload_path').$destionation);
+                })->crop(50, 50)->save(config('study.upload_path').$destionation);
             }
 
             $dataArr['image_url'] = $destionation;
@@ -241,9 +241,9 @@ class ServicesController extends Controller
                         
             $destionation = date('Y'). '/'. end($tmp);
             
-            File::move(config('houseland.upload_path').$dataArr['image_url'], config('houseland.upload_path').$destionation);
+            File::move(config('study.upload_path').$dataArr['image_url'], config('study.upload_path').$destionation);
             
-            $img = Image::make(config('houseland.upload_path').$destionation);
+            $img = Image::make(config('study.upload_path').$destionation);
             $w_img = $img->width();
             $h_img = $img->height();
             $w_img = $img->width();
@@ -252,13 +252,13 @@ class ServicesController extends Controller
             $tile = 1;
          
             if($w_img/$h_img <= $tile){
-                Image::make(config('houseland.upload_path').$destionation)->resize(50, null, function ($constraint) {
+                Image::make(config('study.upload_path').$destionation)->resize(50, null, function ($constraint) {
                         $constraint->aspectRatio();
-                })->crop(50, 50)->save(config('houseland.upload_path').$destionation);
+                })->crop(50, 50)->save(config('study.upload_path').$destionation);
             }else{
-                Image::make(config('houseland.upload_path').$destionation)->resize(null, 50, function ($constraint) {
+                Image::make(config('study.upload_path').$destionation)->resize(null, 50, function ($constraint) {
                         $constraint->aspectRatio();
-                })->crop(50, 50)->save(config('houseland.upload_path').$destionation);
+                })->crop(50, 50)->save(config('study.upload_path').$destionation);
             }
             $dataArr['image_url'] = $destionation;
         }
