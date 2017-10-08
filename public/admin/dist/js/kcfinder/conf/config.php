@@ -64,7 +64,7 @@ $_CONFIG = array(
 
 // PERMISSION SETTINGS
 
-    'dirPerms' => 0777,
+    'dirPerms' => 0755,
     'filePerms' => 0644,
 
     'access' => array(
