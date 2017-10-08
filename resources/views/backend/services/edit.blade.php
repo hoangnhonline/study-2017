@@ -9,7 +9,7 @@
     <ol class="breadcrumb">
       <li><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
       <li><a href="{{ route('services.index') }}">Dịch vụ</a></li>
-      <li class="active"><span class="glyphicon glyphicon-pencil"></span></li>
+      <li class="active">Cập nhật</li>
     </ol>
   </section>
 
@@ -210,7 +210,7 @@
   </div>
 </div>
 @stop
-@section('javascript_page')
+@section('js')
 <script type="text/javascript">
 var h = screen.height;
 var w = screen.width;

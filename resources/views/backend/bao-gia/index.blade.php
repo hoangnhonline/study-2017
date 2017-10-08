@@ -100,7 +100,7 @@
 </div>
 <input type="hidden" id="route_tag_index" value="{{ route('bao-gia.index') }}">
 @stop
-@section('javascript_page')
+@section('js')
 <script type="text/javascript">
 function callDelete(name, url){  
   swal({

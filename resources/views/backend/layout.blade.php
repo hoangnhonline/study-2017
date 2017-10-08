@@ -79,6 +79,8 @@
 </div>
 <input type="hidden" id="upload_url" value="{{ config('houseland.upload_url') }}">
 <input type="hidden" id="app_url" value="{{ env('APP_URL') }}">
+<input type="hidden" id="url_open_kc_finder" value="{{ URL::asset('public/admin/dist/js/kcfinder/browse.php?type=images') }}">
+<input type="hidden" id="route-ajax-tag-list" value="{{ route('tag.ajax-list') }}">
 <!-- ./wrapper -->
 
 <!-- jQuery 2.2.3 -->
@@ -191,6 +193,6 @@ function processNotiType(type){
 @endif
 </style>
 
-@yield('javascript_page')
+@yield('js')
 </body>
 </html>

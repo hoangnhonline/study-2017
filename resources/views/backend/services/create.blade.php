@@ -189,7 +189,7 @@
   </div>
 </div>
 @stop
-@section('javascript_page')
+@section('js')
 <script type="text/javascript">
 var h = screen.height;
 var w = screen.width;

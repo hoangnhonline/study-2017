@@ -145,7 +145,7 @@
   }
 </style>
 @stop
-@section('javascript_page')
+@section('js')
 <script type="text/javascript">
   $(document).on('click', 'input.menu_select', function(){
     var obj = $(this);

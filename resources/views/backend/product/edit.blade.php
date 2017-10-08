@@ -9,7 +9,7 @@
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
         <li><a href="{{ route('product.index') }}">Sản phẩm</a></li>
-        <li class="active"><span class="glyphicon glyphicon-pencil"></span></li>
+        <li class="active">Cập nhật</li>
     </ol>
 </section>
 <!-- Main content -->
@@ -275,7 +275,7 @@
 <input type="hidden" id="route_upload_tmp_image_multiple" value="{{ route('image.tmp-upload-multiple') }}">
 <input type="hidden" id="route_upload_tmp_image" value="{{ route('image.tmp-upload') }}">
 @stop
-@section('javascript_page')
+@section('js')
 <script type="text/javascript">
 var h = screen.height;
 var w = screen.width;

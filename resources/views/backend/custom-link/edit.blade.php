@@ -9,7 +9,7 @@
     <ol class="breadcrumb">
       <li><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
       <li><a href="{{ route('custom-link.index', ['block_id' => $block_id]) }}">{{ $name }}</a></li>
-      <li class="active"><span class="glyphicon glyphicon-pencil"></span></li>
+      <li class="active">Cập nhật</li>
     </ol>
   </section>
 
@@ -81,6 +81,6 @@
 <!-- Modal -->
 
 @stop
-@section('javascript_page')
+@section('js')
 
 @stop
