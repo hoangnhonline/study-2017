@@ -4,11 +4,11 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
-    Mục lục : <span style="color:blue">{{ $coursesDetail->name }}</span>
+    Bài học : @if($partDetail) <span style="color:red">{{ $partDetail->name }}</span>  @endif
   </h1>
   <ol class="breadcrumb">
     <li><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-    <li><a href="{{ route( 'courses-part.index' ) }}">Mục lục</a></li>
+    <li><a href="{{ route( 'courses-lession.index' ) }}?courses_id={{ $coursesDetail->id }}&part_id={{ $partDetail ? $partDetail->id : "" }}">Bài học</a></li>
     <li class="active">Danh sách</li>
   </ol>
 </section>
@@ -20,13 +20,13 @@
       @if(Session::has('message'))
       <p class="alert alert-info" >{{ Session::get('message') }}</p>
       @endif
-      <a href="{{ route('courses-part.create') }}?courses_id={{ $coursesDetail->id }}" class="btn btn-info btn-sm" style="margin-bottom:5px">Tạo mới</a>
+      <a href="{{ route('courses-lession.create') }}?courses_id={{ $coursesDetail->id }}&part_id={{ $partDetail ? $partDetail->id : "" }}" class="btn btn-info btn-sm" style="margin-bottom:5px">Tạo mới</a>
       <div class="panel panel-default">
         <div class="panel-heading">
           <h3 class="panel-title">Bộ lọc</h3>
         </div>
         <div class="panel-body">
-          <form class="form-inline" role="form" method="GET" action="{{ route('courses-part.index') }}" id="searchForm">           
+          <form class="form-inline" role="form" method="GET" action="{{ route('courses-lession.index') }}" id="searchForm">           
              <div class="form-group">
               <label for="email">Khóa học </label>
               <select class="form-control" name="courses_id" id="courses_id">                
@@ -36,7 +36,18 @@
                   @endforeach
                 @endif
               </select>
-            </div>               
+            </div>     
+            <div class="form-group">
+                  <label for="email">Mục lục</label>
+                  <select class="form-control" name="part_id" id="part_id">
+                    <option value="">-- chọn --</option>
+                    @if( $partList->count() > 0)
+                      @foreach( $partList as $value )
+                      <option value="{{ $value->id }}" {{ $value->id == old('part_id', $partDetail->id) ? "selected" : "" }}>{{ $value->name }}</option>
+                      @endforeach
+                    @endif
+                  </select>
+                </div>           
             <div class="form-group">
               <label for="email">Từ khóa :</label>
               <input type="text" class="form-control" name="name" value="{{ $name }}">
@@ -59,8 +70,7 @@
           <table class="table table-bordered" id="table-list-data">
             <tr>
               <th style="width: 1%">#</th>
-              <th>Tên mục lục</th>
-              <th>Bài học</th>
+              <th>Tên bài học</th>             
               <th width="1%;white-space:nowrap">Thao tác</th>
             </tr>
             <tbody>
@@ -72,16 +82,14 @@
                 <td><span class="order">{{ $i }}</span></td>      
                       
                 <td>                  
-                  <a style="font-size:15px" href="{{ route( 'courses-part.edit', [ 'id' => $item->id ]) }}">{{ $item->name }}</a>
+                  <a style="font-size:15px" href="{{ route( 'courses-lession.edit', [ 'id' => $item->id ]) }}">{{ $item->name }}</a>
                 </td>
-                <td>
-                  <a class="btn btn-primary btn-sm" href="{{ route('courses-lession.index', ['courses_id' => $item->courses_id, 'part_id' => $item->id])}}" ><span class="badge">{{ $item->lession->count() }}</span> Bài học </a>
-                </td>
+                
                 <td style="white-space:nowrap"> 
                   <a class="btn btn-default btn-sm" href="{{ route('news-detail', [$item->slug, $item->id ]) }}" target="_blank"><i class="fa fa-eye" aria-hidden="true"></i> Xem</a>                 
-                  <a href="{{ route( 'courses-part.edit', [ 'id' => $item->id ]) }}" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-pencil"></span></a>                 
+                  <a href="{{ route( 'courses-lession.edit', [ 'id' => $item->id ]) }}" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-pencil"></span></a>                 
                   
-                  <a onclick="return callDelete('{{ $item->name }}','{{ route( 'courses-part.destroy', [ 'id' => $item->id ]) }}');" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span></a>
+                  <a onclick="return callDelete('{{ $item->name }}','{{ route( 'courses-lession.destroy', [ 'id' => $item->id ]) }}');" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span></a>
                   
                 </td>
               </tr> 

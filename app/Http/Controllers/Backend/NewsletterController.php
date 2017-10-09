@@ -20,7 +20,7 @@ class NewsletterController extends Controller
     {
         
         if(Auth::user()->role == 1 ){
-            return redirect()->route('product.index');
+            return redirect()->route('courses.index');
         }
         $status = isset($request->status) ? $request->status : 0;
 
@@ -44,7 +44,7 @@ class NewsletterController extends Controller
     public function download()
     {
         if(Auth::user()->role == 1 ){
-            return redirect()->route('product.index');
+            return redirect()->route('courses.index');
         }
         $contents = [];
         $query = Newsletter::orderBy('id', 'desc')->get();
@@ -107,7 +107,7 @@ class NewsletterController extends Controller
     public function update(Request $request)
     {
         if(Auth::user()->role == 1 ){
-            return redirect()->route('product.index');
+            return redirect()->route('courses.index');
         }
         $dataArr = $request->all();
         

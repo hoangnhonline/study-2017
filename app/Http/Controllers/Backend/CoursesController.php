@@ -133,7 +133,7 @@ class CoursesController extends Controller
         $detail = Courses::find($id);
         if( Auth::user()->role < 3 ){
             if($detail->created_user != Auth::user()->id){
-                return redirect()->route('product.index');
+                return redirect()->route('courses.index');
             }
         }       
     

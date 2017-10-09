@@ -29,7 +29,7 @@ class CoursesLession extends Model  {
                             'alias', 
                             'courses_id',
                             'part_id',
-                            'description',                              
+                            'content',                              
                             'status', 
                             'display_order',                             
                             'created_user', 

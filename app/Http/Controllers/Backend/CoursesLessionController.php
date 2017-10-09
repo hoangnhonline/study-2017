@@ -8,13 +8,14 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\Courses;
 use App\Models\CoursesPart;
+use App\Models\CoursesLession;
 use App\Models\Objects;
 use App\Models\Subjects;
 use App\Models\MetaData;
 
 use Helper, File, Session, Auth, Image;
 
-class CoursesPartController extends Controller
+class CoursesLessionController extends Controller
 {
     /**
     * Display a listing of the resource.
@@ -24,11 +25,17 @@ class CoursesPartController extends Controller
     public function index(Request $request)
     {   
         $courses_id = $request->courses_id;
+        $part_id = $request->has('part_id') ? $request->part_id : -1;
+
+        $partDetail = CoursesPart::find($part_id);
         
         $name = isset($request->name) && $request->name != '' ? $request->name : '';
         
-        $query = CoursesPart::where('status', 1)->where('courses_id', $courses_id);
+        $query = CoursesLession::where('status', 1)->where('courses_id', $courses_id);
 
+        if($part_id){
+            $query->where('part_id', $part_id);
+        }
         // check editor
         if( Auth::user()->role < 3 ){
             $query->where('created_user', Auth::user()->id);
@@ -41,9 +48,10 @@ class CoursesPartController extends Controller
         
         //subjects
         $coursesList = Courses::orderBy('display_order')->get();
+        $partList = CoursesPart::where('courses_id', $courses_id)->orderBy('display_order')->get();
 
         $coursesDetail = Courses::find($courses_id);
-        return view('backend.courses-part.index', compact( 'items', 'name', 'coursesList', 'coursesDetail'));
+        return view('backend.courses-lession.index', compact( 'items', 'name', 'coursesList', 'coursesDetail', 'partList', 'partDetail'));
     }
 
     /**
@@ -53,12 +61,13 @@ class CoursesPartController extends Controller
     */
     public function create(Request $request)
     {
-        $courses_id = $request->courses_id;
-        $teacherList = Objects::where('type', 1)->get();
-        $subjectList = Subjects::orderBy('display_order')->get();
+        $courses_id = $request->courses_id;                
         $coursesDetail = Courses::find($courses_id);
+        $part_id = $request->part_id ? $request->part_id : -1;
+        $partDetail = CoursesPart::find($part_id);
         $coursesList = Courses::orderBy('display_order')->get();
-        return view('backend.courses-part.create', compact('subjectList', 'teacherList', 'coursesDetail', 'courses_id', 'coursesList'));
+        $partList = CoursesPart::where('courses_id', $courses_id)->orderBy('display_order')->get();
+        return view('backend.courses-lession.create', compact('coursesDetail', 'courses_id', 'coursesList', 'partDetail', 'partList'));
     }
 
     /**
@@ -74,12 +83,15 @@ class CoursesPartController extends Controller
         $this->validate($request,[
             'name' => 'required',            
             'slug' => 'required',
-            'courses_id' => 'required',
+            'courses_id' => 'required',            
+            'video_url' => 'required',
         ],
         [        
             'name.required' => 'Bạn chưa nhập tiêu đề',
             'slug.required' => 'Bạn chưa nhập slug',  
-            'courses_id.required' => 'Bạn chưa chọn khoa hoc'       
+            'courses_id.required' => 'Bạn chưa chọn khoa hoc',            
+            'video_url.required' => 'Bạn chưa nhap Video URL'
+
         ]);       
         
         $dataArr['alias'] = Helper::stripUnicode($dataArr['name']);      
@@ -90,11 +102,11 @@ class CoursesPartController extends Controller
         
         $dataArr['display_order'] = Helper::getNextOrder('courses_part', ['courses_id' => $dataArr['courses_id']]);        
 
-        $rs = CoursesPart::create($dataArr);
+        $rs = CoursesLession::create($dataArr);
 
         Session::flash('message', 'Tạo mới thành công');
 
-        return redirect()->route('courses-part.index', ['courses_id' => $dataArr['courses_id']]);
+        return redirect()->route('courses-lession.index', ['courses_id' => $dataArr['courses_id'], 'part_id' => $dataArr['part_id']]);
     }
     public function storeMeta( $id, $meta_id, $dataArr ){
        
@@ -144,7 +156,7 @@ class CoursesPartController extends Controller
         }        
         $subjectList = Subjects::orderBy('display_order')->get();
         $teacherList = Objects::where('type', 1)->get();
-        return view('backend.courses-part.edit', compact('detail', 'meta', 'subjectList', 'teacherList'));
+        return view('backend.courses-lession.edit', compact('detail', 'meta', 'subjectList', 'teacherList'));
     }
 
     /**
@@ -161,25 +173,28 @@ class CoursesPartController extends Controller
         $this->validate($request,[
             'name' => 'required',            
             'slug' => 'required',
-            'courses_id' => 'required',
+            'courses_id' => 'required',            
+            'video_url' => 'required',
         ],
         [        
             'name.required' => 'Bạn chưa nhập tiêu đề',
             'slug.required' => 'Bạn chưa nhập slug',  
-            'courses_id.required' => 'Bạn chưa chọn khoa hoc'       
-        ]); 
+            'courses_id.required' => 'Bạn chưa chọn khoa hoc',            
+            'video_url.required' => 'Bạn chưa nhap Video URL'
+
+        ]);
         
         $dataArr['alias'] = Helper::stripUnicode($dataArr['name']);       
         
         $dataArr['updated_user'] = Auth::user()->id;
         
-        $model = CoursesPart::find($dataArr['id']);
+        $model = CoursesLession::find($dataArr['id']);
 
         $model->update($dataArr);
 
         Session::flash('message', 'Cập nhật thành công');        
 
-        return redirect()->route('courses-part.edit', $dataArr['id']);
+        return redirect()->route('courses-lession.edit', $dataArr['id']);
     }
 
     /**
@@ -196,6 +211,6 @@ class CoursesPartController extends Controller
         MetaData::find( $model->meta_id )->delete();
         // redirect
         Session::flash('message', 'Xóa thành công');
-        return redirect()->route('courses-part.index');
+        return redirect()->route('courses-lession.index');
     }
 }

@@ -19,7 +19,7 @@ class SettingsController  extends Controller
     {   
                   
         if(Auth::user()->role < 3){
-            return redirect()->route('product.index');
+            return redirect()->route('courses.index');
         }
         $settingArr = Settings::whereRaw('1')->lists('value', 'name');
 
@@ -35,7 +35,7 @@ class SettingsController  extends Controller
      public function noti(Request $request)
     {           
         if(Auth::user()->role < 3){
-            return redirect()->route('product.index');
+            return redirect()->route('courses.index');
         }   
         $settingArr = Settings::whereRaw('1')->lists('value', 'name');
 
@@ -44,7 +44,7 @@ class SettingsController  extends Controller
     public function dashboard(Request $request)
     {              
         if(Auth::user()->role < 3){
-            return redirect()->route('product.index');
+            return redirect()->route('courses.index');
         }
         $settingArr = Settings::whereRaw('1')->lists('value', 'name');
         $query = Product::where('product.status', 2);
@@ -57,7 +57,7 @@ class SettingsController  extends Controller
         $kyguiList = $query->select(['product_img.image_url as image_urls','product.*', 'estate_type.slug as slug_loai'])->get();
 
 
-        return view('backend.product.index', compact( 'settingArr', 'kyguiList'));
+        return view('backend.courses.index', compact( 'settingArr', 'kyguiList'));
     }
     public function storeNoti(Request $request){
 
@@ -79,7 +79,7 @@ class SettingsController  extends Controller
     public function update(Request $request){
 
         if(Auth::user()->role < 3){
-            return redirect()->route('product.index');
+            return redirect()->route('courses.index');
         }
     	$dataArr = $request->all();
 

@@ -21,7 +21,7 @@ class CustomLinkController extends Controller
     {
         
         if(Auth::user()->role < 3 ){
-            return redirect()->route('product.index');
+            return redirect()->route('courses.index');
         }
         $block_id = isset($request->block_id) ? $request->block_id : 1;
 
@@ -49,7 +49,7 @@ class CustomLinkController extends Controller
     public function create(Request $request)
     {
         if(Auth::user()->role < 3 ){
-            return redirect()->route('product.index');
+            return redirect()->route('courses.index');
         }
         $block_id = isset($request->block_id) ? $request->block_id : 1;
         if($block_id == 1){
@@ -69,7 +69,7 @@ class CustomLinkController extends Controller
     public function store(Request $request)
     {
         if(Auth::user()->role < 3 ){
-            return redirect()->route('product.index');
+            return redirect()->route('courses.index');
         }
         $dataArr = $request->all();
         
@@ -109,7 +109,7 @@ class CustomLinkController extends Controller
     public function edit($id)
     {
         if(Auth::user()->role < 3 ){
-            return redirect()->route('product.index');
+            return redirect()->route('courses.index');
         }
         $detail = CustomLink::find($id);
         $block_id = $detail->block_id;
@@ -131,7 +131,7 @@ class CustomLinkController extends Controller
     public function update(Request $request)
     {
         if(Auth::user()->role < 3 ){
-            return redirect()->route('product.index');
+            return redirect()->route('courses.index');
         }
         $dataArr = $request->all();
         

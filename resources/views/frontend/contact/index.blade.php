@@ -22,7 +22,7 @@
                         </h2>
                     </div>
                     <div class="block-content">
-                        <h2 class="tit-page2">CÔNG TY CỔ PHẦN THIẾT KẾ XÂY DỰNG HOUSELAND</h2>
+                        <h2 class="tit-page2">CÔNG TY CỔ PHẦN THIẾT KẾ XÂY DỰNG ONLINE STUDY</h2>
                         <div class="block-address">
                             {!! $settingArr['chi_nhanh_phia_nam'] !!}
                         </div>

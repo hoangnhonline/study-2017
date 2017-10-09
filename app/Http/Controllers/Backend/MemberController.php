@@ -22,7 +22,7 @@ class MemberController extends Controller
     {
         
         if(Auth::user()->role < 3 ){
-            return redirect()->route('product.index');
+            return redirect()->route('courses.index');
         }
         $items = Member::whereRaw('1')->orderBy('display_order')->get();
         
@@ -37,7 +37,7 @@ class MemberController extends Controller
     public function create(Request $request)
     {
         if(Auth::user()->role < 3 ){
-            return redirect()->route('product.index');
+            return redirect()->route('courses.index');
         }
         return view('backend.member.create');
     }
@@ -51,7 +51,7 @@ class MemberController extends Controller
     public function store(Request $request)
     {
         if(Auth::user()->role < 3 ){
-            return redirect()->route('product.index');
+            return redirect()->route('courses.index');
         }
         $dataArr = $request->all();
         
@@ -94,7 +94,7 @@ class MemberController extends Controller
     public function edit($id)
     {
         if(Auth::user()->role < 3 ){
-            return redirect()->route('product.index');
+            return redirect()->route('courses.index');
         }
         $detail = Member::find($id);        
 
@@ -111,7 +111,7 @@ class MemberController extends Controller
     public function update(Request $request)
     {
         if(Auth::user()->role < 3 ){
-            return redirect()->route('product.index');
+            return redirect()->route('courses.index');
         }
         $dataArr = $request->all();
         
@@ -142,7 +142,7 @@ class MemberController extends Controller
     public function destroy($id)
     {
         if(Auth::user()->role < 3 ){
-            return redirect()->route('product.index');
+            return redirect()->route('courses.index');
         }
         // delete
         $model = Member::find($id);

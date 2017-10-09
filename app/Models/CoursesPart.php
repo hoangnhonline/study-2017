@@ -44,4 +44,7 @@ class CoursesPart extends Model  {
     public function courses(){
         return $this->hasOne('App\Models\Courses', 'courses_id');
     }
+    public function lession(){
+        return $this->hasMany('App\Models\CoursesLession', 'id',  'part_id');
+    }
 }
