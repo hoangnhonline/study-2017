@@ -20,13 +20,29 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'backend', 'middleware' => '
         Route::get('/', ['as' => 'report.index', 'uses' => 'ReportController@index']);     
         Route::post('/search-price-other-site', ['as' => 'crawler.search-price-other-site', 'uses' => 'CompareController@search']);
     });
-    Route::group(['prefix' => 'thong-so'], function () {
-        Route::get('/', ['as' => 'thong-so.index', 'uses' => 'ThongSoController@index']);
-        Route::get('/create', ['as' => 'thong-so.create', 'uses' => 'ThongSoController@create']);
-        Route::post('/store', ['as' => 'thong-so.store', 'uses' => 'ThongSoController@store']);
-        Route::get('{id}/edit',   ['as' => 'thong-so.edit', 'uses' => 'ThongSoController@edit']);       
-        Route::get('{id}/destroy', ['as' => 'thong-so.destroy', 'uses' => 'ThongSoController@destroy']);
-        Route::post('/update', ['as' => 'thong-so.update', 'uses' => 'ThongSoController@update']);
+    Route::group(['prefix' => 'courses'], function () {
+        Route::get('/', ['as' => 'courses.index', 'uses' => 'CoursesController@index']);
+        Route::get('/create', ['as' => 'courses.create', 'uses' => 'CoursesController@create']);
+        Route::post('/store', ['as' => 'courses.store', 'uses' => 'CoursesController@store']);
+        Route::get('{id}/edit',   ['as' => 'courses.edit', 'uses' => 'CoursesController@edit']);       
+        Route::get('{id}/destroy', ['as' => 'courses.destroy', 'uses' => 'CoursesController@destroy']);
+        Route::post('/update', ['as' => 'courses.update', 'uses' => 'CoursesController@update']);
+    });
+    Route::group(['prefix' => 'courses-part'], function () {
+        Route::get('/', ['as' => 'courses-part.index', 'uses' => 'CoursesPartController@index']);
+        Route::get('/create', ['as' => 'courses-part.create', 'uses' => 'CoursesPartController@create']);
+        Route::post('/store', ['as' => 'courses-part.store', 'uses' => 'CoursesPartController@store']);
+        Route::get('{id}/edit',   ['as' => 'courses-part.edit', 'uses' => 'CoursesPartController@edit']);       
+        Route::get('{id}/destroy', ['as' => 'courses-part.destroy', 'uses' => 'CoursesPartController@destroy']);
+        Route::post('/update', ['as' => 'courses-part.update', 'uses' => 'CoursesPartController@update']);
+    });
+    Route::group(['prefix' => 'courses-lession'], function () {
+        Route::get('/', ['as' => 'courses-lession.index', 'uses' => 'CoursesLessionController@index']);
+        Route::get('/create', ['as' => 'courses-lession.create', 'uses' => 'CoursesLessionController@create']);
+        Route::post('/store', ['as' => 'courses-lession.store', 'uses' => 'CoursesLessionController@store']);
+        Route::get('{id}/edit',   ['as' => 'courses-lession.edit', 'uses' => 'CoursesLessionController@edit']);       
+        Route::get('{id}/destroy', ['as' => 'courses-lession.destroy', 'uses' => 'CoursesLessionController@destroy']);
+        Route::post('/update', ['as' => 'courses-lession.update', 'uses' => 'CoursesLessionController@update']);
     });
     Route::group(['prefix' => 'menu'], function () {
         Route::get('/', ['as' => 'menu.index', 'uses' => 'MenuController@index']);
@@ -118,22 +134,16 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'backend', 'middleware' => '
         Route::post('/update', ['as' => 'custom-link.update', 'uses' => 'CustomLinkController@update']);
         Route::get('{id}/destroy', ['as' => 'custom-link.destroy', 'uses' => 'CustomLinkController@destroy']);
     });
-    Route::group(['prefix' => 'color'], function () {
-        Route::get('/', ['as' => 'color.index', 'uses' => 'ColorController@index']);
-        Route::get('/create', ['as' => 'color.create', 'uses' => 'ColorController@create']);
-        Route::post('/store', ['as' => 'color.store', 'uses' => 'ColorController@store']);
-        Route::get('{id}/edit',   ['as' => 'color.edit', 'uses' => 'ColorController@edit']);
-        Route::post('/update', ['as' => 'color.update', 'uses' => 'ColorController@update']);
-        Route::get('{id}/destroy', ['as' => 'color.destroy', 'uses' => 'ColorController@destroy']);
+    
+    Route::group(['prefix' => 'subjects'], function () {
+        Route::get('/', ['as' => 'subjects.index', 'uses' => 'SubjectsController@index']);
+        Route::get('/create', ['as' => 'subjects.create', 'uses' => 'SubjectsController@create']);
+        Route::post('/store', ['as' => 'subjects.store', 'uses' => 'SubjectsController@store']);
+        Route::get('{id}/edit',   ['as' => 'subjects.edit', 'uses' => 'SubjectsController@edit']);
+        Route::post('/update', ['as' => 'subjects.update', 'uses' => 'SubjectsController@update']);
+        Route::get('{id}/destroy', ['as' => 'subjects.destroy', 'uses' => 'SubjectsController@destroy']);
     });
-    Route::group(['prefix' => 'customernoti'], function () {
-        Route::get('/', ['as' => 'customernoti.index', 'uses' => 'CustomerNotificationController@index']);
-        Route::get('/create', ['as' => 'customernoti.create', 'uses' => 'CustomerNotificationController@create']);
-        Route::post('/store', ['as' => 'customernoti.store', 'uses' => 'CustomerNotificationController@store']);
-        Route::get('{id}/edit',   ['as' => 'customernoti.edit', 'uses' => 'CustomerNotificationController@edit']);
-        Route::post('/update', ['as' => 'customernoti.update', 'uses' => 'CustomerNotificationController@update']);
-        Route::get('{id}/destroy', ['as' => 'customernoti.destroy', 'uses' => 'CustomerNotificationController@destroy']);
-    });
+    
     Route::group(['prefix' => 'info-seo'], function () {
         Route::get('/', ['as' => 'info-seo.index', 'uses' => 'InfoSeoController@index']);
         Route::get('/create', ['as' => 'info-seo.create', 'uses' => 'InfoSeoController@create']);
@@ -266,6 +276,22 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'backend', 'middleware' => '
         Route::get('{id}/edit',   ['as' => 'articles.edit', 'uses' => 'ArticlesController@edit']);
         Route::post('/update', ['as' => 'articles.update', 'uses' => 'ArticlesController@update']);
         Route::get('{id}/destroy', ['as' => 'articles.destroy', 'uses' => 'ArticlesController@destroy']);
+    }); 
+    Route::group(['prefix' => 'teacher'], function () {
+        Route::get('/', ['as' => 'teacher.index', 'uses' => 'TeacherController@index']);
+        Route::get('/create', ['as' => 'teacher.create', 'uses' => 'TeacherController@create']);
+        Route::post('/store', ['as' => 'teacher.store', 'uses' => 'TeacherController@store']);
+        Route::get('{id}/edit',   ['as' => 'teacher.edit', 'uses' => 'TeacherController@edit']);
+        Route::post('/update', ['as' => 'teacher.update', 'uses' => 'TeacherController@update']);
+        Route::get('{id}/destroy', ['as' => 'teacher.destroy', 'uses' => 'TeacherController@destroy']);
+    }); 
+    Route::group(['prefix' => 'student'], function () {
+        Route::get('/', ['as' => 'student.index', 'uses' => 'StudentController@index']);
+        Route::get('/create', ['as' => 'student.create', 'uses' => 'StudentController@create']);
+        Route::post('/store', ['as' => 'student.store', 'uses' => 'StudentController@store']);
+        Route::get('{id}/edit',   ['as' => 'student.edit', 'uses' => 'StudentController@edit']);
+        Route::post('/update', ['as' => 'student.update', 'uses' => 'StudentController@update']);
+        Route::get('{id}/destroy', ['as' => 'student.destroy', 'uses' => 'StudentController@destroy']);
     });    
     Route::group(['prefix' => 'services'], function () {
         Route::get('/', ['as' => 'services.index', 'uses' => 'ServicesController@index']);

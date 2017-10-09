@@ -4,23 +4,23 @@
   <!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>
-      Danh mục bài viết     
+      Học viên    
     </h1>
     <ol class="breadcrumb">
       <li><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-      <li><a href="{{ route('articles-cate.index') }}">Danh mục bài viết</a></li>
+      <li><a href="{{ route('student.index') }}">Học viên</a></li>
       <li class="active">Tạo mới</li>
     </ol>
   </section>
 
   <!-- Main content -->
   <section class="content">
-    <a class="btn btn-default btn-sm" href="{{ route('articles-cate.index') }}" style="margin-bottom:5px">Quay lại</a>
-    <form role="form" method="POST" action="{{ route('articles-cate.store') }}" id="dataForm">
+    <a class="btn btn-default btn-sm" href="{{ route('student.index') }}" style="margin-bottom:5px">Quay lại</a>
+    <form role="form" method="POST" action="{{ route('student.store') }}" id="dataForm">
     <div class="row">
       <!-- left column -->
 
-      <div class="col-md-7">
+      <div class="col-md-8">
         <!-- general form elements -->
         <div class="box box-primary">
           <div class="box-header with-border">
@@ -38,36 +38,43 @@
                           @endforeach
                       </ul>
                   </div>
-              @endif
-              
-                 <!-- text input -->
-                <div class="form-group">
-                  <label>Tên danh mục <span class="red-star">*</span></label>
+              @endif                    
+                
+                <div class="form-group" >
+                  
+                  <label>Họ tên <span class="red-star">*</span></label>
                   <input type="text" class="form-control" name="name" id="name" value="{{ old('name') }}">
                 </div>
-                <div class="form-group">
-                  <label>Slug <span class="red-star">*</span></label>
+                <span class=""></span>
+                <div class="form-group">                  
+                  <label>Slug <span class="red-star">*</span></label>                  
                   <input type="text" class="form-control" readonly="readonly" name="slug" id="slug" value="{{ old('slug') }}">
                 </div>
+                <div class="form-group" >
+                  
+                  <label>Trường học</label>
+                  <input type="text" class="form-control" name="school_name" id="school_name" value="{{ old('school_name') }}">
+                </div>
+                <div class="form-group" style="margin-top:10px;margin-bottom:10px">  
+                  <label class="col-md-3 row">Thumbnail ( 338x190 px)</label>    
+                  <div class="col-md-9">
+                    <img id="thumbnail_image" src="{{ old('image_url') ? Helper::showImage(old('image_url')) : URL::asset('public/admin/dist/img/img.png') }}" class="img-thumbnail" width="145" height="85">                    
+                    <button class="btn btn-default btn-sm btnSingleUpload" data-set="image_url" data-image="thumbnail_image" type="button"><span class="glyphicon glyphicon-upload" aria-hidden="true"></span> Upload</button>
+                    <input type="hidden" name="image_url" id="image_url" value="{{ old('image_url') }}"/>
+                  </div>
+                  <div style="clear:both"></div>
+                </div>
+                <div style="clear:both"></div>                
                 <!-- textarea -->
                 <div class="form-group">
                   <label>Mô tả</label>
-                  <textarea class="form-control" rows="4" name="description" id="description">{{ old('description') }}</textarea>
-                </div>            
-                <div class="form-group" style="margin-top:10px;margin-bottom:10px">  
-                  <label class="col-md-3 row">Image </label>    
-                  <div class="col-md-9">
-                    <img id="thumbnail_image" src="{{ old('image_url') ? Helper::showImage(old('image_url')) : URL::asset('public/admin/dist/img/img.png') }}" class="img-thumbnail" width="145" height="85">                 
-                    <button class="btn btn-default btn-sm btnSingleUpload" data-set="image_url" data-image="thumbnail_image" type="button"><span class="glyphicon glyphicon-upload" aria-hidden="true"></span> Upload</button>
-                  </div>
-                  <div style="clear:both"></div>
-              </div>  <!--image-->
-                
+                  <textarea class="form-control" rows="6" name="description" id="description">{{ old('description') }}</textarea>
+                </div> 
                 <div class="form-group">
                   <div class="checkbox">
                     <label>
                       <input type="checkbox" name="is_hot" value="1" {{ old('is_hot') == 1 ? "checked" : "" }}>
-                      HOT
+                      Học viên nổi bật
                     </label>
                   </div>               
                 </div>
@@ -77,18 +84,26 @@
                     <option value="0" {{ old('status') == 0 ? "selected" : "" }}>Ẩn</option>
                     <option value="1" {{ old('status') == 1 || old('status') == NULL ? "selected" : "" }}>Hiện</option>                  
                   </select>
-                </div>              
-            </div>                        
+                </div>
+                               
+                <div class="form-group">
+                  <label>Chi tiết</label>
+                  <textarea class="form-control" rows="4" class="editor" name="content" id="content">{{ old('content') }}</textarea>
+                </div>
+                <input type="hidden" id="editor" value="content">
+                  
+            </div>          
+                              
             <div class="box-footer">
               <button type="submit" class="btn btn-primary btn-sm">Lưu</button>
-              <a class="btn btn-default btn-sm" class="btn btn-primary btn-sm" href="{{ route('articles-cate.index')}}">Hủy</a>
+              <a class="btn btn-default btn-sm" class="btn btn-primary btn-sm" href="{{ route('student.index')}}">Hủy</a>
             </div>
             
         </div>
         <!-- /.box -->     
 
       </div>
-      <div class="col-md-5">
+      <div class="col-md-4">
         <!-- general form elements -->
         <div class="box box-primary">
           <div class="box-header with-border">
@@ -114,7 +129,7 @@
                 <label>Custom text</label>
                 <textarea class="form-control" rows="4" name="custom_text" id="custom_text">{{ old('custom_text') }}</textarea>
               </div>
-              <input type="hidden" name="image_url" id="image_url" value="{{ old('image_url') }}"/>                        
+            
         </div>
         <!-- /.box -->     
 
@@ -126,5 +141,37 @@
   </section>
   <!-- /.content -->
 </div>
+<!-- Modal -->
+<div id="tagModal" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg">
 
+    <!-- Modal content-->
+    <div class="modal-content">
+    <form method="POST" action="{{ route('tag.ajax-save') }}" id="formAjaxTag">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Tạo mới tag</h4>
+      </div>
+      <div class="modal-body" id="contentTag">
+          <input type="hidden" name="type" value="2">
+           <!-- text input -->
+          <div class="col-md-12">
+            <div class="form-group">
+              <label>Tags<span class="red-star">*</span> ( Cách nhau bằng dấu ;  )</label>
+              <textarea class="form-control" name="str_tag" id="str_tag" rows="4" >{{ old('str_tag') }}</textarea>
+            </div>
+            
+          </div>
+          <div classs="clearfix"></div>
+      </div>
+      <div style="clear:both"></div>
+      <div class="modal-footer" style="text-align:center">
+        <button type="button" class="btn btn-primary btn-sm" id="btnSaveTagAjax"> Save</button>
+        <button type="button" class="btn btn-default btn-sm" data-dismiss="modal" id="btnCloseModalTag">Close</button>
+      </div>
+      </form>
+    </div>
+
+  </div>
+</div>
 @stop

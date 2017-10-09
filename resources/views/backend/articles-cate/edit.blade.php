@@ -52,7 +52,7 @@
               </div>
               <div class="form-group">
                 <label>Slug <span class="red-star">*</span></label>
-                <input type="text" class="form-control" name="slug" id="slug" value="{{ $detail->slug }}">
+                <input type="text"  readonly="readonly" class="form-control" name="slug" id="slug" value="{{ $detail->slug }}">
               </div>
               <!-- textarea -->
               <div class="form-group">

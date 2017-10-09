@@ -33,12 +33,18 @@
           
         </ul>
       </li>            
-      <li {{ in_array(\Request::route()->getName(), ['services.edit', 'services.index', 'services.create']) ? "class=active" : "" }}>
-          <a href="{{ route('services.index') }}">
+      <li {{ in_array(\Request::route()->getName(), ['teacher.edit', 'teacher.index', 'teacher.create']) ? "class=active" : "" }}>
+          <a href="{{ route('teacher.index') }}">
             <i class="fa fa-pencil-square-o"></i> 
-            <span>Dịch vụ</span>          
+            <span>Giáo viên</span>          
           </a>       
         </li>
+      <li {{ in_array(\Request::route()->getName(), ['student.edit', 'student.index', 'student.create']) ? "class=active" : "" }}>
+        <a href="{{ route('student.index') }}">
+          <i class="fa fa-pencil-square-o"></i> 
+          <span>Học viên</span>          
+        </a>       
+      </li>
       <li class="treeview {{ in_array(\Request::route()->getName(), ['pages.index', 'pages.create']) ? 'active' : '' }}">
         <a href="#">
           <i class="fa fa-twitch"></i> 

@@ -4,19 +4,19 @@
   <!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>
-      Bài viết    
+      Giáo viên    
     </h1>
     <ol class="breadcrumb">
       <li><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-      <li><a href="{{ route('articles.index') }}">Bài viết</a></li>
+      <li><a href="{{ route('teacher.index') }}">Giáo viên</a></li>
       <li class="active">Tạo mới</li>
     </ol>
   </section>
 
   <!-- Main content -->
   <section class="content">
-    <a class="btn btn-default btn-sm" href="{{ route('articles.index') }}" style="margin-bottom:5px">Quay lại</a>
-    <form role="form" method="POST" action="{{ route('articles.store') }}" id="dataForm">
+    <a class="btn btn-default btn-sm" href="{{ route('teacher.index') }}" style="margin-bottom:5px">Quay lại</a>
+    <form role="form" method="POST" action="{{ route('teacher.store') }}" id="dataForm">
     <div class="row">
       <!-- left column -->
 
@@ -38,32 +38,36 @@
                           @endforeach
                       </ul>
                   </div>
-              @endif                
-                <div class="form-group">
-                  <label for="email">Danh mục <span class="red-star">*</span></label>
-                  <select class="form-control" name="cate_id" id="cate_id">
-                    <option value="">-- chọn --</option>
-                    @if( $cateArr->count() > 0)
-                      @foreach( $cateArr as $value )
-                      <option value="{{ $value->id }}" {{ $value->id == old('cate_id') || $value->id == $cate_id ? "selected" : "" }}>{{ $value->name }}</option>
-                      @endforeach
-                    @endif
-                  </select>
-                </div>                           
+              @endif                    
                 
-                <div class="form-group" >
+                 <div class="form-group" >
                   
-                  <label>Tiêu đề <span class="red-star">*</span></label>
-                  <input type="text" class="form-control" name="title" id="title" value="{{ old('title') }}">
+                  <label>Họ tên <span class="red-star">*</span></label>
+                  <input type="text" class="form-control" name="name" id="name" value="{{ old('name') }}">
                 </div>
                 <span class=""></span>
                 <div class="form-group">                  
                   <label>Slug <span class="red-star">*</span></label>                  
-                  <input type="text" class="form-control"  readonly="readonly" name="slug" id="slug" value="{{ old('slug') }}">
+                  <input type="text" class="form-control" readonly="readonly" name="slug" id="slug" value="{{ old('slug') }}">
                 </div>
-                
+                <div class="form-group" >
+                  
+                  <label>Trường học</label>
+                  <input type="text" class="form-control" name="school_name" id="school_name" value="{{ old('school_name') }}">
+                </div>
+                <div class="form-group">
+                  <label for="email">Môn học<span class="red-star">*</span></label>
+                  <select class="form-control" name="subject_id" id="subject_id">
+                    <option value="">-- chọn --</option>
+                    @if( $subjectList->count() > 0)
+                      @foreach( $subjectList as $value )
+                      <option value="{{ $value->id }}" {{ $value->id == old('subject_id') ? "selected" : "" }}>{{ $value->name }}</option>
+                      @endforeach
+                    @endif
+                  </select>
+                </div> 
                 <div class="form-group" style="margin-top:10px;margin-bottom:10px">  
-                  <label class="col-md-3 row">Thumbnail ( 624x468 px)</label>    
+                  <label class="col-md-3 row">Thumbnail ( 338x190 px)</label>    
                   <div class="col-md-9">
                     <img id="thumbnail_image" src="{{ old('image_url') ? Helper::showImage(old('image_url')) : URL::asset('public/admin/dist/img/img.png') }}" class="img-thumbnail" width="145" height="85">                    
                     <button class="btn btn-default btn-sm btnSingleUpload" data-set="image_url" data-image="thumbnail_image" type="button"><span class="glyphicon glyphicon-upload" aria-hidden="true"></span> Upload</button>
@@ -81,7 +85,7 @@
                   <div class="checkbox">
                     <label>
                       <input type="checkbox" name="is_hot" value="1" {{ old('is_hot') == 1 ? "checked" : "" }}>
-                      Bài viết nổi bật
+                      Giáo viên nổi bật
                     </label>
                   </div>               
                 </div>
@@ -92,21 +96,7 @@
                     <option value="1" {{ old('status') == 1 || old('status') == NULL ? "selected" : "" }}>Hiện</option>                  
                   </select>
                 </div>
-                <div class="input-group">
-                  <label>Tags</label>
-                  <select class="form-control select2" name="tags[]" id="tags" multiple="multiple">                  
-                    @if( $tagArr->count() > 0)
-                      @foreach( $tagArr as $value )
-                      <option value="{{ $value->id }}" {{ (old('tags') && in_array($value->id, old('tags'))) ? "selected" : "" }}>{{ $value->name }}</option>
-                      @endforeach
-                    @endif
-                  </select>
-                  <span class="input-group-btn">
-                    <button style="margin-top:24px" class="btn btn-primary btn-sm" id="btnAddTag" type="button" data-value="3">
-                      Tạo mới
-                    </button>
-                  </span>
-                </div>                
+                               
                 <div class="form-group">
                   <label>Chi tiết</label>
                   <textarea class="form-control" rows="4" class="editor" name="content" id="content">{{ old('content') }}</textarea>
@@ -117,7 +107,7 @@
                               
             <div class="box-footer">
               <button type="submit" class="btn btn-primary btn-sm">Lưu</button>
-              <a class="btn btn-default btn-sm" class="btn btn-primary btn-sm" href="{{ route('articles.index')}}">Hủy</a>
+              <a class="btn btn-default btn-sm" class="btn btn-primary btn-sm" href="{{ route('teacher.index')}}">Hủy</a>
             </div>
             
         </div>
