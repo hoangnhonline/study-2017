@@ -5,19 +5,13 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Models\Product;
 use App\Models\Banner;
-use App\Models\Location;
 use App\Models\Articles;
 use App\Models\ArticlesCate;
 use App\Models\Customer;
 use App\Models\Newsletter;
 use App\Models\Settings;
-use App\Models\HotCate;
-use App\Models\CateParent;
-use App\Models\Cate;
 use App\Models\Pages;
-use App\Models\Member;
 use App\Models\Rating;
 
 use Helper, File, Session, Auth, Hash, Response;
@@ -32,8 +26,7 @@ class HomeController extends Controller
        
 
     }    
-    public function rss(Request $request){
-        $productList = Product::where('status', 1)->orderBy('id', 'desc')->get();  
+    public function rss(Request $request){        
         $settingArr = Settings::whereRaw('1')->lists('value', 'name');
         $articlesList = Articles::where('status', 1)->where('cate_id', '<>', 7)->orderBy('id', 'desc')->get();  
         return Response::view('frontend.home.rss', compact('productList', 'settingArr', 'articlesList'))->header('Content-Type', 'text/xml');
@@ -56,8 +49,7 @@ class HomeController extends Controller
     public function index(Request $request)
     {         
         $articlesArr = [];
-        $articlesCateHot = (object) [];
-        $productCateHot = $productParentHot = [];
+        $articlesCateHot = (object) [];        
         $bannerArr = [];          
         
         $settingArr = Settings::whereRaw('1')->lists('value', 'name');
@@ -70,35 +62,7 @@ class HomeController extends Controller
                                     ->orderBy('id', 'desc')
                                     ->orderBy('display_order')
                                     ->limit(5)->get();
-        }
-
-        $cateParentHot = CateParent::where('is_hot', 1)->orderBy('display_order')->get();
-        $cateHot = Cate::where('is_hot', 1)->orderBy('display_order')->get();
-
-        //hotCate
-        $parentArr = $cateArr = [];
-        $hotCateList = HotCate::orderBy('display_order')->get();
-        if($hotCateList){
-            foreach($hotCateList as $hotCate)
-            {                
-                $query = Product::where('status', 1);
-                    if($hotCate->type == 1){
-                        $parentArr[$hotCate->object_id] = CateParent::find($hotCate->object_id);
-                        $query->where('parent_id', $hotCate->object_id);
-                    }else{
-                        $cateArr[$hotCate->object_id] = Cate::find($hotCate->object_id);
-                        $query->where('cate_id', $hotCate->object_id);
-                    }                                 
-                    $query->leftJoin('product_img', 'product_img.id', '=','product.thumbnail_id')
-                    ->select('product_img.image_url', 'product.*')        
-                    ->orderBy('product.is_hot', 'desc')
-                    ->orderBy('product.id', 'desc')
-                    ->orderBy('product.display_order');
-                                    
-                $productHot[$hotCate->id]  = $query->limit($settingArr['hot_homepage'])->get();
-            }
-        }
-        
+        }        
         
         $seo = $settingArr;
         $seo['title'] = $settingArr['site_title'];
@@ -106,7 +70,7 @@ class HomeController extends Controller
         $seo['keywords'] = $settingArr['site_keywords'];
         $socialImage = $settingArr['banner'];
 
-        return view('frontend.home.index', compact('articlesCateHot', 'articlesArr', 'socialImage', 'seo', 'productHot', 'hotCateList', 'parentArr', 'cateArr'));
+        return view('frontend.home.index', compact('articlesCateHot', 'articlesArr', 'socialImage', 'seo'));
 
     }
     public function getChild(Request $request){
