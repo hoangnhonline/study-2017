@@ -13,6 +13,8 @@ use App\Models\Newsletter;
 use App\Models\Settings;
 use App\Models\Pages;
 use App\Models\Rating;
+use App\Models\Courses;
+use App\Models\Objects;
 
 use Helper, File, Session, Auth, Hash, Response;
 
@@ -47,30 +49,24 @@ class HomeController extends Controller
         return view('frontend.partials.rating', compact('object_id', 'object_type'));
     }
     public function index(Request $request)
-    {         
-        $articlesArr = [];
-        $articlesCateHot = (object) [];        
-        $bannerArr = [];          
-        
+    {   
         $settingArr = Settings::whereRaw('1')->lists('value', 'name');
 
-        $articlesCateHot = ArticlesCate::where('is_hot', 1)->orderBy('display_order')->get();
-        foreach($articlesCateHot as $cateHot){
-            $articlesArr[$cateHot->id] = Articles::where('status', 1)
-                                    ->where('cate_id', $cateHot->id)
-                                    ->orderBy('is_hot', 'desc')
-                                    ->orderBy('id', 'desc')
-                                    ->orderBy('display_order')
-                                    ->limit(5)->get();
-        }        
-        
         $seo = $settingArr;
         $seo['title'] = $settingArr['site_title'];
         $seo['description'] = $settingArr['site_description'];
         $seo['keywords'] = $settingArr['site_keywords'];
         $socialImage = $settingArr['banner'];
+        
+        $coursesList = Courses::getList(['is_hot' => 1, 'limit' => 9]);
 
-        return view('frontend.home.index', compact('articlesCateHot', 'articlesArr', 'socialImage', 'seo'));
+        $teacherList = Objects::getList(['type' => 1, 'is_hot' => 1, 'limit' => 10]);
+
+        $studentList = Objects::getList(['type' => 2, 'is_hot' => 1, 'limit' => 10]);
+
+        $articlesList = Articles::getList(['is_hot' => 1, 'limit' => 4]);
+
+        return view('frontend.home.index', compact('teacherList', 'studentList', 'coursesList', 'socialImage', 'seo', 'articlesList'));
 
     }
     public function getChild(Request $request){

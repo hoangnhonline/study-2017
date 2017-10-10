@@ -1,128 +1,91 @@
-<header class="header">
-	<div class="block-header-top">
+<header id="header">
+	<div class="header-top">
 		<div class="container">
 			<div class="row">
-				<div class="col-sm-6 col-xs-12 block-intro">
-					<p>Chào mừng bạn đến với bất động sản Houseland!</p>
-				</div><!-- /block-intro -->
-				<div class="col-sm-6 col-xs-12 block-search">
-					<div class="block-search-inner clearfix">
-						<form class=""  action="{{ route('search') }}" method="GET">
-				            <div class="input-serach">
-								<input type="text" class="txtSearch" value="{!! isset($tu_khoa) ? $tu_khoa : "" !!}" name="keyword" placeholder="Từ khóa bạn cần tìm...">
-				            </div><!-- /input-serach -->
-				            <div class="select-choice">
-				            	<div class="form-category">
-					                <select id="cid" class="cid choice" name="cid">
-									    <option value="" >Tìm theo danh mục</option>
-									   	@foreach($cateParentList as $value)
-									   	<option value="{{ $value->id }}" {{ isset($parent_id) && $parent_id == $value->id ? "selected" : "" }}>{!! $value->name !!}</option>>
-									   	@endforeach
-									</select>
-					            </div><!-- /form-category -->
-				            	<button type="submit" class="btn-search"><i class="fa fa-search"></i></button>
-				            </div><!-- /select-choice -->
-			            </form>
-					</div>
+				<div class="block-logo col-sm-3">
+					<a href="{{ route('home') }}" title="LOGO"><img src="{{ URL::asset('public/assets/images/logo_gd.jpg') }}" alt="LOGO "></a>
+				</div><!-- /block-log -->
+				<div class="block-search col-sm-6">
+					<form name="frm_search" action="" class="frm-search">
+						<div class="control clearfix">
+							<button type="submit">
+								<i class="fa fa-search"></i>
+							</button>
+							<input type="text" name="" placeholder="Từ khóa tìm kiếm" autocomplete="off">
+						</div>
+					</form>
 				</div><!-- /block-search -->
+				<div class="block-user col-sm-3">
+					<span class="ava-img">
+						<img alt="" src="images/user.svg">
+					</span>
+					<div class="ava-info">
+						<p><strong>Đăng nhập, đăng ký</strong></p>
+						<p class="small">Tài khoản</p>
+					</div>
+					<div class="popover fade bottom in">
+					    <div class="arrow"></div>
+					    <div class="popover-content">
+					        <div class="popover-signin">
+					        	<a class="btn btn-block btn-white" href="javascript(0);" data-toggle="modal" data-target="#login-modal">Đăng nhập</a>
+					        	<a class="btn btn-block btn-white" href="javascript(0);" data-toggle="modal" data-target="#register-modal">Đăng ký tài khoản mới</a>
+					        	<a class="btn btn-block login-button-fb btn-social" href="#">Đăng nhập với Facebook</a>
+					        	<a class="btn btn-block login-button-google btn-social" href="#">Đăng nhập với Google+</a>
+					       	</div>
+					    </div>
+					</div>
+				</div><!-- /block-user -->
 			</div>
 		</div>
-	</div><!-- /block-header-top -->
-	<div class="block-header-bottom">
+	</div><!-- /header-top -->
+	<div class="box-menu">
 		<div class="container">
-			<div class="row">
-				<div class="col-sm-6 col-xs-12 block-logo">
-					<a href="{{ route('home') }}" title="Logo">
-						<img src="{{ Helper::showImage($settingArr['logo']) }}" alt="Logo Houseland">
-					</a>
-				</div><!-- /block-logo -->
-				<div class="col-sm-6 col-xs-12 block-info">
-					<div class="hotline">
-						<i class="fa fa-phone"></i>
-						<p>
-							<span class="title">Hotline</span>
-							<span class="info">{!! $settingArr['hotline'] !!}</span>
-						</p>
-					</div>
-					<div class="email">
-						<i class="fa fa-envelope-o"></i>
-						<p>
-							<span class="title">Email</span>
-							<span class="info">{!! $settingArr['email_header'] !!}</span>
-						</p>
-					</div>
-				</div><!-- /bblock-info -->
-			</div>
-		</div>
-	</div><!-- /block-header-bottom -->
-	<div class="menu">
-		<div class="nav-toogle">
-			<i class="fa"></i>
-		</div>	
-		<nav class="menu-top">
-			<div class="container">
-				<ul class="nav-menu">
-					<?php 
-					$menuLists = DB::table('menu')->where('parent_id', 0)->orderBy('display_order')->get();
-					?>
-					@foreach($menuLists as $menu)
-
-					<?php
-                  	$menuCap1List = DB::table('menu')->where('parent_id', $menu->id)->orderBy('display_order')->get();
-                  	?>
-                                      
-					<li class="level0 @if($menuCap1List)  parent @endif "><a href="{{ $menu->url }}" title="{{ $menu->title }}">{{ $menu->title }}</a>
-
-						@if($menuCap1List)
-						
-						<ul class="level0 submenu">			
-							@foreach($menuCap1List as $cap1)
-							<?php 
-							$menuCap2List = DB::table('menu')->where('parent_id', $cap1->id)->orderBy('display_order')->get(); 
-
-							?>
-							<li class="level1 @if($menuCap2List) parent @endif">
-								<a href="{{ $cap1->url }}" title="{!! $cap1->title !!}">{!! $cap1->title !!}</a>
-								
-								@if($menuCap2List)
-								<ul class="level1 submenu">
-									@foreach($menuCap2List as $cap2)
-									<li class="level2"><a href="{{ $cap2->url }}" title="{!! $cap2->title !!}">{!! $cap2->title !!}</a></li>
-									@endforeach
+			<nav id="mainNav" class="navbar navbar-default navbar-custom">
+		        <div class="navbar-header">
+		            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+		              <span class="sr-only">Toggle navigation</span><i class="fa fa-bars"></i>
+		            </button><!-- /navbar-toggle -->
+				</div>
+				<div class="collapse navbar-collapse menu" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav navbar-left">
+						<li class="level0 menu-icon active"><a href="{{ route('home') }}" title="Trang Chủ"></a></li><!-- level0 -->
+						<li class="level0 parent">
+							<a href="thithu.html" title="Thi Thử">
+								Thi Thử
+								<ul class="level0 submenu">
+									<li class="level1"><a href="#" title="Thi THPT Quốc gia 2016">Thi THPT Quốc gia 2016</a></li>
+									<li class="level1 parent">
+										<a href="#" title="Thi THPT Quốc gia 2015">Thi THPT Quốc gia 2015</a>
+										<ul class="level1 submenu">
+											<li class="level1"><a href="#" title="">Toán học</a></li>
+											<li class="level1"><a href="#" title="">Vật lý</a></li>
+											<li class="level1"><a href="#" title="">Hóa học</a></li>
+											<li class="level1"><a href="#" title="">Sinh học</a></li>
+											<li class="level1"><a href="#" title="">Ngữ Văn</a></li>
+											<li class="level1"><a href="#" title="">Lịch Sử</a></li>
+											<li class="level1"><a href="#" title="">Tiếng Anh</a></li>
+											<li class="level1"><a href="#" title="">Địa Lý</a></li>
+											<li class="level1"><a href="#" title="">Đề thi minh họa Kỳ thi THPT Quốc gia</a></li>
+											<li class="level1"><a href="#" title="">Bài thi Tổng Hợp – ĐHQG HN</a></li>
+										</ul>
+									</li>
+									<li class="level1"><a href="#" title="">Thi THPT Quốc gia 2016 </a></li>
+									<li class="level1"><a href="#" title="">Thi THPT Quốc gia 2016 </a></li>
+									<li class="level1"><a href="#" title="">Thi THPT Quốc gia 2016 </a></li>
+									<li class="level1"><a href="#" title="">Thi THPT Quốc gia 2016 </a></li>
 								</ul>
-								@endif
-							</li>
-							@endforeach
-						</ul>
-						
-						@endif
-					</li>					
-
-					@endforeach
-					<li class="search-mb">
-						<div class="block-search">
-							<div class="block-search-inner clearfix">
-								<form class="form-inline" action="{{ route('search') }}" method="GET">
-						            <div class="form-group input-serach">
-										<input type="text" class="txtSearch" value="{!! isset($tu_khoa) ? $tu_khoa : "" !!}" name="keyword"  placeholder="Từ khóa bạn cần tìm...">
-						            </div><!-- /input-serach -->
-						            <div class="form-group select-choice">
-						            	<div class="form-group form-category">
-							              <select id="cid" class="cid choice" name="cid">
-										    <option value="" >Tìm theo danh mục</option>
-										   	@foreach($cateParentList as $value)
-										   	<option value="{{ $value->id }}" {{ isset($parent_id) && $parent_id == $value->id ? "selected" : "" }}>{!! $value->name !!}</option>>
-										   	@endforeach
-										</select>
-							            </div><!-- /form-category -->
-						            	<button type="submit" class="btn-search"><i class="fa fa-search"></i></button>
-						            </div><!-- /select-choice -->
-					            </form>
-							</div>
-						</div><!-- /block-search -->
-					</li>
-				</ul>
-			</div>
-		</nav><!-- /menu-top -->
-	</div><!-- /menu -->
-	</header><!-- /header -->
+							</a>
+						</li><!-- level0 -->
+						<li class="level0"><a href="#" title="Luyện Thi">Luyện Thi</a></li><!-- level0 -->
+						<li class="level0"><a href="#" title="Luyện Đề">Luyện Đề</a></li><!-- level0 -->
+						<li class="level0"><a href="#" title="Kiến Thức Phổ Thông">Kiến Thức Phổ Thông</a></li><!-- level0 -->
+						<li class="level0"><a href="#" title="Tiếng Anh">Tiếng Anh</a></li><!-- level0 -->
+						<li class="level0"><a href="#" title="Thư Viện">Thư Viện</a></li><!-- level0 -->
+						<li class="level0"><a href="#" title="Tin Tức">Tin Tức</a></li><!-- level0 -->
+						<li class="level0"><a href="#" title="Kỹ Năng">Kỹ Năng</a></li><!-- level0 -->
+					</ul>
+				</div><!-- /.navbar-collapse -->
+	    	</nav><!-- mainNav -->
+    	</div>
+	</div><!-- /box-menu -->
+</header><!-- /header -->

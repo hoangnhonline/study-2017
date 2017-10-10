@@ -43,6 +43,44 @@ class Courses extends Model  {
                             'created_user', 
                             'updated_user'];
     
+    public static function getList($params = []){
+        $query = self::where('status', 1);
+        if( isset($params['teacher_id']) && $params['teacher_id'] ){
+            $query->where('teacher_id', $params['teacher_id']);
+        }
+        if( isset($params['subject_id']) && $params['subject_id'] ){
+            $query->where('subject_id', $params['subject_id']);
+        }
+        if( isset($params['is_hot']) && $params['is_hot'] ){
+            $query->where('is_hot', $params['is_hot']);
+        }        
+        $query->orderBy('is_hot', 'desc')->orderBy('id', 'desc');
+        if(isset($params['limit']) && $params['limit']){
+            return $query->limit($params['limit'])->get();
+        }
+        if(isset($params['pagination']) && $params['pagination']){
+            return $query->paginate($params['pagination']);
+        }                
+    }
+    public static function getListOther($params = []){
+        $query = self::where('status', 1)->where('id', '<>', $params['id']);        
+       if( isset($params['type']) && $params['type'] ){
+            $query->where('type', $params['type']);
+        }
+        if( isset($params['teacher_id']) && $params['teacher_id'] ){
+            $query->where('teacher_id', $params['teacher_id']);
+        }
+        if( isset($params['is_hot']) && $params['is_hot'] ){
+            $query->where('is_hot', $params['is_hot']);
+        }        
+        $query->orderBy('is_hot', 'desc')->orderBy('id', 'desc');
+        if(isset($params['limit']) && $params['limit']){
+            return $query->limit($params['limit'])->get();
+        }
+        if(isset($params['pagination']) && $params['pagination']){
+            return $query->paginate($params['pagination']);
+        }                
+    }
     public function createdUser()
     {
         return $this->belongsTo('App\Models\Account', 'created_user');

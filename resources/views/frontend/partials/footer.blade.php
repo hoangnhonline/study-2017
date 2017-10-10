@@ -1,70 +1,51 @@
-<footer class="footer">
-    <div class="footer-top">
+<footer id="footer">
+    <div class="block-getmail">
         <div class="container">
             <div class="row">
-                <div class="col-sm-4 col-xs-12 ft-link ft-information ft-title">
-                    <div class="block-title @if($isEdit) edit @endif" data-text="4">{!! $textList[4] !!}</div>
-                    <div class="block-cotent">
-                        <ul class="list">
-                            @if($footerLink1)
-                            @foreach($footerLink1 as $link)
-                            <li><a href="{{ $link->link_url }}" title="{!! $link->link_text !!}">{!! $link->link_text !!}</a></li>
-                            @endforeach
-                            @endif                          
-                        </ul>
-                    </div>
-                </div><!-- /ft-information-->
-                <div class="col-sm-4 col-xs-12 ft-link ft-links ft-title">
-                    <div class="item">
-                        <div class="block-title @if($isEdit) edit @endif" data-text="5">{!! $textList[5] !!}</div>
-                        <div class="block-cotent">
-                            <ul class="list">
-                                @if($footerLink2)
-                                @foreach($footerLink2 as $link)
-                                <li><a href="{{ $link->link_url }}" title="{!! $link->link_text !!}">{!! $link->link_text !!}</a></li>
-                                @endforeach
-                                @endif
-                            </ul>
-                        </div>
-                    </div><!-- /item-->
-                    <div class="item">
-                        <div class="block-title @if($isEdit) edit @endif" data-text="7">{!! $textList[7] !!}</div>
-                        <div class="block-cotent">
-                            <div class="resgis-form">
-                                
-                                <input type="input" name="txtNewsletter" id="txtNewsletter" value="" placeholder="Nhập email của bạn...">
-                                <button type="button" name="btnNewsletter" id="btnNewsletter" class="btn-regis">Đăng ký</button>
-                                
-                            </div>
-                        </div>
-                    </div><!-- /item-->
-                </div><!-- /ft-links-->
-                <div class="col-sm-4 col-xs-12 ft-contact ft-title">
-                    <div class="block-title @if($isEdit) edit @endif" data-text="6">{!! $textList[6] !!}</div>
-                    <div class="block-content">
-                        <address>
-                           {!! $settingArr['chi_nhanh_phia_nam'] !!}
-                        </address>
-                        <address>
-                            {!! $settingArr['chi_nhanh_phia_bac'] !!}
-                        </address>
-                    </div>
-                </div><!-- /ft-contact-->
+                <div class="col-sm-6">
+                    <p>
+                        <strong>ĐĂNG KÝ NHẬN EMAIL</strong>
+                        Đăng ký để nhận tài liệu bổ ích từ ViettelStudy.vn
+                    </p>
+                </div>
+                <div class="col-sm-6">
+                    <form action="#" method="get" class="form-getmail">
+                        <input type="email" name="" value="" class="form-control">
+                        <button type="submit" value="Đăng Kí" class="btn btn-getmail">Đăng Kí</button>
+                    </form>
+                </div>
             </div>
         </div>
-    </div><!-- /footer-top-->
-    <div class="footer-bot">
-        <div class="container">            
-            <div class="fbchatbox hidden-xs">
-                <div class="fb-page fb-page1" data-href="{{ $settingArr['facebook_fanpage'] }}" data-small-header="true" data-adapt-container-width="false" data-height="300" data-width="300" data-hide-cover="true" data-show-facepile="true" data-show-posts="false" data-tabs="messages"><div class="fb-xfbml-parse-ignore"></div></div>
-                <span id="closefbchat" style="white-space: nowrap; position: absolute; right: 2px; bottom: 0px; padding: 5px 25px; background: #f46602; color: rgb(255, 255, 255); cursor: pointer; border-radius: 4px 4px 0 0;">Tắt Chat</span>
-            </div>       
+    </div><!-- /block-getmail -->
+    <div class="block-info-ft">
+        <div class="container">
+            <div class="row">
+                <div class="logo-ft col-sm-3">
+                    <a href="#" alt="">
+                        <img src="images/logo_gd_footer.jpg" alt="">
+                    </a>
+                </div>
+                <div class="address col-sm-5">
+                    <p><strong>Twitter, Inc.</strong></p>
+                    <p> 1355 Market Street, Suite 900</p>
+                    <p>San Francisco, CA 94103</p>
+                    <p>Điện thoại: 198 (miễn phí)</p>
+                    <p>Email <a href="mailto:joe@example.com?subject=feedback">joe@example.com</a></p>
+                </div>
+                <div class="fanpage col-sm-4">
+                    fanpage
+                </div>
+            </div>
         </div>
-    </div><!-- /footer-bot-->
-    <a id="return-to-top" class="td-scroll-up" href="javascript:void(0)">
-        <i class="fa fa-angle-up" aria-hidden="true"></i>
-    </a><!-- return to top -->
-    <div class="block-hotline-mb" href="javascript:void(0)">
-            <p><a href="tel:{{ $settingArr['hotline'] }}">{{ $settingArr['hotline'] }}</a></p>
-        </div><!-- return to top -->
-    </footer><!-- footer -->
+    </div><!-- /block-info-ft -->
+    <!-- <div class="block-social">
+        <div class="container">
+            <ul>
+                <li class="facebook"><a href="#" title=""><i class="fa fa-facebook"></i></a></li>
+                <li class="instagram"><a href="#" title=""><i class="fa fa-instagram"></i></a></li>
+                <li class="youtube"><a href="#" title=""><i class="fa fa-youtube-play"></i></a></li>
+                <li class="google"><a href="#" title=""><i class="fa fa-google-plus"></i></a></li>
+            </ul>
+        </div>
+    </div> -->
+</footer><!-- /footer -->

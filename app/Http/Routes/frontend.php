@@ -23,6 +23,15 @@ Route::group(['namespace' => 'Frontend'], function()
     Route::post('/send-contact', ['as' => 'send-contact', 'uses' => 'ContactController@store']);
     Route::post('/send-bao-gia', ['as' => 'send-thi-cong', 'uses' => 'ContactController@storeThiCong']);
     Route::post('/send-thiet-ke', ['as' => 'send-thiet-ke', 'uses' => 'ContactController@storeThietKe']);
+    
+    Route::get('/khoa-hoc', ['as' => 'courses-list', 'uses' => 'CoursesController@index']);
+    Route::get('/giao-vien', ['as' => 'teacher-list', 'uses' => 'ObjectsController@teacher']);
+    Route::get('/hoc-vien', ['as' => 'student-list', 'uses' => 'ObjectsController@student']);
+    Route::get('/giao-vien/{slug}-{id}.html', ['as' => 'teacher-detail', 'uses' => 'ObjectsController@detail']);
+    Route::get('/hoc-vien/{slug}-{id}.html', ['as' => 'student-detail', 'uses' => 'ObjectsController@detail']);
+    Route::get('/khoa-hoc/{slug}-{id}.html', ['as' => 'courses-detail', 'uses' => 'CoursesController@detail']);
+
+
     Route::get('tag/{slug}', ['as' => 'tag', 'uses' => 'DetailController@tagDetail']);
     Route::get('tin-tuc/{slug}', ['as' => 'news-list', 'uses' => 'NewsController@newsList']);
     Route::get('/tin-tuc/{slug}-p{id}.html', ['as' => 'news-detail', 'uses' => 'NewsController@newsDetail']);

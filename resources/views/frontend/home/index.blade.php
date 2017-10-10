@@ -5,157 +5,216 @@
 @include('frontend.home.slider')
 
 @section('content')
-<div class="block block_big-title" style="margin-bottom:0px">
-  <div class="container">
-    <h1 data-text="2" @if($isEdit) class="edit" @endif>{!! $textList[2] !!}</h1>
-    @if($settingArr['gioi_thieu_chung'] != '')
-    <p class="desc">
-      {!! $settingArr['gioi_thieu_chung'] !!}
-    </p>
-    @endif
-  </div>
-</div><!-- /block_big-title -->
-@if($hotCateList)
-@foreach($hotCateList as $hotCate)
-<div class="block2 block-btn-slide block-ct-pro block-title-commom">
-      <div class="container">
-        <div class="block2 block-title">
-          <h2>
-            
-              <i class="fa fa-home"></i>
-              @if($hotCate->type == 1)
-              <a href="{{ route('cate-parent', [$parentArr[$hotCate->object_id]->slug]) }}" title="{!! $hotCate->title !!}">{!! $hotCate->title !!}</a>
-              @else
-              <a href="{{ route('cate', [$cateArr[$hotCate->object_id]->cateParent->slug, $cateArr[$hotCate->object_id]->slug]) }}" title="{!! $hotCate->title !!}">{!! $hotCate->title !!}</a>
-              @endif
-            
-          </h2>
-        </div>
-        <div class="block-content">
-          <div class="owl-carousel owl-theme owl-style2" data-nav="true" data-dots="false" data-margin="12" data-responsive='{"0":{"items":1},"480":{"items":2},"600":{"items":2},"768":{"items":3},"800":{"items":3},"992":{"items":3}}'>
-            @if($productHot[$hotCate->id])
-            @foreach($productHot[$hotCate->id] as $product) 
-            <div class="item">
-              <div class="thumb">
-                <a href="{{ route('product', [$product->slug, $product->id ]) }}" title="{!! $product->title !!}">
-                <img src="{{ Helper::showImageThumb($product->image_url) }}" alt="{!! $product->title !!}">
-              </a>
+
+    <div class="block block-livetream">
+      <div class="contaier">
+        <!-- <img src="images/icon-streaming.png" alt="" style="display: inline-block; vertical-align: middle; margin-right: 10px;">Live Tream -->
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">
+              <img src="images/icon-streaming.png" alt="" style="display: inline-block; vertical-align: middle; margin-right: 10px;">
+              <span style="display: inline-block;margin-top: 5px;">Live Tream</span>
+            </h3>
+          </div>
+          <div class="panel-body">
+            <div class="block-video">
+              <div class="row">
+                <div class="col-sm-8">
+                  <div class="video">
+                    <iframe width="100%" height="350" src="https://www.youtube-nocookie.com/embed/gr0FXeNm_f8?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
+                  </div>
+                </div><!-- /col-sm-8 -->
+                <div class="col-sm-4">
+                  <div class="bock-info">
+                    <div class="box-table">
+                      <div class="box-table-cell">
+                        <h1 class="title">Luyện thi THPT Quốc gia môn Toán học</h1>
+                        <p class="info">Bao trùm toàn bộ kiến thức môn Toán</p>
+                        <p class="price">Học phí 100,000 vnđ </p>
+                        <div class="group-btn">
+                          <a href="#" title="" class="btn">Xem Chi Tiết</a>
+                          <a href="#" title="" class="btn">Đăng kí Khóa Học</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div><!-- /col-sm-4 -->
               </div>
-              <div class="des">
-                <p class="code"><span>Mã sản phẩm: </span>{!! $product->code !!}</p>
-                <a href="{{ route('product', [$product->slug, $product->id ]) }}" title="{!! $product->title !!}">{!! $product->title !!}</a>                
-              </div>
-            </div><!-- /item -->
-            @endforeach
-            @endif 
+            </div><!-- /block-video -->
           </div>
         </div>
       </div>
-    </div><!-- /block_big-title -->
+    </div><!-- /block-livetream -->
+    <div class="block banner-news">
+      <a href="#" title="" target="_self">
+        <img src="images/banner/thumb11_87997117.png" alt="">
+      </a>
+    </div><!-- /banner-news -->
+    <div class="block block-quotations">
+      <div class="inner-quotations">
+        <span class="qoute">“&nbsp;&nbsp;</span>
+        <div class="content">
+                  <p>Giáo dục là vũ khí mạnh nhất mà người ta có thể sử dụng để thay đổi cả thế giới.</p>
+              </div>
+              <span class="qoute">&nbsp;&nbsp;”</span>
+              <div class="author">N.Mandela</div>
+      </div>
+    </div><!-- /block-quotations -->
+    <div class="block block-news-home block-title-cm">
+      <div class="block-title">
+        <h2 class="title">
+          <a href="#" title="Tin Tức Giáo Dục">
+            <i class="fa fa-newspaper-o"></i>
+            Tin Tức Giáo Dục
+          </a>
+        </h2>
+      </div><!-- /block-title -->
+      <div class="block-content clearfix">
+        <div class="home-news-left">
+          <?php 
+          $articleFirst = $articlesList->first();
 
-@endforeach
-@endif
-<?php 
-$bannerArr = DB::table('banner')->where(['object_id' => 5, 'object_type' => 3])->orderBy('display_order', 'asc')->get();
-?>
-@if($bannerArr)
-<?php $i = 0; ?>
-@foreach($bannerArr as $banner)
-<?php $i++; ?>
-<div class="block block-banner">
-  @if($banner->ads_url !='')
-  <a href="{{ $banner->ads_url }}" title="banner ads {{ $i }}">
-  @endif
-  <img src="{{ Helper::showImage($banner->image_url) }}" alt="banner ads {{ $i }}">
-  @if($banner->ads_url !='')
-  </a>
-  @endif
-</div><!-- item-slide -->
-@endforeach
-@endif
-<div class="block block_big-title" style="margin-bottom:0px">
-  <div class="container">
-    <h2 data-text="3" @if($isEdit) class="edit" @endif>{!! $textList[3] !!}</h2>
-    @if($settingArr['gioi_thieu_tin_tuc'] != '')
-    <p class="desc">
-      {!! $settingArr['gioi_thieu_tin_tuc'] !!}
-    </p>
-    @endif
-  </div>
-</div><!-- /block_big-title -->
-
-<div class="block2 block-news block-title-commom">
-  <div class="container">
-    <div class="block-content row">
-      @if($articlesCateHot->count() > 0)
-      @foreach($articlesCateHot as $cateHot)
-      <div class="col-sm-6 col-xs-12 block-news-left">
-        <div class="block2 block-title">
-          <h2>
-            <i class="fa fa-home"></i>
-            {!! $cateHot->name !!}
-          </h2> 
-        </div>
-        @if(isset($articlesArr[$cateHot->id]) && $articlesArr[$cateHot->id]->count() > 0)
-        <ul class="block-content">
+          ?>
+          @if($articleFirst)
+          <div class="item">
+            <a href="{{ route('news-detail', ['slug' => $articleFirst->slug, 'id' => $articleFirst->id ] ) }}" title="{!! $articleFirst->title !!}" class="image">
+              <img src="{!! Helper::showImage($articleFirst->image_url) !!}" alt="{!! $articleFirst->title !!}">
+            </a>
+            <h3 class="title">
+                <a href="{{ route('news-detail', ['slug' => $articleFirst->slug, 'id' => $articleFirst->id ] ) }}" title="{!! $articleFirst->title !!}">
+                    {!! $articleFirst->title !!}
+                </a>
+            </h3>
+          </div>
+          @endif
+        </div><!-- /home-news-left -->
+        <div class="home-news-right">
           <?php $i = 0; ?>
-          @foreach($articlesArr[$cateHot->id] as $articles)
-          <?php $i++;?>
-          <li class="@if($i == 1) first @else item @endif">
-            <div class="thumb">
-              <a href="{{ route('news-detail', ['slug' => $articles->slug, 'id' => $articles->id]) }}" title="{!! $articles->title !!}">
-              <img src="{{ $articles->image_url ? Helper::showImage($articles->image_url) : URL::asset('public/assets/images/no-image.jpg') }}" alt="{!! $articles->title !!}">
+          @foreach($articlesList as $obj)
+          <?php $i++; ?>
+          @if($i > 1)
+          <div class="item">
+            <a class="right-item-lnk-img" href="{{ route('news-detail', ['slug' => $obj->slug, 'id' => $obj->id ] ) }}" title="{!! $obj->title !!}">
+                <img src="{!! Helper::showImage($obj->image_url) !!}" alt="{!! $obj->title !!}">
+            </a>
+            <h3 class="right-item-title">
+                <a href="{{ route('news-detail', ['slug' => $obj->slug, 'id' => $obj->id ] ) }}" title="{!! $obj->title !!}">
+                    {!! $obj->title !!}
+                </a>
+            </h3>
+          </div><!-- /item -->
+          @endif
+          @endforeach
+        </div><!-- /home-news-right -->
+      </div><!-- /block-quotations -->
+    </div><!-- /block-quotations -->
+    <div class="block banner-news">
+      <a href="#" title="" target="_self">
+        <img src="images/banner/thumb11_68991203.png" alt="">
+      </a>
+    </div><!-- /banner-news -->
+    <div class="block block-cates block-title-cm">
+      <div class="block block-title">
+        <h2 class="title">
+          <a href="#" title="Học &amp; Thi">
+            <i class="fa fa-book"></i>
+            KHÓA HỌC HOT
+          </a>
+        </h2>
+      </div><!-- /block-title -->
+      <div class="block-content">
+        <div class="row">
+          @foreach($coursesList as $obj)
+          <div class="col-sm-4 item">
+            <div class="image">
+              <a href="#" title="{!! $obj->name !!}">
+                <img src="{!! Helper::showImage($obj->image_url) !!}" alt="{!! $obj->name !!}">
               </a>
             </div>
-            <div class="des">
-              <h2 class="title"><a href="{{ route('news-detail', ['slug' => $articles->slug, 'id' => $articles->id]) }}" title="{!! $articles->title !!}">{!! $articles->title !!}</a></h2>
-              <p class="date-post"><i class="fa fa-calendar"></i> {{ date('d/m/Y', strtotime($articles->created_at)) }}</p>
-              @if($i == 1) 
-              <p class="description">{!! $articles->description!!}</p>
-              @endif
+            <div class="description">
+              <h3>
+                <a href="#" title="{!! $obj->name !!}">
+                  {!! $obj->name !!}
+                </a>
+              </h3>
             </div>
-          </li><!-- /item -->          
-          @endforeach        
-        </ul>
-        @endif
-      </div><!-- /block-news-left -->
-      @endforeach
-      @endif
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</div><!-- /block-news-->
-
-<div class="block-number">
-  <div class="container">
-    <div class="block-content">
-      <h3><span @if($isEdit) class="edit" @endif data-text="8">{!! $textList[8] !!}</span></h3>
-      <div class="desc @if($isEdit) edit @endif" data-text="9">{!! $textList[9] !!}</div>
-      <div class="row">
-        <ul class="list">
-          <li class="col-sm-3 col-xs-12">
-            <p class="img"><img src="{{ Helper::showImage($settingArr['icon_nam_hinh_thanh']) }}" alt="{!! $settingArr['so_nam'] !!} năm hình thành và phát triển"></p>
-            <p class="number"><span class="counter">{!! $settingArr['so_nam'] !!}</span> năm</p>
-            <p class="info">{!! $settingArr['so_nam'] !!} năm hình thành và phát triển</p>
-          </li>
-          <li class="col-sm-3 col-xs-12">
-            <p class="img"><img src="{{ Helper::showImage($settingArr['icon_kien_truc_su']) }}" alt="{!! $settingArr['so_kien_truc_su'] !!} kiến trúc sư và kỹ sư"></p>
-            <p class="number"><span class="counter">{!! $settingArr['so_kien_truc_su'] !!}</span></p>
-            <p class="info">{!! $settingArr['so_kien_truc_su'] !!} kiến trúc sư và kỹ sư</p>
-          </li>
-          <li class="col-sm-3 col-xs-12">
-            <p class="img"><img src="{{ Helper::showImage($settingArr['icon_cong_nhan']) }}" alt="{!! $settingArr['so_cong_nhan'] !!} công nhân lành nghề"></p>
-            <p class="number"><span class="counter">{!! $settingArr['so_cong_nhan'] !!}</span></p>
-            <p class="info">{!! $settingArr['so_cong_nhan'] !!} công nhân lành nghề</p>
-          </li>
-          <li class="col-sm-3 col-xs-12">
-            <p class="img"><img src="{{ Helper::showImage($settingArr['icon_cong_trinh']) }}" alt="{!! $settingArr['so_cong_trinh'] !!} công trình đã thực hiện"></p>
-            <p class="number"><span class="counter">{!! $settingArr['so_cong_trinh'] !!}</span></p>
-            <p class="info">{!! $settingArr['so_cong_trinh'] !!} công trình đã thực hiện</p>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</div><!-- /block-number -->
+          </div><!-- /item -->
+          @endforeach
+        </div>
+      </div><!-- /block-content -->
+    </div><!-- /block-cates -->
+    <div class="block banner-news">
+      <a href="#" title="" target="_self">
+        <img src="images/banner/thumb11_38072799.png" alt="">
+      </a>
+    </div><!-- /banner-news -->
+    <div class="block block-slide-home block-title-cm">
+      <div class="block-title">
+        <h2 class="title">
+          <a href="#" title="Danh Sách Giáo Viên">
+            <i class="fa fa-users"></i>
+            Danh Sách Giáo Viên
+          </a>
+        </h2>
+      </div><!-- /block-title -->
+      <div class="block-content">
+        <div id="owl-block-arrival" class="owl-carousel owl-theme owl-style2" data-nav="false" data-dots="false" data-margin="25" data-responsive='{"0":{"items":1},"480":{"items":2},"600":{"items":2},"768":{"items":3},"800":{"items":3},"992":{"items":4}}' data-autoplay="true">
+          @foreach($teacherList as $obj)
+          <div class="item">
+            <div class="image">
+              <a href="{{ route('teacher-detail', ['slug' => $obj->slug, 'id' => $obj->id ]) }}" title="{!! $obj->name !!}">
+                <img alt="{!! $obj->name !!}" src="{!! Helper::showImage($obj->image_url) !!}">
+              </a>
+            </div>
+            <div class="description">
+              <h3>
+                <a href="{{ route('teacher-detail', ['slug' => $obj->slug, 'id' => $obj->id ]) }}" title="{!! $obj->name !!}">
+                  {!! $obj->name !!}
+                </a>
+              </h3>
+              <div class="info">
+                <span>Môn: {!! $obj->subjects->name !!}</span>
+                <span>{!! $obj->school_name !!}</span>
+              </div>
+            </div>
+          </div><!-- /item -->
+          @endforeach
+        </div>
+        <div class="text-center">
+          <a href="{{ route('teacher-list') }}" title="Danh Sách Giáo Viên" class="btn btn-viewmore">Xem thêm</a>
+        </div>
+      </div><!-- /block-content -->
+    </div><!-- /block-quotations -->
+    <div class="block block-slide-home block-title-cm">
+      <div class="block-title">
+        <h2 class="title">
+          <a href="#" title="HỌC VIÊN TIÊU BIỂU">
+            <i class="fa fa-users"></i>
+            HỌC VIÊN TIÊU BIỂU
+          </a>
+        </h2>
+      </div><!-- /block-title -->
+      <div class="block-content">
+        <div id="owl-block-arrival" class="owl-carousel owl-theme owl-style2" data-nav="false" data-dots="false" data-margin="25" data-responsive='{"0":{"items":1},"480":{"items":2},"600":{"items":2},"768":{"items":3},"800":{"items":3},"992":{"items":4}}' data-autoplay="true">
+          @foreach($studentList as $obj)
+          <div class="item">
+            <div class="image">
+              <a href="{{ route('student-detail', ['slug' => $obj->slug, 'id' => $obj->id ]) }}" title="{!! $obj->name !!}">
+                <img alt="{!! $obj->name !!}" src="{!! Helper::showImage($obj->image_url) !!}">
+              </a>
+            </div>
+            <div class="description">
+              <h3><a href="{{ route('student-detail', ['slug' => $obj->slug, 'id' => $obj->id ]) }}" title="{!! $obj->name !!}">{!! $obj->name !!}</a></h3>
+              <div class="info">                
+                <span>{!! $obj->school_name !!}</span>
+              </div>
+            </div>
+          </div><!-- /item -->
+          @endforeach
+        </div>
+        <div class="text-center">
+          <a href="{{ route('student-list') }}" title="HỌC VIÊN TIÊU BIỂU" class="btn btn-viewmore">Xem thêm</a>
+        </div>
+      </div><!-- /block-content -->
+    </div><!-- /block-quotations -->  
 @stop

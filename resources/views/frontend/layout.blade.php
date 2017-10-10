@@ -12,9 +12,7 @@
     <meta http-equiv="content-language" content="vi"/>
     <meta name="description" content="@yield('site_description')"/>
     <meta name="keywords" content="@yield('site_keywords')"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"/>
-    <meta name="google-site-verification" content="IFz-d9V8jZLB1iDG8BfKsKwhPB-FkpsacHLqk5Mpyzk" />
-    <meta name="wot-verification" content="b5ae556432dab929c4bb"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"/>  
     <meta property="article:author" content="https://www.facebook.com/ONLINE STUDY"/>
    
     <link rel="canonical" href="{{ url()->current() }}"/>        
@@ -31,183 +29,65 @@
     <meta name="twitter:description" content="@yield('site_description')" />
     <meta name="twitter:title" content="@yield('title')" />     
     <meta name="twitter:image" content="{{ Helper::showImage($socialImage) }}" />
-	<link rel="icon" href="{{ URL::asset('public/assets/favicon.ico') }}" type="image/x-icon">
-	<!-- ===== Style CSS ===== -->
-	<link rel="stylesheet" type="text/css" href="{{ URL::asset('public/assets/css/style.min.css') }}">
+	<link rel="icon" href="{{ URL::asset('public/assets/favicon.ico') }}" type="image/x-icon">	
+	<link rel="stylesheet" type="text/css" href="{{ URL::asset('public/assets/css/style.css') }}">
 	<!-- ===== Responsive CSS ===== -->
-	<link rel="stylesheet" type="text/css" href="{{ URL::asset('public/assets/css/responsive.min.css') }}">
-	<link rel="stylesheet" type="text/css" href="{{ URL::asset('public/assets/css/sweetalert2.min.css') }}"/>
-  	<!-- HTML5 Shim and Respond.js" IE8 support of HTML5 elements and media queries -->
-	<!-- WARNING: Respond.js" doesn't work if you view the page via file:// -->
+	<link rel="stylesheet" type="text/css" href="{{ URL::asset('public/assets/css/responsive.css') }}">
+
+  	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 	<!--[if lt IE 9]>
 		<link href='css/animations-ie-fix.css' rel='stylesheet'>
 		<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-		<script src="https://oss.maxcdn.com/libs/respond.js') }}"/1.4.2/respond.min.js"></script>
+		<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 	<![endif]-->
 </head>
-<body style="background-color: #fff;">
-	<div id="fb-root"></div>
-	<script>(function(d, s, id) {
-	  var js, fjs = d.getElementsByTagName(s)[0];
-	  if (d.getElementById(id)) return;
-	  js = d.createElement(s); js.id = id;
-	  js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.10&appId=567408173358902";
-	  fjs.parentNode.insertBefore(js, fjs);
-	}(document, 'script', 'facebook-jssdk'));</script>
-	<script>window.twttr = (function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0],
-    t = window.twttr || {};
-  if (d.getElementById(id)) return t;
-  js = d.createElement(s);
-  js.id = id;
-  js.src = "https://platform.twitter.com/widgets.js";
-  fjs.parentNode.insertBefore(js, fjs);
+<body>
 
-  t._e = [];
-  t.ready = function(f) {
-    t._e.push(f);
-  };
+	<div id="wrapper">
+		
+		@include('frontend.partials.header')
+		
+		<main id="main">
+			<div class="container">
+			    <div class="block block-study-notice">
+			      <p>
+			        <span>
+			          <i class="fa fa-exclamation-circle"></i>
+			          Thông Báo :
+			        </span>
+			        <a href="#" title="Say mê học Ngữ Văn lớp 12 với thầy Đặng Ngọc Khương tại đây!">Say mê học Ngữ Văn lớp 12 với thầy Đặng Ngọc Khương tại đây!</a>
+			      </p>
+			    </div><!-- /block-study-notice -->
+			@yield('content')
+			</div>
+		</main><!-- /main -->
 
-  return t;
-}(document, "script", "twitter-wjs"));</script>
+		@include('frontend.partials.footer')
 
+		@include('frontend.partials.modal')
 
-	@include('frontend.partials.header')
-
-	<div class="wrapper">
-		@yield('slider')
-
-		@yield('content')
-	</div><!-- /wrapper-->
-
-	@include('frontend.partials.footer')
-	<div id="editContentModal" class="modal fade" role="dialog">
-	  <div class="modal-dialog">
-
-	    <!-- Modal content-->
-	    <div class="modal-content">
-	      <div class="modal-header">
-	        <button type="button" class="close" data-dismiss="modal">&times;</button>
-	        <h4 class="modal-title">Cập nhật nội dung</h4>
-	      </div>
-	      <form method="POST" action="{{ route('save-content') }}">
-	      {{ csrf_field() }}
-	      <input type="hidden" name="id" id="txtId" value="">
-	      <div class="modal-body">
-	        <textarea rows="5" class="form-control" name="content" id="txtContent"></textarea>
-	      </div>
-	      <div class="modal-footer">
-	      	<button type="button" class="btn btn-primary" id="btnSaveContent">Save</button>
-	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-	      </div>
-	      </form>
-	    </div>
-
-	  </div>
 	</div>
+
+
+
+
+		
 	<!-- ===== JS ===== -->
 	<script src="{{ URL::asset('public/assets/js/jquery.min.js') }}"></script>
 	<!-- ===== JS Bootstrap ===== -->
 	<script src="{{ URL::asset('public/assets/lib/bootstrap/bootstrap.min.js') }}"></script>
-	<!-- carousel -->
+	<!-- ===== JS Carousel ===== -->
 	<script src="{{ URL::asset('public/assets/lib/carousel/owl.carousel.min.js') }}"></script>
-	<!-- sticky -->
-    <script src="{{ URL::asset('public/assets/lib/sticky/jquery.sticky.js') }}"></script>
-    <!-- countUp -->    	
-    <script src="//cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
-	<script src="{{ URL::asset('public/assets/lib/counterUp/jquery.counterup.min.js') }}"></script>
-    <!-- Js Common -->
+	<!-- Js Common -->
 	<script src="{{ URL::asset('public/assets/js/common.js') }}"></script>
-	<script src="{{ URL::asset('public/assets/js/sweetalert2.min.js') }}"></script>
-	<script src="{{ URL::asset('public/assets/js/lazy.js') }}"></script>
+
     <input type="hidden" id="route-newsletter" value="{{ route('register.newsletter') }}">
 	
-	{!! $settingArr['google_analystic'] !!}
-	<script type="text/javascript">
-	@if(\Request::route()->getName() == "home")
-	var eventFired = false,
-	    objectPositionTop = $('.block-number').offset().top;
-
-	$(window).on('scroll', function() {
-
-	 var currentPosition = $(document).scrollTop();
-	 if (currentPosition > objectPositionTop && eventFired === false) {
-	   eventFired = true;
-	   $('.counter').counterUp({
-	            delay: 10,
-	            time: 1000
-	        });
-	 }
-
-	});
-	@endif
-	$(document).ready(function() {
-		jQuery('.fb-page1').toggleClass('hide');
-			jQuery('#closefbchat').html('<i class="fa fa-comments fa-2x"></i> Chat Tư Vấn').css({'bottom':0});
-		jQuery('#closefbchat').click(function(){
-			jQuery('.fb-page1').toggleClass('hide');
-			if(jQuery('.fb-page1').hasClass('hide')){
-				jQuery('#closefbchat').html('<i class="fa fa-comments fa-2x"></i> Chat Tư Vấn').css({'bottom':0});
-			}
-			else{
-				jQuery('#closefbchat').text('Tắt Chat').css({'bottom':299});
-			}
-		});
-	    $.ajaxSetup({
-	        headers: {
-	            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-	        }
-	    });
-	    
-	    $('img.lazy').lazyload();
-	});
-
-	$(document).on('keypress', '.txtSearch', function(e) {
-		    var obj = $(this);
-		    if (e.which == 13) {
-		        if ($.trim(obj.val()) == '') {
-		            return false;
-		        }
-		    }
-		});
-		$(document).on('keypress', '#txtNewsletter', function(e){
-		if(e.keyCode==13){
-		    $('#btnNewsletter').click();
-		}
-	});
-		
-	$('#btnNewsletter').click(function() {
-	    var email = $.trim($('#txtNewsletter').val());        
-	    if(validateEmail(email)) {
-	        $.ajax({
-	          url: $('#route-newsletter').val(),
-	          method: "POST",
-	          data : {
-	            email: email,
-	          },
-	          success : function(data){
-	            if(+data){
-	              swal('', 'Đăng ký nhận bản tin thành công.', 'success');
-	            }
-	            else {
-	              swal('', 'Địa chỉ email đã được đăng ký trước đó.', 'error');
-	            }
-	            $('#txtNewsletter').val("");
-	          }
-	        });
-	    } else {
-	        swal({ title: '', text: 'Vui lòng nhập địa chỉ email hợp lệ.', type: 'error' });
-	    }
-	});
-	function validateEmail(email) {
-		var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-		return re.test(email);
-	}
-	</script>
+	
+	
 	@include('frontend.partials.custom-css')
 	@yield('js')
-	<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-59b215c2a2658a8a"></script> 	
-	<script src="https://apis.google.com/js/platform.js" async defer></script>
 	<script type="text/javascript">
 		$(document).ready(function(){
 			$.ajaxSetup({
@@ -237,6 +117,16 @@
 			});
 		});
 	</script>
+	<style type="text/css">
+		.block-title-cm .block-title .title{
+			text-transform: uppercase;
+		}
+		.Recipepod{
+			height: 0;
+			display: none;
+		}
+
+	</style>
 <div class="Recipepod">
  	<div itemscope itemtype="http://schema.org/Recipe">
 	    <span itemprop="name">@yield('title')</span>
