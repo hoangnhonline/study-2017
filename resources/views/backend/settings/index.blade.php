@@ -258,7 +258,7 @@
           <div class="box-header with-border">
             <h3 class="box-title">Màu sắc</h3>
           </div>
-          <input type="hidden" name="" id="default_mau_chu_dao" value="#ff6600">
+          <input type="hidden" name="" id="default_mau_chu_dao" value="#51A0FB">
           <input type="hidden" name="" id="default_hover_parent" value="#ff781e">
           <input type="hidden" name="" id="default_menu_border" value="#b94a00">
           <!-- /.box-header -->

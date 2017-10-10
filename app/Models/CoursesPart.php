@@ -33,6 +33,13 @@ class CoursesPart extends Model  {
                             'created_user', 
                             'updated_user'];
     
+    public static function getList($params = []){
+        $query = self::where('status', 1);        
+       if( isset($params['courses_id']) && $params['courses_id'] ){
+            $query->where('courses_id', $params['courses_id']);
+        }
+        return $query->orderBy('display_order')->get();           
+    }
     public function createdUser()
     {
         return $this->belongsTo('App\Models\Account', 'created_user');
@@ -45,6 +52,6 @@ class CoursesPart extends Model  {
         return $this->hasOne('App\Models\Courses', 'courses_id');
     }
     public function lession(){
-        return $this->hasMany('App\Models\CoursesLession', 'id',  'part_id');
+        return $this->hasMany('App\Models\CoursesLession', 'part_id');
     }
 }

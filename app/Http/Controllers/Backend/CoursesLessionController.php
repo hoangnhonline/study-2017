@@ -84,13 +84,13 @@ class CoursesLessionController extends Controller
             'name' => 'required',            
             'slug' => 'required',
             'courses_id' => 'required',            
-            'video_url' => 'required',
+            'video_id' => 'required',
         ],
         [        
             'name.required' => 'Bạn chưa nhập tiêu đề',
             'slug.required' => 'Bạn chưa nhập slug',  
             'courses_id.required' => 'Bạn chưa chọn khoa hoc',            
-            'video_url.required' => 'Bạn chưa nhap Video URL'
+            'video_id.required' => 'Bạn chưa nhap Video ID'
 
         ]);       
         
@@ -100,7 +100,7 @@ class CoursesLessionController extends Controller
 
         $dataArr['updated_user'] = Auth::user()->id;
         
-        $dataArr['display_order'] = Helper::getNextOrder('courses_part', ['courses_id' => $dataArr['courses_id']]);        
+        $dataArr['display_order'] = Helper::getNextOrder('courses_lession', ['part_id' => $dataArr['part_id']]);        
 
         $rs = CoursesLession::create($dataArr);
 
@@ -143,7 +143,7 @@ class CoursesLessionController extends Controller
     */
     public function edit($id)
     {
-        $detail = Courses::find($id);
+        $detail = CoursesLession::find($id);
         if( Auth::user()->role < 3 ){
             if($detail->created_user != Auth::user()->id){
                 return redirect()->route('courses.index');
@@ -156,7 +156,9 @@ class CoursesLessionController extends Controller
         }        
         $subjectList = Subjects::orderBy('display_order')->get();
         $teacherList = Objects::where('type', 1)->get();
-        return view('backend.courses-lession.edit', compact('detail', 'meta', 'subjectList', 'teacherList'));
+        $coursesList = Courses::orderBy('display_order')->get();
+        $partList = CoursesPart::where('courses_id', $detail->courses_id)->orderBy('display_order')->get();
+        return view('backend.courses-lession.edit', compact('detail', 'meta', 'subjectList', 'teacherList','coursesList', 'partList'));
     }
 
     /**
@@ -174,13 +176,13 @@ class CoursesLessionController extends Controller
             'name' => 'required',            
             'slug' => 'required',
             'courses_id' => 'required',            
-            'video_url' => 'required',
+            'video_id' => 'required',
         ],
         [        
             'name.required' => 'Bạn chưa nhập tiêu đề',
             'slug.required' => 'Bạn chưa nhập slug',  
             'courses_id.required' => 'Bạn chưa chọn khoa hoc',            
-            'video_url.required' => 'Bạn chưa nhap Video URL'
+            'video_id.required' => 'Bạn chưa nhap Video ID'
 
         ]);
         

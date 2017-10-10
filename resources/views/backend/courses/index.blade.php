@@ -52,6 +52,7 @@
               <th style="width: 1%">#</th>              
               <th width="200">Thumbnail</th>
               <th>Tên khóa học</th>
+              <th>Mục lục</th>              
               <th width="1%;white-space:nowrap">Thao tác</th>
             </tr>
             <tbody>
@@ -72,6 +73,10 @@
                   @endif                  
                   <p>{{ $item->description }}</p>
                 </td>
+                <td>
+                  <a class="btn btn-primary btn-sm" href="{{ route('courses-part.index', ['courses_id' => $item->id])}}" ><span class="badge">{{ $item->part->count() }}</span> Mục lục </a>
+                </td>
+                
                 <td style="white-space:nowrap"> 
                   <a class="btn btn-default btn-sm" href="{{ route('news-detail', [$item->slug, $item->id ]) }}" target="_blank"><i class="fa fa-eye" aria-hidden="true"></i> Xem</a>                 
                   <a href="{{ route( 'courses.edit', [ 'id' => $item->id ]) }}" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-pencil"></span></a>                 

@@ -73,8 +73,8 @@
                 </div> 
                 <div class="form-group" >
                   
-                  <label>Video URL <span class="red-star">*</span></label>
-                  <input type="text" class="form-control" name="video_url" id="video_url" value="{{ old('video_url') }}">
+                  <label>Video ID <span class="red-star">*</span></label>
+                  <input type="text" class="form-control" name="video_id" id="video_id" value="{{ old('video_id') }}">
                 </div>  
                 <div class="form-group">
                   <label>Mô tả</label>
@@ -84,7 +84,7 @@
                               
             <div class="box-footer">
               <button type="submit" class="btn btn-primary btn-sm">Lưu</button>
-              <a class="btn btn-default btn-sm" class="btn btn-primary btn-sm" href="{{ route('courses-lession.index')}}">Hủy</a>
+              <a class="btn btn-default btn-sm" class="btn btn-primary btn-sm" href="{{ route('courses-lession.index') }}?courses_id={{ $coursesDetail->id }}&part_id={{ $partDetail ? $partDetail->id : "" }}">Hủy</a>
             </div>
             
         </div>

@@ -2,7 +2,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-
+use DB;
 
 class Courses extends Model  {
 
@@ -34,7 +34,7 @@ class Courses extends Model  {
                             'display_order', 
                             'description',                             
                             'image_url',
-                            'video_url',
+                            'video_id',
                             'content', 
                             'object', 
                             'benefit',
@@ -90,9 +90,24 @@ class Courses extends Model  {
         return $this->belongsTo('App\Models\Account', 'updated_user');
     }
     public function teacher(){
-        return $this->hasOne('App\Models\Objects', 'teacher_id');
+        return $this->hasOne('App\Models\Objects', 'id', 'teacher_id');
     }
     public function subject(){
         return $this->hasOne('App\Models\Subjects', 'subject_id');
+    }
+    public function part(){
+        return $this->hasMany('App\Models\CoursesPart', 'courses_id');
+    }
+    public function lession(){
+        return $this->hasMany('App\Models\CoursesLession', 'courses_id');
+    }
+    public static function getFirstLession($courses_id){
+        $detailLession = (object) [];
+        $partFirst = DB::table('courses_part')->where('status', 1)->where('courses_id', $courses_id)->orderBy('display_order')->first();     
+
+        if($partFirst){
+            $detailLession = DB::table('courses_lession')->where('status', 1)->where('part_id', $partFirst->id)->orderBy('display_order')->first();      
+        }
+        return $detailLession;
     }
 }

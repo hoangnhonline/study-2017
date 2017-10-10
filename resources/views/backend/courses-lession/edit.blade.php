@@ -29,7 +29,7 @@
           </div>
           <!-- /.box-header -->               
             {!! csrf_field() !!}
-
+                  
             <div class="box-body">
               @if(Session::has('message'))
               <p class="alert alert-info" >{{ Session::get('message') }}</p>
@@ -42,32 +42,49 @@
                           @endforeach
                       </ul>
                   </div>
-              @endif                
-                                
+              @endif                    
                 <div class="form-group">
                   <label for="email">Khóa học<span class="red-star">*</span></label>
                   <select class="form-control" name="courses_id" id="courses_id">
                     <option value="">-- chọn --</option>
                     @if( $coursesList->count() > 0)
                       @foreach( $coursesList as $value )
-                      <option value="{{ $value->id }}" {{ $value->id == old('courses_id') ? "selected" : "" }}>{{ $value->name }}</option>
+                      <option value="{{ $value->id }}" {{ $value->id == old('courses_id', $detail->courses_id) ? "selected" : "" }}>{{ $value->name }}</option>
+                      @endforeach
+                    @endif
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="email">Mục lục</label>
+                  <select class="form-control" name="part_id" id="part_id">
+                    <option value="">-- chọn --</option>
+                    @if( $partList->count() > 0)
+                      @foreach( $partList as $value )
+                      <option value="{{ $value->id }}" {{ $value->id == old('part_id', $detail->part_id) ? "selected" : "" }}>{{ $value->name }}</option>
                       @endforeach
                     @endif
                   </select>
                 </div> 
-                <div class="form-group" >
+                 <div class="form-group" >
                   
-                  <label>Tên mục lục <span class="red-star">*</span></label>
+                  <label>Tên bài học <span class="red-star">*</span></label>
                   <input type="text" class="form-control" name="name" id="name" value="{{ old('name', $detail->name) }}">
                 </div>
                 <span class=""></span>
                 <div class="form-group">                  
                   <label>Slug <span class="red-star">*</span></label>                  
-                  <input type="text" class="form-control" name="slug"  readonly="readonly" id="slug" value="{{ old('slug', $detail->slug) }}">
-                </div>              
+                  <input type="text" class="form-control" readonly="readonly" name="slug" id="slug" value="{{ old('slug', $detail->slug) }}">
+                </div> 
+                <div class="form-group" >
                   
-            </div>          
-           
+                  <label>Video ID <span class="red-star">*</span></label>
+                  <input type="text" class="form-control" name="video_id" id="video_id" value="{{ old('video_id', $detail->video_id) }}">
+                </div>  
+                <div class="form-group">
+                  <label>Mô tả</label>
+                  <textarea class="form-control" rows="4" name="content" id="content">{{ old('content', $detail->content) }}</textarea>
+                </div> 
+            </div>   
             <div class="box-footer">
               <button type="submit" class="btn btn-primary btn-sm">Lưu</button>
               <a class="btn btn-default btn-sm" class="btn btn-primary btn-sm" href="{{ route('courses-lession.index')}}">Hủy</a>

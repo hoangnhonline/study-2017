@@ -30,7 +30,7 @@ Route::group(['namespace' => 'Frontend'], function()
     Route::get('/giao-vien/{slug}-{id}.html', ['as' => 'teacher-detail', 'uses' => 'ObjectsController@detail']);
     Route::get('/hoc-vien/{slug}-{id}.html', ['as' => 'student-detail', 'uses' => 'ObjectsController@detail']);
     Route::get('/khoa-hoc/{slug}-{id}.html', ['as' => 'courses-detail', 'uses' => 'CoursesController@detail']);
-
+    Route::get('/bai-hoc/{slug}-{id}.html', ['as' => 'lession-detail', 'uses' => 'CoursesController@lession']);
 
     Route::get('tag/{slug}', ['as' => 'tag', 'uses' => 'DetailController@tagDetail']);
     Route::get('tin-tuc/{slug}', ['as' => 'news-list', 'uses' => 'NewsController@newsList']);

@@ -68,8 +68,8 @@
                 </div>
                 <div class="form-group" >
                   
-                  <label>Video URL </label>
-                  <input type="text" class="form-control" name="video_url" id="video_url" value="{{ old('video_url', $detail->video_url) }}">
+                  <label>Video ID </label>
+                  <input type="text" class="form-control" name="video_id" id="video_id" value="{{ old('video_id', $detail->video_id) }}">
                 </div> 
                 <div class="form-group" style="margin-top:10px;margin-bottom:10px">  
                   <label class="col-md-3 row">Thumbnail ( 300x169 px)</label>    

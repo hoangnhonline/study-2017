@@ -131,7 +131,8 @@ class CoursesPartController extends Controller
     */
     public function edit($id)
     {
-        $detail = Courses::find($id);
+        $detail = CoursesPart::find($id);
+        
         if( Auth::user()->role < 3 ){
             if($detail->created_user != Auth::user()->id){
                 return redirect()->route('courses.index');
@@ -144,7 +145,9 @@ class CoursesPartController extends Controller
         }        
         $subjectList = Subjects::orderBy('display_order')->get();
         $teacherList = Objects::where('type', 1)->get();
-        return view('backend.courses-part.edit', compact('detail', 'meta', 'subjectList', 'teacherList'));
+        //subjects
+        $coursesList = Courses::orderBy('display_order')->get();
+        return view('backend.courses-part.edit', compact('detail', 'meta', 'subjectList', 'teacherList', 'coursesList'));
     }
 
     /**

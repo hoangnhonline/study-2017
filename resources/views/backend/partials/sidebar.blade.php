@@ -15,7 +15,7 @@
     <!-- sidebar menu: : style can be found in sidebar.less -->
     <ul class="sidebar-menu">
       <li class="header">MAIN NAVIGATION</li>     
-      <li class="treeview {{ in_array(\Request::route()->getName(), ['courses.index', 'courses.create', 'courses.edit']) ? 'active' : '' }}">
+      <li class="treeview {{ in_array(\Request::route()->getName(), ['courses.index', 'courses.create', 'courses.edit', 'courses-lession.index', 'courses-part.create', 'courses-part.edit', 'courses-part.index', 'courses-lession.create', 'courses-lession.edit']) ? 'active' : '' }}">
         <a href="#">
           <i class="fa fa-twitch"></i> 
           <span>Khóa học</span>

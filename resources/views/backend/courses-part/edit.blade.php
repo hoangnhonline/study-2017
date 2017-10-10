@@ -15,7 +15,7 @@
 
   <!-- Main content -->
   <section class="content">
-    <a class="btn btn-default btn-sm" href="{{ route('courses-part.index') }}" style="margin-bottom:5px">Quay lại</a>
+    <a class="btn btn-default btn-sm" href="{{ route('courses-part.index', ['courses_id' => $detail->courses_id]) }}" style="margin-bottom:5px">Quay lại</a>
     <a class="btn btn-primary btn-sm" href="{{ route('news-detail', [$detail->slug, $detail->id ]) }}" target="_blank" style="margin-top:-6px"><i class="fa fa-eye" aria-hidden="true"></i> Xem</a>    
     <form role="form" method="POST" action="{{ route('courses-part.update') }}" id="dataForm">
     <div class="row">
@@ -50,7 +50,7 @@
                     <option value="">-- chọn --</option>
                     @if( $coursesList->count() > 0)
                       @foreach( $coursesList as $value )
-                      <option value="{{ $value->id }}" {{ $value->id == old('courses_id') ? "selected" : "" }}>{{ $value->name }}</option>
+                      <option value="{{ $value->id }}" {{ $value->id == old('courses_id', $detail->courses_id) ? "selected" : "" }}>{{ $value->name }}</option>
                       @endforeach
                     @endif
                   </select>
@@ -70,7 +70,7 @@
            
             <div class="box-footer">
               <button type="submit" class="btn btn-primary btn-sm">Lưu</button>
-              <a class="btn btn-default btn-sm" class="btn btn-primary btn-sm" href="{{ route('courses-part.index')}}">Hủy</a>
+              <a class="btn btn-default btn-sm" class="btn btn-primary btn-sm" href="{{ route('courses-part.index', ['courses_id' => $detail->courses_id])}}">Hủy</a>
             </div>
             
         </div>

@@ -29,12 +29,20 @@ class CoursesLession extends Model  {
                             'alias', 
                             'courses_id',
                             'part_id',
+                            'video_id',
                             'content',                              
                             'status', 
                             'display_order',                             
                             'created_user', 
                             'updated_user'];
     
+    public static function getList($params = []){
+        $query = self::where('status', 1);        
+       if( isset($params['part_id']) && $params['part_id'] ){
+            $query->where('part_id', $params['part_id']);
+        }
+        return $query->orderBy('display_order')->get();
+    }
     public function createdUser()
     {
         return $this->belongsTo('App\Models\Account', 'created_user');
@@ -44,7 +52,7 @@ class CoursesLession extends Model  {
         return $this->belongsTo('App\Models\Account', 'updated_user');
     }
     public function courses(){
-        return $this->hasOne('App\Models\Courses', 'courses_id');
+        return $this->hasOne('App\Models\Courses', 'id', 'courses_id');
     }
     public function part(){
         return $this->hasOne('App\Models\CoursesPart', 'part_id');

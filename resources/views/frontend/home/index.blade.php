@@ -127,13 +127,13 @@
           @foreach($coursesList as $obj)
           <div class="col-sm-4 item">
             <div class="image">
-              <a href="#" title="{!! $obj->name !!}">
+              <a href="{!! route('courses-detail', ['slug' => $obj->slug, 'id' => $obj->id ]) !!}" title="{!! $obj->name !!}">
                 <img src="{!! Helper::showImage($obj->image_url) !!}" alt="{!! $obj->name !!}">
               </a>
             </div>
             <div class="description">
               <h3>
-                <a href="#" title="{!! $obj->name !!}">
+                <a href="{!! route('courses-detail', ['slug' => $obj->slug, 'id' => $obj->id ]) !!}" title="{!! $obj->name !!}">
                   {!! $obj->name !!}
                 </a>
               </h3>

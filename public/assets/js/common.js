@@ -33,6 +33,14 @@
     });
   });
 
+  $('.block-user .block-content').popover({
+    placement: top,
+    html : true,
+      content: function() {
+    return $('.popover').html();
+    } 
+  });
+
   /*
    * 2. Scroll to Top
   */

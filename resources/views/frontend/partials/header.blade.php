@@ -16,12 +16,14 @@
 					</form>
 				</div><!-- /block-search -->
 				<div class="block-user col-sm-3">
-					<span class="ava-img">
-						<img alt="" src="images/user.svg">
-					</span>
-					<div class="ava-info">
-						<p><strong>Đăng nhập, đăng ký</strong></p>
-						<p class="small">Tài khoản</p>
+					<div class="block-content">
+						<span class="ava-img">
+							<img alt="" src="images/user.svg">
+						</span>
+						<div class="ava-info">
+							<p><strong>Đăng nhập, đăng ký</strong></p>
+							<p class="small">Tài khoản</p>
+						</div>
 					</div>
 					<div class="popover fade bottom in">
 					    <div class="arrow"></div>
@@ -33,7 +35,7 @@
 					        	<a class="btn btn-block login-button-google btn-social" href="#">Đăng nhập với Google+</a>
 					       	</div>
 					    </div>
-					</div>
+					</div><!-- /popover -->
 				</div><!-- /block-user -->
 			</div>
 		</div>
