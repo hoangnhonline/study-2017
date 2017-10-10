@@ -37,28 +37,8 @@ class NewsController extends Controller
         if($cateDetail->image_url){
             $socialImage = $cateDetail->image_url; 
         }
-         //widget
-        $widgetProduct = (object) [];        
-        $wParent = CateParent::where('is_widget', 1)->first();
-        if($wParent){
-
-            $widgetProduct = Product::where('product.slug', '<>', '')
-                    ->where('product.parent_id', $wParent->id)                    
-                    ->leftJoin('product_img', 'product_img.id', '=','product.thumbnail_id')
-                    ->select('product_img.image_url as image_url', 'product.*')->orderBy('is_hot', 'desc')->orderBy('id', 'desc')->limit($settingArr['product_widget'])->get();
-            
-        }else{
-            $wCate = Cate::where('is_widget', 1)->first();
-            if($wCate){
-                $widgetProduct = Product::where('product.slug', '<>', '')
-                    ->where('product.cate_id', $wCate->id)                    
-                    ->leftJoin('product_img', 'product_img.id', '=','product.thumbnail_id')
-                    ->select('product_img.image_url as image_url', 'product.*')->orderBy('is_hot', 'desc')->orderBy('id', 'desc')->limit($settingArr['product_widget'])->get();
-            }else{
-                $widgetProduct = (object) [];
-            }
-        }      
-        return view('frontend.news.index', compact('title', 'hotArr', 'articlesArr', 'cateDetail', 'seo', 'socialImage', 'widgetProduct'));
+        
+        return view('frontend.news.index', compact('title', 'hotArr', 'articlesArr', 'cateDetail', 'seo', 'socialImage'));
     }      
 
      public function newsDetail(Request $request)
