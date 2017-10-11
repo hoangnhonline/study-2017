@@ -96,11 +96,9 @@
 							<a href="#" title="Trắc nghiệm">
 								Trắc nghiệm
 								<ul class="level0 submenu">
-									<li class="level1"><a href="#" title="Thi THPT Quốc gia 2016">Thi THPT Quốc gia 2016</a></li>
-									<li class="level1"><a href="#" title="">Thi THPT Quốc gia 2016 </a></li>
-									<li class="level1"><a href="#" title="">Thi THPT Quốc gia 2016 </a></li>
-									<li class="level1"><a href="#" title="">Thi THPT Quốc gia 2016 </a></li>
-									<li class="level1"><a href="#" title="">Thi THPT Quốc gia 2016 </a></li>
+									@foreach($quizCateList as $cate)																		
+									<li class="level1"><a href="{!! route('quiz-list', $cate->slug) !!}" title="{!! $cate->name !!}">{!! $cate->name !!}</a></li>									
+									@endforeach
 								</ul>
 							</a>
 						</li><!-- level0 -->						

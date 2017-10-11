@@ -163,7 +163,8 @@ $(document).ready(function(){
 
   config.removeButtons = 'Underline,Subscript,Superscript';
 };
-  var editor2 = CKEDITOR.replace('contentNoti',{
+  if($('#contentNoti').length == 1){
+    var editor2 = CKEDITOR.replace('contentNoti',{
           language : 'vi',
           height : 100,
           toolbarGroups : [            
@@ -172,6 +173,7 @@ $(document).ready(function(){
             '/',            
           ]
       });
+  }
 });
 
 function processNotiType(type){

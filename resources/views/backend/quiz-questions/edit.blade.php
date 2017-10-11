@@ -15,7 +15,7 @@
 
   <!-- Main content -->
   <section class="content">
-    <a class="btn btn-default btn-sm" href="{{ route('quiz-questions.index') }}" style="margin-bottom:5px">Quay lại</a>
+    <a class="btn btn-default btn-sm" href="{{ route('quiz-questions.index', ['quiz_id' => $detail->quiz_id]) }}" style="margin-bottom:5px">Quay lại</a>
     <a class="btn btn-primary btn-sm" href="{{ route('news-detail', [$detail->slug, $detail->id ]) }}" target="_blank" style="margin-top:-6px"><i class="fa fa-eye" aria-hidden="true"></i> Xem</a>    
     <form role="form" method="POST" action="{{ route('quiz-questions.update') }}" id="dataForm">
     <div class="row">
@@ -83,7 +83,7 @@
             <input type="hidden" name="image_url" id="image_url" value="{{ $detail->image_url }}"/>
             <div class="box-footer">
               <button type="submit" class="btn btn-primary btn-sm">Lưu</button>
-              <a class="btn btn-default btn-sm" class="btn btn-primary btn-sm" href="{{ route('quiz-questions.index')}}">Hủy</a>
+              <a class="btn btn-default btn-sm" class="btn btn-primary btn-sm" href="{{ route('quiz-questions.index', ['quiz_id' => $detail->quiz_id])}}">Hủy</a>
             </div>
             
         </div>

@@ -43,7 +43,7 @@ class QuizCate extends Model  {
         if( isset($params['is_hot']) && $params['is_hot'] ){
             $query->where('is_hot', $params['is_hot']);
         }        
-        $query->orderBy('is_hot', 'desc')->orderBy('id', 'desc');
+        $query->orderBy('is_hot', 'desc')->orderBy('display_order');
         if(isset($params['limit']) && $params['limit']){
             return $query->limit($params['limit'])->get();
         }

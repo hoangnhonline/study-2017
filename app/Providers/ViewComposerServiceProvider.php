@@ -9,6 +9,8 @@ use App\Models\Articles;
 use App\Models\CustomLink;
 use App\Models\Menu;
 use App\Models\Text;
+use App\Models\QuizCate;
+
 use Auth;
 class ViewComposerServiceProvider extends ServiceProvider
 {
@@ -43,7 +45,9 @@ class ViewComposerServiceProvider extends ServiceProvider
 		view()->composer( '*' , function( $view ){		
 			
 	        $settingArr = Settings::whereRaw('1')->lists('value', 'name');
-	        $articleCate = ArticlesCate::getList(['limit' => 10]);	     
+	        $articleCate = ArticlesCate::getList(['limit' => 10]);
+
+	        $quizCateList = QuizCate::getList(['limit' => 10]);	     
 	       
 	        $tinRandom = Articles::whereRaw(1);
 	        if($tinRandom->count() > 0){
@@ -67,7 +71,8 @@ class ViewComposerServiceProvider extends ServiceProvider
 					'menuList' => $menuList,					
 					'routeName' => $routeName,
 					'textList' => $textList,
-					'isEdit' => $isEdit
+					'isEdit' => $isEdit,
+					'quizCateList' => $quizCateList
 			] );
 			
 		});

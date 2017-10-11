@@ -270,7 +270,6 @@
                     return pageX - self.$rating.offset().left;
                 },
                 _listenClick: function (e, callback) {
-
                     e.stopPropagation();
                     e.preventDefault();
                     if (e.handled !== true) {
@@ -320,21 +319,6 @@
                         params = [self.$element.val(), self._getCaption()];
                         self.$element.trigger('change').trigger('rating.change', params);
                         self.starClicked = true;
-                        //console.log();
-                        $('#rating-form #score').val(params[0]);
-                        $.ajax({
-                            url : $('#rating-route').val(),
-                            type : 'POST',
-                            dataType : 'html',
-                            data : $('#rating-form').serialize(),
-                            success : function(data){
-                                $('#rating-summary').html(data);
-                                var $input = $('input.rating');
-                                if ($input.length) {
-                                    $input.removeClass('rating-loading').addClass('rating-loading').rating();
-                                }
-                            }
-                        });
                     });
                 },
                 clearClick: function (e) {

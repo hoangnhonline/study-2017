@@ -100,6 +100,7 @@
 <script type="text/javascript">
   $(document).ready(function(){
     $('#btnSave').click(function(){
+      
       if($('input[name="is_true"]:checked').length == 0){
         alert('Vui lòng chọn đáp án đúng');return false;
       }

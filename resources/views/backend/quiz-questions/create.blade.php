@@ -15,7 +15,7 @@
 
   <!-- Main content -->
   <section class="content">
-    <a class="btn btn-default btn-sm" href="{{ route('quiz-questions.index') }}" style="margin-bottom:5px">Quay lại</a>
+    <a class="btn btn-default btn-sm" href="{{ route('quiz-questions.index', ['quiz_id' => $quiz_id]) }}" style="margin-bottom:5px">Quay lại</a>
     <form role="form" method="POST" action="{{ route('quiz-questions.store') }}" id="dataForm">
     <div class="row">
       <!-- left column -->
@@ -80,7 +80,7 @@
                               
             <div class="box-footer">
               <button type="submit" class="btn btn-primary btn-sm">Lưu</button>
-              <a class="btn btn-default btn-sm" class="btn btn-primary btn-sm" href="{{ route('quiz-questions.index')}}">Hủy</a>
+              <a class="btn btn-default btn-sm" class="btn btn-primary btn-sm" href="{{ route('quiz-questions.index', ['quiz_id' => $quiz_id])}}">Hủy</a>
             </div>
             
         </div>

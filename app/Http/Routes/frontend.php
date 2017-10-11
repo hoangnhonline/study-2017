@@ -53,7 +53,10 @@ Route::group(['namespace' => 'Frontend'], function()
 
     Route::get('tag/{slug}', ['as' => 'tag', 'uses' => 'DetailController@tagDetail']);
     Route::get('tin-tuc/{slug}', ['as' => 'news-list', 'uses' => 'NewsController@newsList']);
+    Route::get('trac-nghiem/{slug}', ['as' => 'quiz-list', 'uses' => 'QuizController@index']);    
     Route::get('/tin-tuc/{slug}-p{id}.html', ['as' => 'news-detail', 'uses' => 'NewsController@newsDetail']);
+    Route::get('trac-nghiem/xac-nhan/{slug}-{id}.html', ['as' => 'quiz-confirm', 'uses' => 'QuizController@confirm']);
+    Route::get('trac-nghiem/lam-bai/{slug}-{id}.html', ['as' => 'quiz-doing', 'uses' => 'QuizController@doing']);
     Route::get('/dich-vu/{slug}-s{id}.html', ['as' => 'services-detail', 'uses' => 'NewsController@newsDetail']);
 
     Route::get('{slug}-{id}.html', ['as' => 'product', 'uses' => 'DetailController@index']);
