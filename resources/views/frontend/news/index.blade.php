@@ -3,45 +3,88 @@
 @include('frontend.partials.meta') 
 
 @section('content')
-<div class="block2 block-breadcrumb">
-  <div class="container">
-    <ul class="breadcrumb">
-      <li><a href="{{ route('home') }}" title="Trở về trang chủ">Trang chủ</a></li>            
-      <li class="active">{!! $cateDetail->name !!}</li>
-    </ul>
-  </div>
-</div><!-- /block-breadcrumb -->
-<div class="block block-two-col container">
-  <div class="row">
-    <div class="col-sm-9 col-xs-12 block-col-left">
-      <div class="block-title-commom block-ct-news">
-        <div class="block block-title">
-          <h1>
-            <i class="fa fa-home"></i>
-            {!! $cateDetail->name !!}
-          </h1>
+<div class="row">
+    <div class="block-left col-sm-8">
+      <div class="block-title-cm">
+        <div class="block-title">
+          <h2 class="title">{!! $cateDetail->name !!}</h2>
         </div>
-        <div class="block-content">            
-          @foreach( $articlesArr as $articles )
-          <div class="item">
-            <div class="thumb">
-              <a href="{{ route('news-detail', ['slug' => $articles->slug, 'id' => $articles->id]) }}"><img title="{!! $articles->title !!}" src="{{ $articles->image_url ? Helper::showImageThumb($articles->image_url, 2) : URL::asset('public/assets/images/no-img.png') }}" alt="{!! $articles->title !!}"></a>
+        <div class="block-content">
+          <div class="block-news">
+            
+            <?php 
+            $articleFirst = $articlesList->first();
+            ?>
+            @if($articleFirst)          
+            <div class="news-item-first" style="margin-bottom: 20px">
+              <a href="{{ route('news-detail', ['slug' => $articleFirst->slug, 'id' => $articleFirst->id ] ) }}" title="{!! $articleFirst->title !!}" class="image">
+                <img src="{!! Helper::showImage($articleFirst->image_url) !!}" alt="{!! $articleFirst->title !!}">
+              </a>
+              <h3 class="name">
+                    <a href="{{ route('news-detail', ['slug' => $articleFirst->slug, 'id' => $articleFirst->id ] ) }}" title="{!! $articleFirst->title !!}">
+                        {!! $articleFirst->title !!}
+                    </a>
+                </h3>
+                <div class="description">{!! $articleFirst->description !!}</div>
+            </div><!-- /news-item-first -->
+            @endif            
+            <div class="news-list clearfix">              
+              <?php $i = 0; ?>
+              @foreach($articlesList as $obj)
+              <?php $i++; ?>
+              @if($i > 1)
+              <div class="item">
+                <a class="image" href="{{ route('news-detail', ['slug' => $obj->slug, 'id' => $obj->id ] ) }}" title="{!! $obj->title !!}">
+                    <img src="{!! Helper::showImage($obj->image_url) !!}" alt="{!! $obj->title !!}">
+                </a>
+                <div class="description">
+                  <h3 class="title">
+                      <a href="{{ route('news-detail', ['slug' => $obj->slug, 'id' => $obj->id ] ) }}" title="{!! $obj->title !!}">
+                          {!! $obj->title !!}
+                      </a>
+                  </h3>
+                  <p class="text">
+                      {!! $obj->description !!}
+                  </p>
+                </div>
+              </div><!-- /item -->
+              @endif
+              @endforeach
             </div>
-            <div class="des">
-              <a href="{{ route('news-detail', ['slug' => $articles->slug, 'id' => $articles->id]) }}" title="{!! $articles->title !!}">{!! $articles->title !!}</a>
-              <p class="date-post"><i class="fa fa-calendar"></i> {{ date('d/m/Y', strtotime($articles->created_at)) }}</p>
-              <p class="description">{!! $articles->description!!}</p>
-            </div>
-          </div><!-- /item -->
-          @endforeach
+          </div>
         </div>
-      </div><!-- /block-ct-news -->
-      <nav class="block-pagination">
-        {{ $articlesArr->links() }}
-      </nav><!-- /block-pagination -->
-    </div><!-- /block-col-left -->
-    @include('frontend.news.sidebar')
-  </div>
-</div><!-- /block_big-title -->
-  
+      </div>
+    </div><!-- /block-left -->
+    @if( $cateList->count() > 0 )
+    <div class="block-right col-sm-4">
+      <div class="sidebar">
+        @foreach( $cateList as $cate )
+        <div class="block-sidebar block-news-sb">
+          <div class="block-title">
+            <p class="title">{!! $cate->name !!}</p>
+          </div>
+          <div class="block-content">
+            <div class="wrap-news-list">
+              @if( !empty($articleByCate[$cate->id]) )
+              @foreach( $articleByCate[$cate->id] as $obj )
+              <div class="item">
+                <a class="image"  href="{!! route('news-detail', [ 'slug' => $obj->slug , 'id' => $obj->id ]) !!}" title="{!! $obj->title !!}">
+                                  <img src="{!! Helper::showImage($obj->image_url) !!}" alt="{!! $obj->title !!}">
+                              </a>
+                              <h3 class="title">
+                                  <a href="{!! route('news-detail', [ 'slug' => $obj->slug , 'id' => $obj->id ]) !!}" title="{!! $obj->title !!}">
+                                      {!! $obj->title !!}
+                                  </a>
+                              </h3>
+              </div><!-- /item -->
+              @endforeach
+              @endif
+            </div>
+          </div>
+        </div><!-- /block-news-sb -->
+        @endforeach
+      </div>
+    </div><!-- /block-right -->
+    @endif
+  </div><!-- /row -->  
 @stop

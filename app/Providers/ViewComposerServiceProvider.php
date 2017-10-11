@@ -43,7 +43,7 @@ class ViewComposerServiceProvider extends ServiceProvider
 		view()->composer( '*' , function( $view ){		
 			
 	        $settingArr = Settings::whereRaw('1')->lists('value', 'name');
-	        $articleCate = ArticlesCate::orderBy('display_order', 'desc')->get();	     
+	        $articleCate = ArticlesCate::getList(['limit' => 10]);	     
 	       
 	        $tinRandom = Articles::whereRaw(1);
 	        if($tinRandom->count() > 0){

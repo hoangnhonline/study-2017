@@ -1,3 +1,4 @@
+
 @charset "utf-8";
 /* CSS Document */
 
@@ -18,8 +19,31 @@
 @import url(../lib/font-awesome/font-awesome.min.css);
 @import url(../lib/carousel/owl.carousel.min.css);
 @import url(../lib/select2/css/select2.min.css);
-
+@import url(../lib/starrating/css/star-rating.css);
 /*===== Layout Style =====*/
+html {
+  height: 100%;
+}
+body.flex {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+  display: flex;
+  min-height: 100vh;
+  -ms-flex-direction: column;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+}
+#main.flex {
+  width: 100%;
+  min-height: calc(100vh - 300px);
+  -webkit-flex: 1 1 auto;
+  -moz-flex: 1 1 auto;
+  -ms-flex: 1 1 auto;
+  -o-flex: 1 1 auto;
+  flex: 1 1 auto;
+}
 * {
   margin: 0;
   padding: 0;
@@ -90,10 +114,11 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 0;
   font-size: inherit;
 }
-.wrapper {
-  margin: 0 auto;
-  position: relative;
+#wrapper {
   width: 100%;
+  margin: 0;
+  padding: 0;
+  position: relative;
 }
 
 /*===== Common =====*/
@@ -1037,11 +1062,12 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 0;
 }
 .block-sidebar .block-title .title {
-  font-size: 16px;
+  font-size: 15px;
   color: #51a0fb;
   padding-bottom: 5px;
   border-bottom: 1px solid #51a0fb;
-  font-weight: bold;
+  /*font-weight: bold;*/
+  text-transform: uppercase;
 }
 
 /* Block Link */
@@ -1253,11 +1279,11 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 5px;
   font-size: 14px;
   color: #565656;
-  line-height: 24px;
+  line-height: 18px;
   font-weight: bold;
   display: block;
-  max-height: 45px;
-  height: 45px;
+  max-height: 35px;
+  height: 35px;
   overflow: hidden;
 }
 .block-list-course .item:hover .title {
@@ -1270,7 +1296,7 @@ h1, h2, h3, h4, h5, h6 {
   color: #888;
   display: block;
   margin-bottom: 10px;
-  height: 60px;
+  height: 40px;
   overflow: hidden;
 }
 .block-list-course .item .statistics {

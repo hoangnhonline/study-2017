@@ -5,14 +5,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Customer extends Model  {
 
-	/**
-	 * The database table used by the model.
-	 *
-	 * @var string
-	 */
-	protected $table = 'customers';
+  /**
+   * The database table used by the model.
+   *
+   * @var string
+   */
+  protected $table = 'customers';
 
-	 /**
+   /**
      * Indicates if the model should be timestamped.
      *
      * @var bool
@@ -37,6 +37,7 @@ class Customer extends Model  {
       'type',
       'last_login',
       'status',
+      'country_id',
       'city_id',
       'district_id',
       'ward_id',
@@ -58,5 +59,9 @@ class Customer extends Model  {
     public function xa()
     {
         return $this->hasOne('App\Models\Ward', 'id', 'ward_id');
+    }
+    public function country()
+    {
+        return $this->hasOne('App\Models\Country', 'id', 'country_id');
     }
 }

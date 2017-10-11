@@ -16,9 +16,10 @@
 					</form>
 				</div><!-- /block-search -->
 				<div class="block-user col-sm-3">
+					@if( !Session::get('login') )
 					<div class="block-content">
 						<span class="ava-img">
-							<img alt="" src="images/user.svg">
+							<img alt="user" src="{{ URL::asset('public/assets/images/icon-user.png') }}">
 						</span>
 						<div class="ava-info">
 							<p><strong>Đăng nhập, đăng ký</strong></p>
@@ -31,11 +32,49 @@
 					        <div class="popover-signin">
 					        	<a class="btn btn-block btn-white" href="javascript(0);" data-toggle="modal" data-target="#login-modal">Đăng nhập</a>
 					        	<a class="btn btn-block btn-white" href="javascript(0);" data-toggle="modal" data-target="#register-modal">Đăng ký tài khoản mới</a>
-					        	<a class="btn btn-block login-button-fb btn-social" href="#">Đăng nhập với Facebook</a>
-					        	<a class="btn btn-block login-button-google btn-social" href="#">Đăng nhập với Google+</a>
+					        	<a class="btn btn-block login-button-fb btn-social facebook-login" href="javascript:;">Đăng nhập với Facebook</a>
+					        	<!--<a class="btn btn-block login-button-google btn-social" href="#">Đăng nhập với Google+</a>-->
 					       	</div>
 					    </div>
 					</div><!-- /popover -->
+					@else
+					<div class="block-content">
+						<span class="ava-img">
+							<img alt="{{ Session::get('username') }}" src="{{ URL::asset('public/assets/images/icon-user.png') }}">
+						</span>
+						<div class="ava-info hidden-md hidden-sm hidden-xs">
+							<p><strong>{{ Session::get('username') }}</strong></p>
+							<p class="small">Tài khoản</p>
+						</div>
+					</div>
+					<div class="popover fade bottom in">
+				        <div class="popover-user">
+				        	<div class="user-dropdown-header clearfix">
+								<div class="user-dropdown-header-left">
+									<img class="user-avatar-medium" src="{{ URL::asset('public/assets/images/icon-user.png') }}" alt="{{ Session::get('username') }}">
+								</div>
+								<div class="user-dropdown-header-right">
+									<p class="name">{{ Session::get('username') }}</p>
+									<div class="user-icon abs">
+										<a class="link" href="/users/view_profile">
+											<i class="fa fa-user"></i>
+										</a>
+										<a class="link" href="/users/edit_profile">
+											<i class="fa fa-pencil"></i>
+										</a>
+									</div>
+								</div>
+							</div><!-- /user-dropdown-header -->
+							<div class="user-dropdown-links clearfix">
+								<a class="link" href="#">Các khoá học của tôi</a>
+								<!--<a class="link" href="#">Lịch sử giao dịch</a>-->
+							</div><!-- /user-dropdown-links -->
+							<div class="user-dropdown-logout clearfix">
+								<a class="btn btn-flat btn-logout" href="{{route('user-logout')}}"><i class="fa fa-power-off"></i>Đăng xuất</a>
+							</div><!-- /user-dropdown-logout -->
+				       	</div>
+					</div><!-- /popover -->
+					@endif
 				</div><!-- /block-user -->
 			</div>
 		</div>
@@ -49,42 +88,33 @@
 		            </button><!-- /navbar-toggle -->
 				</div>
 				<div class="collapse navbar-collapse menu" id="bs-example-navbar-collapse-1">
-					<ul class="nav navbar-nav navbar-left">
-						<li class="level0 menu-icon active"><a href="{{ route('home') }}" title="Trang Chủ"></a></li><!-- level0 -->
+					<ul class="nav navbar-nav navbar-left">						
+						<li class="level0 @if($routeName == "home") active @endif"><a href="{{ route('home') }}" title="Trang chủ">Trang chủ</a></li><!-- level0 -->
+						<li class="level0 @if($routeName == "pages" && isset($slug) && $slug == "gioi-thieu" ) active @endif"><a href="{{ route('pages', 'gioi-thieu') }}" title="Giới thiệu">Giới thiệu</a></li><!-- level0 -->
+						<li class="level0 @if(in_array($routeName, ['courses-list', 'courses-detail', 'lession-detail'])) active @endif"><a href="{{ route('courses-list') }}" title="Khóa học">Khóa học</a></li><!-- level0 -->
 						<li class="level0 parent">
-							<a href="thithu.html" title="Thi Thử">
-								Thi Thử
+							<a href="#" title="Trắc nghiệm">
+								Trắc nghiệm
 								<ul class="level0 submenu">
 									<li class="level1"><a href="#" title="Thi THPT Quốc gia 2016">Thi THPT Quốc gia 2016</a></li>
-									<li class="level1 parent">
-										<a href="#" title="Thi THPT Quốc gia 2015">Thi THPT Quốc gia 2015</a>
-										<ul class="level1 submenu">
-											<li class="level1"><a href="#" title="">Toán học</a></li>
-											<li class="level1"><a href="#" title="">Vật lý</a></li>
-											<li class="level1"><a href="#" title="">Hóa học</a></li>
-											<li class="level1"><a href="#" title="">Sinh học</a></li>
-											<li class="level1"><a href="#" title="">Ngữ Văn</a></li>
-											<li class="level1"><a href="#" title="">Lịch Sử</a></li>
-											<li class="level1"><a href="#" title="">Tiếng Anh</a></li>
-											<li class="level1"><a href="#" title="">Địa Lý</a></li>
-											<li class="level1"><a href="#" title="">Đề thi minh họa Kỳ thi THPT Quốc gia</a></li>
-											<li class="level1"><a href="#" title="">Bài thi Tổng Hợp – ĐHQG HN</a></li>
-										</ul>
-									</li>
 									<li class="level1"><a href="#" title="">Thi THPT Quốc gia 2016 </a></li>
 									<li class="level1"><a href="#" title="">Thi THPT Quốc gia 2016 </a></li>
 									<li class="level1"><a href="#" title="">Thi THPT Quốc gia 2016 </a></li>
 									<li class="level1"><a href="#" title="">Thi THPT Quốc gia 2016 </a></li>
 								</ul>
 							</a>
+						</li><!-- level0 -->						
+						<li class="level0 @if(in_array($routeName, ['news-list', 'news-detail'])) active @endif">
+							<a href="#" title="Tin Tức">
+								Tin Tức
+								<ul class="level0 submenu">
+									@foreach($articleCate as $cate)																		
+									<li class="level1"><a href="{!! route('news-list', $cate->slug) !!}" title="{!! $cate->name !!}">{!! $cate->name !!}</a></li>									
+									@endforeach
+								</ul>
+							</a>
 						</li><!-- level0 -->
-						<li class="level0"><a href="#" title="Luyện Thi">Luyện Thi</a></li><!-- level0 -->
-						<li class="level0"><a href="#" title="Luyện Đề">Luyện Đề</a></li><!-- level0 -->
-						<li class="level0"><a href="#" title="Kiến Thức Phổ Thông">Kiến Thức Phổ Thông</a></li><!-- level0 -->
-						<li class="level0"><a href="#" title="Tiếng Anh">Tiếng Anh</a></li><!-- level0 -->
-						<li class="level0"><a href="#" title="Thư Viện">Thư Viện</a></li><!-- level0 -->
-						<li class="level0"><a href="#" title="Tin Tức">Tin Tức</a></li><!-- level0 -->
-						<li class="level0"><a href="#" title="Kỹ Năng">Kỹ Năng</a></li><!-- level0 -->
+						<li class="level0 @if($routeName == "contact") active @endif""><a href="{{ route('contact') }}" title="Liên hệ">Liên hệ</a></li><!-- level0 -->
 					</ul>
 				</div><!-- /.navbar-collapse -->
 	    	</nav><!-- mainNav -->

@@ -46,6 +46,9 @@ class Articles extends Model  {
         }        
         if( isset($params['is_hot']) && $params['is_hot'] ){
             $query->where('is_hot', $params['is_hot']);
+        }
+        if( isset($params['except']) && $params['except'] ){
+            $query->where('id', '<>',  $params['except']);
         }        
         $query->orderBy('is_hot', 'desc')->orderBy('id', 'desc');
         if(isset($params['limit']) && $params['limit']){

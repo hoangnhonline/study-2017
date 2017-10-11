@@ -30,4 +30,20 @@ class ArticlesCate extends Model  {
     {
         return $this->hasMany('App\Models\Articles', 'cate_id');
     }
+    public static function getList($params = []){
+        $query = self::where('status', 1);
+        if( isset($params['type']) && $params['type'] ){
+            $query->where('type', $params['type']);
+        }
+        if( isset($params['except']) && $params['except'] ){
+            $query->where('id', '<>',  $params['except']);
+        }          
+        $query->orderBy('is_hot', 'desc')->orderBy('display_order');
+        if(isset($params['limit']) && $params['limit']){
+            return $query->limit($params['limit'])->get();
+        }
+        if(isset($params['pagination']) && $params['pagination']){
+            return $query->paginate($params['pagination']);
+        }                
+    }
 }

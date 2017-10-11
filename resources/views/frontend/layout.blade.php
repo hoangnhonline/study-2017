@@ -43,7 +43,30 @@
 	<![endif]-->
 </head>
 <body>
+<div id="fb-root"></div>
+	<script>(function(d, s, id) {
+	  var js, fjs = d.getElementsByTagName(s)[0];
+	  if (d.getElementById(id)) return;
+	  js = d.createElement(s); js.id = id;
+	  js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.10&appId=567408173358902";
+	  fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));</script>
+	<script>window.twttr = (function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0],
+    t = window.twttr || {};
+  if (d.getElementById(id)) return t;
+  js = d.createElement(s);
+  js.id = id;
+  js.src = "https://platform.twitter.com/widgets.js";
+  fjs.parentNode.insertBefore(js, fjs);
 
+  t._e = [];
+  t.ready = function(f) {
+    t._e.push(f);
+  };
+
+  return t;
+}(document, "script", "twitter-wjs"));</script>
 	<div id="wrapper">
 		
 		@include('frontend.partials.header')
@@ -67,12 +90,7 @@
 
 		@include('frontend.partials.modal')
 
-	</div>
-
-
-
-
-		
+	</div>		
 	<!-- ===== JS ===== -->
 	<script src="{{ URL::asset('public/assets/js/jquery.min.js') }}"></script>
 	<!-- ===== JS Bootstrap ===== -->
@@ -82,11 +100,101 @@
 	<!-- Js Common -->
 	<script src="{{ URL::asset('public/assets/js/common.js') }}"></script>
 
-    <input type="hidden" id="route-newsletter" value="{{ route('register.newsletter') }}">
-	
-	
-	
-	@include('frontend.partials.custom-css')
+	<script src="{{ URL::asset('public/assets/js/home.js') }}"></script>
+
+	<input type="hidden" id="route-ajax-login-fb" value="{{route('ajax-login-by-fb')}}">
+	<input type="hidden" id="fb-app-id" value="{{ env('FACEBOOK_APP_ID') }}">
+	<input type="hidden" id="route-auth-login-ajax" value="{{ route('auth-login-ajax') }}">
+	<style type="text/css">
+		
+	.block-author {
+	  margin-bottom: 15px;
+	}
+	.block-author ul {
+	  padding-left: 0 !important;
+	}
+	.block-author ul li {
+	  display: inline-block;
+	  list-style-type: none;
+	  padding-right: 25px;
+	  color: #898989;
+	  position: relative;
+	}
+	.block-author ul li .name {
+	  color: #f60;
+	}
+	.block-author ul li:before {
+	  content: "\f111";
+	  font-family: "FontAwesome";
+	  color: #898989;
+	  font-size: 5px;
+	  position: absolute;
+	  top: 8px;
+	  left: -17px;
+	}
+	.block-author ul li:first-child:before {
+	  display: none;
+	}
+		
+	.reviews-summary {
+	  margin-bottom: 10px;
+	}
+	.reviews-summary .rating-title,
+	.reviews-summary .rating-summary,
+	.reviews-summary .rating-action {
+	  display: inline-block;
+	  margin-right: 5px;
+	}
+	.reviews-summary .rating-title {
+	  font-weight: bold;
+	}
+	.rating-summary .rating-xs {
+	  font-size: 18px;
+	}
+	.rating-summary .clear-rating,
+	.rating-summary .caption {
+	  display: none;
+	}
+	.rating-summary .rating-container .star {
+	  margin: 0 2px;
+	}
+	.rating-summary .rating-container .star .glyphicon {
+	  top: 0;
+	}
+	.rating-summary .rating-container .filled-stars {
+	  color: #ff6600;
+	  -webkit-text-stroke: transparent;
+	}
+	.rating-summary #kartik {
+	  display: none;
+	}
+	.rating-action span {
+	  position: relative;
+	  color: #898989;
+	  padding-left: 15px;
+	}
+	.dot>span {
+	  position: relative;
+	  padding-left: 15px;
+	}
+	.dot>span:after {
+	  content: "\f111";
+	  font-family: "FontAwesome";
+	  color: #898989;
+	  font-size: 5px;
+	  position: absolute;
+	  top: 5px;
+	  left: 0;
+	}
+	.block-share .share-item {
+	    display: inline-block;
+	    vertical-align: top;
+	    line-height: initial;
+	}
+	</style>
+	<script src="{{ URL::asset('public/assets/lib/starrating/js/star-rating.js') }}"></script>  
+	<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-59b215c2a2658a8a"></script> 	
+	<script src="https://apis.google.com/js/platform.js" async defer></script>
 	@yield('js')
 	<script type="text/javascript">
 		$(document).ready(function(){

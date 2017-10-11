@@ -8,7 +8,7 @@
 		<li class="active">Danh sách @if( $type == 1 ) giáo viên @else học viên @endif</li>
 	</ol>
 </div><!-- /block-breadcrumb -->
-<div class="block-teachers block-title-cm">
+<div class="block-members block-title-cm">
 	<div class="block-title">
 		<h2 class="title">
 			DANH SÁCH @if( $type == 1 ) giáo viên @else học viên @endif
@@ -24,23 +24,35 @@
 	<div class="block-content">
 		<div class="row">			
           	@foreach($objectsList as $obj)
-			<div class="col-sm-3 item">
-				<div class="image">
-					<a href="{{ route('teacher-detail', ['slug' => $obj->slug, 'id' => $obj->id ]) }}" title="{!! $obj->name !!}">
-						<img alt="{!! $obj->name !!}" src="{!! Helper::showImage($obj->image_url) !!}">
-					</a>
+          	@if( $type == 1 )			
+			<div class="col-sm-3">
+				<div class="item">
+					<div class="image">
+						<a href="{{ route('teacher-detail', ['slug' => $obj->slug, 'id' => $obj->id ]) }}" title="{!! $obj->name !!}"><img alt="{!! $obj->name !!}" src="{!! Helper::showImage($obj->image_url) !!}"></a>
+					</div>
+					<div class="description">
+						<h3 class="name-members">
+							<a href="{{ route('teacher-detail', ['slug' => $obj->slug, 'id' => $obj->id ]) }}" title="{!! $obj->name !!}">{!! $obj->name !!}</a>
+						</h3>
+						<p class="subject">Môn: {!! $obj->subjects->name !!}</p>
+					</div>
 				</div>
-				<h3 class="name-teacher">
-					<a href="{{ route('teacher-detail', ['slug' => $obj->slug, 'id' => $obj->id ]) }}" title="{!! $obj->name !!}">
-						{!! $obj->name !!}
-					</a>
-				</h3>
-				@if( $type == 1 )
-				<p class="subject">Môn: {!! $obj->subjects->name !!}</p>
-				@else
-				<p class="subject">{!! $obj->school_name !!}</p>
-				@endif
-			</div><!-- /item -->
+			</div>
+			@else
+			<div class="col-sm-3">
+				<div class="item">
+					<div class="image">
+						<a href="{{ route('student-detail', ['slug' => $obj->slug, 'id' => $obj->id ]) }}" title="{!! $obj->name !!}"><img alt="{!! $obj->name !!}" src="{!! Helper::showImage($obj->image_url) !!}"></a>
+					</div>
+					<div class="description">
+						<h3 class="name-members">
+							<a href="{{ route('student-detail', ['slug' => $obj->slug, 'id' => $obj->id ]) }}" title="{!! $obj->name !!}">{!! $obj->name !!}</a>
+						</h3>
+						<p class="subject">{!! $obj->school_name !!}</p>
+					</div>
+				</div>
+			</div>
+			@endif
 			@endforeach
 		</div><!-- /row -->
 		<!--<nav class="block-pagination">

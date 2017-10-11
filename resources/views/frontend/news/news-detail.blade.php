@@ -3,81 +3,118 @@
 @include('frontend.partials.meta') 
 
 @section('content')
-<div class="block2 block-breadcrumb">
-  <div class="container">
-    <ul class="breadcrumb">
-      <li><a href="{{ route('home') }}" title="Trở về trang chủ">Trang chủ</a></li>            
-      <li class="active"><a href="{{ route('news-list', $cateDetail->slug ) }}" title="{!! $cateDetail->name !!}">{!! $cateDetail->name !!}</a></li>
-    </ul>
-  </div>
-</div><!-- /block-breadcrumb -->
-<div class="block block-two-col container">
-  <div class="row">
-    <div class="col-sm-9 col-xs-12 block-col-left">
-		<div class="block-title-commom block-dt-news">
-			<div class="block block-title">
-				<h2>
-					<i class="fa fa-home"></i>
-					{!! $cateDetail->name !!}
-				</h2>
+<div class="row">
+	<div class="block-left col-sm-8">
+		<div class="block block-article">
+			<h1 class="block title">{!! $detail->title !!}</h1><!-- /title -->			
+			<div class="reviews-summary" id="rating-summary" itemscope itemtype="http://schema.org/Review">
+						
+            </div><!-- /reviews-summary -->
+            <div class="block-author">
+            	<ul>
+            		<li>
+            			<span>Tác giả:</span>
+            			<span class="name">{!! $detail->createdUser->display_name !!}</span>
+            		</li>
+            		<li>
+            			{!! date('d/m/Y', strtotime($detail->created_at)) !!}
+            		</li>
+            		<li>
+            			{!! Helper::view($detail->id, 2) !!} lượt xem
+            		</li>
+            	</ul>
+            </div>
+			<div class="block block-share" id="share-buttons" style="margin-bottom:10px">
+				<div class="share-item">
+					<div class="fb-like" data-href="{{ url()->current() }}" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="false"></div>
+				</div>
+				<div class="share-item" style="max-width: 65px;">
+					<div class="g-plus" data-action="share"></div>
+				</div>
+				<div class="share-item">
+					<a class="twitter-share-button"
+				  href="https://twitter.com/intent/tweet?text={!! $detail->title !!}">
+				Tweet</a>
+				</div>
+				<div class="share-item">
+					<div class="addthis_inline_share_toolbox"></div>
+				</div>
+			</div><!-- /block-share-->			
+		</div><!-- /block-article -->
+		<div class="block-editor-content">
+			{!! $detail->content !!}
+		</div><!-- /block-editor-content -->
+		@if($tagSelected->count() > 0)
+		<div class="block-tags">
+			<ul>
+				<li class="tags-first">Tags:</li>
+				<?php $i = 0; ?>
+		        @foreach($tagSelected as $tag)
+		        <?php $i++; ?>
+				<li class="tags-link"><a href="{{ route('tag', $tag->slug) }}" title="{!! $tag->name !!}">{!! $tag->name !!}</a></li>
+				@endforeach
+			</ul>
+		</div><!-- /block-tags -->
+		@endif
+		@if($otherList->count() > 0 )
+		<div class="block block-news-related-bot">
+			<div class="block-title">
+				<p class="title">Các tin liên quan</p>
 			</div>
 			<div class="block-content">
-				<div class="block block-article">
-					<h1 class="title">{!! $detail->title !!}</h1>
-					<div class="reviews-summary" id="rating-summary" itemscope itemtype="http://schema.org/Review">
-						
-                    </div><!-- /reviews-summary -->
-                    <div class="block-author">
-                    	<ul>
-                    		<li>
-                    			<span>Tác giả:</span>
-                    			<span class="name">{!! $detail->createdUser->display_name !!}</span>
-                    		</li>
-                    		<li>
-                    			{!! date('d/m/Y', strtotime($detail->created_at)) !!}
-                    		</li>
-                    		<li>
-                    			{!! Helper::view($detail->id, 2) !!} lượt xem
-                    		</li>
-                    	</ul>
-                    </div>
-					<div class="block-editor-content">{!! $detail->content !!}</div>
+				<ul class="list-item">
+					@foreach($otherList as $obj)
+					<li class="item">
+						<div class="image">
+							<a href="{!! route('news-detail', [ 'slug' => $obj->slug , 'id' => $obj->id ]) !!}" title="{!! $obj->title !!}">
+								<img src="{!! Helper::showImage($obj->image_url) !!}" alt="{!! $obj->title !!}">
+							</a>
+						</div>										
+						<div class="des">
+							<h3 class="title"><a href="{!! route('news-detail', [ 'slug' => $obj->slug , 'id' => $obj->id ]) !!}" title="{!! $obj->title !!}">{!! $obj->title !!}</a></h3>
+							<p class="date">{!! date('d/m/Y', strtotime($obj->created_at)) !!}</p>
+							<p class="info">{!! $obj->description !!}</p>
+						</div>
+					</li><!-- /item -->
+					@endforeach
 					
-				</div>
-				<div class="block block-share" id="share-buttons">
-					<div class="share-item">
-						<div class="fb-like" data-href="{{ url()->current() }}" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="false"></div>
-					</div>
-					<div class="share-item" style="max-width: 65px;">
-						<div class="g-plus" data-action="share"></div>
-					</div>
-					<div class="share-item">
-						<a class="twitter-share-button"
-					  href="https://twitter.com/intent/tweet?text={!! $detail->title !!}">
-					Tweet</a>
-					</div>
-					<div class="share-item">
-						<div class="addthis_inline_share_toolbox"></div>
-					</div>
-				</div><!-- /block-share-->		
-			    @if($tagSelected->count() > 0)
-				<div class="block-tags">
-					<ul>
-						<li class="tags-first">Tags:</li>
-						<?php $i = 0; ?>
-				        @foreach($tagSelected as $tag)
-				        <?php $i++; ?>
-						<li class="tags-link"><a href="{{ route('tag', $tag->slug) }}" title="{!! $tag->name !!}">{!! $tag->name !!}</a></li>
-						@endforeach
-					</ul>
-				</div><!-- /block-tags -->
-				@endif
+				</ul>
 			</div>
-		</div><!-- /block-ct-news -->
-	</div><!-- /block-col-left -->
-    @include('frontend.news.sidebar-detail')
-  </div>
-</div><!-- /block_big-title -->
+		</div><!-- /block-news-related-bot -->
+		@endif
+	</div><!-- /block-left -->
+	@if( $cateList->count() > 0 )
+	<div class="block-right col-sm-4">
+		<div class="sidebar">
+			@foreach( $cateList as $cate )
+			<div class="block-sidebar block-news-sb">
+				<div class="block-title">
+					<p class="title">{!! $cate->name !!}</p>
+				</div>
+				<div class="block-content">
+					<div class="wrap-news-list">
+						@if( !empty($articleByCate[$cate->id]) )
+						@foreach( $articleByCate[$cate->id] as $obj )
+						<div class="item">
+							<a class="image"  href="{!! route('news-detail', [ 'slug' => $obj->slug , 'id' => $obj->id ]) !!}" title="{!! $obj->title !!}">
+                                <img src="{!! Helper::showImage($obj->image_url) !!}" alt="{!! $obj->title !!}">
+                            </a>
+                            <h3 class="title">
+                                <a href="{!! route('news-detail', [ 'slug' => $obj->slug , 'id' => $obj->id ]) !!}" title="{!! $obj->title !!}">
+                                    {!! $obj->title !!}
+                                </a>
+                            </h3>
+						</div><!-- /item -->
+						@endforeach
+						@endif
+					</div>
+				</div>
+			</div><!-- /block-news-sb -->
+			@endforeach
+		</div>
+	</div><!-- /block-right -->
+	@endif
+</div><!-- /row -->
 <input type="hidden" id="rating-route" value="{{ route('rating') }}">
 <form id="rating-form">
 	{{ csrf_field() }}

@@ -86,10 +86,9 @@ class HomeController extends Controller
         $seo['title'] = $detailPage->meta_title ? $detailPage->meta_title : $detailPage->title;
         $seo['description'] = $detailPage->meta_description ? $detailPage->meta_description : $detailPage->title;
         $seo['keywords'] = $detailPage->meta_keywords ? $detailPage->meta_keywords : $detailPage->title;      
-        $socialImage = $detailPage->image_url ? $detailPage->image_url : null;
-        $memberList = Member::orderBy('display_order', 'asc')->get();
+        $socialImage = $detailPage->image_url ? $detailPage->image_url : null;      
 
-        return view('frontend.pages.index', compact('detailPage', 'seo', 'memberList', 'slug', 'socialImage'));    
+        return view('frontend.pages.index', compact('detailPage', 'seo', 'slug', 'socialImage'));    
     }
 
     public function services(Request $request){

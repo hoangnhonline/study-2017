@@ -31,9 +31,22 @@
 					<iframe width="100%" height="365" src="https://www.youtube-nocookie.com/embed/{!! $detail->video_id !!}?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
 				</div>
 			</div><!-- /block-lesson-right -->
-			<div class="block block-share">
-				Share
-			</div><!-- /block-share -->
+			<div class="block block-share" id="share-buttons" style="margin-bottom:10px">
+				<div class="share-item">
+					<div class="fb-like" data-href="{{ url()->current() }}" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="false"></div>
+				</div>
+				<div class="share-item" style="max-width: 65px;">
+					<div class="g-plus" data-action="share"></div>
+				</div>
+				<div class="share-item">
+					<a class="twitter-share-button"
+				  href="https://twitter.com/intent/tweet?text={!! $detail->title !!}">
+				Tweet</a>
+				</div>
+				<div class="share-item">
+					<div class="addthis_inline_share_toolbox"></div>
+				</div>
+			</div><!-- /block-share-->	
 			<div class="block-lesson-ct">
 				<div class="block-lesson-tab">
 				 	<!-- Nav tabs -->

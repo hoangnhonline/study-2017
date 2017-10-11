@@ -73,7 +73,6 @@
         <div class="home-news-left">
           <?php 
           $articleFirst = $articlesList->first();
-
           ?>
           @if($articleFirst)
           <div class="item">

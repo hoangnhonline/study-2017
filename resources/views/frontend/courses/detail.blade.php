@@ -4,7 +4,7 @@
 @section('content')
 <div class="block-video block-video-pg">
 	<div class="row">
-		<div class="col-sm-8">
+		<div class="col-sm-8">			
 			@if($detail->video_id)
 			<div class="video">
 			
@@ -18,10 +18,12 @@
 				<div class="box-table">
 					<div class="box-table-cell">
 						<h1 class="title">{!! $detail->name !!}</h1>
-						<p class="info">{!! $detail->description !!}</p>						
+						<p class="info">{!! $detail->description !!}</p>		
+						@if($firstLession)				
 						<div class="group-btn">
 							<a href="{!! route('lession-detail', ['slug' => $firstLession->slug, 'id' => $firstLession->id] ) !!}" title="{!! $firstLession->name !!}" class="btn">Xem Chi Tiết</a>				
 						</div>
+						@endif
 					</div>
 				</div>
 			</div>
@@ -35,8 +37,10 @@
 				<strong>Thông tin khóa học</strong>
 				{!! $detail->content !!}
 			</div>
-			<div class="group-btn">				
+			<div class="group-btn">			
+				@if($firstLession)		
 				<a href="{!! route('lession-detail', ['slug' => $firstLession->slug, 'id' => $firstLession->id] ) !!}" title="{!! $firstLession->name !!}" class="btn">Xem Chi Tiết</a>
+				@endif
 			</div>
 		</div>
 	</div><!-- /block-left -->
