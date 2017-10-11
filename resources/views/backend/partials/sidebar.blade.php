@@ -39,7 +39,7 @@
         <ul class="treeview-menu">
           <li {{ in_array(\Request::route()->getName(), ['quiz.index', 'quiz.edit']) ? "class=active" : "" }}><a href="{{ route('quiz.index') }}"><i class="fa fa-circle-o"></i> Trắc nghiệm</a></li>
           <li {{ in_array(\Request::route()->getName(), ['quiz.create']) ? "class=active" : "" }}><a href="{{ route('quiz.create') }}"><i class="fa fa-circle-o"></i> Thêm bài thi</a></li> 
-          <li {{ in_array(\Request::route()->getName(), ['quiz-cate.create', 'quiz-cate.edit', 'quiz-cate.index']) ? "class=active" : "" }}><a href="{{ route('quiz-cate.create') }}"><i class="fa fa-circle-o"></i> Loại trắc nghiệm</a></li>          
+          <li {{ in_array(\Request::route()->getName(), ['quiz-cate.create', 'quiz-cate.edit', 'quiz-cate.index']) ? "class=active" : "" }}><a href="{{ route('quiz-cate.index') }}"><i class="fa fa-circle-o"></i> Loại trắc nghiệm</a></li>          
         </ul>
       </li>            
       <li {{ in_array(\Request::route()->getName(), ['teacher.edit', 'teacher.index', 'teacher.create']) ? "class=active" : "" }}>
