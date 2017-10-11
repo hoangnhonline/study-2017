@@ -5,25 +5,36 @@
 <div class="block-lesson">
 	<div class="row">
 		<div class="col-sm-4">
-			<div class="block-lesson-left">
-				<h2 class="block-title">{!! $detail->courses->name !!}</h2><!-- /block-title -->
-				<div class="block-content">
-					@if($partList)
-					@foreach($partList as $part)
-					<div class="box-item">
-						<h3 class="box-item-title">{!! $part->name !!}</h3>
-						@if( !empty($lessionArr[$part->id]) )
-						<ul class="box-item-list">
-							@foreach( $lessionArr[$part->id] as $less )
-							<li @if( $detail->id == $less->id ) class="skill-playing" @endif><a href="{!! route('lession-detail', ['slug' => $less->slug, 'id' => $less->id] ) !!}" title="{!! $less->name !!}">{!! $less->name !!}</a></li>						
-							@endforeach	
-						</ul>
+			<div class="block block-livetream">
+		      <div class="contaier">
+		        <!-- <img src="images/icon-streaming.png" alt="" style="display: inline-block; vertical-align: middle; margin-right: 10px;">Live Tream -->
+		        <div class="panel panel-default">
+		          <div class="panel-heading">
+		            <h3 class="panel-title">
+		              {!! $detail->courses->name !!}
+		            </h3>
+		          </div>
+		          <div class="panel-body block-lesson-left">
+		            	<div class="block-content">
+						@if($partList)
+						@foreach($partList as $part)
+						<div class="box-item">
+							<h3 class="box-item-title">{!! $part->name !!}</h3>
+							@if( !empty($lessionArr[$part->id]) )
+							<ul class="box-item-list">
+								@foreach( $lessionArr[$part->id] as $less )
+								<li @if( $detail->id == $less->id ) class="skill-playing" @endif><a href="{!! route('lession-detail', ['slug' => $less->slug, 'id' => $less->id] ) !!}" title="{!! $less->name !!}">{!! $less->name !!}</a></li>						
+								@endforeach	
+							</ul>
+							@endif
+						</div>
+						@endforeach
 						@endif
-					</div>
-					@endforeach
-					@endif
-				</div><!-- /block-content -->
-			</div><!-- /block-lesson-left -->
+					</div><!-- /block-content -->
+		          </div>
+		        </div>
+		      </div>
+		    </div><!-- /block-livetream -->			
 		</div><!-- /block-lesson-left -->
 		<div class="col-sm-8">
 			<div class="block block-lesson-right">
