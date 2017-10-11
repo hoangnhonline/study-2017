@@ -27,7 +27,21 @@
           <li {{ in_array(\Request::route()->getName(), ['courses.index', 'courses.edit']) ? "class=active" : "" }}><a href="{{ route('courses.index') }}"><i class="fa fa-circle-o"></i> Khóa học</a></li>
           <li {{ in_array(\Request::route()->getName(), ['courses.create']) ? "class=active" : "" }}><a href="{{ route('courses.create') }}"><i class="fa fa-circle-o"></i> Thêm khóa học</a></li>          
         </ul>
-      </li>             
+      </li> 
+      <li class="treeview {{ in_array(\Request::route()->getName(), ['quiz.index', 'quiz.create', 'quiz.edit', 'quiz-cate.index', 'quiz-cate.create', 'quiz-cate.edit', 'quiz-question.index', 'quiz-question.create', 'quiz-question.edit', 'quiz-answers.index', 'quiz-answers.edit', 'quiz-answers.create' ]) ? 'active' : '' }}">
+        <a href="#">
+          <i class="fa fa-twitch"></i> 
+          <span>Trắc nghiệm</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li {{ in_array(\Request::route()->getName(), ['quiz.index', 'quiz.edit']) ? "class=active" : "" }}><a href="{{ route('quiz.index') }}"><i class="fa fa-circle-o"></i> Trắc nghiệm</a></li>
+          <li {{ in_array(\Request::route()->getName(), ['quiz.create']) ? "class=active" : "" }}><a href="{{ route('quiz.create') }}"><i class="fa fa-circle-o"></i> Thêm bài thi</a></li> 
+          <li {{ in_array(\Request::route()->getName(), ['quiz-cate.create', 'quiz-cate.edit', 'quiz-cate.index']) ? "class=active" : "" }}><a href="{{ route('quiz.create') }}"><i class="fa fa-circle-o"></i> Loại trắc nghiệm</a></li>          
+        </ul>
+      </li>            
       <li {{ in_array(\Request::route()->getName(), ['teacher.edit', 'teacher.index', 'teacher.create']) ? "class=active" : "" }}>
           <a href="{{ route('teacher.index') }}">
             <i class="fa fa-pencil-square-o"></i> 
