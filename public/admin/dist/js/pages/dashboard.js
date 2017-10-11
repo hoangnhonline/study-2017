@@ -40,7 +40,9 @@ $(document).ready(function(){
   $('.btnSingleUpload').click(function(){        
     singleUpload($(this));
   });
-
+  $('#cate_id').change(function(){
+    $('#searchForm').submit();
+  });
   $('#dataForm #name').change(function(){
        var name = $.trim( $(this).val() );         
         $.ajax({

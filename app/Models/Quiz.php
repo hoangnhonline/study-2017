@@ -63,8 +63,11 @@ class Quiz extends Model  {
     {
         return $this->belongsTo('App\Models\Account', 'updated_user');
     }
-    public function quiz(){
-        return $this->hasMany('App\Models\Quiz', 'cate_id');
+    public function questions(){
+        return $this->hasMany('App\Models\QuizQuestions', 'quiz_id');
+    }
+    public function cates(){
+        return $this->hasOne('App\Models\QuizCate', 'id' ,'cate_id');
     }
 
 }

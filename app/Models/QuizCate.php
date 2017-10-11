@@ -27,8 +27,7 @@ class QuizCate extends Model  {
     protected $fillable = [
                             'name', 
                             'slug', 
-                            'alias', 
-                            'subject_id', 
+                            'alias',                           
                             'is_hot',                            
                             'status', 
                             'display_order', 

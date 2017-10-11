@@ -18,7 +18,7 @@ class QuizAnswers extends Model  {
      *
      * @var bool
      */
-    public $timestamps = true;
+    public $timestamps = false;
     /**
      * The attributes that are mass assignable.
      *
@@ -27,12 +27,13 @@ class QuizAnswers extends Model  {
     protected $fillable = [
                             'question_id',
                             'content',
-                            'display_order'
+                            'display_order',
+                            'is_true'
                         ];
 
     public static function getList($params = []){
 
-        $query = self::where('question_id', $question_id);
+        $query = self::where('question_id', $params['question_id']);
          
         return $query->orderBy('display_order')->get();
     }

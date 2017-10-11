@@ -18,7 +18,7 @@ class QuizQuestions extends Model  {
      *
      * @var bool
      */
-    public $timestamps = true;
+    public $timestamps = false;
     /**
      * The attributes that are mass assignable.
      *
@@ -28,7 +28,8 @@ class QuizQuestions extends Model  {
                             'quiz_id',
                             'content',
                             'image_url',                       
-                            'display_order'                          
+                            'display_order',
+                            'no_answer'
                         ];
 
     public static function getList($params = []){
@@ -41,5 +42,7 @@ class QuizQuestions extends Model  {
     public function quiz(){
         return $this->hasOne('App\Models\Quiz', 'quiz_id');
     }
-
+    public function answers(){
+        return $this->hasMany('App\Models\QuizAnswers', 'question_id');
+    }
 }

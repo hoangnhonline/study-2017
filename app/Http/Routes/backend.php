@@ -28,6 +28,46 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'backend', 'middleware' => '
         Route::get('{id}/destroy', ['as' => 'courses.destroy', 'uses' => 'CoursesController@destroy']);
         Route::post('/update', ['as' => 'courses.update', 'uses' => 'CoursesController@update']);
     });
+    Route::group(['prefix' => 'quiz'], function () {
+        Route::get('/', ['as' => 'quiz.index', 'uses' => 'QuizController@index']);
+        Route::get('/create', ['as' => 'quiz.create', 'uses' => 'QuizController@create']);
+        Route::post('/store', ['as' => 'quiz.store', 'uses' => 'QuizController@store']);
+        Route::get('{id}/edit',   ['as' => 'quiz.edit', 'uses' => 'QuizController@edit']);       
+        Route::get('{id}/destroy', ['as' => 'quiz.destroy', 'uses' => 'QuizController@destroy']);
+        Route::post('/update', ['as' => 'quiz.update', 'uses' => 'QuizController@update']);
+    });
+    Route::group(['prefix' => 'quiz-cate'], function () {
+        Route::get('/', ['as' => 'quiz-cate.index', 'uses' => 'QuizCateController@index']);
+        Route::get('/create', ['as' => 'quiz-cate.create', 'uses' => 'QuizCateController@create']);
+        Route::post('/store', ['as' => 'quiz-cate.store', 'uses' => 'QuizCateController@store']);
+        Route::get('{id}/edit',   ['as' => 'quiz-cate.edit', 'uses' => 'QuizCateController@edit']);       
+        Route::get('{id}/destroy', ['as' => 'quiz-cate.destroy', 'uses' => 'QuizCateController@destroy']);
+        Route::post('/update', ['as' => 'quiz-cate.update', 'uses' => 'QuizCateController@update']);
+    });
+    Route::group(['prefix' => 'quiz-questions'], function () {
+        Route::get('/', ['as' => 'quiz-questions.index', 'uses' => 'QuizQuestionsController@index']);
+        Route::get('/create', ['as' => 'quiz-questions.create', 'uses' => 'QuizQuestionsController@create']);
+        Route::post('/store', ['as' => 'quiz-questions.store', 'uses' => 'QuizQuestionsController@store']);
+        Route::get('{id}/edit',   ['as' => 'quiz-questions.edit', 'uses' => 'QuizQuestionsController@edit']);       
+        Route::get('{id}/destroy', ['as' => 'quiz-questions.destroy', 'uses' => 'QuizQuestionsController@destroy']);
+        Route::post('/update', ['as' => 'quiz-questions.update', 'uses' => 'QuizQuestionsController@update']);
+    });
+    Route::group(['prefix' => 'quiz-answers'], function () {
+        Route::get('/', ['as' => 'quiz-answers.index', 'uses' => 'QuizAnswersController@index']);
+        Route::get('/create', ['as' => 'quiz-answers.create', 'uses' => 'QuizAnswersController@create']);
+        Route::post('/store', ['as' => 'quiz-answers.store', 'uses' => 'QuizAnswersController@store']);
+        Route::get('{id}/edit',   ['as' => 'quiz-answers.edit', 'uses' => 'QuizAnswersController@edit']);       
+        Route::get('{id}/destroy', ['as' => 'quiz-answers.destroy', 'uses' => 'QuizAnswersController@destroy']);
+        Route::post('/update', ['as' => 'quiz-answers.update', 'uses' => 'QuizAnswersController@update']);
+    });
+    Route::group(['prefix' => 'courses'], function () {
+        Route::get('/', ['as' => 'courses.index', 'uses' => 'CoursesController@index']);
+        Route::get('/create', ['as' => 'courses.create', 'uses' => 'CoursesController@create']);
+        Route::post('/store', ['as' => 'courses.store', 'uses' => 'CoursesController@store']);
+        Route::get('{id}/edit',   ['as' => 'courses.edit', 'uses' => 'CoursesController@edit']);       
+        Route::get('{id}/destroy', ['as' => 'courses.destroy', 'uses' => 'CoursesController@destroy']);
+        Route::post('/update', ['as' => 'courses.update', 'uses' => 'CoursesController@update']);
+    });
     Route::group(['prefix' => 'courses-part'], function () {
         Route::get('/', ['as' => 'courses-part.index', 'uses' => 'CoursesPartController@index']);
         Route::get('/create', ['as' => 'courses-part.create', 'uses' => 'CoursesPartController@create']);
