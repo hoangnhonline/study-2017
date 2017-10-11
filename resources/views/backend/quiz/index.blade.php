@@ -83,7 +83,7 @@
                   <a class="btn btn-primary btn-sm" href="{{ route('quiz-questions.index', ['quiz_id' => $item->id])}}" ><span class="badge">{{ $item->questions->count() }}</span> Câu hỏi </a>
                 </td>
                 <td style="white-space:nowrap"> 
-                  <a class="btn btn-default btn-sm" href="{{ route('news-detail', [$item->slug, $item->id ]) }}" target="_blank"><i class="fa fa-eye" aria-hidden="true"></i> Xem</a>                 
+                  <a class="btn btn-default btn-sm" href="{{ route('quiz-confirm', [$item->slug, $item->id ]) }}" target="_blank"><i class="fa fa-eye" aria-hidden="true"></i> Xem</a>                 
                   <a href="{{ route( 'quiz.edit', [ 'id' => $item->id ]) }}" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-pencil"></span></a>                 
                   
                   <a onclick="return callDelete('{{ $item->name }}','{{ route( 'quiz.destroy', [ 'id' => $item->id ]) }}');" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span></a>

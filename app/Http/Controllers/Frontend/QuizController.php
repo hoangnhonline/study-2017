@@ -29,7 +29,7 @@ class QuizController extends Controller
             $seo['title'] = $cateDetail->meta_title ? $cateDetail->meta_title : $cateDetail->title;
             $seo['description'] = $cateDetail->meta_description ? $cateDetail->meta_description : $cateDetail->title;
             $seo['keywords'] = $cateDetail->meta_keywords ? $cateDetail->meta_keywords : $cateDetail->title;
-
+            
             $quizList = Quiz::getList(['cate_id' => $cateDetail->id, 'pagination' => $settingArr['articles_per_page']]);      
 
             return view('frontend.quiz.index', compact('coursesList', 'seo', 'socialImage', 'quizList', 'cateDetail'));

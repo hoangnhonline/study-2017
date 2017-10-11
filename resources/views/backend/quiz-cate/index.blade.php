@@ -57,7 +57,7 @@
                 </td>                
                 <td style="white-space:nowrap">
                 
-                <a class="btn btn-default btn-sm" href="{{ route('news-list', $item->slug ) }}" target="_blank"><i class="fa fa-eye" aria-hidden="true"></i> Xem</a>
+                <a class="btn btn-default btn-sm" href="{{ route('quiz-list', $item->slug ) }}" target="_blank"><i class="fa fa-eye" aria-hidden="true"></i> Xem</a>
                   <a class="btn btn-primary btn-sm" href="{{ route('quiz.index', ['cate_id' => $item->id])}}" ><span class="badge">{{ $item->quiz->count() }}</span> Bài trắc nghiệm </a>
                   <a href="{{ route( 'quiz-cate.edit', [ 'id' => $item->id ]) }}" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-pencil"></span></a>                 
                   @if( $item->quiz->count() == 0)
