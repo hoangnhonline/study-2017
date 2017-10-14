@@ -28,6 +28,14 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'backend', 'middleware' => '
         Route::get('{id}/destroy', ['as' => 'courses.destroy', 'uses' => 'CoursesController@destroy']);
         Route::post('/update', ['as' => 'courses.update', 'uses' => 'CoursesController@update']);
     });
+    Route::group(['prefix' => 'livestream'], function () {
+        Route::get('/', ['as' => 'livestream.index', 'uses' => 'LivestreamController@index']);
+        Route::get('/create', ['as' => 'livestream.create', 'uses' => 'LivestreamController@create']);
+        Route::post('/store', ['as' => 'livestream.store', 'uses' => 'LivestreamController@store']);
+        Route::get('{id}/edit',   ['as' => 'livestream.edit', 'uses' => 'LivestreamController@edit']);       
+        Route::get('{id}/destroy', ['as' => 'livestream.destroy', 'uses' => 'LivestreamController@destroy']);
+        Route::post('/update', ['as' => 'livestream.update', 'uses' => 'LivestreamController@update']);
+    });
     Route::group(['prefix' => 'quiz'], function () {
         Route::get('/', ['as' => 'quiz.index', 'uses' => 'QuizController@index']);
         Route::get('/create', ['as' => 'quiz.create', 'uses' => 'QuizController@create']);
