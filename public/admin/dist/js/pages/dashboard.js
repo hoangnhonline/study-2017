@@ -37,6 +37,23 @@ $(document).ready(function(){
 
   "use strict";
 
+  $('select.change-value').change(function(){
+    var obj = $(this);    
+    $.ajax({
+      url : $('#route-change-value').val(),
+      type :'POST',
+      data : {
+        id : obj.data('id'),
+        value : obj.val(),
+        column : obj.data('col'),
+        table : obj.data('table')
+      },
+      success : function(data){
+        location.reload();
+      }
+    });
+  });
+
   $('.btnSingleUpload').click(function(){        
     singleUpload($(this));
   });

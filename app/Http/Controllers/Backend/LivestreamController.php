@@ -10,7 +10,7 @@ use App\Models\Livestream;
 use App\Models\Objects;
 use App\Models\Subjects;
 use App\Models\MetaData;
-
+use Carbon\Carbon;
 use Helper, File, Session, Auth, Image;
 
 class LivestreamController extends Controller
@@ -76,7 +76,11 @@ class LivestreamController extends Controller
         ]);       
         
         $dataArr['alias'] = Helper::stripUnicode($dataArr['name']);      
-        
+        if($dataArr['date_start']){
+            $dataArr['date_start'] = Carbon::parse($dataArr['date_start'])->format('Y-m-d H:i:s');
+        }else{
+            $dateArr['date_start'] = null;
+        }
         $dataArr['created_user'] = Auth::user()->id;
 
         $dataArr['updated_user'] = Auth::user()->id;
@@ -140,7 +144,11 @@ class LivestreamController extends Controller
             'slug.required' => 'Bạn chưa nhập slug',  
             'teacher_id.required' => 'Bạn chưa chọn giáo viên'       
         ]);   
-        
+        if($dataArr['date_start']){
+            $dataArr['date_start'] = Carbon::parse($dataArr['date_start'])->format('Y-m-d H:i:s');
+        }else{
+            $dateArr['date_start'] = null;
+        }
         $dataArr['alias'] = Helper::stripUnicode($dataArr['name']);       
         
         $dataArr['updated_user'] = Auth::user()->id;

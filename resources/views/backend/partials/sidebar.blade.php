@@ -41,7 +41,13 @@
           <li {{ in_array(\Request::route()->getName(), ['quiz.create']) ? "class=active" : "" }}><a href="{{ route('quiz.create') }}"><i class="fa fa-circle-o"></i> Thêm bài thi</a></li> 
           <li {{ in_array(\Request::route()->getName(), ['quiz-cate.create', 'quiz-cate.edit', 'quiz-cate.index']) ? "class=active" : "" }}><a href="{{ route('quiz-cate.index') }}"><i class="fa fa-circle-o"></i> Loại trắc nghiệm</a></li>          
         </ul>
-      </li>            
+      </li>
+      <li {{ in_array(\Request::route()->getName(), ['livestream.edit', 'livestream.index', 'livestream.create']) ? "class=active" : "" }}>
+          <a href="{{ route('livestream.index') }}">
+            <i class="fa fa-pencil-square-o"></i> 
+            <span>Live stream</span>          
+          </a>       
+        </li>         
       <li {{ in_array(\Request::route()->getName(), ['teacher.edit', 'teacher.index', 'teacher.create']) ? "class=active" : "" }}>
           <a href="{{ route('teacher.index') }}">
             <i class="fa fa-pencil-square-o"></i> 

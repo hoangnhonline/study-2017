@@ -55,6 +55,14 @@ class GeneralController extends Controller
         $dataArr = $request->all();       
         return view('backend.menu.render-menu', compact( 'dataArr' ));   
     }
+    public function changeValue(Request $request){
+        $value = $request->value;
+        $column = $request->column;
+        $table = $request->table;     
+        $id = $request->id;
+        
+        DB::table($table)->where('id', $id)->update([$column => $value]);                    
+    }
     public function storeMenu(Request $request){
         $data = $request->all();
         Menu::where('menu_id', 1)->delete();

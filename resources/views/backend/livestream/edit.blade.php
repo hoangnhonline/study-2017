@@ -15,8 +15,7 @@
 
   <!-- Main content -->
   <section class="content">
-    <a class="btn btn-default btn-sm" href="{{ route('livestream.index') }}" style="margin-bottom:5px">Quay lại</a>
-    <a class="btn btn-primary btn-sm" href="{{ route('news-detail', [$detail->slug, $detail->id ]) }}" target="_blank" style="margin-top:-6px"><i class="fa fa-eye" aria-hidden="true"></i> Xem</a>    
+    <a class="btn btn-default btn-sm" href="{{ route('livestream.index') }}" style="margin-bottom:5px">Quay lại</a>     
     <form role="form" method="POST" action="{{ route('livestream.update') }}" id="dataForm">
     <div class="row">
       <!-- left column -->
@@ -43,6 +42,14 @@
                       </ul>
                   </div>
               @endif    
+                 <div class="form-group">
+                  <label>Trạng thái</label>
+                  <select class="form-control" name="status" id="status">                  
+                    <option value="1" {{ old('status', $detail->status) == 1 ? "selected" : "" }}>Sắp diễn ra</option>
+                    <option value="2" {{ old('status', $detail->status) == 2 ? "selected" : "" }}>Đang diễn ra</option>
+                    <option value="3" {{ old('status', $detail->status) == 3 ? "selected" : "" }}>Đã kết thúc</option>                  
+                  </select>
+                </div>
                 <div class="form-group" >
                   
                   <label>Tên livestream <span class="red-star">*</span></label>
@@ -64,6 +71,13 @@
                     @endif
                   </select>
                 </div>
+                <?php 
+                $date_start = $detail->date_start ? Carbon\Carbon::parse($detail->date_start)->format('d/m/Y H:i') : null;
+                ?>
+                <div class="form-group" >                  
+                  <label>Ngày giờ diễn ra </label>
+                  <input type="text" class="form-control" name="date_start" id="date_start" value="{{ old('date_start',  $date_start) }}">
+                </div>
                 <div class="form-group" >
                   
                   <label>Video ID </label>
@@ -75,13 +89,7 @@
                   <label>Mô tả</label>
                   <textarea class="form-control" rows="6" name="description" id="description">{{ $detail->description }}</textarea>
                 </div>                 
-                <div class="form-group">
-                  <label>Ẩn/hiện</label>
-                  <select class="form-control" name="status" id="status">                  
-                    <option value="1" {{ $detail->status == 1 ? "selected" : "" }}>Sắp diễn ra</option>
-                    <option value="2" {{ $detail->status == 2 ? "selected" : "" }}>Đã diễn ra</option>                  
-                  </select>
-                </div>              
+                             
             </div>          
             <input type="hidden" name="image_url" id="image_url" value="{{ $detail->image_url }}"/>
             <div class="box-footer">
@@ -135,4 +143,16 @@
 
   </div>
 </div>
+<link rel="stylesheet" href="{{ URL::asset('public/admin/dist/css/datetimepicker.css') }}">  
+@stop
+@section('js')
+<script type="text/javascript" src="{{ URL::asset('public/admin/dist/js/datetimepicker.js') }}"></script>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('#date_start').datetimepicker({
+      format:'d-m-Y H:i',
+      minDate:0
+    });
+  });
+</script>
 @stop

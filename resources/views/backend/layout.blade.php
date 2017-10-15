@@ -26,6 +26,8 @@
   <link rel="stylesheet" href="{{ URL::asset('public/admin/plugins/colorpicker/bootstrap-colorpicker.min.css') }}">
   <link rel="stylesheet" href="{{ URL::asset('public/admin/dist/css/select2.min.css') }}">
   <link rel="stylesheet" href="{{ URL::asset('public/admin/dist/css/sweetalert2.min.css') }}">  
+  
+ 
 
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -80,6 +82,7 @@
 <input type="hidden" id="upload_url" value="{{ config('houseland.upload_url') }}">
 <input type="hidden" id="app_url" value="{{ env('APP_URL') }}">
 <input type="hidden" id="url_open_kc_finder" value="{{ URL::asset('public/admin/dist/js/kcfinder/browse.php?type=images') }}">
+<input type="hidden" id="route-change-value" value="{{ route('change-value') }}">
 <input type="hidden" id="route-ajax-tag-list" value="{{ route('tag.ajax-list') }}">
 <!-- ./wrapper -->
 

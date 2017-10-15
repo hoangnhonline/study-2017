@@ -31,7 +31,8 @@
               <select class="form-control" name="status" id="status">                  
                 <option value="">Trạng thái</option>
                 <option value="1" {{ $status == 1 ? "selected" : "" }}>Sắp diễn ra</option>
-                <option value="2" {{ $status == 2 ? "selected" : "" }}>Đã kết thúc</option>                  
+                <option value="2" {{ $status == 2 ? "selected" : "" }}>Đang diễn ra</option> 
+                <option value="3" {{ $status == 3 ? "selected" : "" }}>Đã kết thúc</option>                  
               </select>
             </div>                
             <div class="form-group">              
@@ -81,10 +82,14 @@
                     Chưa xác định
                   @endif
                 </td>
-                <td>
-                  {{ 
-                  $item->status == 1 ? "Sắp diễn ra" : "Đã kết thúc"
-                  }}
+                <td>                  
+                  @if( $item->status == 1 )
+                    <label class="label label-default" style="font-size:13px">Sắp diễn ra</label>
+                  @elseif( $item->status == 2 )
+                    <label class="label label-success" style="font-size:13px">Đang diễn ra</label>
+                  @else
+                    <label class="label label-danger" style="font-size:13px">Đã kết thúc</label>
+                  @endif
                 </td>
                 <td style="white-space:nowrap">                                  
                   <a href="{{ route( 'livestream.edit', [ 'id' => $item->id ]) }}" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-pencil"></span></a>                 

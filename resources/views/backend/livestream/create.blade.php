@@ -39,7 +39,14 @@
                       </ul>
                   </div>
               @endif                    
-                
+                <div class="form-group">
+                  <label>Trạng thái</label>
+                  <select class="form-control" name="status" id="status">                  
+                    <option value="1" {{ old('status') == 1 ? "selected" : "" }}>Sắp diễn ra</option>
+                    <option value="2" {{ old('status') == 2 ? "selected" : "" }}>Đang diễn ra</option>
+                    <option value="3" {{ old('status') == 3 ? "selected" : "" }}>Đã kết thúc</option>                  
+                  </select>
+                </div>
                  <div class="form-group" >
                   
                   <label>Tên livestream <span class="red-star">*</span></label>
@@ -62,22 +69,21 @@
                   </select>
                 </div> 
                 <div class="form-group" >                  
+                  <label>Ngày giờ diễn ra </label>
+                  <input type="text" class="form-control" name="date_start" id="date_start" value="{{ old('date_start') }}">
+                </div>  
+                <div class="form-group" >                  
                   <label>Video ID </label>
                   <input type="text" class="form-control" name="video_id" id="video_id" value="{{ old('video_id') }}">
-                </div>                
+                </div>  
+
                 <div style="clear:both"></div>                
                 <!-- textarea -->
                 <div class="form-group">
                   <label>Mô tả</label>
                   <textarea class="form-control" rows="6" name="description" id="description">{{ old('description') }}</textarea>
                 </div>                 
-                <div class="form-group">
-                  <label>Trạng thái</label>
-                  <select class="form-control" name="status" id="status">                  
-                    <option value="1" {{ old('status') == 1 ? "selected" : "" }}>Sắp diễn ra</option>
-                    <option value="2" {{ old('status') == 2 ? "selected" : "" }}>Đã kết thúc</option>                  
-                  </select>
-                </div>                              
+                                              
                
             </div>          
                               
@@ -100,5 +106,16 @@
   </section>
   <!-- /.content -->
 </div>
-
+<link rel="stylesheet" href="{{ URL::asset('public/admin/dist/css/datetimepicker.css') }}">  
+@stop
+@section('js')
+<script type="text/javascript" src="{{ URL::asset('public/admin/dist/js/datetimepicker.js') }}"></script>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('#date_start').datetimepicker({
+      format:'d-m-Y H:i',
+      minDate:0
+    });
+  });
+</script>
 @stop
