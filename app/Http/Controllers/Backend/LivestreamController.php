@@ -172,8 +172,7 @@ class LivestreamController extends Controller
     {
         // delete
         $model = Livestream::find($id);
-        $model->delete();
-        MetaData::find( $model->meta_id )->delete();
+        $model->delete();        
         // redirect
         Session::flash('message', 'Xóa thành công');
         return redirect()->route('livestream.index');

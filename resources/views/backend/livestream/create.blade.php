@@ -88,7 +88,7 @@
             </div>          
                               
             <div class="box-footer">
-              <button type="submit" class="btn btn-primary btn-sm">Lưu</button>
+              <button type="submit" class="btn btn-primary btn-sm" id="btnSave">Lưu</button>
               <a class="btn btn-default btn-sm" class="btn btn-primary btn-sm" href="{{ route('livestream.index')}}">Hủy</a>
             </div>
             
@@ -115,6 +115,12 @@
     $('#date_start').datetimepicker({
       format:'d-m-Y H:i',
       minDate:0
+    });
+    $('#btnSave').click(function(){
+      if($('#status').val() == 2 && $('#video_id').val() == ""){
+        alert('Vui lòng nhập VIDEO ID live stream đang diễn ra.');
+        return false;
+      }
     });
   });
 </script>

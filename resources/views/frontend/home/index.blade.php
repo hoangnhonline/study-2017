@@ -5,36 +5,30 @@
 @include('frontend.home.slider')
 
 @section('content')
-
+    @if($livestream)
     <div class="block block-livetream">
-      <div class="contaier">
-        <!-- <img src="images/icon-streaming.png" alt="" style="display: inline-block; vertical-align: middle; margin-right: 10px;">Live Tream -->
+      <div class="contaier">        
         <div class="panel panel-default">
           <div class="panel-heading">
             <h3 class="panel-title">
-              <img src="images/icon-streaming.png" alt="" style="display: inline-block; vertical-align: middle; margin-right: 10px;">
-              <span style="display: inline-block;margin-top: 5px;">Live Tream</span>
+              <img src="{{ URL::asset('public/assets/images/icon-streaming.png') }}" alt="live stream" style="display: inline-block; vertical-align: middle; margin-right: 10px;">
+              <span style="display: inline-block;margin-top: 5px;">Live Stream</span>
             </h3>
           </div>
           <div class="panel-body">
             <div class="block-video">
               <div class="row">
-                <div class="col-sm-8">
+                <div class="col-sm-8">                
                   <div class="video">
-                    <iframe width="100%" height="350" src="https://www.youtube-nocookie.com/embed/gr0FXeNm_f8?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
+                    <iframe width="100%" height="350" src="https://www.youtube-nocookie.com/embed/{!! $livestream->video_id !!}?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
                   </div>
                 </div><!-- /col-sm-8 -->
                 <div class="col-sm-4">
                   <div class="bock-info">
                     <div class="box-table">
                       <div class="box-table-cell">
-                        <h1 class="title">Luyện thi THPT Quốc gia môn Toán học</h1>
-                        <p class="info">Bao trùm toàn bộ kiến thức môn Toán</p>
-                        <p class="price">Học phí 100,000 vnđ </p>
-                        <div class="group-btn">
-                          <a href="#" title="" class="btn">Xem Chi Tiết</a>
-                          <a href="#" title="" class="btn">Đăng kí Khóa Học</a>
-                        </div>
+                        <h1 class="title">{!! $livestream->name !!}</h1>
+                        <p class="info">{!! $livestream->description !!}</p>
                       </div>
                     </div>
                   </div>
@@ -45,6 +39,8 @@
         </div>
       </div>
     </div><!-- /block-livetream -->
+    @endif
+
     <div class="block banner-news">
       <a href="#" title="" target="_self">
         <img src="images/banner/thumb11_87997117.png" alt="">

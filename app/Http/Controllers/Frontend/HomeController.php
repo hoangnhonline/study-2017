@@ -15,6 +15,7 @@ use App\Models\Pages;
 use App\Models\Rating;
 use App\Models\Courses;
 use App\Models\Objects;
+use App\Models\Livestream;
 
 use Helper, File, Session, Auth, Hash, Response;
 
@@ -65,8 +66,8 @@ class HomeController extends Controller
         $studentList = Objects::getList(['type' => 2, 'is_hot' => 1, 'limit' => 10]);
 
         $articlesList = Articles::getList(['is_hot' => 1, 'limit' => 4]);
-
-        return view('frontend.home.index', compact('teacherList', 'studentList', 'coursesList', 'socialImage', 'seo', 'articlesList'));
+        $livestream = Livestream::where('status', 2)->orderBy('id', 'desc')->first();
+        return view('frontend.home.index', compact('teacherList', 'studentList', 'coursesList', 'socialImage', 'seo', 'articlesList', 'livestream'));
 
     }
     public function getChild(Request $request){
