@@ -524,10 +524,10 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 0;
   min-height: 38px;
 }
-.navbar-collapse {
+/*.navbar-collapse {
   padding-right: 0;
   padding-left: 0;
-}
+}*/
 .navbar-nav li {
   list-style-type: none;
 }
@@ -658,7 +658,7 @@ h1, h2, h3, h4, h5, h6 {
   border-color: #51a0fb;
 }
 .block-livetream .panel-body {
-  padding: 15px 10px 10px;
+  padding: 15px;
 }
 
 /* Block News Home */
@@ -700,6 +700,9 @@ h1, h2, h3, h4, h5, h6 {
   padding-bottom: 20px;
   line-height: 18px;
   border-bottom: 1px solid #e1e1e1;
+}
+.home-news-right .item:last-child {
+  margin-bottom: 0;
 }
 .home-news-right .item .right-item-lnk-img {
   float: right;
@@ -760,11 +763,14 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Block Cates */
 .block-cates .item {
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 }
 .block-cates .item .image {
   position: relative;
   overflow: hidden;
+}
+.block-cates .item .image img {
+  width: 100%;
 }
 .block-cates .item .description {
   float: left;
@@ -780,6 +786,7 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: normal;
   height: 40px;
   overflow: hidden;
+  display: block;
 }
 
 /* Block Slide Home */
@@ -860,10 +867,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 #footer .block-info-ft .container {
   border-bottom: 1px solid #51A0FB;
+  padding-bottom: 15px;
 }
 #footer .address {
   float: left;
-  margin-bottom: 20px;
   font-style: normal;
   line-height: 1.42857143;
 }
@@ -1515,7 +1522,7 @@ h1, h2, h3, h4, h5, h6 {
 .ql-row .ct-right {
   color: #565656;
   float: left;
-  width: 820px;
+  width: calc(100% - 75px);
 }
 .ql-row .ct-right .ctr-recommend {
   border-bottom: 1px solid #DCDCDC;
@@ -1523,6 +1530,9 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 18px;
   margin-top: 15px;
   padding-bottom: 10px;
+}
+.ql-row .ct-right .ctr-recommend>p {
+  margin-bottom: 5px;    
 }
 .ql-row .ct-right .ctr-choice {
   margin-top: 15px;
@@ -1599,6 +1609,7 @@ h1, h2, h3, h4, h5, h6 {
   border: 3px solid #51A0FB;
   padding: 20px;
   border-radius: 5px;
+  z-index: 9;
 }
 .block-time:before {
   content: url(../images/gd_36.png);
@@ -2197,4 +2208,9 @@ h1, h2, h3, h4, h5, h6 {
   -ms-transition: all 0.2s linear;
   -o-transition: all 0.2s linear;
   transition: all 0.2s linear;
+}
+
+.block-page-about {
+  line-height: 1.6;
+  font-size: 15px;
 }
