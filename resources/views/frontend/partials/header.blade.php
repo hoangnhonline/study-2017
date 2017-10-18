@@ -30,10 +30,9 @@
 					    <div class="arrow"></div>
 					    <div class="popover-content">
 					        <div class="popover-signin">
-					        	<a class="btn btn-block btn-white" href="javascript(0);" data-toggle="modal" data-target="#login-modal">Đăng nhập</a>
-					        	<a class="btn btn-block btn-white" href="javascript(0);" data-toggle="modal" data-target="#register-modal">Đăng ký tài khoản mới</a>
-					        	<a class="btn btn-block login-button-fb btn-social facebook-login" href="javascript:;">Đăng nhập với Facebook</a>
-					        	<!--<a class="btn btn-block login-button-google btn-social" href="#">Đăng nhập với Google+</a>-->
+					        	<button class="btn btn-block btn-white" data-toggle="modal" data-target="#login-modal">Đăng nhập</button>
+					        	<button class="btn btn-block btn-white" data-toggle="modal" data-target="#register-modal">Đăng ký tài khoản mới</button>
+					        	<button class="btn btn-block login-button-fb btn-social facebook-login" >Đăng nhập với Facebook</button>					        	
 					       	</div>
 					    </div>
 					</div><!-- /popover -->

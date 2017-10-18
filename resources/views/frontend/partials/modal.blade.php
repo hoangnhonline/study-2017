@@ -6,16 +6,24 @@
 				<h3 class="modal-title">Đăng nhập</h3>
 			</div>
 			<div class="modal-body">
-			    <form action="/users/sign_in" method="post">
+			    <form action="" method="post" id="login_popup_form">
 			        <p class="sub-title">Đăng nhập bằng email</p>
 			        <div class="form-control-wrapper">
-			            <input class="form-control" id="email" name="user[email]" placeholder="Email" required="true" type="email" value="">
+			            <input class="form-control" id="popup-login-email" name="email" placeholder="Email" required="true" type="email" value="">
+			            <div class="clearfix"></div>
+			            <small data-bv-result="NOT_VALIDATED" data-bv-for="email" data-bv-validator="notEmpty" class="help-block" style="display: none;">Vui lòng nhập Email hợp lệ</small>
 			        </div>
 			        <div class="form-control-wrapper">
-			            <input class="form-control" id="password" name="user[password]" placeholder="Mật khẩu" required="true" type="password">
+			            <input class="form-control" id="popup-login-password" name="password" placeholder="Mật khẩu" required="true" type="password">
+			            <div class="clearfix"></div>
+			            <small data-bv-result="NOT_VALIDATED" data-bv-for="password" data-bv-validator="notEmpty" class="help-block" style="display: none;">Vui lòng nhập Mật khẩu</small>
 			        </div>
+			        <div class="login-ajax-captcha" style="display:none">
+		              <div id="login-popup-recaptcha"></div>
+		            </div>
+		            <div class="form-group" id="error_captcha" style="margin-bottom: 15px;color:red;font-style:italic"> <span class="help-block ajax-message"></span> </div>
 			        <div class="form-control-wrapper">
-			            <input class="btn btn-login-submit" type="submit" value="Đăng nhập">
+			            <input class="btn btn-login-submit" id="login_popup_submit" type="button" value="Đăng nhập">
 			        </div>
 			    </form>
 			    <p class="forgot-password-link">
@@ -137,3 +145,8 @@
 
   </div>
 </div>
+<style type="text/css">
+	#login-modal .form-control-wrapper .form-control.error{
+		border: 1px solid red;
+	}
+</style>
