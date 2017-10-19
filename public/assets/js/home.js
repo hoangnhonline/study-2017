@@ -204,11 +204,13 @@ $(document).ready(function () {
     }
 
     $('#login_popup_submit').click(function() {
+
         var $form = $(this).parents('form');        
         var error = [];
         var list_check = ['popup-login-email', 'popup-login-password'];
         var login_email    = $form.find('#popup-login-email').val();
         var login_password = $form.find('#popup-login-password').val();
+        
         if(!login_email) {
           error.push('popup-login-email');
         }
@@ -223,14 +225,12 @@ $(document).ready(function () {
         }
 
         for(i in list_check) {
-          $('#'+list_check[i]).parent().removeClass('has-error');
-          $('#'+list_check[i]).next().hide();
+          $('#'+list_check[i]).removeClass('error');          
         }
 
         if(error.length) {
           for(i in error) {
-            $('#'+error[i]).parent().addClass('has-error');
-            $('#'+error[i]).next().show();
+            $('#'+error[i]).addClass('error');
           }
           return false;
         }
