@@ -35,10 +35,11 @@
 
   $('.block-user .block-content').popover({
     placement: top,
+    trigger: 'click',
     html : true,
-      content: function() {
-    return $('.popover').html();
-    } 
+    content: function() {
+      return $('.popover').html();
+    }
   });
 
   /*
@@ -63,27 +64,6 @@
   // $('.fixed').sticky({ topSpacing: 0 });
 
   /*
-   * 4. Accordion has icon
-  */
-  $(document).on('click','.box-accordion > .accordion-header',function(event){
-    $(this).toggleClass('active');
-    $(this).toggleClass('opened');
-    $(this).next('.box-collapse').slideToggle(200);
-  });
-
-  /*
-   * 6. POPUP order a product - check on info Payment
-  */
-  $('.info-payment .item-group > input[type="checkbox"]').on('change', function(e){
-    console.log($(this).attr('checked'));
-    if ($(this).is(':checked')) {
-      $(this).siblings('.sub-hide-box').show();
-    } else {
-      $(this).siblings('.sub-hide-box').hide();
-    }
-  });
-
-  /*
    * 7. Main Menu
   */
   $(".navbar-toggle").on( 'click', function() {
@@ -100,20 +80,6 @@
     $('.menu ul li.parent .plus').click(function(){
       $(this).toggleClass('open').siblings('.submenu').slideToggle();
     });
-  });
-
-  /*
-   * 7. Click show hide Search Mobile
-  */
-  $('.block_search_mobile .fa_search_show').on('click', function() {
-    $('.block_search_mobile .block_search_inner').toggleClass('show');
-  })
-
-  if (!$('.pro-sts > a')) { return; }
-  $('.pro-sts').on( "mouseover", function() { 
-    $(this).addClass('shw');
-  }).on( "mouseout", function() {
-    $(this).removeClass('shw');
   });
 
 })(jQuery); // End of use strict

@@ -765,6 +765,9 @@ h1, h2, h3, h4, h5, h6 {
 .block-cates .item {
   margin-bottom: 10px;
 }
+.block-cates .item:nth-child(3n+1) {
+  clear: both;
+}
 .block-cates .item .image {
   position: relative;
   overflow: hidden;
