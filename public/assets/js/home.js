@@ -125,7 +125,7 @@ $(document).ready(function () {
               success : function(data){
                if(data.error == 1)
                {
-                  $('#login-form #error_captcha').html('Email hoặc mật khẩu không đúng.')
+                  $('#login-form #error_login').html('Email hoặc mật khẩu không đúng.')
                }
                else {
                     location.reload();
@@ -247,7 +247,7 @@ $(document).ready(function () {
               success : function(data){
                if(data.error == 1)
                {
-                  $('#login-form #error_captcha').html('Email hoặc mật khẩu không đúng.')
+                  $('#login_popup_form #error_login').html('Email hoặc mật khẩu không đúng.')
                }
                else {
                     location.reload();
@@ -269,7 +269,11 @@ $(document).ready(function () {
         if(!email) {
           error.push('popup-register-email');
         }
-
+        if(!validateEmail(email))
+        {
+          error.push('popup-register-email');
+        }
+        
         if(password.length < 6 || password.length > 32) {
           error.push('popup-register-password');
         }
@@ -279,14 +283,12 @@ $(document).ready(function () {
         }
 
         for(i in list_check) {
-          $('#'+list_check[i]).parent().removeClass('has-error');
-          $('#'+list_check[i]).parent().find('.help-block').hide();
+          $('#'+list_check[i]).removeClass('error');          
         }
 
         if(error.length) {
           for(i in error) {
-            $('#'+error[i]).parent().addClass('has-error');
-            $('#'+error[i]).next().show();
+            $('#'+error[i]).addClass('error');
           }
           return false;
         }

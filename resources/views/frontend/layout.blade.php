@@ -71,7 +71,7 @@
 		
 		@include('frontend.partials.header')
 		
-		<main id="main">
+		<main id="main" class="flex">
 			<div class="container">
 			    <div class="block block-study-notice">
 			      <p>
@@ -105,6 +105,7 @@
 	<input type="hidden" id="route-ajax-login-fb" value="{{route('ajax-login-by-fb')}}">
 	<input type="hidden" id="fb-app-id" value="{{ env('FACEBOOK_APP_ID') }}">
 	<input type="hidden" id="route-auth-login-ajax" value="{{ route('auth-login-ajax') }}">
+	<input type="hidden" id="route-register-customer-ajax" value="{{ route('register-customer-ajax') }}">
 	<style type="text/css">
 		
 	.block-author {
@@ -190,6 +191,9 @@
 	    display: inline-block;
 	    vertical-align: top;
 	    line-height: initial;
+	}
+	#error_login{
+		margin-bottom: 15px;color:red;font-style:italic;text-align:center
 	}
 	</style>
 	<script src="{{ URL::asset('public/assets/lib/starrating/js/star-rating.js') }}"></script>  
