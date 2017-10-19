@@ -120,7 +120,7 @@
       <div class="block-content">
         <div class="row">
           @foreach($coursesList as $obj)
-          <div class="col-sm-4 item">
+          <div class="col-sm-4 col-xs-6 item">
             <div class="image">
               <a href="{!! route('courses-detail', ['slug' => $obj->slug, 'id' => $obj->id ]) !!}" title="{!! $obj->name !!}">
                 <img src="{!! Helper::showImage($obj->image_url) !!}" alt="{!! $obj->name !!}">
