@@ -2,10 +2,10 @@
 	<div class="header-top">
 		<div class="container">
 			<div class="row">
-				<div class="block-logo col-sm-3">
+				<div class="block-logo col-sm-3 col-xs-5">
 					<a href="{{ route('home') }}" title="LOGO"><img src="{{ URL::asset('public/assets/images/logo_gd.jpg') }}" alt="LOGO "></a>
 				</div><!-- /block-log -->
-				<div class="block-search col-sm-6">
+				<div class="block-search col-sm-6 col-xs-7">
 					<form name="frm_search" action="" class="frm-search">
 						<div class="control clearfix">
 							<button type="submit">
@@ -15,7 +15,7 @@
 						</div>
 					</form>
 				</div><!-- /block-search -->
-				<div class="block-user col-sm-3">
+				<div class="block-user col-sm-3 col-xs-12">
 					@if( !Session::get('login') )
 					<div class="block-content">
 						<span class="ava-img">
