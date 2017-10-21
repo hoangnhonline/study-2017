@@ -550,7 +550,8 @@ h1, h2, h3, h4, h5, h6 {
   -o-transition: all 0.2s linear;
   transition: all 0.2s linear;
 }
-.menu .navbar-nav>li>a:hover {
+.menu .navbar-nav>li>a:hover,
+.menu .navbar-nav>li>a:focus {
   color: #fff;
 }
 .menu .navbar-nav>li.menu-icon>a {
@@ -734,22 +735,18 @@ h1, h2, h3, h4, h5, h6 {
   font-style: italic;
   font-weight: bold;
   line-height: 22px;
-  padding: 0 70px;
+  padding: 5px 70px;
   text-align: center;
 }
-.block-quotations .inner-quotations .content p {
-  display: inline;
+.block-quotations .inner-quotations .content {
+  display: inline-block;
 }
 .block-quotations .inner-quotations .qoute {
   color: #ffa800;
   font-size: 25px;
   position: relative;
   top: 4px;
-}
-.block-quotations .inner-quotations .qoute {
-  color: #ffa800;
-  font-size: 25px;
-  position: relative;
+  display: inline-block;
 }
 .block-quotations .inner-quotations .author {
   color: #a6a6a6;
@@ -1742,17 +1739,21 @@ h1, h2, h3, h4, h5, h6 {
   padding: 5px;
 }
 .block-members .item .description .name-members {
-  font-size: 12px;
-  font-weight: normal;
-  line-height: 16px;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  line-height: 17px;
+  margin-top: 5px;
+  margin-bottom: 6px;
+  height: 30px;
+  overflow: hidden;
 }
 .block-members .item .description .name-members a {
   color: #565656;
   display: block;
   font-weight: bold;
-  font-size: 16px;
+  font-size: 14px;
+}
+.block-members .item .description p {
+  height: 30px;
+  overflow: hidden;
 }
 .block-detail .box-content {
   border: 1px solid #DCDCDC;
