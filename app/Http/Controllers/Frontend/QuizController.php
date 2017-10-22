@@ -66,7 +66,11 @@ class QuizController extends Controller
             }
         }
 
-        dd($so_cau_dung, $tong_so_cau);
+        $diem = $so_cau_dung*100/$tong_so_cau;
+        $diem = round( $diem, 2);
+
+
+        dd($so_cau_dung, $tong_so_cau, $diem);
 
     }
     public function doing(Request $request){
