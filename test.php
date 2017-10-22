@@ -7,12 +7,9 @@
 set_time_limit(10000);
 echo $start = microtime_float();
 echo "<hr>";
-for( $i = 1; $i <= 1000; $i ++ ){
-	$str = "";
-	for( $j = 1; $j <= $i; $j ++){
-		$str.= $i.",";
-	}
-	echo rtrim($str, ",")."<br>";	
+$string = "123,";
+for( $i = 1; $i <= 10000; $i ++ ){
+	substr($string, 0, -1);	
 }
 echo "<hr>";
 $end = microtime_float() - $start;

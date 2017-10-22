@@ -51,6 +51,24 @@ class QuizController extends Controller
         }  
         
     }
+    public function nopBai(Request $request){
+        $dataArr = $request->all();
+        $quiz_id = $dataArr['quiz_id'];
+        $arrDapAn = QuizQuestions::where('quiz_id', $quiz_id)->orderBy('id', 'desc')->pluck('answer_id', 'id');
+        //dd($dataArr, $arrDapAn);
+        $tong_so_cau = count($arrDapAn);
+        $so_cau_dung = 0;
+        if(!empty($dataArr)){
+            foreach($dataArr['ans'] as $question_id => $answer_id){
+                if($arrDapAn[$question_id] == $answer_id){
+                    $so_cau_dung++;
+                }
+            }
+        }
+
+        dd($so_cau_dung, $tong_so_cau);
+
+    }
     public function doing(Request $request){
         $quiz_id = $request->id;
         $quizDetail = Quiz::find($quiz_id);

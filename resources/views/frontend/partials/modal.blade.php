@@ -30,12 +30,24 @@
 			        <a class="btn-link" data-dismiss="modal" data-target="#fogot-password-dialog" data-toggle="modal" href="#" id="forgot-password-button">Quên mật khẩu đăng nhập?</a>
 			    </p>-->
 			</div>
-			<div class="modal-footer">			    
-			    <p class="bottom-text">
-			        Chưa có tài khoản?
-			        <a class="btn-link" data-dismiss="modal" data-target="#register-modal" data-toggle="modal" href="#">Đăng ký</a>
-			    </p>
-			</div>
+			<div class="modal-footer">
+          <div class="forgot-password-link clearfix">                
+              <div class="form-control-wrapper social-area">
+                  <div class="row">
+                      <div class="col-md-12">
+                          <a class="btn-facebook facebook-login" href="javascript:;">
+                          <i class="left fa fa-facebook"></i>
+                          <span class="left">Đăng nhập bằng tài khoản Facebook</span>
+                          </a>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <p class="bottom-text">
+              Chưa có tài khoản?
+              <a class="btn-link" data-dismiss="modal" data-target="#register-modal" data-toggle="modal" href="#">Đăng ký</a>
+          </p>
+      </div>
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
@@ -64,7 +76,19 @@
                     </div>
                 </form>
             </div>
-            <div class="modal-footer">                
+            <div class="modal-footer">  
+                <div class="forgot-password-link clearfix">                
+                  <div class="form-control-wrapper social-area">
+                      <div class="row">
+                          <div class="col-md-12">
+                            <a class="btn-facebook facebook-login" href="javascript:;">
+                            <i class="left fa fa-facebook"></i>
+                            <span class="left">Đăng nhập bằng tài khoản Facebook</span>
+                            </a>
+                          </div>
+                      </div>
+                  </div>
+              </div>              
                 <p class="bottom-text">
                     Đã có tài khoản?
                     <a class="btn-link" data-dismiss="modal" data-target="#login-modal" data-toggle="modal" href="#">Đăng nhập</a>

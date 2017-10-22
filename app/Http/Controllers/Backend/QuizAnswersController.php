@@ -51,12 +51,18 @@ class QuizAnswersController extends Controller
         QuizAnswers::where('question_id', $dataArr['question_id'])->delete();
         
         foreach($dataArr['content'] as $key => $content){
-            QuizAnswers::create([
+            $is_true = $key == $dataArr['is_true'] ? 1 : 0;
+
+            $rs = QuizAnswers::create([
                 'content' => $content,
                 'question_id' => $question_id,
-                'is_true' => $key == $dataArr['is_true'] ? 1 : 0,
+                'is_true' => $is_true,
                 'display_order' => $key + 1
             ]);
+
+            if($is_true == 1){
+                QuizQuestions::where('id', $question_id)->update(['answer_id' => $rs->id]);
+            }
         }
 
         Session::flash('message', 'Thao tác thành công');

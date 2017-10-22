@@ -10,11 +10,15 @@
 	</ol>
 </div><!-- /block-breadcrumb -->
 <div class="block-question">
+	<form action="{{ route('nop-bai') }}" method="post">
 	<h2 class="title">{!! $quizDetail->name !!}</h2>
 	<div class="box-question">
+
 		<h3 class="box-title">ĐỀ BÀI</h3>
 		@if( $quizQuestions )
 		<div class="box-question-list">
+			
+			{{ csrf_field() }}
 			<?php $k = 0; ?>
 			@foreach($quizQuestions as $question)
 			<?php $k ++ ; ?>
@@ -52,17 +56,60 @@
 			</div><!-- /ql-row -->
 			@endforeach
 
-
-
+            <input type="hidden" name="quiz_id" value="{{ $quizDetail->id }}" />
+			
 		</div>
 		@endif
 	</div><!-- /box-question -->
 	<div class="group-btn">
-		<a href="#" title="" class="btn">Nộp Bài</a>
+		<button type="submit" class="btn">Nộp Bài</button>
 	</div>
+	</form>
 </div><!-- /block-question -->
 <div class="block-time">
 	<span class="sp-text">Thời gian còn lại</span>
-	<span class="sp-time" id="aTime">00:16:53</span>
+	<span class="sp-time" id="aTime">{{ str_pad($quizDetail->duration, 2, "0", STR_PAD_LEFT) }} : 00</span>
 </div>
+@stop
+@section('js')
+<script>
+var hoursleft = 0;
+var minutesleft = {{ $quizDetail->duration }};
+var secondsleft = 0; 
+var finishedtext = "Countdown finished!";
+var end;
+localStorage.clear();
+if(localStorage.getItem("end")) {
+    end = new Date(localStorage.getItem("end"));
+} else {
+    end = new Date();
+    end.setMinutes(end.getMinutes()+minutesleft);
+    end.setSeconds(end.getSeconds()+secondsleft);
+}
+var counter = function () {
+    var now = new Date();
+    var diff = end - now;
+    diff = new Date(diff);
+    var sec = diff.getSeconds();
+    var min = diff.getMinutes(); 
+    if (min < 10) {
+        min = "0" + min;
+    }
+    if (sec < 10) { 
+        sec = "0" + sec;
+    }     
+    if(now >= end) {     
+        clearTimeout(interval);
+        localStorage.setItem("end", null);
+        alert('Đã hết giờ làm bài.');
+        //document.getElementById('aTime').innerHTML = finishedtext;
+    } else {
+        var value = min + ":" + sec;
+        localStorage.setItem("end", end);
+        document.getElementById('aTime').innerHTML = value;
+    }
+}
+var interval = setInterval(counter, 1000);
+
+    </script>
 @stop

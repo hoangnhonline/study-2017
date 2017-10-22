@@ -29,7 +29,8 @@ class QuizQuestions extends Model  {
                             'content',
                             'image_url',                       
                             'display_order',
-                            'no_answer'
+                            'no_answer',
+                            'answer_id'
                         ];
 
     public static function getList($params = []){

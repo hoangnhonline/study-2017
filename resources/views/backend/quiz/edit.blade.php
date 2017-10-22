@@ -65,6 +65,15 @@
                   <label>Slug <span class="red-star">*</span></label>                  
                   <input type="text" class="form-control"  readonly="readonly" name="slug" id="slug" value="{{ $detail->slug }}">
                 </div>
+                <div class="form-group">
+                  <label for="email">Thời gian <span class="red-star">*</span></label>
+                  <select class="form-control" name="duration" id="duration">
+                    <option value="">-- chọn --</option>
+                    @for( $i = 1; $i <= 60 ; $i ++)
+                    <option value="{{ $i }}" {{ $i == old('duration', $detail->duration) ? "selected" : "" }}>{{ $i }} phút</option>
+                    @endfor
+                  </select>
+                </div>  
                 <div style="clear:both"></div>                
                 <!-- textarea -->
                 <div class="form-group">
