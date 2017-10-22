@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
+-- version 4.6.5.2
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Oct 10, 2017 at 04:39 PM
--- Server version: 5.5.57-0ubuntu0.14.04.1
--- PHP Version: 7.0.24-1+ubuntu14.04.1+deb.sury.org+1
+-- Host: 127.0.0.1
+-- Generation Time: Oct 23, 2017 at 01:04 AM
+-- Server version: 10.1.21-MariaDB
+-- PHP Version: 5.6.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -325,18 +323,21 @@ INSERT INTO `counter_ips` (`ip`, `object_id`, `object_type`, `visit`) VALUES
 ('171.253.193.183', 14, 1, 1506919173),
 ('115.78.10.26', 20, 1, 1506920030),
 ('171.253.223.89', 117, 2, 1506921701),
-('127.0.0.1', 7, 2, 1507622636),
+('127.0.0.1', 7, 2, 1507694167),
 ('127.0.0.1', 13, 2, 1507619812),
 ('127.0.0.1', 14, 2, 1507619812),
 ('127.0.0.1', 12, 2, 1507619812),
-('127.0.0.1', 11, 2, 1507619810),
-('127.0.0.1', 10, 2, 1507619811),
-('127.0.0.1', 16, 2, 1507619813),
-('127.0.0.1', 4, 2, 1507621738),
-('127.0.0.1', 6, 2, 1507619631),
-('127.0.0.1', 2, 2, 1507620778),
-('127.0.0.1', 3, 2, 1507620779),
-('127.0.0.1', 5, 2, 1507620777);
+('127.0.0.1', 11, 2, 1507696080),
+('127.0.0.1', 10, 2, 1507693945),
+('127.0.0.1', 16, 2, 1507695880),
+('127.0.0.1', 4, 2, 1508034716),
+('127.0.0.1', 6, 2, 1507695159),
+('127.0.0.1', 2, 2, 1507691354),
+('127.0.0.1', 3, 2, 1507727779),
+('127.0.0.1', 5, 2, 1507696059),
+('127.0.0.1', 1, 2, 1507691352),
+('127.0.0.1', 9, 2, 1507691317),
+('127.0.0.1', 17, 2, 1507694156);
 
 -- --------------------------------------------------------
 
@@ -374,19 +375,22 @@ INSERT INTO `counter_values` (`id`, `object_id`, `object_type`, `day_id`, `day_v
 (14, 14, 1, 274, 3, 3),
 (15, 20, 1, 274, 3, 3),
 (16, 23, 1, 274, 1, 1),
-(17, 6, 2, 282, 2, 2),
-(18, 7, 2, 282, 3, 3),
+(17, 6, 2, 283, 6, 8),
+(18, 7, 2, 283, 5, 8),
 (19, 13, 2, 282, 3, 3),
 (20, 14, 2, 282, 3, 3),
 (21, 12, 2, 282, 3, 3),
-(22, 11, 2, 282, 3, 3),
-(23, 10, 2, 282, 3, 3),
-(24, 16, 2, 282, 3, 3),
-(25, 4, 2, 282, 4, 4),
-(26, 3, 2, 282, 2, 2),
-(27, 2, 2, 282, 3, 3),
-(28, 1, 2, 282, 1, 1),
-(29, 5, 2, 282, 2, 2);
+(22, 11, 2, 283, 1, 4),
+(23, 10, 2, 283, 2, 5),
+(24, 16, 2, 283, 1, 4),
+(25, 4, 2, 287, 1, 8),
+(26, 3, 2, 283, 3, 5),
+(27, 2, 2, 283, 3, 6),
+(28, 1, 2, 283, 2, 3),
+(29, 5, 2, 283, 4, 6),
+(30, 9, 2, 283, 2, 2),
+(31, 8, 2, 283, 1, 1),
+(32, 17, 2, 283, 2, 2);
 
 -- --------------------------------------------------------
 
@@ -404,7 +408,7 @@ CREATE TABLE `courses` (
   `description` varchar(500) DEFAULT NULL,
   `content` text,
   `image_url` varchar(255) DEFAULT NULL,
-  `video_url` varchar(255) DEFAULT NULL,
+  `video_id` varchar(100) DEFAULT NULL,
   `object` text,
   `single` tinyint(1) DEFAULT '0' COMMENT 'Bài học lẻ',
   `benefit` text,
@@ -422,11 +426,14 @@ CREATE TABLE `courses` (
 -- Dumping data for table `courses`
 --
 
-INSERT INTO `courses` (`id`, `name`, `alias`, `slug`, `teacher_id`, `subject_id`, `description`, `content`, `image_url`, `video_url`, `object`, `single`, `benefit`, `is_hot`, `status`, `meta_id`, `display_order`, `created_user`, `updated_user`, `created_at`, `updated_at`) VALUES
-(1, 'Cẩm nang dạy con: Nói sao cho trẻ chịu nghe', 'Cam nang day con: Noi sao cho tre chiu nghe', 'cam-nang-day-con-noi-sao-cho-tre-chiu-nghe', 15, 15, 'Nhìn sự việc bằng đôi mắt trẻ thơ sẽ giúp phụ huynh hiểu rõ con của mình', '<p>Việc nu&ocirc;i dạy con trẻ lớn kh&ocirc;n lu&ocirc;n l&agrave; mong ước lớn nhất của những bậc phụ huynh. Tuy nhi&ecirc;n, kh&ocirc;ng &iacute;t những bậc l&agrave;m cha, l&agrave;m mẹ cảm thấy bất lực v&agrave; bối rối trước những h&agrave;nh vi bất hợp t&aacute;c v&agrave; kh&ocirc;ng v&acirc;ng lời của con trẻ như: N&oacute;i dối, k&eacute;n ăn, kh&ocirc;ng nghe lời, ham chơi, lười biếng...</p>\r\n\r\n<p>Tuy nhi&ecirc;n quan trọng hơn khi ch&uacute;ng ta muốn thay đổi những điều đ&oacute; th&igrave; hầu như trẻ lại kh&ocirc;ng chịu nghe. Vậy nguy&ecirc;n nh&acirc;n từ đ&acirc;u, những &ocirc;ng bố, b&agrave; mẹ n&ecirc;n l&agrave;m g&igrave;, ứng xử ra sao?</p>\r\n\r\n<p>Gi&aacute;o dục con cũng giống như m&ocirc;n trượt tuyết, nếu sợ h&atilde;i v&agrave; cố gắng ngả người về ph&iacute;a sườn n&uacute;i, kiểu g&igrave; cũng sẽ bị t&eacute;. V&igrave; n&oacute; l&agrave; m&ocirc;n thể thao đi ngược với bản năng của con người, c&agrave;ng lao về ph&iacute;a dốc ch&uacute;ng ta c&agrave;ng lạn l&aacute;ch một c&aacute;ch dễ d&agrave;ng. Bởi vậy, những &ocirc;ng bố, b&agrave; mẹ cần c&oacute; những c&aacute;ch cư xử th&ocirc;ng minh, kh&eacute;o l&eacute;o trong c&aacute;c t&igrave;nh huống cụ thể.</p>\r\n\r\n<p>Kh&oacute;a kỹ năng&nbsp;<strong>N&oacute;i sao cho trẻ chịu nghe</strong>&nbsp;sẽ gi&uacute;p c&aacute;c bậc phụ huynh l&agrave;m được những điều n&agrave;y.</p>\r\n\r\n<p>Kh&oacute;a học gồm 3 phần:</p>\r\n\r\n<p>Phần 1: V&igrave; sao trẻ kh&ocirc;ng chịu nghe lời?</p>\r\n\r\n<p>Phần 2: Những t&igrave;nh huống cụ thể, hay gặp trong cuộc sống</p>\r\n\r\n<p>Phần 3: C&aacute;ch ứng xử trong từng t&igrave;nh huống cụ thể</p>\r\n', '/public/uploads/images/khoa-hoc/thumb11_490548194-1507530679.jpg', NULL, '<p>Kh&oacute;a học d&agrave;nh cho những ai đ&atilde;, đang v&agrave; sẽ trở th&agrave;nh những &ocirc;ng bố b&agrave; mẹ, những người lu&ocirc;n mong muốn t&igrave;m được một phương ph&aacute;p tốt nhất để gi&aacute;o dục con trẻ.</p>\r\n', 0, '<p>Kh&oacute;a học sẽ gi&uacute;p c&aacute;c bậc phụ huynh biết những nguy&ecirc;n nh&acirc;n dẫn đến việc trẻ kh&ocirc;ng nghe lời, cung cấp cho phụ huynh một v&agrave;i t&igrave;nh huống điển h&igrave;nh v&agrave; c&aacute;ch cư xử trong những t&igrave;nh huống như v&acirc;y.</p>\r\n', 1, 1, 22, NULL, 1, 1, '2017-10-09 13:31:43', '2017-10-09 13:45:46'),
+INSERT INTO `courses` (`id`, `name`, `alias`, `slug`, `teacher_id`, `subject_id`, `description`, `content`, `image_url`, `video_id`, `object`, `single`, `benefit`, `is_hot`, `status`, `meta_id`, `display_order`, `created_user`, `updated_user`, `created_at`, `updated_at`) VALUES
+(1, 'Cẩm nang dạy con: Nói sao cho trẻ chịu nghe', 'Cam nang day con: Noi sao cho tre chiu nghe', 'cam-nang-day-con-noi-sao-cho-tre-chiu-nghe', 15, 15, 'Nhìn sự việc bằng đôi mắt trẻ thơ sẽ giúp phụ huynh hiểu rõ con của mình', '<p>Việc nu&ocirc;i dạy con trẻ lớn kh&ocirc;n lu&ocirc;n l&agrave; mong ước lớn nhất của những bậc phụ huynh. Tuy nhi&ecirc;n, kh&ocirc;ng &iacute;t những bậc l&agrave;m cha, l&agrave;m mẹ cảm thấy bất lực v&agrave; bối rối trước những h&agrave;nh vi bất hợp t&aacute;c v&agrave; kh&ocirc;ng v&acirc;ng lời của con trẻ như: N&oacute;i dối, k&eacute;n ăn, kh&ocirc;ng nghe lời, ham chơi, lười biếng...</p>\r\n\r\n<p>Tuy nhi&ecirc;n quan trọng hơn khi ch&uacute;ng ta muốn thay đổi những điều đ&oacute; th&igrave; hầu như trẻ lại kh&ocirc;ng chịu nghe. Vậy nguy&ecirc;n nh&acirc;n từ đ&acirc;u, những &ocirc;ng bố, b&agrave; mẹ n&ecirc;n l&agrave;m g&igrave;, ứng xử ra sao?</p>\r\n\r\n<p>Gi&aacute;o dục con cũng giống như m&ocirc;n trượt tuyết, nếu sợ h&atilde;i v&agrave; cố gắng ngả người về ph&iacute;a sườn n&uacute;i, kiểu g&igrave; cũng sẽ bị t&eacute;. V&igrave; n&oacute; l&agrave; m&ocirc;n thể thao đi ngược với bản năng của con người, c&agrave;ng lao về ph&iacute;a dốc ch&uacute;ng ta c&agrave;ng lạn l&aacute;ch một c&aacute;ch dễ d&agrave;ng. Bởi vậy, những &ocirc;ng bố, b&agrave; mẹ cần c&oacute; những c&aacute;ch cư xử th&ocirc;ng minh, kh&eacute;o l&eacute;o trong c&aacute;c t&igrave;nh huống cụ thể.</p>\r\n\r\n<p>Kh&oacute;a kỹ năng&nbsp;<strong>N&oacute;i sao cho trẻ chịu nghe</strong>&nbsp;sẽ gi&uacute;p c&aacute;c bậc phụ huynh l&agrave;m được những điều n&agrave;y.</p>\r\n\r\n<p>Kh&oacute;a học gồm 3 phần:</p>\r\n\r\n<p>Phần 1: V&igrave; sao trẻ kh&ocirc;ng chịu nghe lời?</p>\r\n\r\n<p>Phần 2: Những t&igrave;nh huống cụ thể, hay gặp trong cuộc sống</p>\r\n\r\n<p>Phần 3: C&aacute;ch ứng xử trong từng t&igrave;nh huống cụ thể</p>\r\n', '/public/uploads/images/khoa-hoc/thumb11_490548194-1507530679.jpg', '8LSLHQlxTnI', '<p>Kh&oacute;a học d&agrave;nh cho những ai đ&atilde;, đang v&agrave; sẽ trở th&agrave;nh những &ocirc;ng bố b&agrave; mẹ, những người lu&ocirc;n mong muốn t&igrave;m được một phương ph&aacute;p tốt nhất để gi&aacute;o dục con trẻ.</p>\r\n', 0, '<p>Kh&oacute;a học sẽ gi&uacute;p c&aacute;c bậc phụ huynh biết những nguy&ecirc;n nh&acirc;n dẫn đến việc trẻ kh&ocirc;ng nghe lời, cung cấp cho phụ huynh một v&agrave;i t&igrave;nh huống điển h&igrave;nh v&agrave; c&aacute;ch cư xử trong những t&igrave;nh huống như v&acirc;y.</p>\r\n', 1, 1, 22, NULL, 1, 1, '2017-10-09 13:31:43', '2017-10-11 10:09:07'),
 (2, 'Làm sao để trẻ an toàn và dạy con cách tự vệ', 'Lam sao de tre an toan va day con cach tu ve', 'lam-sao-de-tre-an-toan-va-day-con-cach-tu-ve', 15, NULL, 'Trang bị cho phụ huynh và trẻ tâm lý sẵn sàng ứng phó với những tình huống nguy hiểm trong cuộc sống', '<p><strong>L&Agrave;M SAO ĐỂ TRẺ AN TO&Agrave;N V&Agrave; BIẾT TỰ VỆ</strong></p>\r\n\r\n<p>X&atilde; hội c&agrave;ng hiện đại, c&aacute;c nguồn nguy hiểm với trẻ em c&agrave;ng gia tăng v&agrave; cha mẹ kh&ocirc;ng thể n&agrave;o kiểm so&aacute;t được.<br />\r\nĐặc biệt, bạn sẽ kh&ocirc;ng bao giờ lường trước được điều g&igrave; sẽ g&acirc;y nguy hại cho con m&igrave;nh khi c&aacute;c t&aacute;c nh&acirc;n g&acirc;y nguy hiểm c&oacute; mặt ở khắp mọi nơi, thậm ch&iacute; ngay trong gia đ&igrave;nh bạn. L&agrave; một bậc l&agrave;m cha l&agrave;m mẹ bận bịu với c&ocirc;ng ăn việc l&agrave;m, bạn lại kh&ocirc;ng thể ở b&ecirc;n con suốt ng&agrave;y để che chở bảo vệ con. Bởi vậy, tr&aacute;ch nhiệm của người l&agrave;m cha mẹ l&agrave; trang bị cho con những kiến thức để tự bảo vệ m&igrave;nh trong những t&igrave;nh huống nguy hiểm.</p>\r\n\r\n<p>Kh&oacute;a học n&agrave;y gồm c&oacute; 2 phần ch&iacute;nh:</p>\r\n\r\n<p><strong>PHẦN 1: Nguy hiểm đến từ đ&acirc;u?</strong></p>\r\n\r\n<p><strong>B&agrave;i 1: Nguy hiểm đến từ ch&iacute;nh m&igrave;nh</strong></p>\r\n\r\n<p>- Đ&oacute; l&agrave; việc ch&uacute;ng ta c&oacute; niềm tin m&ugrave; qu&aacute;ng</p>\r\n\r\n<p>- C&oacute; những định kiến cũng như tự giới hạn bản th&acirc;n</p>\r\n\r\n<p>- Kh&ocirc;ng ch&acirc;n qu&yacute; ch&iacute;nh bản th&acirc;n m&igrave;nh</p>\r\n\r\n<p><strong>B&agrave;i 2: Nguy hiểm đến từ người th&acirc;n</strong></p>\r\n\r\n<p>C&oacute; những t&igrave;nh huống g&acirc;y nguy hiểm cho trẻ đến từ ch&iacute;nh c&aacute;c bậc l&agrave;m cha me, nếu kh&ocirc;ng để &yacute; sẽ g&acirc;y ra những hậu quả nghi&ecirc;m trọng. V&iacute; dụ như việc cha mẹ &aacute;p đặt, ch&ecirc; bai, nghi ngờ con m&igrave;nh...</p>\r\n\r\n<p><strong>B&agrave;i 3: Nguy hiểm đến từ bạn b&egrave;</strong></p>\r\n\r\n<p>Trẻ kh&ocirc;ng thể trưởng th&agrave;nh v&agrave; ph&aacute;t triển khi thiếu đi quan hệ b&egrave; bạn. Từ nh&oacute;m bạn b&egrave; những t&igrave;nh huống nguy hiểm c&oacute; thể diễn ra mu&ocirc;n h&igrave;nh, vạn trạng: Bị bạn b&egrave; bạo lực, bị ảnh hưởng lối sống, th&oacute;i quen, &aacute;p lực từ bạn b&egrave; rủ r&ecirc; hay tin tưởng qu&aacute; độ v&agrave;o bạn b&egrave;.</p>\r\n\r\n<p><strong>B&agrave;i 4: Nguy hiểm đến từ người quen v&agrave; người lạ:</strong></p>\r\n\r\n<p>Cuộc sống đặt ra cho phụ huynh v&agrave; con trẻ rất nhiều nguy hiểm. Ch&uacute;ng ta c&oacute; thể điểm mặt được một v&agrave;i t&igrave;nh huống ti&ecirc;u biểu, để phụ huynh c&oacute; được những bước chuẩn bị v&agrave; c&aacute;ch dạy cho con ứng ph&oacute; với c&aacute;c t&igrave;nh huống đ&oacute;. Một v&agrave;i t&igrave;nh huống hay gặp phải như: Khi trẻ bị bắt c&oacute;c, trẻ bị lạc, bị bạo h&agrave;nh.</p>\r\n\r\n<p><strong>B&agrave;i 5: Nguy hiểm tiềm ẩn đến từ m&ocirc;i trường</strong></p>\r\n\r\n<p>M&ocirc;i trường n&agrave;o cũng lu&ocirc;n tiềm ẩn những nguy cơ m&agrave; do ch&iacute;nh m&ocirc;i trường đ&oacute; mang lại. Một v&agrave;i t&igrave;nh huống nguy hiểm đến từ: Đồ b&eacute;n nhọn trong gia đ&igrave;nh, điện, nước, nhiệt độ, tốc độ, độ cao...</p>\r\n\r\n<p><strong>PHẦN 2: Dạy con tự vệ v&agrave; xử l&yacute; t&igrave;nh huống</strong></p>\r\n\r\n<p><strong>B&agrave;i 1: Dạy con tự vệ v&agrave; xử l&yacute; t&igrave;nh huống</strong></p>\r\n\r\n<p>Cuộc sống đặt ra cho phụ huynh v&agrave; con trẻ rất nhiều nguy hiểm. Ch&uacute;ng ta c&oacute; thể điểm mặt được một v&agrave;i t&igrave;nh huống ti&ecirc;u biểu, để phụ huynh c&oacute; được những bước chuẩn bị v&agrave; c&aacute;ch dạy cho con ứng ph&oacute; với c&aacute;c t&igrave;nh huống đ&oacute;. V&iacute; dụ: Khi con ở nh&agrave; một m&igrave;nh c&oacute; người lạ v&agrave;o hỏi ba mẹ th&igrave; cần l&agrave;m g&igrave;? Khi trẻ bị đ&agrave;n anh, đ&agrave;n chị trong lớp bạo lực n&ecirc;n như thế n&agrave;o?....</p>\r\n\r\n<p><strong>Lời kết:&nbsp;</strong></p>\r\n\r\n<p>Cuộc sống mu&ocirc;n h&igrave;nh vạn trạng v&agrave; ch&uacute;ng ta kh&ocirc;ng thể n&agrave;o biết được c&ocirc;ng thức của cuộc sống l&agrave; g&igrave;? Tuy nhi&ecirc;n h&atilde;y cố gắng sống một c&aacute;ch chủ động, trang bị cho m&igrave;nh v&agrave; con những kiến thức thật sự cần thiết để ứng ph&oacute; một c&aacute;ch nhanh ch&oacute;ng v&agrave; giảm tải tối đa những nguy hiểm c&oacute; thể đến với bản th&acirc;n m&igrave;nh. Trải nghiệm hoặc chứng kiến sự trải nghiệm của người kh&aacute;c cũng mang đến cho ch&uacute;ng ta một kinh nghiệm n&agrave;o đ&oacute; trong cuộc sống n&agrave;y.</p>\r\n', '/public/uploads/images/khoa-hoc/thumb11_609032-1507531645.jpg', NULL, 'D&agrave;nh cho những ai đ&atilde;, đang v&agrave; sẽ trở th&agrave;nh những &ocirc;ng bố, b&agrave; mẹ. Mong muốn c&oacute; một phương ph&aacute;p gi&aacute;o dục v&agrave; bảo vệ con trước những mối nguy hiểm của x&atilde; hội.', 0, 'Cuộc sống bận rộn sẽ khiến c&aacute;c bậc phụ huynh kh&ocirc;ng thể c&oacute; mặt b&ecirc;n con mọi l&uacute;c mọi nơi. V&igrave; thế kh&oacute;a học n&agrave;y sẽ gi&uacute;p c&aacute;c &ocirc;ng bố, b&agrave; mẹ nhận định những mối hiểm nguy xung quanh v&agrave; trang bị cho con những kỹ năng cần thiết để tự đối ph&oacute;. Kh&oacute;a học sẽ mang lại cho qu&yacute; phụ huynh c&aacute;i nh&igrave;n to&agrave;n diện về những nguy hiểm c&oacute; thể đến với con, những t&igrave;nh huống cụ thể m&agrave; con c&oacute; thể gặp trong cuộc sống, từ đ&oacute; c&oacute; những c&aacute;ch ứng xử hợp l&yacute;, kịp thời.', 0, 1, 23, NULL, 1, 1, '2017-10-09 13:48:21', '2017-10-09 13:48:21'),
-(3, 'Khám phá ưu thế bản thân để định hướng cuộc đời', 'Kham pha uu the ban than de dinh huong cuoc doi', 'kham-pha-uu-the-ban-than-de-dinh-huong-cuoc-doi', 16, NULL, 'Để thành công bạn phải biết mình có những gì.', '<p>V&igrave; sao Edison lại l&agrave; một nh&agrave; khoa học với 1.907 ph&aacute;t minh s&aacute;ng chế m&agrave; kh&ocirc;ng phải l&agrave; một nh&agrave; văn?</p>\r\n\r\n<p>V&igrave; sao Bill Gates trở th&agrave;nh &ocirc;ng chủ của tập đo&agrave;n Microsoft khổng lồ m&agrave; kh&ocirc;ng phải l&agrave; đầu bếp?</p>\r\n\r\n<p>V&igrave; sao Sơn T&ugrave;ng MTP l&agrave; một ca sĩ được y&ecirc;u th&iacute;ch m&agrave; kh&ocirc;ng phải l&agrave; một b&aacute;c sĩ? C&ograve;n bạn, bạn c&oacute; thể l&agrave; một người như thế n&agrave;o đ&oacute; đặc biệt hơn?</p>\r\n\r\n<p>Để th&agrave;nh c&ocirc;ng, đầu ti&ecirc;n bạn phải hiểu m&igrave;nh l&agrave; người như thế n&agrave;o. Nếu biết m&igrave;nh l&agrave; một ch&uacute; lạc đ&agrave;, ắt hẳn bạn sẽ tha hồ tung ho&agrave;nh tr&ecirc;n sa mạc hơn l&agrave; nằm y&ecirc;n trong chiếc chuồng sở th&uacute;.</p>\r\n\r\n<p>Nếu biết m&igrave;nh l&agrave; một ch&uacute; chim c&oacute; đ&ocirc;i c&aacute;nh khỏe mạnh, ắt hẳn bạn đ&atilde; d&aacute;m sống tự do tr&ecirc;n bầu trời thay v&igrave; ngồi t&igrave;m kiếm sự an to&agrave;n trong một chiếc lồng.</p>\r\n\r\n<p>Khi biết m&igrave;nh l&agrave; ai, c&oacute; tiềm năng g&igrave;, người ta sẽ kh&ocirc;ng cam chịu với số phận hiện tại v&agrave; lu&ocirc;n phấn đấu để ph&aacute;t triển vượt bậc hơn.</p>\r\n\r\n<p>Hiểu được bản th&acirc;n th&igrave; bạn sẽ l&agrave;m được nhiều hơn những g&igrave; bạn nghĩ.</p>\r\n\r\n<p>Nếu kh&ocirc;ng biết m&igrave;nh c&oacute; ưu thế g&igrave;, bạn sẽ chọn chọn sai nghề, l&agrave;m kh&ocirc;ng đ&uacute;ng c&ocirc;ng việc, ph&aacute;t triển tr&igrave; trệ, kh&ocirc;ng c&oacute; ước mơ, bất lực trong việc l&agrave;m chủ được vận mệnh tương lai của ch&iacute;nh m&igrave;nh...</p>\r\n\r\n<p>C&oacute; những người lu&ocirc;n cố gắng, cố gắng v&agrave; cố gắng m&agrave; thực tế vẫn vậy, chẳng c&oacute; g&igrave; kh&aacute; hơn! C&oacute; thể v&igrave; họ đ&atilde; cố gắng ở lĩnh vực kh&ocirc;ng phải sở trường của m&igrave;nh.</p>\r\n\r\n<p>C&oacute; những người muốn l&agrave;m một điều g&igrave; đ&oacute; kh&aacute;c đi, họ kh&ocirc;ng muốn lẩn quẩn cả đời với những thứ mệt mỏi nhạt nhẽo như b&acirc;y giờ! Nhưng họ kh&ocirc;ng biết m&igrave;nh phải l&agrave;m g&igrave;? M&igrave;nh bắt đầu từ đ&acirc;u?! C&oacute; thể họ l&uacute;ng t&uacute;ng v&igrave; chưa nh&igrave;n ra được những khả năng m&igrave;nh đang c&oacute; để ph&aacute;t huy n&oacute;.</p>\r\n\r\n<p>C&oacute; rất nhiều người thực ra kh&ocirc;ng biết m&igrave;nh sống để l&agrave;m g&igrave;? Lẽ sống của m&igrave;nh l&agrave; chi? V&agrave; kh&ocirc;ng c&oacute; trong tay một mảnh giấy n&agrave;o để c&oacute; thể gọi l&agrave; c&oacute; kế hoạch cuộc đời.</p>\r\n\r\n<p>Trong những người đ&oacute; c&oacute; bạn trong đấy?</p>\r\n\r\n<p>H&atilde;y sử dụng hết 100% tiềm năng m&agrave; bạn c&oacute;, h&atilde;y l&agrave;m chủ vận mệnh của ch&iacute;nh m&igrave;nh sau Kh&oacute;a học Kh&aacute;m ph&aacute; ưu thế bản th&acirc;n để định hướng cuộc đời!</p>\r\n\r\n<p>Ch&uacute;c bạn sẽ hiểu m&igrave;nh l&agrave; ai, m&igrave;nh n&ecirc;n l&agrave;m g&igrave; trong cuộc đời n&agrave;y v&agrave; bản đồ tương lai bạn sẽ hiện r&otilde; trong l&ograve;ng b&agrave;n tay!</p>\r\n', '/public/uploads/images/khoa-hoc/thumb11_167158056-1507532030.jpg', '', 'Kh&oacute;a học d&agrave;nh cho tất cả ch&uacute;ng ta - những người c&ograve;n đang l&uacute;ng t&uacute;ng v&igrave; chưa nh&igrave;n ra được những khả năng của bản th&acirc;n để ph&aacute;t huy, sử dụng n&oacute; một c&aacute;ch hiệu quả.', 0, '<p>Trong kh&oacute;a học Kh&aacute;m ph&aacute; ưu thế bản th&acirc;n để định hướng cuộc đời, bạn sẽ được Chuy&ecirc;n gia t&acirc;m l&yacute; &ndash; Kỷ lục gia Nguyễn Ho&agrave;ng Khắc Hiếu hướng dẫn ph&acirc;n t&iacute;ch chi tiết bản th&acirc;n bằng c&aacute;c c&ocirc;ng cụ:</p>\r\n\r\n<p>+ Sinh trắc học</p>\r\n\r\n<p>+ Tổng hợp nhận x&eacute;t</p>\r\n\r\n<p>+ So s&aacute;nh với h&igrave;nh mẫu</p>\r\n\r\n<p>+ Nội quan &amp; ph&acirc;n t&iacute;ch m&ocirc; h&igrave;nh SWOT</p>\r\n\r\n<p>+ Trắc nghiệm Holland</p>\r\n\r\n<p>+ Trắc nghiệm MBTI</p>\r\n\r\n<p>+ Trắc nghiệm Kh&iacute; chất, IQ, EQ, CQ</p>\r\n\r\n<p>+ Phương ph&aacute;p Thử nghiệm bản th&acirc;n</p>\r\n', 1, 1, 25, NULL, 1, 1, '2017-10-09 13:54:16', '2017-10-10 13:14:53'),
-(4, 'Kỹ năng giải tỏa Stress', 'Ky nang giai toa Stress', 'ky-nang-giai-toa-stress', 16, NULL, '12 cách đập tan tảng đá stress', '<strong>Chương 1: Những liệu ph&aacute;p về sinh l&yacute;</strong><br />\r\nK&iacute;ch th&iacute;ch thần kinh<br />\r\n<strong>Chương 2: Biện ph&aacute;p tinh thần</strong><br />\r\nLối ra<br />\r\nTưởng tượng<br />\r\nGiao tiếp với điểm tựa tinh thần<br />\r\nVật nu&ocirc;i<br />\r\nSống th&ocirc;i m&agrave;!<br />\r\nT&ugrave;y duy&ecirc;n<br />\r\n<strong>Chương 3: Xử tr&iacute; th&ocirc;ng minh</strong><br />\r\nTận dụng stress để s&aacute;ng tạo<br />\r\nTh&aacute;o gỡ n&uacute;t thắt<br />\r\nB&agrave;n tay gi&uacute;p đỡ<br />\r\nĐ&agrave;m ph&aacute;n<br />\r\nNếu vẫn c&ograve;n stress th&igrave; &aacute;p dụng c&aacute;ch cuối c&ugrave;ng n&agrave;y', '/public/uploads/images/khoa-hoc/thumb11_166808576-1507532183.jpg', '', 'Kh&oacute;a học d&agrave;nh cho những ai đang gặp bế tắc, thường xuy&ecirc;n cảm thấy stress trong cuộc sống, c&ocirc;ng việc...v&agrave; chưa t&igrave;m được lối ra.', 0, 'Trong kh&oacute;a học n&agrave;y, TS Nguyễn Ho&agrave;ng Khắc Hiếu sẽ cung cấp cho c&aacute;c bạn những liệu ph&aacute;p sinh l&yacute; cũng như tinh thần để c&aacute;c bạn vượt qua stress một c&aacute;ch dễ d&agrave;ng. Đồng thời, trải nghiệm kh&oacute;a học, c&aacute;c bạn cũng sẽ học được c&aacute;ch th&aacute;o gỡ những bế tắc trong cuộc sống, trong c&ocirc;ng việc, tận dụng ch&iacute;nh stress để biến n&oacute; th&agrave;nh động lực vươn l&ecirc;n ph&iacute;a trước.', 1, 1, 26, NULL, 1, 1, '2017-10-09 13:56:27', '2017-10-10 13:14:46');
+(3, 'Khám phá ưu thế bản thân để định hướng cuộc đời', 'Kham pha uu the ban than de dinh huong cuoc doi', 'kham-pha-uu-the-ban-than-de-dinh-huong-cuoc-doi', 16, NULL, 'Để thành công bạn phải biết mình có những gì.', '<p>V&igrave; sao Edison lại l&agrave; một nh&agrave; khoa học với 1.907 ph&aacute;t minh s&aacute;ng chế m&agrave; kh&ocirc;ng phải l&agrave; một nh&agrave; văn?</p>\r\n\r\n<p>V&igrave; sao Bill Gates trở th&agrave;nh &ocirc;ng chủ của tập đo&agrave;n Microsoft khổng lồ m&agrave; kh&ocirc;ng phải l&agrave; đầu bếp?</p>\r\n\r\n<p>V&igrave; sao Sơn T&ugrave;ng MTP l&agrave; một ca sĩ được y&ecirc;u th&iacute;ch m&agrave; kh&ocirc;ng phải l&agrave; một b&aacute;c sĩ? C&ograve;n bạn, bạn c&oacute; thể l&agrave; một người như thế n&agrave;o đ&oacute; đặc biệt hơn?</p>\r\n\r\n<p>Để th&agrave;nh c&ocirc;ng, đầu ti&ecirc;n bạn phải hiểu m&igrave;nh l&agrave; người như thế n&agrave;o. Nếu biết m&igrave;nh l&agrave; một ch&uacute; lạc đ&agrave;, ắt hẳn bạn sẽ tha hồ tung ho&agrave;nh tr&ecirc;n sa mạc hơn l&agrave; nằm y&ecirc;n trong chiếc chuồng sở th&uacute;.</p>\r\n\r\n<p>Nếu biết m&igrave;nh l&agrave; một ch&uacute; chim c&oacute; đ&ocirc;i c&aacute;nh khỏe mạnh, ắt hẳn bạn đ&atilde; d&aacute;m sống tự do tr&ecirc;n bầu trời thay v&igrave; ngồi t&igrave;m kiếm sự an to&agrave;n trong một chiếc lồng.</p>\r\n\r\n<p>Khi biết m&igrave;nh l&agrave; ai, c&oacute; tiềm năng g&igrave;, người ta sẽ kh&ocirc;ng cam chịu với số phận hiện tại v&agrave; lu&ocirc;n phấn đấu để ph&aacute;t triển vượt bậc hơn.</p>\r\n\r\n<p>Hiểu được bản th&acirc;n th&igrave; bạn sẽ l&agrave;m được nhiều hơn những g&igrave; bạn nghĩ.</p>\r\n\r\n<p>Nếu kh&ocirc;ng biết m&igrave;nh c&oacute; ưu thế g&igrave;, bạn sẽ chọn chọn sai nghề, l&agrave;m kh&ocirc;ng đ&uacute;ng c&ocirc;ng việc, ph&aacute;t triển tr&igrave; trệ, kh&ocirc;ng c&oacute; ước mơ, bất lực trong việc l&agrave;m chủ được vận mệnh tương lai của ch&iacute;nh m&igrave;nh...</p>\r\n\r\n<p>C&oacute; những người lu&ocirc;n cố gắng, cố gắng v&agrave; cố gắng m&agrave; thực tế vẫn vậy, chẳng c&oacute; g&igrave; kh&aacute; hơn! C&oacute; thể v&igrave; họ đ&atilde; cố gắng ở lĩnh vực kh&ocirc;ng phải sở trường của m&igrave;nh.</p>\r\n\r\n<p>C&oacute; những người muốn l&agrave;m một điều g&igrave; đ&oacute; kh&aacute;c đi, họ kh&ocirc;ng muốn lẩn quẩn cả đời với những thứ mệt mỏi nhạt nhẽo như b&acirc;y giờ! Nhưng họ kh&ocirc;ng biết m&igrave;nh phải l&agrave;m g&igrave;? M&igrave;nh bắt đầu từ đ&acirc;u?! C&oacute; thể họ l&uacute;ng t&uacute;ng v&igrave; chưa nh&igrave;n ra được những khả năng m&igrave;nh đang c&oacute; để ph&aacute;t huy n&oacute;.</p>\r\n\r\n<p>C&oacute; rất nhiều người thực ra kh&ocirc;ng biết m&igrave;nh sống để l&agrave;m g&igrave;? Lẽ sống của m&igrave;nh l&agrave; chi? V&agrave; kh&ocirc;ng c&oacute; trong tay một mảnh giấy n&agrave;o để c&oacute; thể gọi l&agrave; c&oacute; kế hoạch cuộc đời.</p>\r\n\r\n<p>Trong những người đ&oacute; c&oacute; bạn trong đấy?</p>\r\n\r\n<p>H&atilde;y sử dụng hết 100% tiềm năng m&agrave; bạn c&oacute;, h&atilde;y l&agrave;m chủ vận mệnh của ch&iacute;nh m&igrave;nh sau Kh&oacute;a học Kh&aacute;m ph&aacute; ưu thế bản th&acirc;n để định hướng cuộc đời!</p>\r\n\r\n<p>Ch&uacute;c bạn sẽ hiểu m&igrave;nh l&agrave; ai, m&igrave;nh n&ecirc;n l&agrave;m g&igrave; trong cuộc đời n&agrave;y v&agrave; bản đồ tương lai bạn sẽ hiện r&otilde; trong l&ograve;ng b&agrave;n tay!</p>\r\n', '/public/uploads/images/khoa-hoc/thumb11_167158056-1507532030.jpg', 'pj-pV0sBGPU', 'Kh&oacute;a học d&agrave;nh cho tất cả ch&uacute;ng ta - những người c&ograve;n đang l&uacute;ng t&uacute;ng v&igrave; chưa nh&igrave;n ra được những khả năng của bản th&acirc;n để ph&aacute;t huy, sử dụng n&oacute; một c&aacute;ch hiệu quả.', 0, '<p>Trong kh&oacute;a học Kh&aacute;m ph&aacute; ưu thế bản th&acirc;n để định hướng cuộc đời, bạn sẽ được Chuy&ecirc;n gia t&acirc;m l&yacute; &ndash; Kỷ lục gia Nguyễn Ho&agrave;ng Khắc Hiếu hướng dẫn ph&acirc;n t&iacute;ch chi tiết bản th&acirc;n bằng c&aacute;c c&ocirc;ng cụ:</p>\r\n\r\n<p>+ Sinh trắc học</p>\r\n\r\n<p>+ Tổng hợp nhận x&eacute;t</p>\r\n\r\n<p>+ So s&aacute;nh với h&igrave;nh mẫu</p>\r\n\r\n<p>+ Nội quan &amp; ph&acirc;n t&iacute;ch m&ocirc; h&igrave;nh SWOT</p>\r\n\r\n<p>+ Trắc nghiệm Holland</p>\r\n\r\n<p>+ Trắc nghiệm MBTI</p>\r\n\r\n<p>+ Trắc nghiệm Kh&iacute; chất, IQ, EQ, CQ</p>\r\n\r\n<p>+ Phương ph&aacute;p Thử nghiệm bản th&acirc;n</p>\r\n', 1, 1, 25, NULL, 1, 1, '2017-10-09 13:54:16', '2017-10-11 10:06:59'),
+(4, 'Kỹ năng giải tỏa Stress', 'Ky nang giai toa Stress', 'ky-nang-giai-toa-stress', 16, NULL, '12 cách đập tan tảng đá stress', '<strong>Chương 1: Những liệu ph&aacute;p về sinh l&yacute;</strong><br />\r\nK&iacute;ch th&iacute;ch thần kinh<br />\r\n<strong>Chương 2: Biện ph&aacute;p tinh thần</strong><br />\r\nLối ra<br />\r\nTưởng tượng<br />\r\nGiao tiếp với điểm tựa tinh thần<br />\r\nVật nu&ocirc;i<br />\r\nSống th&ocirc;i m&agrave;!<br />\r\nT&ugrave;y duy&ecirc;n<br />\r\n<strong>Chương 3: Xử tr&iacute; th&ocirc;ng minh</strong><br />\r\nTận dụng stress để s&aacute;ng tạo<br />\r\nTh&aacute;o gỡ n&uacute;t thắt<br />\r\nB&agrave;n tay gi&uacute;p đỡ<br />\r\nĐ&agrave;m ph&aacute;n<br />\r\nNếu vẫn c&ograve;n stress th&igrave; &aacute;p dụng c&aacute;ch cuối c&ugrave;ng n&agrave;y', '/public/uploads/images/khoa-hoc/thumb11_166808576-1507532183.jpg', 'Dz-r1SC2fuk', 'Kh&oacute;a học d&agrave;nh cho những ai đang gặp bế tắc, thường xuy&ecirc;n cảm thấy stress trong cuộc sống, c&ocirc;ng việc...v&agrave; chưa t&igrave;m được lối ra.', 0, 'Trong kh&oacute;a học n&agrave;y, TS Nguyễn Ho&agrave;ng Khắc Hiếu sẽ cung cấp cho c&aacute;c bạn những liệu ph&aacute;p sinh l&yacute; cũng như tinh thần để c&aacute;c bạn vượt qua stress một c&aacute;ch dễ d&agrave;ng. Đồng thời, trải nghiệm kh&oacute;a học, c&aacute;c bạn cũng sẽ học được c&aacute;ch th&aacute;o gỡ những bế tắc trong cuộc sống, trong c&ocirc;ng việc, tận dụng ch&iacute;nh stress để biến n&oacute; th&agrave;nh động lực vươn l&ecirc;n ph&iacute;a trước.', 1, 1, 26, NULL, 1, 1, '2017-10-09 13:56:27', '2017-10-11 10:06:30'),
+(5, 'CEO VinaLink chia sẻ cách làm Marketing trên Facebook từ A->Z', 'CEO VinaLink chia se cach lam Marketing tren Facebook tu A->Z', 'ceo-vinalink-chia-se-cach-lam-marketing-tren-facebook-tu-a-z', 8, NULL, 'Đừng thờ ơ với kênh giao tiếp khách hàng hiệu quả nhất hiện nay', '<p style=\"margin:0px 0px 5px; padding:0px; text-align:start; -webkit-text-stroke-width:0px\"><span style=\"font-size:13px\"><span style=\"color:#474747\"><span style=\"line-height:22px\"><span style=\"font-family:Arial\"><span style=\"font-style:normal\"><span style=\"font-variant-ligatures:normal\"><span style=\"font-variant-caps:normal\"><span style=\"font-weight:normal\"><span style=\"letter-spacing:normal\"><span style=\"orphans:2\"><span style=\"text-transform:none\"><span style=\"white-space:normal\"><span style=\"widows:2\"><span style=\"word-spacing:0px\"><span style=\"background-color:#ffffff\"><span style=\"text-decoration-style:initial\"><span style=\"text-decoration-color:initial\"><span style=\"font-size:small; margin:0px; padding:0px\"><span style=\"margin:0px; padding:0px; font-family:Arial\"><b>BẢN CHẤT SOCIAL MEDIA &amp; FACEBOOK MARKETING</b></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>\r\n\r\n<ul style=\"list-style:none outside none; margin:0px; padding:0px; color:#474747; font-family:Arial; font-size:13px; font-style:normal; font-variant-ligatures:normal; font-variant-caps:normal; font-weight:normal; letter-spacing:normal; orphans:2; text-align:start; text-transform:none; white-space:normal; widows:2; word-spacing:0px; -webkit-text-stroke-width:0px; background-color:#ffffff; text-decoration-style:initial; text-decoration-color:initial\" type=\"disc\">\r\n	<li>\r\n	<p style=\"margin:0px 0px 5px; padding:0px\"><span style=\"color:#474747\"><span style=\"line-height:22px\"><span style=\"font-size:small; margin:0px; padding:0px\"><span style=\"margin:0px; padding:0px; font-family:Arial\">Bức tranh to&agrave;n cảnh về Facebook Thế giới v&agrave; Việt Nam</span></span></span></span></p>\r\n	</li>\r\n	<li>\r\n	<p style=\"margin:0px 0px 5px; padding:0px\"><span style=\"color:#474747\"><span style=\"line-height:22px\"><span style=\"font-size:small; margin:0px; padding:0px\"><span style=\"margin:0px; padding:0px; font-family:Arial\">L&yacute; do sử dụng Facebook trong Marketing</span></span></span></span></p>\r\n	</li>\r\n	<li>\r\n	<p style=\"margin:0px 0px 5px; padding:0px\"><span style=\"color:#474747\"><span style=\"line-height:22px\"><span style=\"font-size:small; margin:0px; padding:0px\"><span style=\"margin:0px; padding:0px; font-family:Arial\">Thế mạnh &amp; t&iacute;nh social ho&aacute; trong Facebook Marketing</span></span></span></span></p>\r\n	</li>\r\n	<li>\r\n	<p style=\"margin:0px 0px 5px; padding:0px\"><span style=\"color:#474747\"><span style=\"line-height:22px\"><span style=\"font-size:small; margin:0px; padding:0px\"><span style=\"margin:0px; padding:0px; font-family:Arial\">H&agrave;nh vi người d&ugrave;ng tr&ecirc;n Facebook</span></span></span></span></p>\r\n	</li>\r\n	<li>\r\n	<p style=\"margin:0px 0px 5px; padding:0px\"><span style=\"color:#474747\"><span style=\"line-height:22px\"><span style=\"font-size:small; margin:0px; padding:0px\"><span style=\"margin:0px; padding:0px; font-family:Arial\">Thực h&agrave;nh tạo v&agrave; thiết lập k&ecirc;nh fanpage theo nhu cầu</span></span></span></span></p>\r\n	</li>\r\n</ul>\r\n\r\n<p style=\"margin:0px 0px 5px; padding:0px; text-align:start; -webkit-text-stroke-width:0px\"><span style=\"font-size:13px\"><span style=\"color:#474747\"><span style=\"line-height:22px\"><span style=\"font-family:Arial\"><span style=\"font-style:normal\"><span style=\"font-variant-ligatures:normal\"><span style=\"font-variant-caps:normal\"><span style=\"font-weight:normal\"><span style=\"letter-spacing:normal\"><span style=\"orphans:2\"><span style=\"text-transform:none\"><span style=\"white-space:normal\"><span style=\"widows:2\"><span style=\"word-spacing:0px\"><span style=\"background-color:#ffffff\"><span style=\"text-decoration-style:initial\"><span style=\"text-decoration-color:initial\"><span style=\"font-size:small; margin:0px; padding:0px\"><span style=\"margin:0px; padding:0px; font-family:Arial\"><b>NHỮNG CHỈ SỐ QUAN TRỌNG TR&Ecirc;N FACEBOOK</b></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>\r\n\r\n<ul style=\"list-style:none outside none; margin:0px; padding:0px; color:#474747; font-family:Arial; font-size:13px; font-style:normal; font-variant-ligatures:normal; font-variant-caps:normal; font-weight:normal; letter-spacing:normal; orphans:2; text-align:start; text-transform:none; white-space:normal; widows:2; word-spacing:0px; -webkit-text-stroke-width:0px; background-color:#ffffff; text-decoration-style:initial; text-decoration-color:initial\" type=\"disc\">\r\n	<li>\r\n	<p style=\"margin:0px 0px 5px; padding:0px\"><span style=\"color:#474747\"><span style=\"line-height:22px\"><span style=\"font-size:small; margin:0px; padding:0px\"><span style=\"margin:0px; padding:0px; font-family:Arial\">Những chỉ số ch&iacute;nh tr&ecirc;n một Facebook Fanpage</span></span></span></span></p>\r\n	</li>\r\n	<li>\r\n	<p style=\"margin:0px 0px 5px; padding:0px\"><span style=\"color:#474747\"><span style=\"line-height:22px\"><span style=\"font-size:small; margin:0px; padding:0px\"><span style=\"margin:0px; padding:0px; font-family:Arial\">Reach v&agrave; c&aacute;c phương thức tăng reach</span></span></span></span></p>\r\n	</li>\r\n	<li>\r\n	<p style=\"margin:0px 0px 5px; padding:0px\"><span style=\"color:#474747\"><span style=\"line-height:22px\"><span style=\"font-size:small; margin:0px; padding:0px\"><span style=\"margin:0px; padding:0px; font-family:Arial\">Ph&acirc;n t&iacute;ch nguồn like của Fanpage v&agrave; h&agrave;nh vi người d&ugrave;ng theo nguồn like</span></span></span></span></p>\r\n	</li>\r\n	<li>\r\n	<p style=\"margin:0px 0px 5px; padding:0px\"><span style=\"color:#474747\"><span style=\"line-height:22px\"><span style=\"font-size:small; margin:0px; padding:0px\"><span style=\"margin:0px; padding:0px; font-family:Arial\">Cơ chế giới thiệu fanpage v&agrave; nội dung tương tự của Facebook.</span></span></span></span></p>\r\n	</li>\r\n	<li>\r\n	<p style=\"margin:0px 0px 5px; padding:0px\"><span style=\"color:#474747\"><span style=\"line-height:22px\"><span style=\"font-size:small; margin:0px; padding:0px\"><span style=\"margin:0px; padding:0px; font-family:Arial\">Đo lường hiệu quả của b&agrave;i đăng</span></span></span></span></p>\r\n	</li>\r\n</ul>\r\n\r\n<p style=\"margin:0px 0px 5px; padding:0px; text-align:start; -webkit-text-stroke-width:0px\"><span style=\"font-size:13px\"><span style=\"color:#474747\"><span style=\"line-height:22px\"><span style=\"font-family:Arial\"><span style=\"font-style:normal\"><span style=\"font-variant-ligatures:normal\"><span style=\"font-variant-caps:normal\"><span style=\"font-weight:normal\"><span style=\"letter-spacing:normal\"><span style=\"orphans:2\"><span style=\"text-transform:none\"><span style=\"white-space:normal\"><span style=\"widows:2\"><span style=\"word-spacing:0px\"><span style=\"background-color:#ffffff\"><span style=\"text-decoration-style:initial\"><span style=\"text-decoration-color:initial\"><span style=\"font-size:small; margin:0px; padding:0px\"><span style=\"margin:0px; padding:0px; font-family:Arial\">Nội dung kh&oacute;a học</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>\r\n\r\n<p style=\"margin:0px 0px 5px; padding:0px; text-align:start; -webkit-text-stroke-width:0px\"><span style=\"font-size:13px\"><span style=\"color:#474747\"><span style=\"line-height:22px\"><span style=\"font-family:Arial\"><span style=\"font-style:normal\"><span style=\"font-variant-ligatures:normal\"><span style=\"font-variant-caps:normal\"><span style=\"font-weight:normal\"><span style=\"letter-spacing:normal\"><span style=\"orphans:2\"><span style=\"text-transform:none\"><span style=\"white-space:normal\"><span style=\"widows:2\"><span style=\"word-spacing:0px\"><span style=\"background-color:#ffffff\"><span style=\"text-decoration-style:initial\"><span style=\"text-decoration-color:initial\"><span style=\"font-size:small; margin:0px; padding:0px\"><span style=\"margin:0px; padding:0px; font-family:Arial\"><b>TĂNG LIKE &amp; QUẢNG B&Aacute; FANPAGE</b></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>\r\n\r\n<ul style=\"list-style:none outside none; margin:0px; padding:0px; color:#474747; font-family:Arial; font-size:13px; font-style:normal; font-variant-ligatures:normal; font-variant-caps:normal; font-weight:normal; letter-spacing:normal; orphans:2; text-align:start; text-transform:none; white-space:normal; widows:2; word-spacing:0px; -webkit-text-stroke-width:0px; background-color:#ffffff; text-decoration-style:initial; text-decoration-color:initial\" type=\"disc\">\r\n	<li>\r\n	<p style=\"margin:0px 0px 5px; padding:0px\"><span style=\"color:#474747\"><span style=\"line-height:22px\"><span style=\"font-size:small; margin:0px; padding:0px\"><span style=\"margin:0px; padding:0px; font-family:Arial\">C&aacute;c phương thức tăng like tốt nhất</span></span></span></span></p>\r\n	</li>\r\n	<li>\r\n	<p style=\"margin:0px 0px 5px; padding:0px\"><span style=\"color:#474747\"><span style=\"line-height:22px\"><span style=\"font-size:small; margin:0px; padding:0px\"><span style=\"margin:0px; padding:0px; font-family:Arial\">Tăng like qua nguồn lực b&ecirc;n ngo&agrave;i</span></span></span></span></p>\r\n	</li>\r\n	<li>\r\n	<p style=\"margin:0px 0px 5px; padding:0px\"><span style=\"color:#474747\"><span style=\"line-height:22px\"><span style=\"font-size:small; margin:0px; padding:0px\"><span style=\"margin:0px; padding:0px; font-family:Arial\">Tăng like dựa tr&ecirc;n cơ chế suggest của Facebook v&agrave; hệ thống page vệ tinh</span></span></span></span></p>\r\n	</li>\r\n	<li>\r\n	<p style=\"margin:0px 0px 5px; padding:0px\"><span style=\"color:#474747\"><span style=\"line-height:22px\"><span style=\"font-size:small; margin:0px; padding:0px\"><span style=\"margin:0px; padding:0px; font-family:Arial\">Tăng like qua group v&agrave; trang c&aacute; nh&acirc;n tr&ecirc;n Facebook</span></span></span></span></p>\r\n	</li>\r\n	<li>\r\n	<p style=\"margin:0px 0px 5px; padding:0px\"><span style=\"color:#474747\"><span style=\"line-height:22px\"><span style=\"font-size:small; margin:0px; padding:0px\"><span style=\"margin:0px; padding:0px; font-family:Arial\">Tăng like qua Facebook ads</span></span></span></span></p>\r\n	</li>\r\n</ul>\r\n\r\n<p style=\"margin:0px 0px 5px; padding:0px; text-align:start; -webkit-text-stroke-width:0px\"><span style=\"font-size:13px\"><span style=\"color:#474747\"><span style=\"line-height:22px\"><span style=\"font-family:Arial\"><span style=\"font-style:normal\"><span style=\"font-variant-ligatures:normal\"><span style=\"font-variant-caps:normal\"><span style=\"font-weight:normal\"><span style=\"letter-spacing:normal\"><span style=\"orphans:2\"><span style=\"text-transform:none\"><span style=\"white-space:normal\"><span style=\"widows:2\"><span style=\"word-spacing:0px\"><span style=\"background-color:#ffffff\"><span style=\"text-decoration-style:initial\"><span style=\"text-decoration-color:initial\"><span style=\"font-size:small; margin:0px; padding:0px\"><span style=\"margin:0px; padding:0px; font-family:Arial\"><b>FACEBOOK ADS</b></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>\r\n\r\n<ul style=\"list-style:none outside none; margin:0px; padding:0px; color:#474747; font-family:Arial; font-size:13px; font-style:normal; font-variant-ligatures:normal; font-variant-caps:normal; font-weight:normal; letter-spacing:normal; orphans:2; text-align:start; text-transform:none; white-space:normal; widows:2; word-spacing:0px; -webkit-text-stroke-width:0px; background-color:#ffffff; text-decoration-style:initial; text-decoration-color:initial\" type=\"disc\">\r\n	<li>\r\n	<p style=\"margin:0px 0px 5px; padding:0px\"><span style=\"color:#474747\"><span style=\"line-height:22px\"><span style=\"font-size:small; margin:0px; padding:0px\"><span style=\"margin:0px; padding:0px; font-family:Arial\">C&aacute;c quy định, cơ chế hiển thị v&agrave; t&iacute;nh tiền của Facebook Ads</span></span></span></span></p>\r\n	</li>\r\n	<li>\r\n	<p style=\"margin:0px 0px 5px; padding:0px\"><span style=\"color:#474747\"><span style=\"line-height:22px\"><span style=\"font-size:small; margin:0px; padding:0px\"><span style=\"margin:0px; padding:0px; font-family:Arial\">Thiết lập t&agrave;i khoản Facebook ads</span></span></span></span></p>\r\n	</li>\r\n	<li>\r\n	<p style=\"margin:0px 0px 5px; padding:0px\"><span style=\"color:#474747\"><span style=\"line-height:22px\"><span style=\"font-size:small; margin:0px; padding:0px\"><span style=\"margin:0px; padding:0px; font-family:Arial\">C&aacute;c c&ocirc;ng cụ tiếp cận kh&aacute;ch h&agrave;ng mục ti&ecirc;u qua Facebook Ads</span></span></span></span></p>\r\n	</li>\r\n	<li>\r\n	<p style=\"margin:0px 0px 5px; padding:0px\"><span style=\"color:#474747\"><span style=\"line-height:22px\"><span style=\"font-size:small; margin:0px; padding:0px\"><span style=\"margin:0px; padding:0px; font-family:Arial\">Những nguy&ecirc;n l&yacute; cơ bản của tạo mẫu quảng c&aacute;o</span></span></span></span></p>\r\n	</li>\r\n	<li>\r\n	<p style=\"margin:0px 0px 5px; padding:0px\"><span style=\"color:#474747\"><span style=\"line-height:22px\"><span style=\"font-size:small; margin:0px; padding:0px\"><span style=\"margin:0px; padding:0px; font-family:Arial\">Thiết lập Quảng c&aacute;o tăng like; Quảng c&aacute;o c&aacute;c b&agrave;i đăng v&agrave; Quảng c&aacute;o website</span></span></span></span></p>\r\n	</li>\r\n</ul>\r\n\r\n<p style=\"margin:0px 0px 5px; padding:0px; text-align:start; -webkit-text-stroke-width:0px\"><span style=\"font-size:13px\"><span style=\"color:#474747\"><span style=\"line-height:22px\"><span style=\"font-family:Arial\"><span style=\"font-style:normal\"><span style=\"font-variant-ligatures:normal\"><span style=\"font-variant-caps:normal\"><span style=\"font-weight:normal\"><span style=\"letter-spacing:normal\"><span style=\"orphans:2\"><span style=\"text-transform:none\"><span style=\"white-space:normal\"><span style=\"widows:2\"><span style=\"word-spacing:0px\"><span style=\"background-color:#ffffff\"><span style=\"text-decoration-style:initial\"><span style=\"text-decoration-color:initial\"><span style=\"font-size:small; margin:0px; padding:0px\"><span style=\"margin:0px; padding:0px; font-family:Arial\"><b>PH&Aacute;T TRIỂN NỘI DUNG FANPAGE</b></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>\r\n\r\n<ul style=\"list-style:none outside none; margin:0px; padding:0px; color:#474747; font-family:Arial; font-size:13px; font-style:normal; font-variant-ligatures:normal; font-variant-caps:normal; font-weight:normal; letter-spacing:normal; orphans:2; text-align:start; text-transform:none; white-space:normal; widows:2; word-spacing:0px; -webkit-text-stroke-width:0px; background-color:#ffffff; text-decoration-style:initial; text-decoration-color:initial\" type=\"disc\">\r\n	<li>\r\n	<p style=\"margin:0px 0px 5px; padding:0px\"><span style=\"color:#474747\"><span style=\"line-height:22px\"><span style=\"font-size:small; margin:0px; padding:0px\"><span style=\"margin:0px; padding:0px; font-family:Arial\">C&aacute;c bước lập kế hoạch Facebook Marketing</span></span></span></span></p>\r\n	</li>\r\n	<li>\r\n	<p style=\"margin:0px 0px 5px; padding:0px\"><span style=\"color:#474747\"><span style=\"line-height:22px\"><span style=\"font-size:small; margin:0px; padding:0px\"><span style=\"margin:0px; padding:0px; font-family:Arial\">Quy định về đăng tải nội dung của Facebook</span></span></span></span></p>\r\n	</li>\r\n	<li>\r\n	<p style=\"margin:0px 0px 5px; padding:0px\"><span style=\"color:#474747\"><span style=\"line-height:22px\"><span style=\"font-size:small; margin:0px; padding:0px\"><span style=\"margin:0px; padding:0px; font-family:Arial\">Ph&aacute;t triển nội dung cho fanpage theo mục đ&iacute;ch: b&aacute;n h&agrave;ng;&nbsp; thương hiệu; cộng đồng &hellip;</span></span></span></span></p>\r\n	</li>\r\n	<li>\r\n	<p style=\"margin:0px 0px 5px; padding:0px\"><span style=\"color:#474747\"><span style=\"line-height:22px\"><span style=\"font-size:small; margin:0px; padding:0px\"><span style=\"margin:0px; padding:0px; font-family:Arial\">Những dạng nội dung được tương t&aacute;c nhiều tr&ecirc;n Facebook</span></span></span></span></p>\r\n	</li>\r\n	<li>\r\n	<p style=\"margin:0px 0px 5px; padding:0px\"><span style=\"color:#474747\"><span style=\"line-height:22px\"><span style=\"font-size:small; margin:0px; padding:0px\"><span style=\"margin:0px; padding:0px; font-family:Arial\">Sử dụng group v&agrave; trang c&aacute; nh&acirc;n trong ph&aacute;t triển nội dung fanpage</span></span></span></span></p>\r\n	</li>\r\n</ul>\r\n', '/public/uploads/images/khoa-hoc/thumb11_524478149-1507691529.jpg', 'UP6yQ0d5vCM', 'D&agrave;nh cho những c&aacute; nh&acirc;n y&ecirc;u th&iacute;ch Facebook v&agrave; đang c&oacute; mong muốn sử dụng Facebook như một k&ecirc;nh kinh doanh', 0, '<p>Kiến thức đầy đủ &amp; cập nhật li&ecirc;n tục: Bạn sẽ được học c&aacute;c b&agrave;i giảng với những phương ph&aacute;p, những kinh nghiệm được giảng vi&ecirc;n chia sẻ trong kho&aacute; học, cập nhật những xu hướng mới nhất năm 2015</p>\r\n\r\n<p>Chi ph&iacute; thấp &ndash; hiệu quả cao: Thay v&igrave; bỏ ra h&agrave;ng triệu đồng để tới c&aacute;c trung t&acirc;m. Với ViettelStudy bạn vẫn được học với giảng vi&ecirc;n Tuấn H&agrave; - người uy t&iacute;n &amp; gi&agrave;u kinh nghiệm h&agrave;ng đầu Việt Nam trong lĩnh vực social marketing</p>\r\n\r\n<p>&nbsp;Tối ưu về thời gian: Bạn c&oacute; thể chủ động trong việc sắp xếp thời gian học, tự điều chỉnh tốc độ học theo khả năng v&agrave; c&oacute; thể n&acirc;ng cao kiến thức ngay sau khi học, tiết kiệm thời gian di chuyển giữa c&aacute;c địa điểm học; chủ động &ocirc;n tập v&agrave; học lại kiến thức</p>\r\n', 1, 1, 27, NULL, 1, 1, '2017-10-11 10:12:48', '2017-10-11 10:12:49'),
+(6, 'Kỹ năng xây dựng thương hiệu', 'Ky nang xay dung thuong hieu', 'ky-nang-xay-dung-thuong-hieu', 9, NULL, 'Tạo sự khác biệt cho thương hiệu', '<strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', '/public/uploads/images/khoa-hoc/thumb11_782586130-1507691732.jpg', 'evMCCbWVkis', '<strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', 0, '<strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', 1, 1, 28, NULL, 1, 1, '2017-10-11 10:15:49', '2017-10-11 10:15:50'),
+(7, 'Nghệ thuật bán hàng hiệu quả', 'Nghe thuat ban hang hieu qua', 'nghe-thuat-ban-hang-hieu-qua', 9, NULL, 'Kỹ năng cần thiết để trở thành người bán hàng chuyên nghiệp', '<strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', '/public/uploads/images/khoa-hoc/thumb11_290013033-1507691529.jpg', 'gHW7bMhCWJk', '<strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', 0, '<strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', 1, 1, 29, NULL, 1, 1, '2017-10-11 10:18:17', '2017-10-11 10:18:18');
 
 -- --------------------------------------------------------
 
@@ -440,6 +447,7 @@ CREATE TABLE `courses_lession` (
   `alias` varchar(255) DEFAULT NULL,
   `slug` varchar(255) DEFAULT NULL,
   `courses_id` int(11) DEFAULT NULL,
+  `video_id` varchar(100) DEFAULT NULL,
   `part_id` int(11) DEFAULT NULL,
   `content` text,
   `status` tinyint(1) NOT NULL DEFAULT '1',
@@ -454,12 +462,26 @@ CREATE TABLE `courses_lession` (
 -- Dumping data for table `courses_lession`
 --
 
-INSERT INTO `courses_lession` (`id`, `name`, `alias`, `slug`, `courses_id`, `part_id`, `content`, `status`, `display_order`, `created_user`, `updated_user`, `created_at`, `updated_at`) VALUES
-(1, 'Trẻ không chịu nghe lời - lo lắng của nhiều ông bố bà mẹ', 'Tre khong chiu nghe loi - lo lang cua nhieu ong bo ba me', 'tre-khong-chiu-nghe-loi-lo-lang-cua-nhieu-ong-bo-ba-me', 1, 1, '<p>Trở th&agrave;nh những &ocirc;ng bố, b&agrave; mẹ th&ocirc;ng minh v&agrave; kh&eacute;o l&eacute;o kh&ocirc;ng phải l&agrave; chuyện dễ. Trong thực tế, nhiều khi bố, mẹ kh&ocirc;ng biết ứng xử ra sao khi trẻ ham chơi, n&oacute;i dối, kh&ocirc;ng lễ ph&eacute;p...</p>\r\n\r\n<p>Gi&aacute;o dục con trẻ cũng giống như m&ocirc;n trượt tuyết, nếu sợ h&atilde;i v&agrave; cố gắng ngả người về ph&iacute;a sườn n&uacute;i, kiểu g&igrave; cũng sẽ bị t&eacute;. Bởi vậy, những ai đ&atilde;, đang v&agrave; sẽ trở th&agrave;nh những &ocirc;ng bố, b&agrave; mẹ cần trang bị cho m&igrave;nh những kỹ năng cần thiết, để cư xử th&ocirc;ng minh khi trẻ kh&ocirc;ng nghe lời.</p>\r\n', 1, 4, 1, 1, '2017-10-09 15:14:37', '2017-10-09 15:14:37'),
-(2, 'Nguyên nhân từ tôi (phần 1)', 'Nguyen nhan tu toi (phan 1)', 'nguyen-nhan-tu-toi-phan-1', 1, 1, '<p>Thực chất trẻ kh&ocirc;ng nghe lời xuất ph&aacute;t từ 4 nguy&ecirc;n nh&acirc;n ch&iacute;nh ở cha mẹ.</p>\r\n\r\n<p>B&agrave;i học n&agrave;y sẽ chỉ ra nguy&ecirc;n nh&acirc;n đầu ti&ecirc;n trong 4 nguy&ecirc;n nh&acirc;n ấy. Đ&oacute; ch&iacute;nh l&agrave; việc cha mẹ thiếu nhận thức, kh&ocirc;ng hiểu thế giới t&acirc;m l&yacute; của trẻ.</p>\r\n\r\n<p>Trước ti&ecirc;n, phụ huynh &atilde;y chấp nhận trẻ v&ocirc; điều kiện: Ch&uacute;ng ta y&ecirc;u thương đứa trẻ kh&ocirc;ng v&igrave; n&oacute; đẹp, th&ocirc;ng minh, c&oacute; năng khiếu...m&agrave; đơn giản n&oacute; l&agrave; đứa trẻ. Sau đ&oacute;, phải hiểu về sự độc đ&aacute;o ri&ecirc;ng biệt của trẻ: Cha mẹ cần hiểu biết thấu đ&aacute;o c&aacute;c đặc trưng t&acirc;m l&yacute; theo từng độ tuổi của con.</p>\r\n\r\n<ul>\r\n	<li>Khi con ở trong giai đoạn 3 năm đầu đời</li>\r\n	<li>Khi con ở giai đoạn tiểu học</li>\r\n	<li>Khi con ở giai đoạn đoạn khủng hoảng tuổi dậy th&igrave;</li>\r\n	<li>Khi con ở trong giai đoạn giao lưu bạn b&egrave;</li>\r\n	<li>Khi con ở trong giai đoạn thanh thiếu ni&ecirc;n</li>\r\n</ul>\r\n', 1, 4, 1, 1, '2017-10-09 15:17:03', '2017-10-09 15:17:03'),
-(3, 'Nguyên nhân từ trẻ', 'Nguyen nhan tu tre', 'nguyen-nhan-tu-tre', 1, 1, '<p>B&agrave;i học chỉ ra 4 nguy&ecirc;n nh&acirc;n từ ph&iacute;a trẻ, khiến trẻ kh&ocirc;ng nghe lời cha, mẹ. Đồng thời chỉ ra những cảm x&uacute;c của cha mẹ tương ứng với từng nguy&ecirc;n nh&acirc;n v&agrave; c&aacute;ch xử l&yacute;.</p>\r\n\r\n<p><strong>4 nguy&ecirc;n nh&acirc;n:</strong></p>\r\n\r\n<p>- Chống đối để được quan t&acirc;m</p>\r\n\r\n<p>- Chống đối để tự khẳng định m&igrave;nh</p>\r\n\r\n<p>- &Yacute; muốn trả th&ugrave;</p>\r\n\r\n<p>- Mất l&ograve;ng tin v&agrave;o th&agrave;nh c&ocirc;ng của bản th&acirc;n</p>\r\n\r\n<p>Trẻ c&agrave;ng kh&oacute; bảo c&agrave;ng mong muốn cha mẹ quan t&acirc;m v&agrave; y&ecirc;u thương.</p>\r\n\r\n<p>Phụ huynh cần hiểu nguy&ecirc;n nh&acirc;n s&acirc;u sa của viecj trẻ kh&ocirc;ng ra đời. Việc t&igrave;m ra l&iacute; do kh&ocirc;ng đon giản bởi nguy&ecirc;n nh&acirc;n th&igrave; kh&aacute;c nhau nhưng biểu hiện lại giống nhau.</p>\r\n\r\n<p><strong>Cảm x&uacute;c của cha mẹ tương ứng với từng nguy&ecirc;n nh&acirc;n:</strong></p>\r\n\r\n<p>- Nếu trẻ đấu tranh để được ch&uacute; &yacute; bằng c&aacute;ch kh&ocirc;ng nghe lời th&igrave; phụ huynh sẽ bực m&igrave;nh.</p>\r\n\r\n<p>Nếu nguy&ecirc;n nh&acirc;n thầm k&iacute;n của việc trẻ kh&ocirc;ng v&acirc;ng lời l&agrave; phả khắng lại &yacute; muốn của cha mẹ th&igrave; phụ huynh sẽ nổi giận.</p>\r\n\r\n<p>Nếu nguy&ecirc;n nh&acirc;n ẩn giấu l&agrave; trả th&ugrave; th&igrave; cảm x&uacute;c đ&aacute;p lại của phụ huynh sẽ l&agrave; tủi giận.</p>\r\n\r\n<p>Khi trẻ khổ th&acirc;m v&igrave; thất bại của m&igrave;nh th&igrave; phụ huynh sẽ rơi v&agrave;o t&acirc;m trạng ch&aacute;n chường, nhiều khi tuyệt vọng.</p>\r\n', 1, 4, 1, 1, '2017-10-09 15:17:43', '2017-10-09 15:17:43'),
-(4, 'Tình huống 1: Cổ vũ, động viên', 'Tinh huong 1: Co vu, dong vien', 'tinh-huong-1-co-vu-dong-vien', 1, 2, '<p>B&agrave;i học ph&acirc;n t&iacute;ch điều cuối c&ugrave;ng trong 3 điều cha mẹ n&ecirc;n thay đổi. Đ&oacute; ch&iacute;nh l&agrave; thay đổi th&oacute;i quen giao tiếp ti&ecirc;u cực.</p>\r\n\r\n<p>Gi&aacute;o dục con bằng phương ph&aacute;p &aacute;m thị: Phương ph&aacute;p n&agrave;y cũng c&oacute; mặt t&iacute;ch cực v&agrave; ti&ecirc;u cực của n&oacute;.&nbsp;</p>\r\n\r\n<p>Trong cuộc sống hằng ng&agrave;y, cha mẹ n&ecirc;n sử dụng nhiều c&acirc;u n&oacute;i mang t&iacute;nh &aacute;m thị t&iacute;ch cực để thay thế cho sự y&ecirc;u cầu, chỉ tr&iacute;ch, tr&aacute;nh để cho trẻ cảm thấy mất tự trọng, mất thể diện đảm bảo mối quan hệ th&acirc;n thiết giữ cha mẹ v&agrave; con c&aacute;i.</p>\r\n\r\n<p>&Aacute;m thị ti&ecirc;u cực cũng c&oacute; ảnh hưởng đến trẻ. N&oacute; khiến trẻ sống trường k&igrave; trong sự bi quan, buồn ch&aacute;n, ảnh hướng đến sự ph&aacute;t triểm t&acirc;m sinh l&iacute; của trẻ, l&agrave;m mối quan hệ giữa cha mẹ v&agrave; con c&aacute;i trở n&ecirc;n xấu đi.</p>\r\n\r\n<p>Nội t&acirc;m của trẻ v&ocirc; c&ugrave;ng yếu đuổi, chỉ cần một c&uacute; sốc nho nhỏ cũng khiến ch&uacute;ng thu m&igrave;nh lại. Khi đ&oacute;, cha mẹ cần cổ vũ động vi&ecirc;n để ch&uacute;ng lu&ocirc;n tr&agrave;n đầy niềm tin.</p>\r\n', 1, 4, 1, 1, '2017-10-09 15:18:49', '2017-10-09 15:18:49'),
-(5, 'Tình huống 2: Sự tự tin, gan dạ', 'Tinh huong 2: Su tu tin, gan da', 'tinh-huong-2-su-tu-tin-gan-da', 1, 2, '<p>B&agrave;i học chỉ ra những sai lầm thường mắc phải của c&aacute;c bậc phụ huynh khi thấy trẻ sợ h&atilde;i một điều g&igrave; đ&oacute;. Khi cha mẹ ph&aacute;t hiện con m&igrave;nh nh&aacute;t gan, cha mẹ cần d&agrave;nh thời gian n&oacute;i chuyện c&ugrave;ng trẻ t&igrave;m lại sự dũng cảm:</p>\r\n\r\n<p>- D&agrave;nh thời gian n&oacute;i chuyện c&ugrave;ng trẻ</p>\r\n\r\n<p>- Cho trẻ tham gia nhiều hoạt động c&oacute; &iacute;ch</p>\r\n\r\n<p>- Kể cho trẻ nghe nhiều c&acirc;u chuyện về c&aacute;c bậc anh h&ugrave;ng</p>\r\n\r\n<p>- Giải th&iacute;ch cho trẻ biết nhan gan l&agrave; biểu hiện của sự yếu đuối</p>\r\n\r\n<p>- N&ecirc;n để trẻ tiếp x&uacute;c với nhiều bạn b&egrave;</p>\r\n', 1, 4, 1, 1, '2017-10-09 15:19:23', '2017-10-09 15:19:23');
+INSERT INTO `courses_lession` (`id`, `name`, `alias`, `slug`, `courses_id`, `video_id`, `part_id`, `content`, `status`, `display_order`, `created_user`, `updated_user`, `created_at`, `updated_at`) VALUES
+(1, 'Trẻ không chịu nghe lời - lo lắng của nhiều ông bố bà mẹ', 'Tre khong chiu nghe loi - lo lang cua nhieu ong bo ba me', 'tre-khong-chiu-nghe-loi-lo-lang-cua-nhieu-ong-bo-ba-me', 1, '', 1, '<p>Trở th&agrave;nh những &ocirc;ng bố, b&agrave; mẹ th&ocirc;ng minh v&agrave; kh&eacute;o l&eacute;o kh&ocirc;ng phải l&agrave; chuyện dễ. Trong thực tế, nhiều khi bố, mẹ kh&ocirc;ng biết ứng xử ra sao khi trẻ ham chơi, n&oacute;i dối, kh&ocirc;ng lễ ph&eacute;p...</p>\r\n\r\n<p>Gi&aacute;o dục con trẻ cũng giống như m&ocirc;n trượt tuyết, nếu sợ h&atilde;i v&agrave; cố gắng ngả người về ph&iacute;a sườn n&uacute;i, kiểu g&igrave; cũng sẽ bị t&eacute;. Bởi vậy, những ai đ&atilde;, đang v&agrave; sẽ trở th&agrave;nh những &ocirc;ng bố, b&agrave; mẹ cần trang bị cho m&igrave;nh những kỹ năng cần thiết, để cư xử th&ocirc;ng minh khi trẻ kh&ocirc;ng nghe lời.</p>\r\n', 1, 4, 1, 1, '2017-10-09 15:14:37', '2017-10-09 15:14:37'),
+(2, 'Nguyên nhân từ tôi (phần 1)', 'Nguyen nhan tu toi (phan 1)', 'nguyen-nhan-tu-toi-phan-1', 1, '', 1, '<p>Thực chất trẻ kh&ocirc;ng nghe lời xuất ph&aacute;t từ 4 nguy&ecirc;n nh&acirc;n ch&iacute;nh ở cha mẹ.</p>\r\n\r\n<p>B&agrave;i học n&agrave;y sẽ chỉ ra nguy&ecirc;n nh&acirc;n đầu ti&ecirc;n trong 4 nguy&ecirc;n nh&acirc;n ấy. Đ&oacute; ch&iacute;nh l&agrave; việc cha mẹ thiếu nhận thức, kh&ocirc;ng hiểu thế giới t&acirc;m l&yacute; của trẻ.</p>\r\n\r\n<p>Trước ti&ecirc;n, phụ huynh &atilde;y chấp nhận trẻ v&ocirc; điều kiện: Ch&uacute;ng ta y&ecirc;u thương đứa trẻ kh&ocirc;ng v&igrave; n&oacute; đẹp, th&ocirc;ng minh, c&oacute; năng khiếu...m&agrave; đơn giản n&oacute; l&agrave; đứa trẻ. Sau đ&oacute;, phải hiểu về sự độc đ&aacute;o ri&ecirc;ng biệt của trẻ: Cha mẹ cần hiểu biết thấu đ&aacute;o c&aacute;c đặc trưng t&acirc;m l&yacute; theo từng độ tuổi của con.</p>\r\n\r\n<ul>\r\n	<li>Khi con ở trong giai đoạn 3 năm đầu đời</li>\r\n	<li>Khi con ở giai đoạn tiểu học</li>\r\n	<li>Khi con ở giai đoạn đoạn khủng hoảng tuổi dậy th&igrave;</li>\r\n	<li>Khi con ở trong giai đoạn giao lưu bạn b&egrave;</li>\r\n	<li>Khi con ở trong giai đoạn thanh thiếu ni&ecirc;n</li>\r\n</ul>\r\n', 1, 4, 1, 1, '2017-10-09 15:17:03', '2017-10-09 15:17:03'),
+(3, 'Nguyên nhân từ trẻ', 'Nguyen nhan tu tre', 'nguyen-nhan-tu-tre', 1, '', 1, '<p>B&agrave;i học chỉ ra 4 nguy&ecirc;n nh&acirc;n từ ph&iacute;a trẻ, khiến trẻ kh&ocirc;ng nghe lời cha, mẹ. Đồng thời chỉ ra những cảm x&uacute;c của cha mẹ tương ứng với từng nguy&ecirc;n nh&acirc;n v&agrave; c&aacute;ch xử l&yacute;.</p>\r\n\r\n<p><strong>4 nguy&ecirc;n nh&acirc;n:</strong></p>\r\n\r\n<p>- Chống đối để được quan t&acirc;m</p>\r\n\r\n<p>- Chống đối để tự khẳng định m&igrave;nh</p>\r\n\r\n<p>- &Yacute; muốn trả th&ugrave;</p>\r\n\r\n<p>- Mất l&ograve;ng tin v&agrave;o th&agrave;nh c&ocirc;ng của bản th&acirc;n</p>\r\n\r\n<p>Trẻ c&agrave;ng kh&oacute; bảo c&agrave;ng mong muốn cha mẹ quan t&acirc;m v&agrave; y&ecirc;u thương.</p>\r\n\r\n<p>Phụ huynh cần hiểu nguy&ecirc;n nh&acirc;n s&acirc;u sa của viecj trẻ kh&ocirc;ng ra đời. Việc t&igrave;m ra l&iacute; do kh&ocirc;ng đon giản bởi nguy&ecirc;n nh&acirc;n th&igrave; kh&aacute;c nhau nhưng biểu hiện lại giống nhau.</p>\r\n\r\n<p><strong>Cảm x&uacute;c của cha mẹ tương ứng với từng nguy&ecirc;n nh&acirc;n:</strong></p>\r\n\r\n<p>- Nếu trẻ đấu tranh để được ch&uacute; &yacute; bằng c&aacute;ch kh&ocirc;ng nghe lời th&igrave; phụ huynh sẽ bực m&igrave;nh.</p>\r\n\r\n<p>Nếu nguy&ecirc;n nh&acirc;n thầm k&iacute;n của việc trẻ kh&ocirc;ng v&acirc;ng lời l&agrave; phả khắng lại &yacute; muốn của cha mẹ th&igrave; phụ huynh sẽ nổi giận.</p>\r\n\r\n<p>Nếu nguy&ecirc;n nh&acirc;n ẩn giấu l&agrave; trả th&ugrave; th&igrave; cảm x&uacute;c đ&aacute;p lại của phụ huynh sẽ l&agrave; tủi giận.</p>\r\n\r\n<p>Khi trẻ khổ th&acirc;m v&igrave; thất bại của m&igrave;nh th&igrave; phụ huynh sẽ rơi v&agrave;o t&acirc;m trạng ch&aacute;n chường, nhiều khi tuyệt vọng.</p>\r\n', 1, 4, 1, 1, '2017-10-09 15:17:43', '2017-10-09 15:17:43'),
+(4, 'Tình huống 1: Cổ vũ, động viên', 'Tinh huong 1: Co vu, dong vien', 'tinh-huong-1-co-vu-dong-vien', 1, '', 2, '<p>B&agrave;i học ph&acirc;n t&iacute;ch điều cuối c&ugrave;ng trong 3 điều cha mẹ n&ecirc;n thay đổi. Đ&oacute; ch&iacute;nh l&agrave; thay đổi th&oacute;i quen giao tiếp ti&ecirc;u cực.</p>\r\n\r\n<p>Gi&aacute;o dục con bằng phương ph&aacute;p &aacute;m thị: Phương ph&aacute;p n&agrave;y cũng c&oacute; mặt t&iacute;ch cực v&agrave; ti&ecirc;u cực của n&oacute;.&nbsp;</p>\r\n\r\n<p>Trong cuộc sống hằng ng&agrave;y, cha mẹ n&ecirc;n sử dụng nhiều c&acirc;u n&oacute;i mang t&iacute;nh &aacute;m thị t&iacute;ch cực để thay thế cho sự y&ecirc;u cầu, chỉ tr&iacute;ch, tr&aacute;nh để cho trẻ cảm thấy mất tự trọng, mất thể diện đảm bảo mối quan hệ th&acirc;n thiết giữ cha mẹ v&agrave; con c&aacute;i.</p>\r\n\r\n<p>&Aacute;m thị ti&ecirc;u cực cũng c&oacute; ảnh hưởng đến trẻ. N&oacute; khiến trẻ sống trường k&igrave; trong sự bi quan, buồn ch&aacute;n, ảnh hướng đến sự ph&aacute;t triểm t&acirc;m sinh l&iacute; của trẻ, l&agrave;m mối quan hệ giữa cha mẹ v&agrave; con c&aacute;i trở n&ecirc;n xấu đi.</p>\r\n\r\n<p>Nội t&acirc;m của trẻ v&ocirc; c&ugrave;ng yếu đuổi, chỉ cần một c&uacute; sốc nho nhỏ cũng khiến ch&uacute;ng thu m&igrave;nh lại. Khi đ&oacute;, cha mẹ cần cổ vũ động vi&ecirc;n để ch&uacute;ng lu&ocirc;n tr&agrave;n đầy niềm tin.</p>\r\n', 1, 4, 1, 1, '2017-10-09 15:18:49', '2017-10-09 15:18:49'),
+(5, 'Tình huống 2: Sự tự tin, gan dạ', 'Tinh huong 2: Su tu tin, gan da', 'tinh-huong-2-su-tu-tin-gan-da', 1, '', 2, '<p>B&agrave;i học chỉ ra những sai lầm thường mắc phải của c&aacute;c bậc phụ huynh khi thấy trẻ sợ h&atilde;i một điều g&igrave; đ&oacute;. Khi cha mẹ ph&aacute;t hiện con m&igrave;nh nh&aacute;t gan, cha mẹ cần d&agrave;nh thời gian n&oacute;i chuyện c&ugrave;ng trẻ t&igrave;m lại sự dũng cảm:</p>\r\n\r\n<p>- D&agrave;nh thời gian n&oacute;i chuyện c&ugrave;ng trẻ</p>\r\n\r\n<p>- Cho trẻ tham gia nhiều hoạt động c&oacute; &iacute;ch</p>\r\n\r\n<p>- Kể cho trẻ nghe nhiều c&acirc;u chuyện về c&aacute;c bậc anh h&ugrave;ng</p>\r\n\r\n<p>- Giải th&iacute;ch cho trẻ biết nhan gan l&agrave; biểu hiện của sự yếu đuối</p>\r\n\r\n<p>- N&ecirc;n để trẻ tiếp x&uacute;c với nhiều bạn b&egrave;</p>\r\n', 1, 4, 1, 1, '2017-10-09 15:19:23', '2017-10-09 15:19:23'),
+(6, 'Bài 1', 'Bai 1', 'bai-1', 4, 'a6aWO6KP0ic', 8, 'Noi dung bai hoc', 1, 1, 1, 1, '2017-10-11 10:04:48', '2017-10-11 10:04:48'),
+(7, 'Bài 2', 'Bai 2', 'bai-2', 4, 'ThSILbIHWQ4', 8, 'Noi dung bai 2', 1, 2, 1, 1, '2017-10-11 10:05:05', '2017-10-11 10:05:05'),
+(8, 'Bài 3', 'Bai 3', 'bai-3', 4, 'zZjGBB5X3Z4', 8, 'Nội dung b&agrave;i 3', 1, 3, 1, 1, '2017-10-11 10:05:24', '2017-10-11 10:05:24'),
+(9, 'Bài 1', 'Bai 1', 'bai-1', 3, 'gHW7bMhCWJk', 6, '<strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', 1, 1, 1, 1, '2017-10-11 10:07:33', '2017-10-11 10:07:33'),
+(10, 'Bài 2', 'Bai 2', 'bai-2', 3, 'gHW7bMhCWJk', 6, '<strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', 1, 2, 1, 1, '2017-10-11 10:07:53', '2017-10-11 10:07:53'),
+(11, 'Bài 1: Tổng quan về Facebook & Facebook Marketing', 'Bai 1: Tong quan ve Facebook & Facebook Marketing', 'bai-1-tong-quan-ve-facebook-facebook-marketing', 5, '0zA7tbqTAZE', 11, '<strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', 1, 1, 1, 1, '2017-10-11 10:14:01', '2017-10-11 10:14:01'),
+(12, 'Bài 2: Thuật toán cơ bản của Facebook', 'Bai 2: Thuat toan co ban cua Facebook', 'bai-2-thuat-toan-co-ban-cua-facebook', 5, '31v-fkYqvpM', 11, '<strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', 1, 2, 1, 1, '2017-10-11 10:14:24', '2017-10-11 10:14:24'),
+(13, 'Khái niệm thương hiệu', 'Khai niem thuong hieu', 'khai-niem-thuong-hieu', 6, 'gHW7bMhCWJk', 12, '<strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', 1, 1, 1, 1, '2017-10-11 10:16:40', '2017-10-11 10:16:40'),
+(14, 'Yếu tố cấu thành thương hiệu (tiết 1)', 'Yeu to cau thanh thuong hieu (tiet 1)', 'yeu-to-cau-thanh-thuong-hieu-tiet-1', 6, 'gHW7bMhCWJk', 12, '<strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', 1, 2, 1, 1, '2017-10-11 10:16:53', '2017-10-11 10:16:53'),
+(15, 'Phân tích môi trường marketing', 'Phan tich moi truong marketing', 'phan-tich-moi-truong-marketing', 6, 'gHW7bMhCWJk', 13, '<strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', 1, 1, 1, 1, '2017-10-11 10:17:10', '2017-10-11 10:17:10'),
+(16, 'Phân tích khách hàng, đối thủ cạnh tranh', 'Phan tich khach hang, doi thu canh tranh', 'phan-tich-khach-hang-doi-thu-canh-tranh', 6, 'gHW7bMhCWJk', 13, '<strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', 1, 2, 1, 1, '2017-10-11 10:17:25', '2017-10-11 10:17:25'),
+(17, 'Tổng quan nhiệm vụ của người bán hàng (phần 1)', 'Tong quan nhiem vu cua nguoi ban hang (phan 1)', 'tong-quan-nhiem-vu-cua-nguoi-ban-hang-phan-1', 7, 'gHW7bMhCWJk', 15, '<strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', 1, 1, 1, 1, '2017-10-11 10:18:48', '2017-10-11 10:18:48'),
+(18, 'Tổng quan nhiệm vụ của người bán hàng (phần 2)', 'Tong quan nhiem vu cua nguoi ban hang (phan 2)', 'tong-quan-nhiem-vu-cua-nguoi-ban-hang-phan-2', 7, 'gHW7bMhCWJk', 15, '<strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', 1, 2, 1, 1, '2017-10-11 10:19:36', '2017-10-11 10:19:36'),
+(19, 'Kỹ năng cần có của người bán hàng (phần 1)', 'Ky nang can co cua nguoi ban hang (phan 1)', 'ky-nang-can-co-cua-nguoi-ban-hang-phan-1', 7, 'gHW7bMhCWJk', 15, '<strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', 1, 3, 1, 1, '2017-10-11 10:19:59', '2017-10-11 10:19:59');
 
 -- --------------------------------------------------------
 
@@ -495,7 +517,57 @@ INSERT INTO `courses_part` (`id`, `name`, `alias`, `slug`, `courses_id`, `status
 (7, 'Chương II: Định hướng cuộc đời', 'Chuong II: Dinh huong cuoc doi', 'chuong-ii-dinh-huong-cuoc-doi', 3, 1, 2, 1, 1, '2017-10-09 14:20:47', '2017-10-09 14:20:47'),
 (8, 'Chương 1: Những liệu pháp về sinh lý', 'Chuong 1: Nhung lieu phap ve sinh ly', 'chuong-1-nhung-lieu-phap-ve-sinh-ly', 4, 1, 1, 1, 1, '2017-10-09 14:21:14', '2017-10-09 14:21:14'),
 (9, 'Chương 2: Biện pháp tinh thần', 'Chuong 2: Bien phap tinh than', 'chuong-2-bien-phap-tinh-than', 4, 1, 2, 1, 1, '2017-10-09 14:21:21', '2017-10-09 14:21:21'),
-(10, 'Chương 3: Xử trí thông minh', 'Chuong 3: Xu tri thong minh', 'chuong-3-xu-tri-thong-minh', 4, 1, 3, 1, 1, '2017-10-09 14:21:28', '2017-10-09 14:21:28');
+(10, 'Chương 3: Xử trí thông minh', 'Chuong 3: Xu tri thong minh', 'chuong-3-xu-tri-thong-minh', 4, 1, 3, 1, 1, '2017-10-09 14:21:28', '2017-10-09 14:21:28'),
+(11, 'Các bài học', 'Cac bai hoc', 'cac-bai-hoc', 5, 1, 1, 1, 1, '2017-10-11 10:13:17', '2017-10-11 10:13:17'),
+(12, 'Thương hiệu và quy trình xây dựng thương hiệu mạnh', 'Thuong hieu va quy trinh xay dung thuong hieu manh', 'thuong-hieu-va-quy-trinh-xay-dung-thuong-hieu-manh', 6, 1, 1, 1, 1, '2017-10-11 10:16:01', '2017-10-11 10:16:01'),
+(13, 'Kỹ năng phân tích môi trường', 'Ky nang phan tich moi truong', 'ky-nang-phan-tich-moi-truong', 6, 1, 2, 1, 1, '2017-10-11 10:16:11', '2017-10-11 10:16:11'),
+(14, 'Kỹ năng hoạch định phát triển thương hiệu', 'Ky nang hoach dinh phat trien thuong hieu', 'ky-nang-hoach-dinh-phat-trien-thuong-hieu', 6, 1, 3, 1, 1, '2017-10-11 10:16:19', '2017-10-11 10:16:19'),
+(15, 'Các bài học', 'Cac bai hoc', 'cac-bai-hoc', 7, 1, 1, 1, 1, '2017-10-11 10:18:33', '2017-10-11 10:18:33');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `customers`
+--
+
+CREATE TABLE `customers` (
+  `id` int(11) NOT NULL,
+  `full_name` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `address` varchar(255) NOT NULL,
+  `phone` varchar(20) NOT NULL,
+  `hand_phone` varchar(20) NOT NULL,
+  `company` varchar(255) NOT NULL,
+  `tax_no` varchar(50) NOT NULL,
+  `username` varchar(100) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `type` tinyint(4) NOT NULL,
+  `score` int(11) NOT NULL DEFAULT '0',
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  `last_login` datetime NOT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT '1',
+  `country_id` int(11) NOT NULL DEFAULT '235',
+  `district_id` int(11) DEFAULT NULL,
+  `city_id` int(11) DEFAULT NULL,
+  `ward_id` int(11) NOT NULL,
+  `facebook_id` int(11) DEFAULT NULL,
+  `address_type` tinyint(4) DEFAULT '0',
+  `image_url` varchar(255) DEFAULT NULL,
+  `key_reset` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `customers`
+--
+
+INSERT INTO `customers` (`id`, `full_name`, `email`, `address`, `phone`, `hand_phone`, `company`, `tax_no`, `username`, `password`, `type`, `score`, `created_at`, `updated_at`, `last_login`, `status`, `country_id`, `district_id`, `city_id`, `ward_id`, `facebook_id`, `address_type`, `image_url`, `key_reset`) VALUES
+(1, 'Út Hoàng', 'hoangnhonline@gmail.com', 'savgads', '0917492306', '', '', '', '', '', 0, 0, '2017-09-17 08:06:53', '2017-09-17 10:07:59', '0000-00-00 00:00:00', 1, 235, 486, 294, 10443, 2147483647, 1, 'https://scontent.xx.fbcdn.net/v/t1.0-1/p200x200/19598946_1079663028832359_7932678815044683219_n.jpg?oh=0f710732fee83fc4473c292d0d5cc274&oe=5A4FFA74', NULL),
+(2, 'dsgdgasdfg', 'aaa@aa.com', 'q3131241', '09876543', '', '', '', '', '$2y$10$ROjkz.FexLrgv5Pc1tfTsexbu1KfVB6O2YpUmUXVfU6mZVcZBGuAS', 0, 0, '2017-09-17 08:39:15', '2017-09-17 08:43:09', '0000-00-00 00:00:00', 1, 235, 485, 294, 10433, NULL, 1, NULL, NULL),
+(3, 'Mr Hoàng', '', '131314', '0917492306', '', '', '', '', '$2y$10$MuVZDC2NsmJVNkD4LE6huuvSsOWlRWMa0tjqF7cnrWA12fkm6h1Qa', 0, 0, '2017-09-17 08:58:08', '2017-09-17 09:04:53', '0000-00-00 00:00:00', 1, 235, 496, 294, 10545, NULL, 1, NULL, NULL),
+(4, 'Tran Tien', 'thmtien@yahoo.com', '1028/46/31 Tan Ky Tan Quy', '0949098118', '', '', '', '', '$2y$10$GfebJFuBboa7IHtmJ87Oa.ltzL7yY8zNM1fRz6x.ES9Jgs8Jd1lJO', 0, 0, '2017-09-17 15:15:28', '2017-09-17 15:16:04', '0000-00-00 00:00:00', 1, 235, 496, 294, 10541, NULL, 1, NULL, NULL),
+(23, 'Trần', 'thmtien@gmail.com', '1028 Tân Kỳ Tân Quý', '0995552456', '', '', '', '', '$2y$10$k0MPY0KHJWlsxrbobf235.nsINvtbKuTPpCIYHJe.HMsxS/tqppC2', 0, 0, '2017-09-21 06:28:34', '2017-09-21 07:00:33', '0000-00-00 00:00:00', 1, 235, 496, 294, 10541, NULL, 1, NULL, NULL),
+(24, '', 'hoangnhpublic@gmail.com', '', '', '', '', '', '', '$2y$10$eLN1uKicxM880/27jVlutufeGFI454gPUsjVhvZte4Mn20a.773IG', 0, 0, '2017-10-21 23:30:10', '2017-10-21 23:30:10', '0000-00-00 00:00:00', 1, 235, NULL, NULL, 0, NULL, 0, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -566,6 +638,35 @@ CREATE TABLE `info_seo` (
   `custom_text` text NOT NULL,
   `image_url` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `livestream`
+--
+
+CREATE TABLE `livestream` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `alias` varchar(255) DEFAULT NULL,
+  `slug` varchar(255) DEFAULT NULL,
+  `description` text,
+  `video_id` varchar(100) DEFAULT NULL,
+  `teacher_id` int(11) DEFAULT NULL,
+  `date_start` datetime DEFAULT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1 : chua dien ra, 2 : da dien ra',
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `created_user` int(11) DEFAULT NULL,
+  `updated_user` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `livestream`
+--
+
+INSERT INTO `livestream` (`id`, `name`, `alias`, `slug`, `description`, `video_id`, `teacher_id`, `date_start`, `status`, `created_at`, `updated_at`, `created_user`, `updated_user`) VALUES
+(1, 'Chia sẻ cách học tiếng Anh cho  người mất căn bản', 'Chia se cach hoc tieng Anh cho  nguoi mat can ban', 'chia-se-cach-hoc-tieng-anh-cho-nguoi-mat-can-ban', 'Livestream chia sẽ chi tiết cách học tiếng Anh', 'G4GgoHYfoNs', 9, '2017-10-18 11:00:00', 2, '2017-10-14 20:09:10', '2017-10-15 09:12:36', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -693,7 +794,13 @@ INSERT INTO `meta_data` (`id`, `title`, `description`, `keywords`, `custom_text`
 (23, NULL, '', '', '', 1, 1, '2017-10-09 13:48:21', '2017-10-09 13:48:21'),
 (24, NULL, '', '', '', 1, 1, '2017-10-09 13:53:33', '2017-10-09 13:53:33'),
 (25, NULL, '', '', '', 1, 1, '2017-10-09 13:54:16', '2017-10-09 13:54:16'),
-(26, NULL, '', '', '', 1, 1, '2017-10-09 13:56:28', '2017-10-09 13:56:28');
+(26, NULL, '', '', '', 1, 1, '2017-10-09 13:56:28', '2017-10-09 13:56:28'),
+(27, NULL, '', '', '', 1, 1, '2017-10-11 10:12:49', '2017-10-11 10:12:49'),
+(28, NULL, '', '', '', 1, 1, '2017-10-11 10:15:50', '2017-10-11 10:15:50'),
+(29, NULL, '', '', '', 1, 1, '2017-10-11 10:18:18', '2017-10-11 10:18:18'),
+(30, '', '', '', '', 1, 1, '2017-10-11 13:11:11', '2017-10-11 13:11:11'),
+(31, NULL, '', '', '', 1, 1, '2017-10-11 13:14:56', '2017-10-11 13:14:56'),
+(32, NULL, '', '', '', 1, 1, '2017-10-11 13:17:16', '2017-10-11 13:17:16');
 
 -- --------------------------------------------------------
 
@@ -801,7 +908,7 @@ CREATE TABLE `pages` (
 --
 
 INSERT INTO `pages` (`id`, `title`, `alias`, `description`, `content`, `image_url`, `slug`, `status`, `meta_title`, `meta_description`, `meta_keywords`, `custom_text`, `created_user`, `updated_user`, `created_at`, `updated_at`) VALUES
-(8, 'Giới thiệu', 'Gioi thieu', 'Giới thiệu', '<strong>C&ocirc;ng ty Cổ phần Thiết kế X&acirc;y dựng v&agrave; Tư vấn Đầu tư Nguyễn Gia Ph&aacute;t (Houseland)&nbsp;</strong>l&agrave; một C&ocirc;ng ty chuy&ecirc;n về thiết kế, thi c&ocirc;ng x&acirc;y mới, sửa chữa, cải tạo n&acirc;ng cấp Nh&agrave; phố v&agrave; Biệt thự cao cấp. Trụ sở c&ocirc;ng ty đặt tại T&ograve;a nh&agrave; văn ph&ograve;ng số 166 đường Nguyễn Ho&agrave;ng, phường An Ph&uacute;, quận 2,Th&agrave;nh phố Hồ Ch&iacute; Minh.<br />\r\n<br />\r\nNg&agrave;y nay, c&ugrave;ng với sự ph&aacute;t triển của th&agrave;nh phố đ&ocirc; thị, nhu cầu x&acirc;y dựng mới Nh&agrave; ở của nh&acirc;n d&acirc;n ng&agrave;y c&agrave;ng tăng. Tuy nhi&ecirc;n, lĩnh vực&nbsp;Sửa chữa, Cải tạo n&acirc;ng cấp, Sơn bả ma t&iacute;t trang tr&iacute;&nbsp;c&aacute;c Nh&agrave;, Khu nh&agrave;, Khu chung cư cũng l&agrave; một nhu cầu hết sức bức thiết.<br />\r\n<br />\r\nC&ocirc;ng việc Sửa chữa, n&acirc;ng cấp cải tạo đ&ograve;i hỏi ngo&agrave;i chuy&ecirc;n m&ocirc;n, người kiến tr&uacute;c sư, kỹ sư c&ograve;n cần phải c&oacute; nhiều kinh nghiệm thực tế, sự tinh tế sắc sảo trong đ&aacute;nh gi&aacute;, đưa ra phương &aacute;n thiết kế xử l&yacute; tối ưu.Người thợ l&agrave;m c&ocirc;ng t&aacute;c Sửa chữa cần kỹ năng nghề nghiệp cao, sự chuy&ecirc;n nghiệp, l&agrave;nh nghề c&ograve;n cao hơn c&ocirc;ng t&aacute;c x&acirc;y mới. Nhận thức đ&uacute;ng đắn được điều đ&oacute;, C&ocirc;ng ty Cổ phần Thiết kế X&acirc;y dựng v&agrave; Tư vấn Đầu tư Nguyễn Gia Ph&aacute;t với đội ngũ c&aacute;n bộ l&agrave; những kiến tr&uacute;c sư, kỹ sư giỏi, c&oacute; kinh nghiệm l&acirc;u năm trong nghề v&agrave; đội ngũ thợ l&agrave;nh nghề, chuy&ecirc;n nghiệp sẽ đ&aacute;p ứng được những đ&ograve;i hỏi cao của Qu&yacute; kh&aacute;ch h&agrave;ng, kể cả những kh&aacute;ch h&agrave;ng kh&oacute; t&iacute;nh nhất.<br />\r\n<br />\r\nCh&uacute;ng t&ocirc;i: Kiến tr&uacute;c sư L&ecirc; Xu&acirc;n Nguy&ecirc;n &ndash; Gi&aacute;m đốc điều h&agrave;nh; Kỹ sư x&acirc;y dựng Nguyễn Xu&acirc;n Sắc &ndash; Ph&oacute; gi&aacute;m đốc kỹ thuật c&ugrave;ng với đội ngũ gần 20 kiến tr&uacute;c sư, kỹ sư x&acirc;y dựng, kỹ sư điện, cấp tho&aacute;t nước v&agrave; hơn 80 c&ocirc;ng nh&acirc;n l&agrave;nh nghề xin trung thực, nhiệt t&igrave;nh, t&acirc;m huyết phục vụ Qu&yacute; kh&aacute;ch h&agrave;ng khu vực th&agrave;nh phố Hồ Ch&iacute; Minh.<br />\r\nNội dung giới thiệu HOUSELAND', '', 'gioi-thieu', 1, 'Giới thiệu', 'Giới thiệu', 'Giới thiệu', '', 1, 1, '2017-08-29 00:00:00', '2017-09-27 07:47:13'),
+(8, 'Giới thiệu', 'Gioi thieu', 'Giới thiệu', '<strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.<br />\r\n<br />\r\n<strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.<br />\r\n<br />\r\n<strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.<br />\r\n<br />\r\n<strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', '', 'gioi-thieu', 1, 'Giới thiệu', 'Giới thiệu', 'Giới thiệu', '', 1, 1, '2017-08-29 00:00:00', '2017-10-11 11:01:16'),
 (10, 'Lịch Sử Hình Thành', 'Lich Su Hinh Thanh', '', '', '', 'lich-su-hinh-thanh', 1, 'Lịch Sử Hình Thành', '', 'Lịch Sử Hình Thành', '', 1, 1, '2017-09-28 21:40:36', '2017-09-28 21:46:12'),
 (11, 'Lĩnh Vực Hoạt Động', 'Linh Vuc Hoat Dong', '', '', '', 'linh-vuc-hoat-dong', 1, 'Lĩnh Vực Hoạt Động', '', 'Lĩnh Vực Hoạt Động', '', 1, 1, '2017-09-28 21:43:29', '2017-09-28 21:43:29');
 
@@ -819,6 +926,7 @@ CREATE TABLE `quiz` (
   `description` varchar(500) DEFAULT NULL,
   `content` text,
   `image_url` varchar(255) DEFAULT NULL,
+  `duration` tinyint(4) DEFAULT NULL,
   `is_hot` tinyint(1) NOT NULL DEFAULT '0',
   `status` tinyint(1) NOT NULL DEFAULT '1',
   `meta_id` bigint(20) DEFAULT NULL,
@@ -830,6 +938,14 @@ CREATE TABLE `quiz` (
   `updated_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `quiz`
+--
+
+INSERT INTO `quiz` (`id`, `name`, `alias`, `slug`, `description`, `content`, `image_url`, `duration`, `is_hot`, `status`, `meta_id`, `cate_id`, `display_order`, `created_user`, `updated_user`, `created_at`, `updated_at`) VALUES
+(1, 'BÀI TEST IQ SỐ 1', 'BAI TEST IQ SO 1', 'bai-test-iq-so-1', '', NULL, '', 1, 0, 1, 31, 1, 1, 1, 1, '2017-10-11 13:14:55', '2017-10-22 13:44:54'),
+(2, 'BÀI TEST IQ SỐ 2', 'BAI TEST IQ SO 2', 'bai-test-iq-so-2', '', NULL, '', NULL, 0, 1, 32, 1, 2, 1, 1, '2017-10-11 13:17:16', '2017-10-11 13:17:33');
+
 -- --------------------------------------------------------
 
 --
@@ -840,8 +956,119 @@ CREATE TABLE `quiz_answers` (
   `id` int(11) NOT NULL,
   `content` text,
   `question_id` int(11) DEFAULT NULL,
+  `display_order` tinyint(4) DEFAULT NULL,
   `is_true` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `quiz_answers`
+--
+
+INSERT INTO `quiz_answers` (`id`, `content`, `question_id`, `display_order`, `is_true`) VALUES
+(121, 'A', 2, 1, 0),
+(122, 'B', 2, 2, 0),
+(123, 'C', 2, 3, 1),
+(124, 'D', 2, 4, 0),
+(125, '85647', 1, 1, 1),
+(126, '86574', 1, 2, 0),
+(127, '78654', 1, 3, 0),
+(128, '76845', 1, 4, 0),
+(129, 'Casey', 3, 1, 1),
+(130, 'Stuart', 3, 2, 0),
+(131, 'Ritchie', 3, 3, 0),
+(132, 'Billie', 3, 4, 0),
+(133, '1', 4, 1, 0),
+(134, '2', 4, 2, 0),
+(135, '3', 4, 3, 0),
+(136, '4', 4, 4, 1),
+(137, 'J', 5, 1, 0),
+(138, 'H', 5, 2, 0),
+(139, 'R', 5, 3, 0),
+(140, 'D', 5, 4, 1),
+(141, '20', 6, 1, 1),
+(142, '18', 6, 2, 0),
+(143, '19', 6, 3, 0),
+(144, '23', 6, 4, 0),
+(145, '22 tuổi', 7, 1, 0),
+(146, '18 tuổi', 7, 2, 0),
+(147, '20 tuổi', 7, 3, 0),
+(148, '16 tuổi', 7, 4, 1),
+(149, '9', 8, 1, 1),
+(150, '6', 8, 2, 0),
+(151, '8', 8, 3, 0),
+(152, '7', 8, 4, 0),
+(153, '3', 9, 1, 1),
+(154, '4', 9, 2, 0),
+(155, '2', 9, 3, 0),
+(156, '5', 9, 4, 0),
+(157, '34', 10, 1, 0),
+(158, '24', 10, 2, 0),
+(159, '25', 10, 3, 1),
+(160, '29', 10, 4, 0),
+(161, '4, 6, 1, 3, 5, 2 hoặc 2, 5, 3, 1, 6, 4.', 11, 1, 1),
+(162, '4, 6, 3, 1, 5, 2 hoặc 2, 5, 3, 1, 6, 4.', 11, 2, 0),
+(163, '4, 6, 1, 5, 3, 2 hoặc 2, 5, 3, 1, 6, 4.', 11, 3, 0),
+(164, '4, 6, 1, 3, 5, 2 hoặc 2, 5, 3, 1, 4, 6.', 11, 4, 0),
+(165, '+', 12, 1, 1),
+(166, '-', 12, 2, 0),
+(167, 'x', 12, 3, 0),
+(168, '÷', 12, 4, 0),
+(169, '+', 13, 1, 1),
+(170, '-', 13, 2, 0),
+(171, 'x', 13, 3, 0),
+(172, '÷', 13, 4, 0),
+(173, '20', 14, 1, 1),
+(174, '18', 14, 2, 0),
+(175, '19', 14, 3, 0),
+(176, '23', 14, 4, 0),
+(177, '34 VÀ 4', 15, 1, 0),
+(178, '32 VÀ 4', 15, 2, 0),
+(179, '31 VÀ 4', 15, 3, 1),
+(180, '33 VÀ 4', 15, 4, 0),
+(181, '60', 16, 1, 0),
+(182, '70', 16, 2, 0),
+(183, '64', 16, 3, 0),
+(184, '72', 16, 4, 1),
+(185, '+', 17, 1, 0),
+(186, '-', 17, 2, 1),
+(187, 'x', 17, 3, 0),
+(188, '÷', 17, 4, 0),
+(189, 'a', 18, 1, 0),
+(190, 'b', 18, 2, 0),
+(191, 'c', 18, 3, 1),
+(192, 'd', 18, 4, 0),
+(193, 'Hình a', 19, 1, 1),
+(194, 'Hình b', 19, 2, 0),
+(195, 'Hình c', 19, 3, 0),
+(196, 'Hình d', 19, 4, 0),
+(197, '6 dặm và 6 dặm', 20, 1, 0),
+(198, '5 dặm và 5 dặm', 20, 2, 0),
+(199, '10 dặm và 10 dặm', 20, 3, 1),
+(200, '14 dặm và 14 dặm', 20, 4, 0),
+(201, '3.5', 21, 1, 0),
+(202, '3.6', 21, 2, 1),
+(203, '3', 21, 3, 0),
+(204, '3.3', 21, 4, 0),
+(205, '6', 22, 1, 0),
+(206, '7', 22, 2, 0),
+(207, '8', 22, 3, 0),
+(208, '9', 22, 4, 1),
+(209, '20 phút', 23, 1, 0),
+(210, '22 phút', 23, 2, 1),
+(211, '24 phút', 23, 3, 0),
+(212, '18 phút', 23, 4, 0),
+(213, 'Hình A', 24, 1, 0),
+(214, 'Hình B', 24, 2, 1),
+(215, 'Hình C', 24, 3, 0),
+(216, 'Hình D', 24, 4, 0),
+(217, 'A', 25, 1, 0),
+(218, 'B', 25, 2, 0),
+(219, 'C', 25, 3, 1),
+(220, 'D', 25, 4, 0),
+(221, '1', 26, 1, 0),
+(222, '5', 26, 2, 0),
+(223, '3', 26, 3, 0),
+(224, '7', 26, 4, 1);
 
 -- --------------------------------------------------------
 
@@ -865,6 +1092,14 @@ CREATE TABLE `quiz_cate` (
   `updated_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `quiz_cate`
+--
+
+INSERT INTO `quiz_cate` (`id`, `name`, `alias`, `slug`, `description`, `is_hot`, `status`, `meta_id`, `display_order`, `created_user`, `updated_user`, `created_at`, `updated_at`) VALUES
+(1, 'Trắc nghiệm IQ', 'Trac nghiem IQ', 'trac-nghiem-iq', '', 1, 1, NULL, NULL, 1, 1, '2017-10-11 13:03:59', '2017-10-11 13:03:59'),
+(2, 'Trắc nghiệm EQ', 'Trac nghiem EQ', 'trac-nghiem-eq', '', 1, 1, NULL, NULL, 1, 1, '2017-10-11 13:05:00', '2017-10-11 13:05:39');
+
 -- --------------------------------------------------------
 
 --
@@ -876,8 +1111,42 @@ CREATE TABLE `quiz_questions` (
   `quiz_id` int(11) DEFAULT NULL,
   `content` text,
   `image_url` varchar(255) DEFAULT NULL,
+  `no_answer` tinyint(4) DEFAULT NULL,
+  `answer_id` int(11) DEFAULT NULL,
   `display_order` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `quiz_questions`
+--
+
+INSERT INTO `quiz_questions` (`id`, `quiz_id`, `content`, `image_url`, `no_answer`, `answer_id`, `display_order`) VALUES
+(1, 1, 'Câu hỏi có 1 phương án đúng', '/public/uploads/images/cau-hoi/iq/161550_72-1507704039.jpg', 4, 125, NULL),
+(2, 1, 'Hình nào giống với hình bên trái dưới đây?', '/public/uploads/images/cau-hoi/iq/163110_16-1507704916.jpg', 4, 123, NULL),
+(3, 1, 'Casey, Stuart, Ritchie, Billie và Colin đều có bàn học riêng ở trường. Casey và Colin có máy vi tính trên bàn, trong khi những người khác có máy tính. Ritchie và Casey có một sổ tay giống như một bảng hướng dẫn. Những người khác chỉ có bảng hướng dẫn. Bàn của Casey và Billie làm bằng gỗ. Bàn của những người khác làm bằng kim loại. Vậy ai là người có 1 chiếc máy vi tính trên bàn gỗ? (Câu hỏi có 1 phương án đúng)', '', 4, 129, NULL),
+(4, 1, 'Câu hỏi có 1 phương án đúng', '/public/uploads/images/cau-hoi/iq/083306_91-1507704960.jpg', 4, 136, NULL),
+(5, 1, 'Tìm chữ cái có thể thay vào ô có dấu hỏi chấm. ( Có thể tham khảo bảng chữ cái cuối cùng)', '/public/uploads/images/cau-hoi/iq/081236_lettersequencekho60cau16-1507704990.png', 4, 140, NULL),
+(6, 1, 'Số nào có thể thay vào chỗ có dấu hỏi chấm?( Câu hỏi có 1 phương án đúng)', '/public/uploads/images/cau-hoi/iq/153419_32-1507705010.jpg', 4, 141, NULL),
+(7, 1, 'Tuấn 12 tuổi và có số tuổi bằng 3 lần em mình.Hỏi lúc Tuấn có số tuổi gấp 2 lần số tuổi em mình thì Tuấn bao nhiêu tuổi? ĐA:', '', 4, 148, NULL),
+(8, 1, 'Tìm số thích hợp có thể thay dấu hỏi chấm.', '/public/uploads/images/cau-hoi/iq/095654_tuluankho100cau89-1507705099.png', 4, 149, NULL),
+(9, 1, 'Trong một gia đình có sáu thành viên A, B, C, D, E và F. A và B là một cặp vợ chồng, A là thành viên nam. D là con trai duy nhất của C. C là anh trai của A. E là em gái của D. B là con dâu của F. F có chồng đã chết. Có bao nhiêu thành viên nam trong gia đình? (Câu hỏi có 1 phương án đúng)', '', 4, 153, NULL),
+(10, 1, 'Cho dãy số: 0 3 7 12 18 ? Số nào có thể thay vào chỗ có dấu hỏi chấm? (Câu hỏi có 1 phương án đúng)', '', 4, 159, NULL),
+(11, 1, 'Điền các số từ 1 đến 6 vào các hình tròn ở trên sao cho: Tổng các số 4 và 5 và tất cả các số ở giữa bằng 19; Tổng các số 6 và 3 và tất cả các số ở giữa bằng 10; Tổng các số 2 và 1 và tất cả các số ở giữa bằng 11; Tổng các số 4 và 3 và tất cả các số ở giữa bằng 14.', '/public/uploads/images/cau-hoi/iq/234505_numbersequencekho82-1507705147.png', 4, 161, NULL),
+(12, 1, 'Hãy điền phép tính thích hợp vào ô trống để giá trị phép tính theo chiều dọc và chiều ngang là bằng nhau.', '/public/uploads/images/cau-hoi/iq/092524_28-1507705177.jpg', 4, 165, NULL),
+(13, 1, 'Hãy điền phép tính thích hợp vào ô trống để giá trị phép tính theo chiều dọc và chiều ngang là bằng nhau.', '/public/uploads/images/cau-hoi/iq/091811_3-1507705201.jpg', 4, 169, NULL),
+(14, 1, 'Số nào có thể thay vào chỗ có dấu hỏi chấm?( Câu hỏi có 1 phương án đúng)', '/public/uploads/images/cau-hoi/iq/152404_15-1507705217.jpg', 4, 173, NULL),
+(15, 1, 'Tìm số thích hợp có thể điền vào chỗ dấu chấm hỏi trong hình dưới. (Thứ tự các số từ trái sang phải)', '/public/uploads/images/cau-hoi/iq/233936_numbersequencekho74-1507705241.png', 4, 179, NULL),
+(16, 1, 'Cho dãy số: 2 8 18 32 50 ? Số nào có thể thay vào chỗ có dấu hỏi chấm? (Câu hỏi có 1 phương án đúng)', '', 4, 184, NULL),
+(17, 1, 'Hãy điền phép tính thích hợp vào ô trống để giá trị phép tính theo chiều dọc và chiều ngang là bằng nhau.', '/public/uploads/images/cau-hoi/iq/092238_17-1507705269.jpg', 4, 186, NULL),
+(18, 1, 'Tìm cặp số có mối liên hệ với một trong những cặp số đã cho( Câu hỏi có 1 phương án đúng)', '/public/uploads/images/cau-hoi/iq/092654_37-1507705287.jpg', 4, 191, NULL),
+(19, 1, 'Câu hỏi có 1 phương án đúng', '/public/uploads/images/cau-hoi/iq/090000_165-1507705300.jpg', 4, 193, NULL),
+(20, 1, 'Hai người ban đầu cùng đứng một chỗ, sau đó đi về hai hướng ngược nhau. Cả hai người đi bộ 6 dặm, sau đó rẽ phải và đi tiếp 8 dặm nữa. Hòi bây giờ họ cách điểm xuất phát bao xa? (Câu hỏi có 1 phương án đúng)', '', 4, 199, NULL),
+(21, 1, 'Cho dãy số: 5,2 - 4,8 - 4,4 - 4 - ...Số nào sẽ là số tiếp theo trong dãy số trên? (Câu hỏi có 1 phương án đúng)', '', 4, 202, NULL),
+(22, 1, 'Tìm số thích hợp có thể thay dấu hỏi chấm.', '/public/uploads/images/cau-hoi/iq/100345_tuluankho100cau98-1507705399.png', 4, 208, NULL),
+(23, 1, 'Trước nửa đêm là bao nhiêu phút nếu trước đó 32 phút thời gian này gấp 3 lần số phút sau 22 giờ?', '', 4, 210, NULL),
+(24, 1, 'Hình nào có thể thay vào chỗ có dấu hỏi chấm?', '/public/uploads/images/cau-hoi/iq/084638_130-1507727918.jpg', 4, 214, NULL),
+(25, 1, 'Hình nào giống với hình bên trái dưới đây?', '/public/uploads/images/cau-hoi/iq/162927_12-1507728144.jpg', 4, 219, NULL),
+(26, 1, 'Tìm số thích hợp có thể thay dấu hỏi chấm.', '/public/uploads/images/cau-hoi/iq/232714_numbersequencekho42-1507728224.png', 4, 224, NULL);
 
 -- --------------------------------------------------------
 
@@ -1233,6 +1502,23 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `full_name`, `display_name`, `email`, `password`, `role`, `leader_id`, `status`, `changed_password`, `remember_token`, `created_user`, `updated_user`, `created_at`, `updated_at`) VALUES
 (1, 'Admin', 'Admin', 'admin@study.vn', '$2y$10$7sDXZ9TpALmzuP0yvzZt7O.g/R/T7q1kZq/mzR3swNOv5kUKCN4Ry', 3, 1, 1, 0, '2qvaPwFc1AnAthE6cRDLsffHrVJoGnitYRMknwBHBVTkDVkZS0PwUYlPt6SX', 1, 1, '2017-06-28 00:00:00', '2017-10-02 06:13:31');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_quiz`
+--
+
+CREATE TABLE `user_quiz` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `quiz_id` int(11) NOT NULL,
+  `score` float NOT NULL,
+  `duration` varchar(100) NOT NULL,
+  `is_fbshare` tinyint(1) NOT NULL DEFAULT '0',
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 --
 -- Indexes for dumped tables
 --
@@ -1320,6 +1606,21 @@ ALTER TABLE `courses_part`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `customers`
+--
+ALTER TABLE `customers`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email` (`email`),
+  ADD KEY `phone` (`phone`),
+  ADD KEY `full_name` (`full_name`),
+  ADD KEY `type` (`type`),
+  ADD KEY `district_id` (`district_id`),
+  ADD KEY `ward_id` (`ward_id`),
+  ADD KEY `city_id` (`city_id`),
+  ADD KEY `image_url` (`image_url`),
+  ADD KEY `status` (`status`);
+
+--
 -- Indexes for table `custom_link`
 --
 ALTER TABLE `custom_link`
@@ -1337,6 +1638,12 @@ ALTER TABLE `hot_cate`
 ALTER TABLE `info_seo`
   ADD PRIMARY KEY (`id`),
   ADD KEY `url` (`url`);
+
+--
+-- Indexes for table `livestream`
+--
+ALTER TABLE `livestream`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `menu`
@@ -1445,6 +1752,12 @@ ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `user_quiz`
+--
+ALTER TABLE `user_quiz`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -1453,182 +1766,166 @@ ALTER TABLE `users`
 --
 ALTER TABLE `album`
   MODIFY `album_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
 --
 -- AUTO_INCREMENT for table `articles`
 --
 ALTER TABLE `articles`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
 --
 -- AUTO_INCREMENT for table `articles_cate`
 --
 ALTER TABLE `articles_cate`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
 --
 -- AUTO_INCREMENT for table `banner`
 --
 ALTER TABLE `banner`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
-
 --
 -- AUTO_INCREMENT for table `cate`
 --
 ALTER TABLE `cate`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
-
 --
 -- AUTO_INCREMENT for table `cate_parent`
 --
 ALTER TABLE `cate_parent`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
 --
 -- AUTO_INCREMENT for table `contact`
 --
 ALTER TABLE `contact`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
-
 --
 -- AUTO_INCREMENT for table `counter_values`
 --
 ALTER TABLE `counter_values`
-  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
-
+  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 --
 -- AUTO_INCREMENT for table `courses`
 --
 ALTER TABLE `courses`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `courses_lession`
 --
 ALTER TABLE `courses_lession`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 --
 -- AUTO_INCREMENT for table `courses_part`
 --
 ALTER TABLE `courses_part`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+--
+-- AUTO_INCREMENT for table `customers`
+--
+ALTER TABLE `customers`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 --
 -- AUTO_INCREMENT for table `custom_link`
 --
 ALTER TABLE `custom_link`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
 --
 -- AUTO_INCREMENT for table `hot_cate`
 --
 ALTER TABLE `hot_cate`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
-
 --
 -- AUTO_INCREMENT for table `info_seo`
 --
 ALTER TABLE `info_seo`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
+--
+-- AUTO_INCREMENT for table `livestream`
+--
+ALTER TABLE `livestream`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `menu`
 --
 ALTER TABLE `menu`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
-
 --
 -- AUTO_INCREMENT for table `meta_data`
 --
 ALTER TABLE `meta_data`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
-
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 --
 -- AUTO_INCREMENT for table `newsletter`
 --
 ALTER TABLE `newsletter`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
 --
 -- AUTO_INCREMENT for table `objects`
 --
 ALTER TABLE `objects`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
-
 --
 -- AUTO_INCREMENT for table `pages`
 --
 ALTER TABLE `pages`
   MODIFY `id` int(111) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
-
 --
 -- AUTO_INCREMENT for table `quiz`
 --
 ALTER TABLE `quiz`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `quiz_answers`
 --
 ALTER TABLE `quiz_answers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=225;
 --
 -- AUTO_INCREMENT for table `quiz_cate`
 --
 ALTER TABLE `quiz_cate`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `quiz_questions`
 --
 ALTER TABLE `quiz_questions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 --
 -- AUTO_INCREMENT for table `rating`
 --
 ALTER TABLE `rating`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
-
 --
 -- AUTO_INCREMENT for table `settings`
 --
 ALTER TABLE `settings`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=203;
-
 --
 -- AUTO_INCREMENT for table `subjects`
 --
 ALTER TABLE `subjects`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
 --
 -- AUTO_INCREMENT for table `support`
 --
 ALTER TABLE `support`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `tag`
 --
 ALTER TABLE `tag`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=132;
-
 --
 -- AUTO_INCREMENT for table `text`
 --
 ALTER TABLE `text`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
-
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-COMMIT;
-
+--
+-- AUTO_INCREMENT for table `user_quiz`
+--
+ALTER TABLE `user_quiz`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
