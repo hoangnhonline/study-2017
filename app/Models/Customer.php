@@ -44,7 +44,8 @@ class Customer extends Model  {
       'facebook_id',
       'address_type',
       'image_url',
-      'key_reset'
+      'key_reset',
+      'score'
     ];
 
     public function tinh()
