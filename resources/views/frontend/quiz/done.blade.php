@@ -53,15 +53,16 @@
                     <p class="vr-btn">
                     
                     
-                    	<a class="vr-lnk-answer" href="thi.aspx?uc=5&amp;id=1935610&amp;id_hv=0">
+                    	<!--<a class="vr-lnk-answer" href="thi.aspx?uc=5&amp;id=1935610&amp;id_hv=0">
                         	Xem đáp án
                         </a>
+                    -->
                        
-                         <a class="vr-lnk-solution vr-lnk-reset" href="lam-bai-bai-test-iq-so-1_13604.html">
+                         <a class="vr-lnk-solution vr-lnk-reset" href="{{ route('quiz-doing', ['slug' => $quizDetail->slug, 'id' => $quizDetail->id ]) }}">
                         	Làm lại bài thi
                         </a>
                     
-                        <a exam-url="lam-bai-bai-test-iq-so-1_13604.html" href="" class="sharefb">
+                        <a href="javascript:;" class="sharefb">
                             <i class="icon-cus-social-share"></i>&nbsp;Chia sẻ
                         
                 </a>
@@ -193,11 +194,32 @@ p.vr-btn a {
 	$(document).ready(function(){
 		
 		$('.sharefb').click(function(e) {
-			e.preventDefault();
-			var path = $(this).attr('exam-url');
-			var url = "https://www.facebook.com/sharer/sharer.php?u={!! route('quiz-confirm', ['slug' => $quizDetail->slug, 'id' => $quizDetail->id] ) !!}";
-			window.open(url, '_blank');
-			return false;
+
+            FB.ui(
+           {
+             method: 'feed',
+             name: 'Facebook Dialogs',
+             link: '{!! route('quiz-confirm', ['slug' => $quizDetail->slug, 'id' => $quizDetail->id] ) !!}',          
+           },
+           function(response) {
+            console.log(response);
+             if (response && response.post_id) {
+               $.ajax({
+                url : "{{ route('share-success') }}",
+                type  : "POST",
+                data : {
+                    url : "{!! route('quiz-confirm', ['slug' => $quizDetail->slug, 'id' => $quizDetail->id] ) !!}"
+                },
+                success : function(data){
+                    alert('Bạn đã được cộng 1 điểm vào tài khoản.');
+                }
+               });
+             } else {
+               alert('Post was not published.');
+             }
+           }
+         );
+			
 		});
 
 		

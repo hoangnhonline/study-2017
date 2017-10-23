@@ -58,6 +58,7 @@ Route::group(['namespace' => 'Frontend'], function()
     Route::get('trac-nghiem/xac-nhan/{slug}-{id}.html', ['as' => 'quiz-confirm', 'uses' => 'QuizController@confirm']);
     Route::get('trac-nghiem/lam-bai/{slug}-{id}.html', ['as' => 'quiz-doing', 'uses' => 'QuizController@doing']);
     Route::post('trac-nghiem/lam-bai/nop-bai', ['as' => 'nop-bai', 'uses' => 'QuizController@nopBai']);
+    Route::post('trac-nghiem/lam-bai/share-success', ['as' => 'share-success', 'uses' => 'QuizController@shareSuccess']);
     Route::get('/dich-vu/{slug}-s{id}.html', ['as' => 'services-detail', 'uses' => 'NewsController@newsDetail']);
 
     Route::get('{slug}-{id}.html', ['as' => 'product', 'uses' => 'DetailController@index']);

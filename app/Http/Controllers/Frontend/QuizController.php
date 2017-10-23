@@ -37,6 +37,14 @@ class QuizController extends Controller
             return view('erros.404');
         }   
     }
+
+    public function shareSuccess(Request $request){
+        $url = $request->url;
+        $customer_id = Session::get('userId');
+
+        dd($url, $customer_id);
+
+    }
     public function confirm(Request $request){
         $quiz_id = $request->id;
         $quizDetail = Quiz::find($quiz_id);
