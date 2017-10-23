@@ -42,7 +42,7 @@
 							<img alt="{{ Session::get('username') }}" src="{{ URL::asset('public/assets/images/icon-user.png') }}">
 						</span>
 						<div class="ava-info hidden-md hidden-sm hidden-xs">
-							<p><strong>{{ Session::get('username') }}</strong></p>
+							<p><strong>{{ Session::get('full_name') }}</strong></p>
 							<p class="small">Tài khoản</p>
 						</div>
 					</div>
@@ -53,7 +53,7 @@
 									<img class="user-avatar-medium" src="{{ URL::asset('public/assets/images/icon-user.png') }}" alt="{{ Session::get('username') }}">
 								</div>
 								<div class="user-dropdown-header-right">
-									<p class="name">{{ Session::get('username') }}</p>
+									<p class="name">{{ Session::get('full_name') }}</p>
 									<div class="user-icon abs">
 										<a class="link" href="/users/view_profile">
 											<i class="fa fa-user"></i>
