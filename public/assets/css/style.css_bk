@@ -337,7 +337,6 @@ h1, h2, h3, h4, h5, h6 {
   border: none !important;
   top: 50px !important;
   padding: 28px;
-  z-index: 9;
 }
 .block-user .popover .popover-content {
   padding: 0;
@@ -758,7 +757,6 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: normal;
   text-align: right;
 }
-
 
 /* Block Cates */
 .block-cates .item {
@@ -1743,7 +1741,7 @@ h1, h2, h3, h4, h5, h6 {
 .block-members .item .description .name-members {
   line-height: 17px;
   margin-top: 5px;
-  margin-bottom: 5px;
+  margin-bottom: 6px;
   height: 30px;
   overflow: hidden;
 }
