@@ -43,7 +43,7 @@ class QuizController extends Controller
         if($quizDetail){
             
             $socialImage = null;
-            $seo['title'] = $seo['description'] = $seo['keywords'] = 'Xác nhận làm bài - '.$quizDetail->name ;
+            $seo['title'] = $seo['description'] = $seo['keywords'] = $quizDetail->name ;
 
             return view('frontend.quiz.confirm', compact('quizDetail', 'seo', 'socialImage', 'quizList', 'cateDetail'));
         }else{
@@ -58,6 +58,7 @@ class QuizController extends Controller
         //dd($dataArr, $arrDapAn);
         $tong_so_cau = count($arrDapAn);
         $so_cau_dung = 0;
+        $quizDetail = Quiz::find($quiz_id);
         if(!empty($dataArr)){
             foreach($dataArr['ans'] as $question_id => $answer_id){
                 if($arrDapAn[$question_id] == $answer_id){
@@ -65,12 +66,11 @@ class QuizController extends Controller
                 }
             }
         }
-
+         $seo['title'] = $seo['description'] = $seo['keywords'] = 'Kết quả';
         $diem = $so_cau_dung*100/$tong_so_cau;
         $diem = round( $diem, 2);
-
-
-        dd($so_cau_dung, $tong_so_cau, $diem);
+         $socialImage = null;
+        return view('frontend.quiz.done', compact('quizDetail', 'seo', 'socialImage', 'so_cau_dung', 'diem', 'tong_so_cau'));
 
     }
     public function doing(Request $request){

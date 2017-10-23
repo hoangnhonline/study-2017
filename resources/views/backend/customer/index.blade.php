@@ -4,11 +4,11 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
-    Khách hàng
+    Thành viên
   </h1>
   <ol class="breadcrumb">
     <li><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-    <li><a href="{{ route( 'customer.index') }}">Khách hàng</a></li>
+    <li><a href="{{ route( 'customer.index') }}">Thành viên</a></li>
     <li class="active">Danh sách</li>
   </ol>
 </section>
@@ -44,7 +44,7 @@
       <div class="box">
 
         <div class="box-header with-border">
-          <h3 class="box-title">Danh sách ( <span class="value">{{ $items->total() }} khách hàng )</span></h3>
+          <h3 class="box-title">Danh sách ( <span class="value">{{ $items->total() }} Thành viên )</span></h3>
         </div>
         
         <!-- /.box-header -->
