@@ -96,7 +96,7 @@ class QuizController extends Controller
             $font->align('center');            
         });
         $image_name = Session::get('userId')."-".$quizDetail->id."-".time();
-        $strRandom = Hash::make($image_name);
+        $strRandom = md5($image_name);
         $image->save(public_path()."/uploads/result/".$image_name.'.png', 100);
 
         $rs = UserQuiz::create([
