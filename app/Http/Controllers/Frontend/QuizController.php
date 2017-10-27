@@ -80,16 +80,16 @@ class QuizController extends Controller
         $diem = round( $diem, 2);
          $socialImage = null;
         
-        $image = Image::canvas(600, 300, '#f5f5f0');
+        $image = Image::canvas(500, 300, '#f5f5f0');
         $image->insert(Session::get('avatar'));        
         //var_dump(public_path().'/assets/fonts/cafeta.ttf');die;
-        $image->text($diem, 400, 180, function($font) {
+        $image->text($diem, 350, 180, function($font) {
             $font->file(public_path().'/assets/fonts/cafeta.ttf');
             $font->size(200);
             $font->color('#51A0FB');
             $font->align('center');  
         });
-        $image->text($quizDetail->name, 300, 270, function($font) {
+        $image->text($quizDetail->name, 250, 270, function($font) {
             $font->file(public_path().'/assets/fonts/cafeta.ttf');
             $font->size(40);
             $font->color('#51A0FB');
