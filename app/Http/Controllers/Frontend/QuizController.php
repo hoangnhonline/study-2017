@@ -104,7 +104,8 @@ class QuizController extends Controller
                 'user_id' => Session::get('userId'),
                 'quiz_id' => $quizDetail->id,
                 'is_share' => 0,
-                'score' => $diem              
+                'score' => $diem,
+                'str_random' => $strRandom            
             ]);
         $userQuizId = $rs->id;
 
