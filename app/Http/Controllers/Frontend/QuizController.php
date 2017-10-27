@@ -85,7 +85,7 @@ class QuizController extends Controller
         //var_dump(public_path().'/assets/fonts/cafeta.ttf');die;
         $image->text($diem, 350, 180, function($font) {
             $font->file(public_path().'/assets/fonts/cafeta.ttf');
-            $font->size(200);
+            $font->size(180);
             $font->color('#51A0FB');
             $font->align('center');  
         });
