@@ -52,8 +52,11 @@ class HomeController extends Controller
         return view('frontend.partials.rating', compact('object_id', 'object_type'));
     }
     public function share(Request $request){
-        $id = $request->id;
-        $detail = UserQuiz::find($id);
+        $strRandom = url_decode($request->strRandom);
+        $detail = UserQuiz::where('str_random', $strRandom)->first();
+        if(!$detail){
+            return redirect()->route('home');
+        }
         $quizDetail = Quiz::find($detail->quiz_id);
         return view('frontend.share', compact('id', 'detail', 'quizDetail'));
     }

@@ -12,7 +12,7 @@ use App\Models\QuizAnswers;
 use App\Models\Settings;
 use App\Models\UserQuiz;
 
-use Helper, File, Session, Auth, Image;
+use Helper, File, Session, Auth, Image, Hash;
 use Mail;
 
 class QuizController extends Controller
@@ -96,7 +96,7 @@ class QuizController extends Controller
             $font->align('center');            
         });
         $image_name = Session::get('userId')."-".$quizDetail->id."-".time();
-        
+        $strRandom = Hash::make($image_name);
         $image->save(public_path()."/uploads/result/".$image_name.'.png', 100);
 
         $rs = UserQuiz::create([
@@ -108,7 +108,7 @@ class QuizController extends Controller
             ]);
         $userQuizId = $rs->id;
 
-        return view('frontend.quiz.done', compact('quizDetail', 'seo', 'socialImage', 'so_cau_dung', 'diem', 'tong_so_cau', 'userQuizId'));
+        return view('frontend.quiz.done', compact('quizDetail', 'seo', 'socialImage', 'so_cau_dung', 'diem', 'tong_so_cau', 'userQuizId', 'strRandom'));
 
     }
     public function doing(Request $request){
