@@ -199,7 +199,7 @@ p.vr-btn a {
            {
              method: 'feed',
              name: 'Facebook Dialogs',
-             link: '{!! route('share', url_encode($strRandom)) !!}',          
+             link: '{!! route('share', urlencode($strRandom)) !!}',          
            },
            function(response) {
             console.log(response);
