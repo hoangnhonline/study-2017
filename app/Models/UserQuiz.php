@@ -29,7 +29,8 @@ class UserQuiz extends Model  {
       'score',
       'duration',
       'is_share',
-      'image_url'
+      'image_url',
+      'str_random'
     ];
 
     public function user()
