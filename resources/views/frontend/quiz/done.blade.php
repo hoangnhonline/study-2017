@@ -50,7 +50,7 @@
                     	Nếu chưa hài lòng với kết quả, Bạn nên cố gắng tự kiểm tra lại bài làm trước khi xem 
 đáp án hoặc lời giải!
                     </p>
-                    <p class="vr-btn">
+                    <p class="vr-btn" style="text-align:center">
                     
                     
                     	<!--<a class="vr-lnk-answer" href="thi.aspx?uc=5&amp;id=1935610&amp;id_hv=0">
@@ -61,12 +61,12 @@
                          <a class="vr-lnk-solution vr-lnk-reset" href="{{ route('quiz-doing', ['slug' => $quizDetail->slug, 'id' => $quizDetail->id ]) }}">
                         	Làm lại bài thi
                         </a>
-                    
+                        
                         <a href="javascript:;" class="sharefb">
                             <i class="icon-cus-social-share"></i>&nbsp;Chia sẻ
                         
-                </a>
-            </p>
+                        </a>
+                     </p>
         </div>
     </div>
 </div><!-- /block-star-test -->
@@ -199,7 +199,7 @@ p.vr-btn a {
            {
              method: 'feed',
              name: 'Facebook Dialogs',
-             link: '{!! route('quiz-confirm', ['slug' => $quizDetail->slug, 'id' => $quizDetail->id] ) !!}',          
+             link: '{!! route('share', $userQuizId) !!}',          
            },
            function(response) {
             console.log(response);
