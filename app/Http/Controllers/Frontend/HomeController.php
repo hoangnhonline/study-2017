@@ -17,6 +17,8 @@ use App\Models\Courses;
 use App\Models\Objects;
 use App\Models\Livestream;
 use App\Models\UserQuiz;
+use App\Models\Quiz;
+
 use Helper, File, Session, Auth, Hash, Response;
 
 class HomeController extends Controller
@@ -52,7 +54,8 @@ class HomeController extends Controller
     public function share(Request $request){
         $id = $request->id;
         $detail = UserQuiz::find($id);
-        return view('frontend.share', compact('id', 'detail'));
+        $quizDetail = Quiz::find($detail->quiz_id);
+        return view('frontend.share', compact('id', 'detail', 'quizDetail'));
     }
     public function index(Request $request)
     {   
