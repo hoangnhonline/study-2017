@@ -9,7 +9,7 @@
     <script type="text/javascript">
         setTimeout(function(){
             location.href = "{{ route('quiz-confirm', [$quizDetail->slug, $quizDetail->id])}}";
-        }, 3000);
+        },10);
 
     </script>
     </body>
