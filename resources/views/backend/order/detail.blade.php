@@ -52,7 +52,7 @@
                 </select>                  
              <div class="clearfix" style="margin:5px"></div>
               <span>Khách hàng : <span><br>
-              <span>{{ $order->full_name }}( # {{ $order->email }})</span>
+              <span>{{ $order->fullname }}( # {{ $order->email }})</span>
               
             </p>
           </div>

@@ -59,7 +59,7 @@
                 </div>
                 <div class="form-group">
                   <label>Họ tên</label>
-                  <input type="text" class="form-control" name="full_name" id="full_name" value="{{ $detail->full_name }}">
+                  <input type="text" class="form-control" name="fullname" id="fullname" value="{{ $detail->fullname }}">
                 </div>                         
                 <div class="form-group">
                   <label>Phân loại</label>

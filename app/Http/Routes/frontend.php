@@ -37,6 +37,7 @@ Route::group(['prefix' => 'authentication'], function () {
 Route::group(['namespace' => 'Frontend'], function()
 {
     Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);   
+    Route::get('/share/{id}', ['as' => 'share', 'uses' => 'HomeController@share']);   
     Route::get('/rss', ['as' => 'rss', 'uses' => 'HomeController@rss']);
     Route::post('/rating', ['as' => 'rating', 'uses' => 'HomeController@insertRating']);    
     Route::post('/send-contact', ['as' => 'send-contact', 'uses' => 'ContactController@store']);

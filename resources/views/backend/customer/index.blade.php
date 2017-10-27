@@ -27,7 +27,7 @@
         <div class="panel-body">
           <form class="form-inline" role="form" method="GET" action="{{ route('customer.index') }}" id="frmContact">  <div class="form-group">
               <label for="name">Họ tên :</label>
-              <input type="text" class="form-control" name="full_name" value="{{ $full_name }}">
+              <input type="text" class="form-control" name="fullname" value="{{ $fullname }}">
             </div>                                                 
             <div class="form-group">
               <label for="name">Email :</label>
@@ -51,7 +51,7 @@
         <div class="box-body">        
           <a href="{{ route('customer.export') }}" class="btn btn-info btn-sm" style="margin-bottom:5px;float:left" target="_blank">Export</a>
           <div style="text-align:center">
-            {{ $items->appends( ['status' => $status, 'email' => $email, 'phone' => $phone, 'full_name' => $full_name] )->links() }}
+            {{ $items->appends( ['status' => $status, 'email' => $email, 'phone' => $phone, 'fullname' => $fullname] )->links() }}
           </div>  
           <table class="table table-bordered" id="table-list-data">
             <tr>
@@ -95,7 +95,7 @@
           </tbody>
           </table>
           <div style="text-align:center">
-            {{ $items->appends( ['status' => $status, 'email' => $email, 'phone' => $phone, 'full_name' => $full_name] )->links() }}
+            {{ $items->appends( ['status' => $status, 'email' => $email, 'phone' => $phone, 'fullname' => $fullname] )->links() }}
           </div>  
         </div>        
       </div>

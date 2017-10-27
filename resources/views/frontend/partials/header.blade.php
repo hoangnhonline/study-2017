@@ -39,7 +39,7 @@
 					@else
 					<div class="block-content">
 						<span class="ava-img">
-							<img alt="{{ Session::get('username') }}" src="{{ URL::asset('public/assets/images/icon-user.png') }}">
+							<img alt="{{ Session::get('username') }}" src="{{ Session::get('avatar') ? Session::get('avatar') :  URL::asset('public/assets/images/icon-user.png') }}">
 						</span>
 						<div class="ava-info hidden-md hidden-sm hidden-xs">
 							<p><strong>{{ Session::get('username') }}</strong></p>
@@ -51,7 +51,7 @@
 				        	<div class="popover-user">
 					        	<div class="user-dropdown-header clearfix">
 									<div class="user-dropdown-header-left">
-										<img class="user-avatar-medium" src="{{ URL::asset('public/assets/images/icon-user.png') }}" alt="{{ Session::get('username') }}">
+										<img class="user-avatar-medium" src="{{ Session::get('avatar') ? Session::get('avatar') :  URL::asset('public/assets/images/icon-user.png') }}" alt="{{ Session::get('username') }}">
 									</div>
 									<div class="user-dropdown-header-right">
 										<p class="name">{{ Session::get('username') }}</p>

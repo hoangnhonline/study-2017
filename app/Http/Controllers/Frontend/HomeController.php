@@ -16,7 +16,7 @@ use App\Models\Rating;
 use App\Models\Courses;
 use App\Models\Objects;
 use App\Models\Livestream;
-
+use App\Models\UserQuiz;
 use Helper, File, Session, Auth, Hash, Response;
 
 class HomeController extends Controller
@@ -48,6 +48,11 @@ class HomeController extends Controller
             }
         }
         return view('frontend.partials.rating', compact('object_id', 'object_type'));
+    }
+    public function share(Request $request){
+        $id = $request->id;
+        $detail = UserQuiz::find($id);
+        return view('frontend.share', compact('id', 'detail'));
     }
     public function index(Request $request)
     {   

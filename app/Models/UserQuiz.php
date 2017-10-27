@@ -28,7 +28,8 @@ class UserQuiz extends Model  {
       'quiz_id',
       'score',
       'duration',
-      'is_fbshare'
+      'is_share',
+      'image_url'
     ];
 
     public function user()

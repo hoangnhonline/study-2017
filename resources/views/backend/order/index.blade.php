@@ -91,7 +91,7 @@
 
                 ?>
                 #{{ str_pad($order->id, 6,'0', STR_PAD_LEFT) }}</a> 
-                <span style="color:#555"> bởi {{$order->full_name}}</span>
+                <span style="color:#555"> bởi {{$order->fullname}}</span>
                 <br>
                 <a href="mailto:">{{ $order->email }}</a>
                 <br>
@@ -101,7 +101,7 @@
                 <td>
 
                 <a href="http://maps.google.com/maps?&q={{ $order->address }}, {{ $order->ward_id ? Helper::getName($order->ward_id, 'ward') : "" }}, {{ $order->district_id ? Helper::getName($order->district_id, 'district') : "" }}, {{ $order->city_id ? Helper::getName($order->city_id, 'city') : "" }}" target="_blank"> 
-                {{ $order->full_name }}, {{ $order->address }}, {{ $order->ward_id ? Helper::getName($order->ward_id, 'ward') : "" }}, {{ $order->district_id ? Helper::getName($order->district_id, 'district') : "" }}, {{ $order->city_id ? Helper::getName($order->city_id, 'city') : "" }}</a>
+                {{ $order->fullname }}, {{ $order->address }}, {{ $order->ward_id ? Helper::getName($order->ward_id, 'ward') : "" }}, {{ $order->district_id ? Helper::getName($order->district_id, 'district') : "" }}, {{ $order->city_id ? Helper::getName($order->city_id, 'city') : "" }}</a>
                 </td>
                              
                 <td style="text-align:right;width:100px">{{number_format($order->tong_tien)}}</td>

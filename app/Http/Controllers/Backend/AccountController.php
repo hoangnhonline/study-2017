@@ -138,10 +138,10 @@ class AccountController extends Controller
         $rs = Account::create($dataArr);       
         /*
         if ( $rs->id > 0 ){
-            Mail::send('backend.account.mail', ['full_name' => $request->full_name, 'password' => $tmpPassword, 'email' => $request->email], function ($message) use ($request) {
+            Mail::send('backend.account.mail', ['fullname' => $request->fullname, 'password' => $tmpPassword, 'email' => $request->email], function ($message) use ($request) {
                 $message->from( config('mail.username'), config('mail.name'));
 
-                $message->to( $request->email, $request->full_name )->subject('Mật khẩu đăng nhập hệ thống');
+                $message->to( $request->email, $request->fullname )->subject('Mật khẩu đăng nhập hệ thống');
             });   
         }*/
 

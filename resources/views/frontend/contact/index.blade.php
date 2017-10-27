@@ -42,7 +42,7 @@
                 {{ csrf_field() }}
                     <div class="row">
                         <div class="form-group col-sm-12 col-xs-12">
-                            <input type="text" class="form-control" id="full_name" name="full_name" placeholder="Họ tên khách hàng" value="{{ old('full_name') }}">
+                            <input type="text" class="form-control" id="fullname" name="fullname" placeholder="Họ tên khách hàng" value="{{ old('fullname') }}">
                         </div>
                     </div>
                     <div class="row">

@@ -67,8 +67,8 @@
               <tr id="row-{{ $item->id }}">
                 <td><span class="order">{{ $i }}</span></td>                 
                 <td>                                    
-                  @if($item->full_name != '')
-                  {{ $item->full_name }}</br>
+                  @if($item->fullname != '')
+                  {{ $item->fullname }}</br>
                   @endif
                   @if($item->email != '')
                   {{ $item->email }} -

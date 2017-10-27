@@ -10,8 +10,9 @@ use App\Models\QuizCate;
 use App\Models\QuizQuestions;
 use App\Models\QuizAnswers;
 use App\Models\Settings;
+use App\Models\UserQuiz;
 
-use Helper, File, Session, Auth;
+use Helper, File, Session, Auth, Image;
 use Mail;
 
 class QuizController extends Controller
@@ -78,7 +79,36 @@ class QuizController extends Controller
         $diem = $so_cau_dung*100/$tong_so_cau;
         $diem = round( $diem, 2);
          $socialImage = null;
-        return view('frontend.quiz.done', compact('quizDetail', 'seo', 'socialImage', 'so_cau_dung', 'diem', 'tong_so_cau'));
+        
+        $image = Image::canvas(600, 300, '#f5f5f0');
+        $image->insert(Session::get('avatar'));        
+        //var_dump(public_path().'/assets/fonts/cafeta.ttf');die;
+        $image->text($diem, 400, 180, function($font) {
+            $font->file(public_path().'/assets/fonts/cafeta.ttf');
+            $font->size(200);
+            $font->color('#51A0FB');
+            $font->align('center');  
+        });
+        $image->text($quizDetail->name, 300, 270, function($font) {
+            $font->file(public_path().'/assets/fonts/cafeta.ttf');
+            $font->size(40);
+            $font->color('#51A0FB');
+            $font->align('center');            
+        });
+        $image_name = Session::get('userId')."-".$quizDetail->id."-".time();
+        
+        $image->save(public_path()."/uploads/result/".$image_name.'.png', 100);
+
+        $rs = UserQuiz::create([
+                'image_url' => "/public/uploads/result/".$image_name.".png",
+                'user_id' => Session::get('userId'),
+                'quiz_id' => $quizDetail->id,
+                'is_share' => 0,
+                'score' => $diem              
+            ]);
+        $userQuizId = $rs->id;
+
+        return view('frontend.quiz.done', compact('quizDetail', 'seo', 'socialImage', 'so_cau_dung', 'diem', 'tong_so_cau', 'userQuizId'));
 
     }
     public function doing(Request $request){

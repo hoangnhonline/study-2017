@@ -166,7 +166,7 @@ class CartController extends Controller
         $customer = Customer::find($userId);
 
         // check info
-        // if(!$customer->full_name ||
+        // if(!$customer->fullname ||
         //    !$customer->email ||
         //    !$customer->address ||
         //    !$customer->phone ||
@@ -223,7 +223,7 @@ class CartController extends Controller
                 return redirect()->route('home');
             }
             // check info
-            if(!$customer->full_name ||
+            if(!$customer->fullname ||
                !$customer->email ||
                !$customer->address ||
                !$customer->phone ||
@@ -300,7 +300,7 @@ class CartController extends Controller
         $order['city_id']  = isset($vangLaiArr['city_id']) ? $vangLaiArr['city_id'] : $customer->city_id;
         $order['ward_id']  = isset($vangLaiArr['ward_id']) ? $vangLaiArr['ward_id'] : $customer->ward_id;
         $order['address']  = isset($vangLaiArr['address']) ? $vangLaiArr['address'] : $customer->address;        
-        $order['full_name']  = isset($vangLaiArr['full_name']) ? $vangLaiArr['full_name'] : $customer->full_name;
+        $order['fullname']  = isset($vangLaiArr['fullname']) ? $vangLaiArr['fullname'] : $customer->fullname;
         $order['email']  = isset($vangLaiArr['email']) ? $vangLaiArr['email'] : $customer->email;
         $order['phone']  = isset($vangLaiArr['phone']) ? $vangLaiArr['phone'] : $customer->phone;
         $order['address_type']  = isset($vangLaiArr['address_type']) ? $vangLaiArr['address_type'] : $customer->address_type;

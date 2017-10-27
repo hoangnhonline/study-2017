@@ -63,7 +63,7 @@
                 <form action="/users" method="post" id="register_popup_form">
                     <p class="sub-title">Đăng ký bằng email</p>
                     <div class="form-control-wrapper">
-                        <input class="form-control" id="popup-register-name" name="full_name" placeholder="Họ và tên" required="true" type="text" value="">
+                        <input class="form-control" id="popup-register-name" name="fullname" placeholder="Họ và tên" required="true" type="text" value="">
                     </div>
                     <div class="form-control-wrapper">
                         <input class="form-control" id="popup-register-email" name="email" placeholder="Email" required="true" type="email" value="">

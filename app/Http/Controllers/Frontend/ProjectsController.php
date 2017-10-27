@@ -37,13 +37,13 @@ class ProjectsController extends Controller
     public function contact(Request $request){
         $dataArr = $request->all();
         $this->validate($request,[
-            'full_name' => 'required',
+            'fullname' => 'required',
             'phone' => 'required',
             'email' => 'email|required',
             'content' => 'required'
         ],
         [            
-            'full_name.required' => 'Bạn chưa nhập họ và tên.',
+            'fullname.required' => 'Bạn chưa nhập họ và tên.',
             'email.required' => 'Bạn chưa nhập email.',
             'email.email' => 'Địa chỉ email không hợp lệ.',
             'phone.required' => 'Bạn chưa nhập số điện thoại.',

@@ -15,7 +15,7 @@
       </tr>
       <tr>
         <td width="200px" class="tieu-de">Tên khách hàng</td>
-        <td class="gia-tri">{{ $dataArr->full_name }}</td>
+        <td class="gia-tri">{{ $dataArr->fullname }}</td>
       </tr>
       <tr>
         <td width="200px" class="tieu-de">Số điện thoại</td>

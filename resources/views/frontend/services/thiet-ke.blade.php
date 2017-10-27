@@ -85,7 +85,7 @@
 						</div>
 						<div class="row">
 							<div class="form-group col-sm-6 col-xs-12">
-								<input type="text" class="form-control req" name="full_name" id="full_name" placeholder="Tên khách hàng...(*)" value="{{ old('full_name') }}">
+								<input type="text" class="form-control req" name="fullname" id="fullname" placeholder="Tên khách hàng...(*)" value="{{ old('fullname') }}">
 							</div>
 							<div class="form-group col-sm-6 col-xs-12">
 								<input type="text" class="form-control req" id="phone" name="phone" placeholder="Số điện thoại...(*)" value="{{ old('phone') }}">
