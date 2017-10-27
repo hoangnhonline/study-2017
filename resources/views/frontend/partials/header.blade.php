@@ -47,30 +47,32 @@
 						</div>
 					</div>
 					<div class="popover fade bottom in">
-				        <div class="popover-user">
-				        	<div class="user-dropdown-header clearfix">
-								<div class="user-dropdown-header-left">
-									<img class="user-avatar-medium" src="{{ URL::asset('public/assets/images/icon-user.png') }}" alt="{{ Session::get('username') }}">
-								</div>
-								<div class="user-dropdown-header-right">
-									<p class="name">{{ Session::get('username') }}</p>
-									<div class="user-icon abs">
-										<a class="link" href="/users/view_profile">
-											<i class="fa fa-user"></i>
-										</a>
-										<a class="link" href="/users/edit_profile">
-											<i class="fa fa-pencil"></i>
-										</a>
+				        <div class="popover-content">
+				        	<div class="popover-user">
+					        	<div class="user-dropdown-header clearfix">
+									<div class="user-dropdown-header-left">
+										<img class="user-avatar-medium" src="{{ URL::asset('public/assets/images/icon-user.png') }}" alt="{{ Session::get('username') }}">
 									</div>
-								</div>
-							</div><!-- /user-dropdown-header -->
-							<div class="user-dropdown-links clearfix">
-								<a class="link" href="#">Các khoá học của tôi</a>
-								<!--<a class="link" href="#">Lịch sử giao dịch</a>-->
-							</div><!-- /user-dropdown-links -->
-							<div class="user-dropdown-logout clearfix">
-								<a class="btn btn-flat btn-logout" href="{{route('user-logout')}}"><i class="fa fa-power-off"></i>Đăng xuất</a>
-							</div><!-- /user-dropdown-logout -->
+									<div class="user-dropdown-header-right">
+										<p class="name">{{ Session::get('username') }}</p>
+										<div class="user-icon abs">
+											<a class="link" href="/users/view_profile">
+												<i class="fa fa-user"></i>
+											</a>
+											<a class="link" href="/users/edit_profile">
+												<i class="fa fa-pencil"></i>
+											</a>
+										</div>
+									</div>
+								</div><!-- /user-dropdown-header -->
+								<div class="user-dropdown-links clearfix">
+									<a class="link" href="#">Các khoá học của tôi</a>
+									<!--<a class="link" href="#">Lịch sử giao dịch</a>-->
+								</div><!-- /user-dropdown-links -->
+								<div class="user-dropdown-logout clearfix">
+									<a class="btn btn-flat btn-logout" href="{{route('user-logout')}}"><i class="fa fa-power-off"></i>Đăng xuất</a>
+								</div><!-- /user-dropdown-logout -->
+							</div>
 				       	</div>
 					</div><!-- /popover -->
 					@endif

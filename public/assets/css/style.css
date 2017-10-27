@@ -438,7 +438,7 @@ h1, h2, h3, h4, h5, h6 {
 .user-dropdown-header-left {
   position: relative;
   float: left;
-  width: 41.66666667%;
+  width: 20%;
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
@@ -452,16 +452,16 @@ h1, h2, h3, h4, h5, h6 {
 .user-dropdown-header-right {
   position: relative;
   float: left;
-  width: 58.33333333%;
+  width: 80%;
   min-height: 1px;
-  padding-left: 15px;
+  /*padding-left: 15px;
   padding-right: 15px;
-  padding: 5px 0 0 10px;
+  padding: 5px 0 0 10px;*/
 }
 .user-dropdown-header-right .name {
   font-size: 14px;
-  font-weight: 500;
-  margin-top: 25px;
+  font-weight: bold;
+  margin-top: 7px;
 }
 .user-dropdown-header-right .user-icon {
   position: absolute;
@@ -1282,6 +1282,7 @@ h1, h2, h3, h4, h5, h6 {
   text-rendering: optimizeLegibility;
   border: 1px solid #dcdcdc;
   margin-bottom: 15px;
+  overflow: hidden;
 }
 .block-list-course .item .title {
   margin-top: 10px;
@@ -2219,4 +2220,20 @@ h1, h2, h3, h4, h5, h6 {
 .block-page-about {
   line-height: 1.6;
   font-size: 15px;
+}
+
+.ic-free {
+  background: rgb(81, 160, 251);
+  color: #ffffff;
+  font-size: 11px;
+  text-align: center;
+  box-shadow: 0 1px 0 rgb(170,193,203);
+  position: absolute;
+  top: 0;
+  right: -20px;
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+  height: 20px;
+  width: 65px;
+  line-height: 25px;
 }
