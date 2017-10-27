@@ -67,7 +67,7 @@ $(document).ready(function() {
         });
 
       }
-    }, {scope: 'public_profile,email,user_friends,publish_actions'});
+    }, {scope: 'public_profile,email,user_friends'});
   });  
 });
 $(document).on('keypress', '#popup-login-email, #popup-login-password', function(e){
