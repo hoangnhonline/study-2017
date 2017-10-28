@@ -9,7 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Objects;
 use App\Models\Subjects;
 use App\Models\MetaData;
-
+use App\Models\TeacherSubject;
 use Helper, File, Session, Auth, Image;
 
 class TeacherController extends Controller
@@ -86,7 +86,11 @@ class TeacherController extends Controller
         $object_id = $rs->id;
 
         $this->storeMeta( $object_id, 0, $dataArr);
-
+        if(!empty($dataArr['subject_id'])){
+            foreach($dataArr['subject_id'] as $subject_id){
+                TeacherSubject::create(['subject_id' => $subject_id, 'teacher_id' => $object_id]);
+            }
+        }
         Session::flash('message', 'Tạo mới thành công');
 
         return redirect()->route('teacher.index');
@@ -177,7 +181,12 @@ class TeacherController extends Controller
         $model->update($dataArr);
         
         $this->storeMeta( $dataArr['id'], $dataArr['meta_id'], $dataArr);
-
+        TeacherSubject::where('teacher_id', $dataArr['id'])->delete();
+        if(!empty($dataArr['subject_id'])){
+            foreach($dataArr['subject_id'] as $subject_id){
+                TeacherSubject::create(['subject_id' => $subject_id, 'teacher_id' => $dataArr['id']]);
+            }
+        }
         Session::flash('message', 'Cập nhật thành công');        
 
         return redirect()->route('teacher.edit', $dataArr['id']);

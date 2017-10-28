@@ -18,6 +18,7 @@ use App\Models\Objects;
 use App\Models\Livestream;
 use App\Models\UserQuiz;
 use App\Models\Quiz;
+use App\Models\UserCourses;
 
 use Helper, File, Session, Auth, Hash, Response;
 
@@ -28,8 +29,6 @@ class HomeController extends Controller
 
     public function __construct(){
         
-       
-
     }    
     public function rss(Request $request){        
         $settingArr = Settings::whereRaw('1')->lists('value', 'name');
@@ -177,5 +176,17 @@ class HomeController extends Controller
 
         return $register;
     }
-
+    public function doiDiem(Request $request){
+        $user_id = Session::get('userId');
+        $courses_id = $request->courses_id;
+        $cDetail = Courses::find($courses_id);
+        $detailUser = Customer::find($user_id);
+        if($detailUser->score >= $cDetail->score){
+            UserCourses::create(['user_id' => $user_id, 'courses_id' => $request->courses_id, 'score' => $cDetail->score]);            
+            $detailUser->score = $detailUser->score - $cDetail->score;
+            $detailUser->save();
+        }else{
+            echo "Bạn không đủ điểm để đổi khóa học này";
+        }
+    }
 }

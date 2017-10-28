@@ -58,29 +58,14 @@
                                         <td>
                                       <p style="padding-left:60px"> <input type="text" name="display_order[]" value="{{ $cap1->display_order }}" class="form-control" style="width:40px; float:left;margin-right:10px;">
                                             <input type="hidden" name="id[]" value="{{ $cap1->id }}"> <span style="padding-top:5px;display:block">{{ $cap1->title }}</span></p></td>
-                                        <td width="1%" style="white-space:nowrap">
-                                          <button class="btn btn-info btn-sm btnAddMenu" data-parent="{{ $cap1->id }}" >Thêm menu con</button>               
+                                        <td width="1%" style="white-space:nowrap" class="text-right">
+                                          
                                           <a onclick="return callDelete('{{ $cap1->title }}','{{ route( 'menu.destroy', [ 'id' => $cap1->id ]) }}');" class="btn-sm btn btn-danger"><span class="glyphicon glyphicon-trash"></span></a>
                                         </td>
                                       </tr>  
                                                                      
 
-                                      <?php
-                                      $menuCap2List = DB::table('menu')->where('parent_id', $cap1->id)->orderBy('display_order')->get(); 
-                                      ?>
-                                      @if($menuCap2List)                                    
-                                        @foreach($menuCap2List as $cap2)
-                                      <tr>                                                                            
-                                        <td><p style="padding-left:120px">
-                                          <input type="text" name="display_order[]" value="{{ $cap2->display_order }}" class="form-control" style="width:40px; float:left;margin-right:10px">
-                                            <input type="hidden" name="id[]" value="{{ $cap2->id }}">
-                                         <span style="padding-top:5px;display:block">{{ $cap2->title }}</span></p></td>
-                                        <td width="1%" style="white-space:nowrap;text-align:right">                                                     
-                                          <a onclick="return callDelete('{{ $cap2->title }}','{{ route( 'menu.destroy', [ 'id' => $cap2->id ]) }}');" class="btn-sm btn btn-danger"><span class="glyphicon glyphicon-trash"></span></a>
-                                        </td>
-                                      </tr>  
-                                      @endforeach
-                                      @endif
+                                      
                                       @endforeach    
 
                                       @endif

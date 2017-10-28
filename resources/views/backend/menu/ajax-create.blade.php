@@ -3,7 +3,7 @@
     <div class="panel-heading" role="tab" id="headingOne">
       <h4 class="panel-title">
         <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-          Danh mục sản phẩm
+          Danh mục trắc nghiệm
         </a>
       </h4>
     </div>
@@ -11,31 +11,15 @@
       <div class="panel-body">
         <ul>
         <?php 
-          $parentList = DB::table('cate_parent')->orderBy('display_order')->get();
+          $parentList = DB::table('quiz_cate')->orderBy('display_order')->get();
 
           ?>
-          @foreach($parentList as $parent)
-          <?php 
-              $cateList = DB::table('cate')->where('parent_id', $parent->id)->orderBy('display_order')->get();
-
-              ?>
+          @foreach($parentList as $cate)          
           <li>
             <label>
-            <input type="radio" name="menu_select" data-title="{{ $parent->name }}" data-link="{{ route('cate-parent', $parent->slug) }}" data-value="{{ $parent->id }}" data-type="1" class="menu_select"> {{ $parent->name }}
+            <input type="radio" name="menu_select" data-title="{{ $cate->name }}" data-link="{!! route('quiz-list', $cate->slug) !!}" data-value="{{ $cate->id }}" data-type="1" class="menu_select"> {{ $cate->name }}
             </label>       
-              @if($cateList)
-
-            <ul class="level0 submenu">     
-              @foreach($cateList as $cate)
               
-              <li class="level1">
-               <label> <input type="radio" name="menu_select" data-title="{{ $cate->name }}" data-link="{{ route('cate', [$parent->slug, $cate->slug]) }}" data-value="{{ $cate->id }}" data-type="2" class="menu_select">{!! $cate->name !!}</label>                
-               
-              </li>
-              @endforeach
-            </ul>
-            
-            @endif                  
           </li>
           @endforeach
         </ul>                             

@@ -29,10 +29,15 @@ class QuizController extends Controller
             $title = trim($cateDetail->meta_title) ? $cateDetail->meta_title : $cateDetail->name;
             $settingArr = Settings::whereRaw('1')->lists('value', 'name');
                   
-            $seo['title'] = $cateDetail->meta_title ? $cateDetail->meta_title : $cateDetail->title;
-            $seo['description'] = $cateDetail->meta_description ? $cateDetail->meta_description : $cateDetail->title;
-            $seo['keywords'] = $cateDetail->meta_keywords ? $cateDetail->meta_keywords : $cateDetail->title;
-            
+            if( $cateDetail->meta_id > 0){
+               $meta = MetaData::find( $cateDetail->meta_id )->toArray();
+               $seo['title'] = $meta['title'] != '' ? $meta['title'] : $cateDetail->name;
+               $seo['description'] = $meta['description'] != '' ? $meta['description'] : $cateDetail->name;
+               $seo['keywords'] = $meta['keywords'] != '' ? $meta['keywords'] : $cateDetail->name;
+            }else{
+                $seo['title'] = $seo['description'] = $seo['keywords'] = $cateDetail->name;
+            } 
+
             $quizList = Quiz::getList(['cate_id' => $cateDetail->id, 'pagination' => $settingArr['articles_per_page']]);      
 
             return view('frontend.quiz.index', compact('coursesList', 'seo', 'socialImage', 'quizList', 'cateDetail'));
@@ -49,6 +54,9 @@ class QuizController extends Controller
             if( !$rs ){
                 UserCourses::create(['user_id' => $user_id, 'courses_id' => $request->courses_id, 'score' => 0]);
             }
+            $cus = Customer::find($user_id);            
+            $cus->score++;
+            $cus->save();            
         }else{
             $url = $request->url;
             

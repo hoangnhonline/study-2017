@@ -90,30 +90,43 @@
 				</div>
 				<div class="collapse navbar-collapse menu" id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav navbar-left">						
-						<li class="level0 @if($routeName == "home") active @endif"><a href="{{ route('home') }}" title="Trang chủ">Trang chủ</a></li><!-- level0 -->
-						<li class="level0 @if($routeName == "pages" && isset($slug) && $slug == "gioi-thieu" ) active @endif"><a href="{{ route('pages', 'gioi-thieu') }}" title="Giới thiệu">Giới thiệu</a></li><!-- level0 -->
-						<li class="level0 @if(in_array($routeName, ['courses-list', 'courses-detail', 'lession-detail'])) active @endif"><a href="{{ route('courses-list') }}" title="Khóa học">Khóa học</a></li><!-- level0 -->
-						<li class="level0 parent">
-							<a href="#" title="Trắc nghiệm">
-								Trắc nghiệm
-								<ul class="level0 submenu">
-									@foreach($quizCateList as $cate)																		
-									<li class="level1"><a href="{!! route('quiz-list', $cate->slug) !!}" title="{!! $cate->name !!}">{!! $cate->name !!}</a></li>									
-									@endforeach
-								</ul>
-							</a>
-						</li><!-- level0 -->						
-						<li class="level0 @if(in_array($routeName, ['news-list', 'news-detail'])) active @endif">
-							<a href="#" title="Tin Tức">
-								Tin Tức
-								<ul class="level0 submenu">
-									@foreach($articleCate as $cate)																		
-									<li class="level1"><a href="{!! route('news-list', $cate->slug) !!}" title="{!! $cate->name !!}">{!! $cate->name !!}</a></li>									
-									@endforeach
-								</ul>
-							</a>
-						</li><!-- level0 -->
-						<li class="level0 @if($routeName == "contact") active @endif""><a href="{{ route('contact') }}" title="Liên hệ">Liên hệ</a></li><!-- level0 -->
+						<?php 
+						$menuLists = DB::table('menu')->where('parent_id', 0)->orderBy('display_order')->get();
+						?>
+						@foreach($menuLists as $menu)
+
+						<?php
+	                  	$menuCap1List = DB::table('menu')->where('parent_id', $menu->id)->orderBy('display_order')->get();
+	                  	?>
+	                                      
+						<li class="level0 @if($menuCap1List)  parent @endif "><a href="{{ $menu->url }}" title="{{ $menu->title }}">{{ $menu->title }}</a>
+
+							@if($menuCap1List)
+							
+							<ul class="level0 submenu">			
+								@foreach($menuCap1List as $cap1)
+								<?php 
+								$menuCap2List = DB::table('menu')->where('parent_id', $cap1->id)->orderBy('display_order')->get(); 
+
+								?>
+								<li class="level1 @if($menuCap2List) parent @endif">
+									<a href="{{ $cap1->url }}" title="{!! $cap1->title !!}">{!! $cap1->title !!}</a>
+									
+									@if($menuCap2List)
+									<ul class="level1 submenu">
+										@foreach($menuCap2List as $cap2)
+										<li class="level2"><a href="{{ $cap2->url }}" title="{!! $cap2->title !!}">{!! $cap2->title !!}</a></li>
+										@endforeach
+									</ul>
+									@endif
+								</li>
+								@endforeach
+							</ul>
+							
+							@endif
+						</li>					
+
+						@endforeach
 					</ul>
 				</div><!-- /.navbar-collapse -->
 	    	</nav><!-- mainNav -->

@@ -35,8 +35,6 @@ class CoursesController extends Controller
         $detail = Courses::find($id);
         
         if( $detail ){           
-
-            $title = trim($detail->meta_title) ? $detail->meta_title : $detail->title;
             $settingArr = Settings::whereRaw('1')->lists('value', 'name');
             $otherList = Courses::getListOther(['id' => $id, 'limit' => 5]);
             if( $detail->meta_id > 0){
@@ -78,14 +76,13 @@ class CoursesController extends Controller
                 return redirect()->route('home');
             }
         }
-        if( $detail ){           
+        if( $detail ){     
+        
             $lessionArr = [];
-            $title = trim($detail->meta_title) ? $detail->meta_title : $detail->title;
+            
             $settingArr = Settings::whereRaw('1')->lists('value', 'name');
            
-            $seo['title'] = $detail->meta_title ? $detail->meta_title : $detail->title;
-            $seo['description'] = $detail->meta_description ? $detail->meta_description : $detail->title;
-            $seo['keywords'] = $detail->meta_keywords ? $detail->meta_keywords : $detail->title;            
+            $seo['title'] = $seo['description'] = $seo['keywords'] = $detail->name;           
 
             $socialImage = $detail->image_url;
             Helper::counter($id, 2);

@@ -57,15 +57,19 @@
                 </div>
                 <div class="form-group">
                   <label for="email">Môn học<span class="red-star">*</span></label>
-                  <select class="form-control" name="subject_id" id="subject_id">
-                    <option value="">-- chọn --</option>
-                    @if( $subjectList->count() > 0)
-                      @foreach( $subjectList as $value )
-                      <option value="{{ $value->id }}" {{ $value->id == old('subject_id') ? "selected" : "" }}>{{ $value->name }}</option>
-                      @endforeach
-                    @endif
-                  </select>
+                  <div class="clearfix"></div>
+                  @if( $subjectList->count() > 0)
+                  @foreach( $subjectList as $value )
+                  <div class="col-md-3">
+                    <div class="form-group" >
+                      <input type="checkbox" id="subject_id_{{ $value->id }}" name="subject_id[]" value="{{ $value->id }}">
+                      <label for="subject_id_{{ $value->id }}">{{ $value->name }}</label>
+                    </div>
+                  </div>
+                  @endforeach
+                  @endif
                 </div> 
+                <div class="clearfix"></div>
                 <div class="form-group" style="margin-top:10px;margin-bottom:10px">  
                   <label class="col-md-3 row">Thumbnail ( 338x190 px)</label>    
                   <div class="col-md-9">

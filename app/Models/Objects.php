@@ -26,8 +26,7 @@ class Objects extends Model  {
      */
     protected $fillable = ['name', 
                             'slug', 
-                            'alias', 
-                            'subject_id', 
+                            'alias',                            
                             'is_hot',
                             'type', 
                             'status', 
@@ -87,6 +86,9 @@ class Objects extends Model  {
     }
     public function courses(){
         return $this->hasMany('App\Models\Courses', 'teacher_id');
+    }
+    public function teacherSubject(){
+        return $this->hasMany('App\Models\TeacherSubject', 'teacher_id');
     }
     public function subjects(){
         return $this->hasOne('App\Models\Subjects', 'id', 'subject_id');

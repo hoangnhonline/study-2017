@@ -28,7 +28,11 @@
 							}
 						?>
 							@if ($detail->score > 0)
-
+								@if(!in_array($detail->id, $coursesArr))
+								<button id="doi-diem" class="btn btn-info">Đổi khóa học với <span style="font-size:16px">{{ $detail->score }}</span> điểm</button>
+								@else
+								<a href="{!! route('lession-detail', ['slug' => $firstLession->slug, 'id' => $firstLession->id] ) !!}" title="{!! $firstLession->name !!}" class="btn">Xem Chi Tiết</a>	
+								@endif
 							@elseif( $detail->is_share == 1)
 								@if(!in_array($detail->id, $coursesArr))
 								<button id="share-courses" class="btn btn-info">Share Facebook để học miễn phí</button>
@@ -111,8 +115,16 @@
 @stop
 @section('js')
 <script type="text/javascript">
-	$(document).ready(function(){
-		
+	$(document).ready(function(){		
+		var score = 0;
+		<?php 
+		if( Session::get('userId')){
+			$detailUser = DB::table('customers')->where('id', Session::get('userId'))->first();
+			?>
+			score = {{ $detailUser->score }};
+			<?php			
+		}
+		?>
 		$('#share-courses').click(function(e) {
 
             FB.ui(
@@ -137,6 +149,24 @@
              }
            }
          );
+			
+		});
+
+		$('#doi-diem').click(function(e) {
+			if( score >= {{ $detail->score }}){
+				$.ajax({
+	            url : "{{ route('doi-diem') }}",
+	            type  : "POST",
+	            data : {	              
+	                courses_id : {{ $detail-> id }}  
+	            },
+	            success : function(data){
+	                //window.location.reload();
+	            }
+	        });	
+			}else{
+				alert('Bạn không đủ điểm để đổi khóa học');return false;
+			}
 			
 		});
 
