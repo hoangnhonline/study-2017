@@ -133,6 +133,11 @@
                 </a>
               </h3>
             </div>
+            @if($obj->score > 0)
+            <span class="discout-ele">{{ $obj->score }} điểm</span>
+            @else
+            <span class="discout-ele free">FREE</span>
+            @endif
           </div><!-- /item -->
           @endforeach
         </div>
@@ -180,7 +185,7 @@
         </div>
       </div><!-- /block-content -->
     </div><!-- /block-quotations -->
-    <div class="block block-slide-home block-title-cm">
+    <!--<div class="block block-slide-home block-title-cm">
       <div class="block-title">
         <h2 class="title">
           <a href="#" title="HỌC VIÊN TIÊU BIỂU">
@@ -188,7 +193,7 @@
             HỌC VIÊN TIÊU BIỂU
           </a>
         </h2>
-      </div><!-- /block-title -->
+      </div>
       <div class="block-content">
         <div id="owl-block-arrival" class="owl-carousel owl-theme owl-style2" data-nav="false" data-dots="false" data-margin="25" data-responsive='{"0":{"items":1},"480":{"items":2},"600":{"items":2},"768":{"items":3},"800":{"items":3},"992":{"items":4}}' data-autoplay="true">
           @foreach($studentList as $obj)
@@ -204,12 +209,12 @@
                 <span>{!! $obj->school_name !!}</span>
               </div>
             </div>
-          </div><!-- /item -->
+          </div>
           @endforeach
         </div>
         <div class="text-center">
           <a href="{{ route('student-list') }}" title="HỌC VIÊN TIÊU BIỂU" class="btn btn-viewmore">Xem thêm</a>
         </div>
-      </div><!-- /block-content -->
-    </div><!-- /block-quotations -->  
+      </div>
+    </div>-->
 @stop

@@ -39,7 +39,8 @@ class Courses extends Model  {
                             'object', 
                             'benefit',
                             'single',
-                            'meta_id', 
+                            'meta_id',              
+                            'score', 
                             'created_user', 
                             'updated_user'];
     

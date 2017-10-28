@@ -63,6 +63,11 @@
                 </div> 
                 <div class="form-group" >
                   
+                  <label>Số điểm</label>
+                  <input type="text" class="form-control" name="score" id="score" value="{{ old('score') }}">
+                </div>
+                <div class="form-group" >
+                  
                   <label>Video ID </label>
                   <input type="text" class="form-control" name="video_id" id="video_id" value="{{ old('video_id') }}">
                 </div>

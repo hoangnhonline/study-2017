@@ -237,7 +237,25 @@
 			height: 0;
 			display: none;
 		}
-
+		.discout-ele {
+		    color: #fff;
+		    font-size: 13px;
+		    background-color: #e5101d;
+		    text-align: center;
+		    font-weight: 300;
+		    position: absolute;
+		    width: 52px;
+		    height: 22px;
+		    line-height: 20px;
+		    border-radius: 2px;
+		    border: 1px solid #e5101d;
+		    right: 20px;
+		    top: 5px;
+		}
+		.discout-ele.free{
+			background-color: #51A0FB;
+			border: 1px solid #fff;
+		}
 	</style>
 <div class="Recipepod">
  	<div itemscope itemtype="http://schema.org/Recipe">

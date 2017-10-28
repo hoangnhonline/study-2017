@@ -24,8 +24,7 @@ class CoursesController extends Controller
     {   
 
         $teacherList = Objects::where('type', 1)->get();
-        $name = isset($request->name) && $request->name != '' ? $request->name : '';
-        
+        $name = isset($request->name) && $request->name != '' ? $request->name : '';         
         $query = Courses::where('status', 1);
 
         // check editor
@@ -36,7 +35,7 @@ class CoursesController extends Controller
             $query->where('alias', 'LIKE', '%'.$name.'%');
         }
 
-        $items = $query->orderBy('is_hot', 'desc')->orderBy('id', 'desc')->paginate(20);
+        $items = $query->orderBy('is_hot', 'desc')->orderBy('score', 'desc')->orderBy('id', 'desc')->paginate(20);
         
         //subjects
         $subjectList = Subjects::orderBy('display_order')->get();
@@ -84,6 +83,8 @@ class CoursesController extends Controller
         
         $dataArr['is_hot'] = isset($dataArr['is_hot']) ? 1 : 0; 
         $dataArr['single'] = isset($dataArr['single']) ? 1 : 0;  
+
+        $dataArr['score'] = (int) $dataArr['score'];
 
         $rs = Courses::create($dataArr);
 
@@ -171,9 +172,13 @@ class CoursesController extends Controller
         $dataArr['alias'] = Helper::stripUnicode($dataArr['name']);       
         
         $dataArr['updated_user'] = Auth::user()->id;
+        
         $dataArr['is_hot'] = isset($dataArr['is_hot']) ? 1 : 0;  
+        
         $dataArr['single'] = isset($dataArr['single']) ? 1 : 0;  
         
+        $dataArr['score'] = (int) $dataArr['score'];
+
         $model = Courses::find($dataArr['id']);
 
         $model->update($dataArr);

@@ -201,21 +201,22 @@ p.vr-btn a {
              name: 'Facebook Dialogs',
              link: '{!! route('share', $strRandom) !!}',          
            },
-           function(response) {
-            console.log(response);
+           function(response) {            
              if (response && response.post_id) {
                $.ajax({
                 url : "{{ route('share-success') }}",
                 type  : "POST",
                 data : {
-                    url : "{!! route('quiz-confirm', ['slug' => $quizDetail->slug, 'id' => $quizDetail->id] ) !!}"
+                    url : "{!! route('quiz-confirm', ['slug' => $quizDetail->slug, 'id' => $quizDetail->id] ) !!}",
+                    str_random : "{{ $strRandom }}",
+                    quiz_id : "{{ $quizDetail->id }}"
                 },
                 success : function(data){
-                    alert('Bạn đã được cộng 1 điểm vào tài khoản.');
+                    if(data == "1"){
+                        alert('Bạn đã được cộng 1 điểm vào tài khoản.');
+                    }
                 }
                });
-             } else {
-               alert('Post was not published.');
              }
            }
          );

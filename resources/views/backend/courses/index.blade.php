@@ -65,7 +65,10 @@
                 <td>
                   <img class="img-thumbnail" src="{{ Helper::showImage($item->image_url)}}" width="145">
                 </td>        
-                <td>                  
+                <td>     
+                  @if($item->score > 0)
+                  <label class="label label-success" style="font-size:16px">{{ $item->score }} điểm</label>
+                  @endif
                   <a style="font-size:17px" href="{{ route( 'courses.edit', [ 'id' => $item->id ]) }}">{{ $item->name }}</a>
                   
                   @if( $item->is_hot == 1 )

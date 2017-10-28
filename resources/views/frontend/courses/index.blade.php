@@ -24,7 +24,13 @@
 	                    	<span class="course-item-learners-number">79446</span> người học
 	                    </div>
 	                </div><!-- /course-item-statistics -->
+
 				</div><!-- /item -->
+				@if($obj->score > 0)
+		            <span class="discout-ele">{{ $obj->score }} điểm</span>
+		            @else
+		            <span class="discout-ele free">FREE</span>
+		            @endif
 			</div><!-- /col-sm-4 -->
 			@endforeach
 		</div><!-- /row -->
