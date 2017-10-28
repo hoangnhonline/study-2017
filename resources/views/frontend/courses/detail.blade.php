@@ -161,11 +161,11 @@
 	                courses_id : {{ $detail-> id }}  
 	            },
 	            success : function(data){
-	                //window.location.reload();
+	                window.location.reload();
 	            }
 	        });	
-			}else{
-				alert('Bạn không đủ điểm để đổi khóa học');return false;
+			}else{				
+				swal('', 'Bạn không đủ điểm để đổi khóa học.', 'error');return false;
 			}
 			
 		});
