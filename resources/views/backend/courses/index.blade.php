@@ -68,6 +68,10 @@
                 <td>     
                   @if($item->score > 0)
                   <label class="label label-success" style="font-size:16px">{{ $item->score }} điểm</label>
+                  @elseif($item->is_share == 1)
+                  <label class="label label-warning" style="font-size:16px">Share FB</label>
+                  @else
+                  <label class="label label-default" style="font-size:16px">Free</label>
                   @endif
                   <a style="font-size:17px" href="{{ route( 'courses.edit', [ 'id' => $item->id ]) }}">{{ $item->name }}</a>
                   

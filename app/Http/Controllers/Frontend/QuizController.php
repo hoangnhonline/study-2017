@@ -11,6 +11,7 @@ use App\Models\QuizQuestions;
 use App\Models\QuizAnswers;
 use App\Models\Settings;
 use App\Models\UserQuiz;
+use App\Models\UserCourses;
 use App\Models\Customer;
 
 use Helper, File, Session, Auth, Image, Hash;
@@ -41,20 +42,30 @@ class QuizController extends Controller
     }
 
     public function shareSuccess(Request $request){
-        $url = $request->url;
         $user_id = Session::get('userId');
-        $str_random = $request->str_random;
-        $quiz_id = $request->quiz_id;        
-        // check + diem
-        $rs = UserQuiz::where(['user_id' => $user_id, 'quiz_id' => $quiz_id, 'is_share' => 1])->count();
-        if( $rs == 0){
-            $cus = Customer::find($user_id);            
-            $cus->score++;
-            $cus->save();
-            echo "1";
-        }
-        // update is_share = 1
-        UserQuiz::where(['user_id' => $user_id, 'quiz_id' => $quiz_id, 'str_random' => $str_random])->update(['is_share' => 1]);
+        $mod = $request->mod;
+        if ($mod == "courses"){
+            $rs = UserCourses::where(['user_id' => $user_id, 'courses_id' => $request->courses_id])->first();
+            if( !$rs ){
+                UserCourses::create(['user_id' => $user_id, 'courses_id' => $request->courses_id, 'score' => 0]);
+            }
+        }else{
+            $url = $request->url;
+            
+            $str_random = $request->str_random;
+            $quiz_id = $request->quiz_id;        
+            // check + diem
+            $rs = UserQuiz::where(['user_id' => $user_id, 'quiz_id' => $quiz_id, 'is_share' => 1])->count();
+            if( $rs == 0){
+                $cus = Customer::find($user_id);            
+                $cus->score++;
+                $cus->save();
+                echo "1";
+            }
+            // update is_share = 1
+            UserQuiz::where(['user_id' => $user_id, 'quiz_id' => $quiz_id, 'str_random' => $str_random])->update(['is_share' => 1]);
+            }
+        
     }
     public function confirm(Request $request){
         $quiz_id = $request->id;

@@ -207,6 +207,7 @@ p.vr-btn a {
                 url : "{{ route('share-success') }}",
                 type  : "POST",
                 data : {
+                    mod : 'quiz',
                     url : "{!! route('quiz-confirm', ['slug' => $quizDetail->slug, 'id' => $quizDetail->id] ) !!}",
                     str_random : "{{ $strRandom }}",
                     quiz_id : "{{ $quizDetail->id }}"

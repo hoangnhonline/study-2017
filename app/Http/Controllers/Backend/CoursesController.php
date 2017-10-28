@@ -83,8 +83,9 @@ class CoursesController extends Controller
         
         $dataArr['is_hot'] = isset($dataArr['is_hot']) ? 1 : 0; 
         $dataArr['single'] = isset($dataArr['single']) ? 1 : 0;  
+        $dataArr['is_share'] = isset($dataArr['is_share']) ? 1 : 0;  
 
-        $dataArr['score'] = (int) $dataArr['score'];
+        $dataArr['score'] = $dataArr['is_share'] == 0 ?  (int) $dataArr['score'] : 0 ;
 
         $rs = Courses::create($dataArr);
 
@@ -175,9 +176,11 @@ class CoursesController extends Controller
         
         $dataArr['is_hot'] = isset($dataArr['is_hot']) ? 1 : 0;  
         
-        $dataArr['single'] = isset($dataArr['single']) ? 1 : 0;  
+        $dataArr['single'] = isset($dataArr['single']) ? 1 : 0;
+
+        $dataArr['is_share'] = isset($dataArr['is_share']) ? 1 : 0;    
         
-        $dataArr['score'] = (int) $dataArr['score'];
+        $dataArr['score'] = $dataArr['is_share'] == 0 ?  (int) $dataArr['score'] : 0 ;
 
         $model = Courses::find($dataArr['id']);
 

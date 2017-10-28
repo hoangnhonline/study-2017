@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Socialite;
 use App\Models\Customer;
+use App\Models\UserCourses;
 use Helper, File, Session, Auth;
 use App;
 
@@ -99,7 +100,7 @@ class SocialAuthController extends Controller
                 'sucess' => 1
             ]);
 
-
+            Session::put('coursesArr', []);
         } else {
 
             if(!$getCustomer->image_url) {
@@ -112,7 +113,8 @@ class SocialAuthController extends Controller
             Session::put('facebook_id', $getCustomer->facebook_id);
             Session::put('username', $getCustomer->fullname);
             Session::put('avatar', $getCustomer->image_url);
-            
+            $coursesArr = UserCourses::where('user_id', $getCustomer->id)->pluck('courses_id')->toArray();
+            Session::put('coursesArr', $coursesArr);
             return response()->json([
                 'sucess' => 0
             ]);

@@ -21,7 +21,23 @@
 						<p class="info">{!! $detail->description !!}</p>		
 						@if($firstLession)				
 						<div class="group-btn">
+						<?php 
+						
+							$coursesArr =  Session::get('coursesArr') ? (array) Session::get('coursesArr') : [];
+							//dd($coursesArr);
+							//dd($coursesArr);
+							//dd(in_array($detail->id, $coursesArr));
+
+						?>
+							@if ($detail->score > 0)
+
+							@elseif( $detail->is_share == 1 && !in_array($detail->id, $coursesArr))
+
+							<button id="share-courses" class="btn btn-info">Share Facebook để học miễn phí</button>
+							@else
 							<a href="{!! route('lession-detail', ['slug' => $firstLession->slug, 'id' => $firstLession->id] ) !!}" title="{!! $firstLession->name !!}" class="btn">Xem Chi Tiết</a>				
+							@endif
+
 						</div>
 						@endif
 					</div>
@@ -91,4 +107,39 @@
 		</div>
 	</div><!-- /block-right -->
 </div><!-- /row -->
+@stop
+@section('js')
+<script type="text/javascript">
+	$(document).ready(function(){
+		
+		$('#share-courses').click(function(e) {
+
+            FB.ui(
+           {
+             method: 'feed',
+             name: 'Facebook Dialogs',
+             link: '{!! url()->current() !!}',          
+           },
+           function(response) {            
+             if (response && response.post_id) {
+               $.ajax({
+                url : "{{ route('share-success') }}",
+                type  : "POST",
+                data : {
+                    mod : 'courses',
+                    courses_id : {{ $detail-> id }}  
+                },
+                success : function(data){
+                    window.location.reload();
+                }
+               });
+             }
+           }
+         );
+			
+		});
+
+		
+	});
+</script>
 @stop

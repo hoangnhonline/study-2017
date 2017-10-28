@@ -86,7 +86,8 @@
                   <label>Mô tả</label>
                   <textarea class="form-control" rows="6" name="description" id="description">{{ old('description') }}</textarea>
                 </div> 
-                <div class="form-group col-md-6">
+                <div class="row">
+                <div class="form-group col-md-4">
                   <div class="checkbox">
                     <label>
                       <input type="checkbox" name="is_hot" value="1" {{ old('is_hot') == 1 ? "checked" : "" }}>
@@ -94,13 +95,22 @@
                     </label>
                   </div>               
                 </div>
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-4">
                   <div class="checkbox">
                     <label>
                       <input type="checkbox" name="single" value="1" {{ old('single') == 1 ? "checked" : "" }}>
                       Bài học lẻ
                     </label>
                   </div>               
+                </div>
+                <div class="form-group col-md-4">
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" name="is_share" id="is_share" value="1" {{ old('is_share') == 1 ? "checked" : "" }}>
+                      Share để học Free
+                    </label>
+                  </div>               
+                </div>
                 </div>
                 <div class="form-group">
                   <label>Ẩn/hiện</label>
