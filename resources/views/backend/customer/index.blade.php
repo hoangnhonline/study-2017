@@ -25,17 +25,22 @@
           <h3 class="panel-title">Bộ lọc</h3>
         </div>
         <div class="panel-body">
-          <form class="form-inline" role="form" method="GET" action="{{ route('customer.index') }}" id="frmContact">  <div class="form-group">
-              <label for="name">Họ tên :</label>
-              <input type="text" class="form-control" name="fullname" value="{{ $fullname }}">
+          <form class="form-inline" role="form" method="GET" action="{{ route('customer.index') }}" id="frmContact">  
+            <div class="form-group">              
+              <select class="form-control" name="type" id="type">
+                  <option value="">-- Loại tài khoản-- </option>
+                  <option value="1" {{ $type == 1 ? "selected" : "" }}>Login Facebook</option>
+                  <option value="2" {{ $type == 2 ? "selected" : "" }}>Đăng ký</option>
+              </select>
+            </div>  
+            <div class="form-group">              
+              <input type="text" class="form-control" name="fullname" placeholder="Họ tên" value="{{ $fullname }}">
             </div>                                                 
-            <div class="form-group">
-              <label for="name">Email :</label>
-              <input type="text" class="form-control" name="email" value="{{ $email }}">
+            <div class="form-group">              
+              <input type="text" class="form-control" name="email" placeholder="Email" value="{{ $email }}">
             </div>
-            <div class="form-group">
-              <label for="name">&nbsp;&nbsp;Điện thoại :</label>
-              <input type="text" class="form-control" name="phone" value="{{ $phone }}">
+            <div class="form-group">              
+              <input type="text" class="form-control" placeholder="Điện thoại" name="phone" value="{{ $phone }}">
             </div>
             <button type="submit" class="btn btn-default btn-sm">Lọc</button>
           </form>         
@@ -56,9 +61,11 @@
           <table class="table table-bordered" id="table-list-data">
             <tr>
               <th style="width: 1%">#</th>                            
-              <th>Thông tin liên hệ</th>              
+              <th>Thông tin tài khoản</th> 
+              <th class="text-center">Khóa học</th> 
+              <th class="text-right" style="width:100px">Điểm</th>
               <th width="10%">Thời gian tạo</th>
-              <th width="1%;white-space:nowrap">Thao tác</th>
+              <th width="1%" style="white-space:nowrap">Thao tác</th>
             </tr>
             <tbody>
             @if( $items->count() > 0 )
@@ -67,18 +74,25 @@
                 <?php $i ++; ?>
               <tr id="row-{{ $item->id }}">
                 <td><span class="order">{{ $i }}</span></td>                       
-                <td>                  
-                  @if($item->name != '')
-                  {{ $item->name }}</br>
+                <td>
+                  @if($item->type == 1)
+                  <label class="label" style="background-color:#4267b2"><i class="fa fa-facebook"></i> - {{ $item->facebook_id }}</label>
+                  @endif                  
+                  @if($item->fullname != '')
+                  {{ $item->fullname }}
                   @endif
                   @if($item->email != '')
-                  <a href="{{ route( 'customer.edit', [ 'id' => $item->id ]) }}">{{ $item->email }}</a> -
+                  - <a href="{{ route( 'customer.edit', [ 'id' => $item->id ]) }}">{{ $item->email }}</a>
                   @endif
                   @if($item->phone != '')
-                  {{ $item->phone }}</br>
+                  - {{ $item->phone }}</br>
                   @endif
-                </td>              
-                <td>{{ date('d-m-Y H:i', strtotime($item->created_at)) }}</td>
+                </td>           
+                <td class="text-center">
+                  <a class="btn btn-info">{{ $item->courses->count() }}</a>
+                </td>   
+                <td class="text-right"><strong>{{ $item->score }}</strong></td>
+                <td style="white-space:nowrap">{{ date('d-m-Y H:i', strtotime($item->created_at)) }}</td>
                 <td style="white-space:nowrap">                                  
                   
                   <a onclick="return callDelete('{{ $item->email }}','{{ route( 'customer.destroy', [ 'id' => $item->id ]) }}');" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span></a>

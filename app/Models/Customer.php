@@ -44,6 +44,10 @@ class Customer extends Model  {
     {
         return $this->hasOne('App\Models\City', 'id', 'city_id');
     }
+    public function courses()
+    {
+        return $this->hasMany('App\Models\UserCourses', 'user_id');
+    }
 
     public function huyen()
     {
