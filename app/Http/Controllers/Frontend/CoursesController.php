@@ -10,9 +10,9 @@ use App\Models\Settings;
 use App\Models\Subjects;
 use App\Models\CoursesLession;
 use App\Models\CoursesPart;
-
+use App\Models\MetaData;
 use Helper, File, Session, Auth;
-use Mail;
+use Mail, DB;
 
 class CoursesController extends Controller
 {
@@ -39,9 +39,14 @@ class CoursesController extends Controller
             $title = trim($detail->meta_title) ? $detail->meta_title : $detail->title;
             $settingArr = Settings::whereRaw('1')->lists('value', 'name');
             $otherList = Courses::getListOther(['id' => $id, 'limit' => 5]);
-            $seo['title'] = $detail->meta_title ? $detail->meta_title : $detail->title;
-            $seo['description'] = $detail->meta_description ? $detail->meta_description : $detail->title;
-            $seo['keywords'] = $detail->meta_keywords ? $detail->meta_keywords : $detail->title;            
+            if( $detail->meta_id > 0){
+               $meta = MetaData::find( $detail->meta_id )->toArray();
+               $seo['title'] = $meta['title'] != '' ? $meta['title'] : $detail->name;
+               $seo['description'] = $meta['description'] != '' ? $meta['description'] : $detail->name;
+               $seo['keywords'] = $meta['keywords'] != '' ? $meta['keywords'] : $detail->name;
+            }else{
+                $seo['title'] = $seo['description'] = $seo['keywords'] = $detail->name;
+            }           
 
             $socialImage = $detail->image_url;
             Helper::counter($id, 2);
@@ -55,11 +60,24 @@ class CoursesController extends Controller
     }
     public function lession(Request $request)
     { 
+       
+        
         $socialImage = null;
         $id = $request->id;
 
-        $detail = CoursesLession::find($id);
-        
+        $detail = CoursesLession::find($id);        
+        $coursesDetail = Courses::find($detail->courses_id);
+
+        $user_id = Session::get('userId');
+        if( $coursesDetail->is_share == 1 || $coursesDetail->score > 0){
+            $coursesArr = [];
+            if($user_id > 0){
+                $coursesArr = DB::table('user_courses')->where('user_id', $user_id)->pluck('courses_id');
+            }
+            if( !in_array($detail->courses_id, $coursesArr)){
+                return redirect()->route('home');
+            }
+        }
         if( $detail ){           
             $lessionArr = [];
             $title = trim($detail->meta_title) ? $detail->meta_title : $detail->title;
