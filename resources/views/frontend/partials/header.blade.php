@@ -37,6 +37,9 @@
 					    </div>
 					</div><!-- /popover -->
 					@else
+					<?php 
+					$detailUser = DB::table('customers')->where('id', Session::get('userId'))->first();
+					?>
 					<div class="block-content">
 						<span class="ava-img">
 							<img alt="{{ Session::get('username') }}" src="{{ Session::get('avatar') ? Session::get('avatar') :  URL::asset('public/assets/images/icon-user.png') }}">
@@ -64,7 +67,8 @@
 											</a>
 										</div>
 									</div>
-								</div><!-- /user-dropdown-header -->
+								</div><!-- /user-dropdown-header -->								
+								<p class="text-center">Điểm tích lũy : <span style="color:#51A0FB;font-weight:bold">{{ $detailUser->score }}</p></strong>
 								<div class="user-dropdown-links clearfix">
 									<a class="link" href="#">Các khoá học của tôi</a>
 									<!--<a class="link" href="#">Lịch sử giao dịch</a>-->
