@@ -54,55 +54,11 @@
                 <div class="form-group col-md-6">
                   <label>Email </label>
                   <input type="text" class="form-control" name="email_header" id="email_header" value="{{ $settingArr['email_header'] }}">
-                </div>
-                <div class="form-group col-md-6">
-                  <label>Số năm kinh nghiệm </label>
-                  <input type="text" class="form-control" name="so_nam" id="so_nam" value="{{ $settingArr['so_nam'] }}">
-                </div>
-                <div class="form-group col-md-6">
-                  <label>Số kiến trúc sư và kỹ sư <span class="red-star">*</span></label>
-                  <input type="text" class="form-control" name="so_kien_truc_su" id="so_kien_truc_su" value="{{ $settingArr['so_kien_truc_su'] }}">
-                </div>
-                <div class="form-group col-md-6">
-                  <label>Số công nhân</label>
-                  <input type="text" class="form-control" name="so_cong_nhan" id="so_cong_nhan" value="{{ $settingArr['so_cong_nhan'] }}">
-                </div>
-                <div class="form-group col-md-6">
-                  <label>Số công trình <span class="red-star">*</span></label>
-                  <input type="text" class="form-control" name="so_cong_trinh" id="so_cong_trinh" value="{{ $settingArr['so_cong_trinh'] }}">
-                </div>
-                <div class="form-group col-md-6">
-                  <label>Số bài viết 1 trang</label>
-                  <input type="text" class="form-control" name="articles_per_page" id="articles_per_page" value="{{ $settingArr['articles_per_page'] }}">
-                </div>
-                <div class="form-group col-md-6">
-                  <label>Số sản phẩm 1 trang</label>
-                  <input type="text" class="form-control" name="product_per_page" id="product_per_page" value="{{ $settingArr['product_per_page'] }}">
-                </div>
+                </div>                
                 <div class="form-group col-md-6">
                   <label>Email nhận thông báo</label>
                   <input type="text" class="form-control" name="admin_email" id="admin_email" value="{{ $settingArr['admin_email'] }}">
-                </div>
-                <div class="form-group col-md-6">
-                  <label>Số sản phẩm liên quan </label>
-                  <input type="text" class="form-control" name="product_related" id="product_related" value="{{ $settingArr['product_related'] }}">
-                </div>
-                <div class="form-group col-md-6">
-                  <label>Số tin liên quan </label>
-                  <input type="text" class="form-control" name="article_related" id="article_related" value="{{ $settingArr['article_related'] }}">
-                </div>
-                <div class="form-group col-md-6">
-                  <label>Số sản phẩm widget </label>
-                  <input type="text" class="form-control" name="product_widget" id="product_widget" value="{{ $settingArr['product_widget'] }}">
-                </div>
-                <div class="form-group col-md-6">
-                  <label>Số bài viết liên quan</label>
-                  <input type="text" class="form-control" name="so_tin_lien_quan" id="so_tin_lien_quan" value="{{ $settingArr['so_tin_lien_quan'] }}">
-                </div>
-                <div class="form-group col-md-6">
-                  <label>Số sản phẩm mỗi mục trang chủ</label>
-                  <input type="text" class="form-control" name="hot_homepage" id="hot_homepage" value="{{ $settingArr['hot_homepage'] }}">
-                </div>          
+                </div>                
                 <div class="clearfix"></div>      
                 <div class="form-group col-md-6">
                   <label>Facebook</label>
@@ -120,30 +76,17 @@
                   <label>Twitter</label>
                   <input type="text" class="form-control" name="twitter_fanpage" id="twitter_fanpage" value="{{ $settingArr['twitter_fanpage'] }}">
                 </div>                
-                <div class="form-group col-md-6">
-                  <label>Chi nhánh phía Nam</label>
-                  <textarea class="form-control" rows="3" name="chi_nhanh_phia_nam" id="chi_nhanh_phia_nam">{{ $settingArr['chi_nhanh_phia_nam'] }}</textarea>
-                </div>  
-                <div class="form-group col-md-6">
-                  <label>Chi nhánh phía Bắc</label>
-                  <textarea class="form-control" rows="3" name="chi_nhanh_phia_bac" id="chi_nhanh_phia_bac">{{ $settingArr['chi_nhanh_phia_bac'] }}</textarea>
-                </div>                
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-12">
+                  <label>Thông tin footer</label>
+                  <textarea class="form-control" rows="3" name="thong_tin_footer" id="thong_tin_footer">{{ $settingArr['thong_tin_footer'] }}</textarea>
+                </div>                       
+                <div class="form-group col-md-12">
                   <label>Code google analystic </label>
-                  <textarea name="google_analystic" id="google_analystic" rows="3" class="form-control">{{ $settingArr['google_analystic'] }}</textarea>
+                  <textarea name="google_analystic" id="google_analystic" rows="10" class="form-control">{{ $settingArr['google_analystic'] }}</textarea>
                 </div>   
                 <div class="clearfix"></div>
-                <div class="form-group col-md-6">
-                  <label>Nội dung giới thiệu trang chủ </label>
-                  <textarea name="gioi_thieu_chung" id="gioi_thieu_chung" rows="7" class="form-control">{{ $settingArr['gioi_thieu_chung'] }}</textarea>
-                </div>
-                <div class="form-group col-md-6">
-                  <label>Nội dung giới thiệu tin tức </label>
-                  <textarea name="gioi_thieu_tin_tuc" id="gioi_thieu_tin_tuc" rows="7" class="form-control">{{ $settingArr['gioi_thieu_tin_tuc'] }}</textarea>
-                </div>                    
-                <div class="clearfix"></div>
                 <div class="form-group col-md-12" style="margin-top:10px;margin-bottom:10px">  
-                  <label class="col-md-4 row">Logo ( 250 x 70 px )</label>    
+                  <label class="col-md-4 row">Logo ( 210 x 95 px )</label>    
                   <div class="col-md-8 div-upload">
                     <img class="show_thumbnail logo" src="{{ $settingArr['logo'] ? Helper::showImage($settingArr['logo']) : URL::asset('public/admin/dist/img/img.png') }}" class="img-logo" width="150" >
                     
@@ -167,83 +110,7 @@
                 </div>
                 <div style="clear:both"></div>            
                
-                <div style="clear:both"></div> 
-                <div class="form-group col-md-12" style="margin-top:10px;margin-bottom:10px">  
-                  <label class="col-md-4 row">Icon số năm hình thành và phát triển ( 60 x 60 px )</label>    
-                  <div class="col-md-8 div-upload">
-                    <img class="show_thumbnail icon_nam_hinh_thanh" src="{{ $settingArr['icon_nam_hinh_thanh'] ? Helper::showImage($settingArr['icon_nam_hinh_thanh']) : URL::asset('public/admin/dist/img/img.png') }}" class="img-favicon" width="60">
-                    
-                    <input type="file" data-value="icon_nam_hinh_thanh" class="click-choose-file" style="display:none" />
-                 
-                    <button class="btn btn-default btn-sm btnUpload"  data-value="icon_nam_hinh_thanh" type="button"><span class="glyphicon glyphicon-upload" aria-hidden="true"></span> Upload</button>
-                  </div>
-                  <div style="clear:both"></div>
-                </div> 
-
-                <div style="clear:both"></div> 
-                <div class="form-group col-md-12" style="margin-top:10px;margin-bottom:10px">  
-                  <label class="col-md-4 row">Icon số kiến trúc sư và kỹ sư ( 60 x 60 px )</label>    
-                  <div class="col-md-8 div-upload">
-                    <img class="show_thumbnail icon_kien_truc_su" src="{{ $settingArr['icon_kien_truc_su'] ? Helper::showImage($settingArr['icon_kien_truc_su']) : URL::asset('public/admin/dist/img/img.png') }}" class="img-favicon" width="60">
-                    
-                    <input type="file" data-value="icon_kien_truc_su" class="click-choose-file" style="display:none" />
-                 
-                    <button class="btn btn-default btn-sm btnUpload" data-value="icon_kien_truc_su"  type="button"><span class="glyphicon glyphicon-upload" aria-hidden="true"></span> Upload</button>
-                  </div>
-                  <div style="clear:both"></div>
-                </div>
-
-                <div style="clear:both"></div> 
-                <div class="form-group col-md-12" style="margin-top:10px;margin-bottom:10px">  
-                  <label class="col-md-4 row">Icon số công nhân lành nghề ( 60 x 60 px )</label>    
-                  <div class="col-md-8 div-upload">
-                    <img class="show_thumbnail icon_cong_nhan" src="{{ $settingArr['icon_cong_nhan'] ? Helper::showImage($settingArr['icon_cong_nhan']) : URL::asset('public/admin/dist/img/img.png') }}" class="img-favicon" width="60">
-                    
-                    <input type="file" data-value="icon_cong_nhan" class="click-choose-file" style="display:none" />
-                 
-                    <button class="btn btn-default btn-sm btnUpload" data-value="icon_cong_nhan" type="button"><span class="glyphicon glyphicon-upload" aria-hidden="true"></span> Upload</button>
-                  </div>
-                  <div style="clear:both"></div>
-                </div>
-
-                <div style="clear:both"></div> 
-                <div class="form-group col-md-12" style="margin-top:10px;margin-bottom:10px">  
-                  <label class="col-md-4 row">Icon số công trình đã thực hiện ( 60 x 60 px )</label>    
-                  <div class="col-md-8 div-upload">
-                    <img class="show_thumbnail icon_cong_trinh" src="{{ $settingArr['icon_cong_trinh'] ? Helper::showImage($settingArr['icon_cong_trinh']) : URL::asset('public/admin/dist/img/img.png') }}" class="img-favicon" width="60">
-                    
-                    <input type="file" data-value="icon_cong_trinh" class="click-choose-file" style="display:none" />
-                 
-                    <button class="btn btn-default btn-sm btnUpload"   data-value="icon_cong_trinh" type="button"><span class="glyphicon glyphicon-upload" aria-hidden="true"></span> Upload</button>
-                  </div>
-                  <div style="clear:both"></div>
-                </div>
-
-                <div style="clear:both"></div> 
-                <div class="form-group col-md-12" style="margin-top:10px;margin-bottom:10px">  
-                  <label class="col-md-4 row">Icon tiêu đề danh mục ( 10 x 50 px )</label>    
-                  <div class="col-md-8 div-upload">
-                    <img class="show_thumbnail icon_tieu_de" src="{{ $settingArr['icon_tieu_de'] ? Helper::showImage($settingArr['icon_tieu_de']) : URL::asset('public/admin/dist/img/img.png') }}" class="img-favicon" width="10">
-                    
-                    <input type="file" data-value="icon_tieu_de" class="click-choose-file" style="display:none" />
-                 
-                    <button class="btn btn-default btn-sm btnUpload"  data-value="icon_tieu_de" type="button"><span class="glyphicon glyphicon-upload" aria-hidden="true"></span> Upload</button>
-                  </div>
-                  <div style="clear:both"></div>
-                </div>
-                <div class="clearfix"></div>
-                <div class="form-group col-md-12" style="margin-top:10px;margin-bottom:10px">  
-                  <label class="col-md-4 row">Icon mũi tên ( 20 x 40 px )</label>    
-                  <div class="col-md-8 div-upload">
-                    <img class="show_thumbnail icon_mui_ten" src="{{ $settingArr['icon_mui_ten'] ? Helper::showImage($settingArr['icon_mui_ten']) : URL::asset('public/admin/dist/img/img.png') }}" class="img-favicon" width="20">
-                    
-                    <input type="file" data-value="icon_mui_ten" class="click-choose-file" style="display:none" />
-                 
-                    <button class="btn btn-default btn-sm btnUpload"  data-value="icon_mui_ten" type="button"><span class="glyphicon glyphicon-upload" aria-hidden="true"></span> Upload</button>
-                  </div>
-                  <div style="clear:both"></div>
-                </div>
-                <div class="clearfix"></div>
+               
             </div>                        
             <div class="box-footer">
               <button type="submit" class="btn btn-primary btn-sm">Lưu</button>         
@@ -253,46 +120,7 @@
         <!-- /.box -->     
 
       </div>
-      <div class="col-md-5">
-        <div class="box box-primary">
-          <div class="box-header with-border">
-            <h3 class="box-title">Màu sắc</h3>
-          </div>
-          <input type="hidden" name="" id="default_mau_chu_dao" value="#51A0FB">
-          <input type="hidden" name="" id="default_hover_parent" value="#ff781e">
-          <input type="hidden" name="" id="default_menu_border" value="#b94a00">
-          <!-- /.box-header -->
-            <div class="box-body">
-            <div class="form-group col-md-12">
-                <button style="display:none" id="btnSetDefaultColor" type="button" class="btn btn-default">Default Color</button>
-                </div>
-                <div class="clearfix"></div>
-              <div class="form-group col-md-6">
-                <label>Màu chủ đạo </label>
-                <div  class="input-group colorpicker-component mau">
-                    <input type="text" value="{{ $settingArr['mau_chu_dao'] }}" class="form-control" name="mau_chu_dao" />
-                    <span class="input-group-addon"><i></i></span>
-                </div>
-              </div> 
-              <div class="form-group col-md-6">
-                <label>Màu menu hover</label>
-                <div  class="input-group colorpicker-component mau">
-                    <input type="text" value="{{ $settingArr['hover_parent'] }}" class="form-control" name="hover_parent" />
-                    <span class="input-group-addon"><i></i></span>
-                </div>
-              </div>             
-              <div class="form-group col-md-6">
-                <label>Màu border menu </label>
-                <div class="input-group colorpicker-component mau">
-                    <input type="text" value="{{ $settingArr['menu_border'] }}" class="form-control" name="menu_border" />
-                    <span class="input-group-addon"><i></i></span>
-                </div>
-              </div> 
-              <div class="clearfix"></div>
-        </div>
-        <!-- /.box -->     
-
-      </div>
+      <div class="col-md-5">        
         <!-- general form elements -->
         <div class="box box-primary">
           <div class="box-header with-border">
@@ -327,14 +155,8 @@
       <!--/.col (left) -->      
     </div>
 <input type="hidden" name="logo" id="logo" value="{{ $settingArr['logo'] }}"/> 
-<input type="hidden" name="favicon" id="favicon" value="{{ $settingArr['favicon'] }}"/>
 <input type="hidden" name="banner" id="banner" value="{{ $settingArr['banner'] }}"/>   
-<input type="hidden" name="icon_nam_hinh_thanh" id="icon_nam_hinh_thanh" value="{{ $settingArr['icon_nam_hinh_thanh'] }}"/>          
-<input type="hidden" name="icon_kien_truc_su" id="icon_kien_truc_su" value="{{ $settingArr['icon_kien_truc_su'] }}"/>          
-<input type="hidden" name="icon_cong_nhan" id="icon_cong_nhan" value="{{ $settingArr['icon_cong_nhan'] }}"/>
-<input type="hidden" name="icon_cong_trinh" id="icon_cong_trinh" value="{{ $settingArr['icon_cong_trinh'] }}"/>          
-<input type="hidden" name="icon_tieu_de" id="icon_tieu_de" value="{{ $settingArr['icon_tieu_de'] }}"/>
-<input type="hidden" name="icon_mui_ten" id="icon_mui_ten" value="{{ $settingArr['icon_mui_ten'] }}"/>
+
 
     </form>
     <!-- /.row -->
@@ -366,7 +188,7 @@ function openKCFinder_singleFile(obj_str) {
             $('#menu_border').val($('#default_menu_border').val());
           }
       });
-      var editor = CKEDITOR.replace( 'chi_nhanh_phia_bac',{
+      var editor = CKEDITOR.replace( 'thong_tin_footer',{
           language : 'vi',       
           height : 200,
           toolbarGroups : [            
@@ -375,16 +197,7 @@ function openKCFinder_singleFile(obj_str) {
             '/',            
           ]
       });
-      $('.mau').colorpicker();
-      var editor2 = CKEDITOR.replace( 'chi_nhanh_phia_nam',{
-          language : 'vi',     
-          height : 200,
-          toolbarGroups : [            
-            { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },          
-            { name: 'links', groups: [ 'links' ] },           
-            '/',            
-          ]
-      });
+      
       $('.btnUpload').click(function(){
         openKCFinder_singleFile($(this).data('value'));
         //$(this).parents('.div-upload').find('.click-choose-file').click();
