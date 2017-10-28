@@ -9,7 +9,7 @@ use App\Models\Orders;
 use App\Models\OrderDetail;
 use App\Models\Customer;
 use App\Models\City;
-use App\Models\CustomerNotification;
+use App\Models\UserCourses;
 use Helper, File, Session, Auth, Hash, Validator;
 use Mail;
 
@@ -72,6 +72,14 @@ class CustomerController extends Controller
         Session::forget('vanglai');
         Session::forget('is_vanglai');
         return "1";
+    }
+    public function courses(){
+        $user_id = Session::get('userId');
+        $coursesList = UserCourses::where('user_id', $user_id)
+            ->join('courses', 'user_courses.courses_id', '=', 'courses.id')
+            ->get();
+        $seo['title'] = $seo['description'] = $seo['keywords'] = "Khoá học của tôi";
+        return view('frontend.courses.customer-courses', compact('seo', 'coursesList'));
     }
     public function forgetPassword(Request $request){        
         $this->validate($request, [

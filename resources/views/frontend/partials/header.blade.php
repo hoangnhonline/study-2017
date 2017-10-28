@@ -70,7 +70,7 @@
 								</div><!-- /user-dropdown-header -->								
 								<p class="text-center">Điểm tích lũy : <span style="color:#51A0FB;font-weight:bold">{{ $detailUser->score }}</p></strong>
 								<div class="user-dropdown-links clearfix">
-									<a class="link" href="#">Các khoá học của tôi</a>
+									<a class="link" href="{{ route('khoa-hoc-cua-toi') }}">Các khoá học của tôi</a>
 									<!--<a class="link" href="#">Lịch sử giao dịch</a>-->
 								</div><!-- /user-dropdown-links -->
 								<div class="user-dropdown-logout clearfix">

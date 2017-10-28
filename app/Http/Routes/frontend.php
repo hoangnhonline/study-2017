@@ -79,10 +79,12 @@ Route::group(['namespace' => 'Frontend'], function()
     Route::get('dich-vu.html', ['as' => 'services', 'uses' => 'HomeController@services']);
 
     Route::get('{slug}.html', ['as' => 'pages', 'uses' => 'HomeController@pages']);    
-    Route::get('{slugCateParent}', ['as' => 'cate-parent', 'uses' => 'CateController@cateParent']);    
+    Route::get('{slugCateParent}', ['as' => 'cate-parent', 'uses' => 'CateController@cateParent']);   
+    Route::get('/tai-khoan/khoa-hoc-cua-toi', ['as' => 'khoa-hoc-cua-toi', 'uses' => 'CustomerController@courses']); 
     Route::get('{slugCateParent}/{slugCateChild}', ['as' => 'cate', 'uses' => 'CateController@cateChild']);
     
     Route::post('/customer/update', ['as' => 'update-customer', 'uses' => 'CustomerController@update']);
+    
     Route::post('/customer/register', ['as' => 'register-customer', 'uses' => 'CustomerController@register']);
     Route::post('/customer/register-ajax', ['as' => 'register-customer-ajax', 'uses' => 'CustomerController@registerAjax']);
     Route::post('/customer/checkemail', ['as' => 'checkemail-customer', 'uses' => 'CustomerController@isEmailExist']);  
