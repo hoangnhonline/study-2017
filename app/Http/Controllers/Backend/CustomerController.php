@@ -52,24 +52,47 @@ class CustomerController extends Controller
     public function download()
     {
         $contents = [];
-        $query = Customer::where('email', '<>', '')->orderBy('id', 'DESC')->groupBy('email')->get();
-        $i = 0;
-        foreach ($query as $data) {
-            $i++;
-            $contents[] = [
-                'STT' => $i,
-                'Họ tên' => $data->fullname,
-                'Email' => $data->email,                
-                'Điện thoại' => $data->phone                
-            ];
-        }        
-        
-        Excel::create('customer_' . date('YmdHi'), function ($excel) use ($contents) {
-            // Set sheets
-            $excel->sheet('Khách hàng', function ($sheet) use ($contents) {
-                $sheet->fromArray($contents, null, 'A1', false, true);
+        $items = Customer::where('email', '<>', '')->orderBy('id', 'DESC')->groupBy('email')->get();
+               
+        Excel::create('thanh-vien', function($excel) use ($items) {
+
+            $excel->sheet('Sheet 1', function($sheet) use ($items) {
+                $sheet->loadView('backend.customer.export')->with('items',$items);
+                 // Set width
+                
+                //$sheet->setOrientation('landscape');
             });
-        })->download('xls');
+
+        })->export('xls');        
+    }
+    public function export(){
+        $query = Product::where('product.status', 1);        
+        $query->join('users', 'users.id', '=', 'product.created_user');
+        $query->join('cate_parent', 'cate_parent.id', '=', 'product.parent_id');
+        $query->join('cate', 'cate.id', '=', 'product.cate_id');
+        $query->leftJoin('product_img', 'product_img.id', '=','product.thumbnail_id');
+        $items = $query->select(['product_img.image_url','product.*','product.id as product_id', 'full_name' , 'product.created_at as time_created', 'users.full_name', 'cate_parent.name as ten_loai', 'cate.name as ten_cate'])->get();
+        $sizeList = Size::orderBy('display_order')->get();            
+        foreach($sizeList as $size){
+            $sizeArr[$size->id] = $size;
+        }
+        $colorList = Color::orderBy('display_order')->get();              
+        foreach($colorList as $color){
+            $colorArr[$color->id] = $color;
+        }
+        //return view('backend.inventory.export', compact( 'items', 'colorArr', 'sizeArr'));
+       // dd($colorArr);
+         Excel::create('nam-phuc', function($excel) use ($items, $sizeArr, $colorArr) {
+
+            $excel->sheet('product', function($sheet) use ($items, $sizeArr, $colorArr) {
+                $sheet->loadView('backend.inventory.export')->with('items',$items)->with('sizeArr',$sizeArr)->with('colorArr',$colorArr);
+                 // Set width
+                
+                //$sheet->setOrientation('landscape');
+            });
+
+        })->export('xls');
+       
     }
     /**
     * Store a newly created resource in storage.
