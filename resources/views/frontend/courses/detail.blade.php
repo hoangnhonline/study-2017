@@ -24,7 +24,7 @@
 						<?php 
 							$coursesArr = [];
 							if( Session::get('userId') ){
-								 $coursesArr = UserCourses::where('user_id', Session::get('userId'))->pluck('courses_id')->toArray();
+								 $coursesArr = DB::table('user_courses')->where('user_id', Session::get('userId'))->pluck('courses_id')->toArray();
 							}
 						?>
 							@if ($detail->score > 0)
