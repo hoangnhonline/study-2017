@@ -22,12 +22,10 @@
 						@if($firstLession)				
 						<div class="group-btn">
 						<?php 
-						
-							$coursesArr =  Session::get('coursesArr') ? (array) Session::get('coursesArr') : [];
-							//dd($coursesArr);
-							//dd($coursesArr);
-							//dd(in_array($detail->id, $coursesArr));
-
+							$coursesArr = [];
+							if( Session::get('userId') ){
+								 $coursesArr = UserCourses::where('user_id', Session::get('userId'))->pluck('courses_id')->toArray();
+							}
 						?>
 							@if ($detail->score > 0)
 
