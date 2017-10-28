@@ -140,18 +140,14 @@ $(document).ready(function () {
           'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
-    $('#newsletter_email').bind('keypress', function(e) {
+    $('#txtNewsletter').bind('keypress', function(e) {
       if(e.keyCode==13){
-        $('.btn-get-newsletter').click();
+        $('#btnNewsletter').click();
       }
-    });
-    $('#reg_success').bind('keypress', function(e) {
-      if(e.keyCode==13){
-        $('#btnRegTin').click();
-      }
-    }); 
-    $('#btnRegTin').click(function() {
-        var email = $.trim($('#reg_success').val());        
+    });   
+    
+    $('#btnNewsletter').click(function() {
+        var email = $.trim($('#txtNewsletter').val());        
         if(validateEmail(email)) {
             $.ajax({
               url: $('#route-register-newsletter').val(),
@@ -166,31 +162,7 @@ $(document).ready(function () {
                 else {
                   swal('', 'Địa chỉ email đã được đăng ký trước đó.', 'error');
                 }
-                $('#reg_success').val("");
-              }
-            });
-        } else {
-            swal({ title: '', text: 'Vui lòng nhập địa chỉ email hợp lệ.', type: 'error' });
-        }
-    });
-    $('.btn-get-newsletter').click(function() {
-        var email = $.trim($('#newsletter_email').val());
-        var $email = $(this).parent().prev();
-        if(validateEmail(email)) {
-            $.ajax({
-              url: $('#route-register-newsletter').val(),
-              method: "POST",
-              data : {
-                email: email,
-              },
-              success : function(data){
-                if(+data){
-                  swal('', 'Đăng ký nhận bản tin thành công.', 'success');
-                }
-                else {
-                  swal('', 'Địa chỉ email đã được đăng ký trước đó.', 'error');
-                }
-                $email.val("");
+                $('#txtNewsletter').val("");
               }
             });
         } else {

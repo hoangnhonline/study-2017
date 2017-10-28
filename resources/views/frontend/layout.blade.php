@@ -33,6 +33,7 @@
 	<link rel="stylesheet" type="text/css" href="{{ URL::asset('public/assets/css/style.css') }}">
 	<!-- ===== Responsive CSS ===== -->
 	<link rel="stylesheet" type="text/css" href="{{ URL::asset('public/assets/css/responsive.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ URL::asset('public/assets/css/sweetalert2.min.css') }}">
 
   	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -98,6 +99,7 @@
 	<!-- ===== JS Carousel ===== -->
 	<script src="{{ URL::asset('public/assets/lib/carousel/owl.carousel.min.js') }}"></script>
 	<!-- Js Common -->
+	<script src="{{ URL::asset('public/assets/js/sweetalert2.min.js') }}"></script>
 	<script src="{{ URL::asset('public/assets/js/common.js') }}"></script>
 
 	<script src="{{ URL::asset('public/assets/js/home.js') }}"></script>
@@ -106,6 +108,7 @@
 	<input type="hidden" id="fb-app-id" value="{{ env('FACEBOOK_APP_ID') }}">
 	<input type="hidden" id="route-auth-login-ajax" value="{{ route('auth-login-ajax') }}">
 	<input type="hidden" id="route-register-customer-ajax" value="{{ route('register-customer-ajax') }}">
+	<input type="hidden" id="route-register-newsletter" value="{{ route('register.newsletter') }}">
 	<style type="text/css">
 		
 	.block-author {

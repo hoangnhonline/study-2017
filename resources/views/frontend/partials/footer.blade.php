@@ -9,10 +9,10 @@
                     </p>
                 </div>
                 <div class="col-sm-6">
-                    <form action="#" method="get" class="form-getmail">
-                        <input type="email" name="" value="" class="form-control">
-                        <button type="submit" value="Đăng Kí" class="btn btn-getmail">Đăng Ký</button>
-                    </form>
+                    <div class="form-getmail">
+                        <input type="email" name="txtNewsletter" value="" id="txtNewsletter" class="form-control">
+                        <button type="button" id="btnNewsletter" value="Đăng Ký" class="btn btn-getmail">Đăng Ký</button>
+                    </div>
                 </div>
             </div>
         </div>
