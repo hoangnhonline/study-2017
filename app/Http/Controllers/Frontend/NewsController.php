@@ -8,7 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Models\ArticlesCate;
 use App\Models\Articles;
 use App\Models\Settings;
-
+use App\Models\MetaData;
 use Helper, File, Session, Auth;
 use Mail;
 
@@ -60,9 +60,14 @@ class NewsController extends Controller
             
             $otherList = Articles::getList( ['cate_id' => $detail->cate_id, 'except' => $id, 'limit' => $settingArr['article_related']] );            
 
-            $seo['title'] = $detail->meta_title ? $detail->meta_title : $detail->title;
-            $seo['description'] = $detail->meta_description ? $detail->meta_description : $detail->title;
-            $seo['keywords'] = $detail->meta_keywords ? $detail->meta_keywords : $detail->title;
+            if( $detail->meta_id > 0){
+               $meta = MetaData::find( $detail->meta_id )->toArray();
+               $seo['title'] = $meta['title'] != '' ? $meta['title'] : $detail->name;
+               $seo['description'] = $meta['description'] != '' ? $meta['description'] : $detail->name;
+               $seo['keywords'] = $meta['keywords'] != '' ? $meta['keywords'] : $detail->name;
+            }else{
+                $seo['title'] = $seo['description'] = $seo['keywords'] = $detail->name;
+            } 
 
             if($detail->image_url){
                 $socialImage = str_replace("images/", "images/thumbs/", $detail->image_url);

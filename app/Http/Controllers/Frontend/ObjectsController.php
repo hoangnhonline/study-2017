@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Objects;
 use App\Models\Settings;
 use App\Models\Subjects;
+use App\Models\MetaData;
 
 use Helper, File, Session, Auth;
 use Mail;
@@ -47,10 +48,14 @@ class ObjectsController extends Controller
             $title = trim($detail->meta_title) ? $detail->meta_title : $detail->title;
             $settingArr = Settings::whereRaw('1')->lists('value', 'name');
             $otherList = Objects::getListOther(['id' => $id, 'type' => $detail->type, 'limit' => 5]);
-            $seo['title'] = $detail->meta_title ? $detail->meta_title : $detail->title;
-            $seo['description'] = $detail->meta_description ? $detail->meta_description : $detail->title;
-            $seo['keywords'] = $detail->meta_keywords ? $detail->meta_keywords : $detail->title;            
-
+            if( $detail->meta_id > 0){
+               $meta = MetaData::find( $detail->meta_id )->toArray();
+               $seo['title'] = $meta['title'] != '' ? $meta['title'] : $detail->name;
+               $seo['description'] = $meta['description'] != '' ? $meta['description'] : $detail->name;
+               $seo['keywords'] = $meta['keywords'] != '' ? $meta['keywords'] : $detail->name;
+            }else{
+                $seo['title'] = $seo['description'] = $seo['keywords'] = $detail->name;
+            } 
             $socialImage = $detail->image_url;
             Helper::counter($id, 2);
             if( $detail->type == 1 ){

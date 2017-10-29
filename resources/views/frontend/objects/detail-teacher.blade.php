@@ -35,16 +35,19 @@
 					</div><!-- /row -->
 				</div><!-- /box-content -->
 				<div class="block-list-lessons">
-					<h3 class="title">DANH SÁCH BÀI HỌC</h3>
+					<h3 class="title">DANH SÁCH KHÓA HỌC</h3>
 					<div class="block-box-link">
+						@if($detail->courses->count() > 0)
 						<ul class="clearfix">
-							<li>
-								<a href="#" title="">
-									<strong>Bài 02:</strong> Lập công thức đơn giản nhất và công thức phân tử
-								</a>
+							@foreach ($detail->courses as $obj)
+							<li style="display:block">
+								 <a href="{!! route('courses-detail', ['slug' => $obj->slug, 'id' => $obj->id ]) !!}" title="{!! $obj->name !!}">
+				                  {!! $obj->name !!}
+				                </a>
 							</li>
-							
+							@endforeach
 						</ul>
+						@endif
 					</div><!-- /block-box-link -->
 					
 				</div>

@@ -1813,12 +1813,11 @@ h1, h2, h3, h4, h5, h6 {
   padding: 10px;
 }
 .block-box-link ul li {
-  list-style-type: none;
-  float: left;
-  width: 50%;
+  list-style: disc;  
+  display: block;
 }
 .block-box-link ul li a {
-  color: #777777;
+  color: #414141;
   line-height: 20px;
 }
 .block-box-link ul li a strong {
