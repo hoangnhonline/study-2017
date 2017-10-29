@@ -182,7 +182,10 @@
 		                    courses_id : {{ $detail-> id }}  
 		                },
 		                success : function(data){
-		                    window.location.reload();
+			                	swal('', 'Cảm ơn bạn đã chia sẻ.<br><p style="color:red;margin:10px 5px">Tài khoản của bạn vừa được cộng <strong>01</strong> điểm</p>Mời bạn click "Xem chi tiết" để vào học.', 'info').then(function(){
+			                	window.location.reload();
+			                });
+		                    
 		                }
 		               });
 		             }
@@ -240,7 +243,10 @@
 		                courses_id : {{ $detail-> id }}  
 		            },
 		            success : function(data){
-		                window.location.reload();
+		                
+		                swal('', 'Đổi điểm thành công.<br> Mời bạn click "Xem chi tiết" để vào học.', 'info').then(function(){
+		                	window.location.reload();
+		                });
 		            }
 		        });	
 				}else{				
