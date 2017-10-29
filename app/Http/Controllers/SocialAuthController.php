@@ -85,6 +85,7 @@ class SocialAuthController extends Controller
             $customer->image_url    =  $facebook['avatar'];
             $customer->last_login    =  date('Y-m-d H:i:s');
             $customer->type =  1;
+            $customer->score =  10;
             $customer->save();
 
             Session::flash('register', 'true');
