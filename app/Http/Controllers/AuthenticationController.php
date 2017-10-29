@@ -62,9 +62,7 @@ class AuthenticationController extends Controller
             Session::put('facebook_id', $customer->facebook_id);
             Session::put('username', $customer->fullname);
             Session::put('avatar', $customer->image_url);
-            return response()->json(['error' => 0]);
-            Session::forget('vanglai');
-            Session::forget('is_vanglai');
+            return response()->json(['error' => 0]);         
         }
     }
 

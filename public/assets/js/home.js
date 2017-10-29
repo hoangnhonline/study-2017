@@ -57,8 +57,7 @@ $(document).ready(function() {
           data : {
             token : token
           },
-          success : function(data){
-            console.log(data);
+          success : function(data){            
             if(data.success == 1) { // new user              
               swal('', 'Chào mừng thành viên mới.<br><p style="color:#51A0FB;margin:10px 5px">Tài khoản của bạn được tặng <strong>10</strong> điểm</p>', 'info').then(function(){
                       location.reload();
@@ -238,7 +237,19 @@ $(document).ready(function () {
                   $('#login_popup_form #error_login').html('Email hoặc mật khẩu không đúng.')
                }
                else {
-                    location.reload();
+                    $.ajax({
+                      url : $('#route-score-day').val(),
+                      type : 'GET',
+                      success : function(response){
+                        if(response.success == 1){
+                          swal('', 'Chúc mừng bạn.<br><p style="color:#51A0FB;margin:10px 5px">Tài khoản của bạn vừa được cộng <strong>1</strong> điểm cho lần đăng nhập đầu tiên trong ngày.</p>', 'info').then(function(){
+                            location.reload();
+                          });
+                        }else{
+                          location.reload();
+                        }
+                      }
+                    });
                }
               }
             });
@@ -298,7 +309,9 @@ $(document).ready(function () {
                     $('small[er=notEmpty]').hide();
                 }
                 else {
-                    location.reload();
+                     swal('', 'Chào mừng thành viên mới.<br><p style="color:#51A0FB;margin:10px 5px">Tài khoản của bạn được tặng <strong>10</strong> điểm</p>', 'info').then(function(){
+                      location.reload();
+                    });
                 }
               }
             });

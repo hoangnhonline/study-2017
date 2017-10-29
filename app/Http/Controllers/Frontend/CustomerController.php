@@ -69,8 +69,7 @@ class CustomerController extends Controller
         Session::put('userId', $customer->id);
         Session::put('username', $customer->fullname);
         Session::put('new-register', true);
-        Session::forget('vanglai');
-        Session::forget('is_vanglai');
+   
         return "1";
     }
     public function courses(){
@@ -129,6 +128,9 @@ class CustomerController extends Controller
 
         $data['password'] = bcrypt($data['password']);
         $data['status'] = 1;
+        $data['type'] = 2;
+        $data['score'] = 10;
+        $data['last_login'] = date('Y-m-d H:i:s');
         $customer = Customer::create($data);
 
         //set Session user for login here
@@ -136,9 +138,8 @@ class CustomerController extends Controller
         Session::put('userId', $customer->id);
         Session::put('new-register', true);
         Session::put('username', $customer->fullname);
-        Session::forget('vanglai');
-        Session::forget('is_vanglai');
-        return response()->json(['error' => 0]);
+     
+        return response()->json(['success' => 1]);
     }
 
     public function notification(){
