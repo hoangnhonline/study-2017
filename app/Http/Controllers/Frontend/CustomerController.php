@@ -161,15 +161,14 @@ class CustomerController extends Controller
 
         return view('frontend.account.notification', compact('notiSale', 'notiOrder', 'seo'));
     }
-    public function accountInfo(){
+    public function info(){
         if(!Session::get('userId')){
             return redirect()->route('home');
         }
         $seo['title'] = $seo['description'] = $seo['keywords'] = "Thông tin tài khoản";     
         $customer_id = Session::get('userId');
-        $customer = Customer::find($customer_id);
-        $listCity = City::orderBy('display_order')->get();
-        return view('frontend.account.update-info', compact('seo', 'customer', 'listCity'));
+        $detail = Customer::find($customer_id);        
+        return view('frontend.account.info', compact('seo', 'detail'));
     }
     public function changePassword(Request $request){
         if(!Session::get('userId')){

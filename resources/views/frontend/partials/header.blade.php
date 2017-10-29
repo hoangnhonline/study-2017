@@ -58,18 +58,12 @@
 									</div>
 									<div class="user-dropdown-header-right">
 										<p class="name">{{ Session::get('username') }}</p>
-										<div class="user-icon abs">
-											<a class="link" href="/users/view_profile">
-												<i class="fa fa-user"></i>
-											</a>
-											<a class="link" href="/users/edit_profile">
-												<i class="fa fa-pencil"></i>
-											</a>
-										</div>
+										
 									</div>
 								</div><!-- /user-dropdown-header -->								
 								<p class="text-center">Điểm tích lũy : <span style="color:#51A0FB;font-weight:bold">{{ $detailUser->score }}</p></strong>
 								<div class="user-dropdown-links clearfix">
+									<a class="link" href="{{ route('xem-thong-tin') }}" >Thông tin tài khoản</a>
 									<a class="link" href="{{ route('khoa-hoc-cua-toi') }}">Các khoá học của tôi</a>
 									<!--<a class="link" href="#">Lịch sử giao dịch</a>-->
 								</div><!-- /user-dropdown-links -->

@@ -82,7 +82,8 @@ Route::group(['namespace' => 'Frontend'], function()
 
     Route::get('{slug}.html', ['as' => 'pages', 'uses' => 'HomeController@pages']);    
     Route::get('{slugCateParent}', ['as' => 'cate-parent', 'uses' => 'CateController@cateParent']);   
-    Route::get('/tai-khoan/khoa-hoc-cua-toi', ['as' => 'khoa-hoc-cua-toi', 'uses' => 'CustomerController@courses']); 
+    Route::get('/tai-khoan/khoa-hoc-cua-toi', ['as' => 'khoa-hoc-cua-toi', 'uses' => 'CustomerController@courses']);
+    Route::get('/tai-khoan/xem-thong-tin', ['as' => 'xem-thong-tin', 'uses' => 'CustomerController@info']); 
     Route::get('{slugCateParent}/{slugCateChild}', ['as' => 'cate', 'uses' => 'CateController@cateChild']);
     
     Route::post('/customer/update', ['as' => 'update-customer', 'uses' => 'CustomerController@update']);
