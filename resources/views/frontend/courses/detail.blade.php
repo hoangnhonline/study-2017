@@ -126,47 +126,128 @@
 		}
 		?>
 		$('#share-courses').click(function(e) {
+			var next = false;
+			@if(!Session::get('userId'))
+				swal({
+				    title: "",
+				    text: "Đăng nhập tài khoản để chia sẻ khóa học này?",
+				    type: "warning",
+				    showCancelButton: true,				    
+				    confirmButtonText: 'Đăng nhập',
+				    cancelButtonText: "Bỏ qua"
+				 }).then(
+				       function () { 
+				       		FB.login(function(response){
+						      if(response.status == "connected")
+						      {
+						         // call ajax to send data to server and do process login
+						        var token = response.authResponse.accessToken;
+						        $.ajax({
+						          url: $('#route-ajax-login-fb').val(),
+						          method: "POST",
+						          data : {
+						            token : token
+						          },
+						          success : function(data){
+						            if(!data.success) {
+						              location.reload();
+						            } else {
+						              location.href = $('#route-cap-nhat-thong-tin').val();
+						            }
+						          }
+						        });
 
-            FB.ui(
-           {
-             method: 'feed',
-             name: 'Facebook Dialogs',
-             link: '{!! url()->current() !!}',          
-           },
-           function(response) {            
-             if (response && response.post_id) {
-               $.ajax({
-                url : "{{ route('share-success') }}",
-                type  : "POST",
-                data : {
-                    mod : 'courses',
-                    courses_id : {{ $detail-> id }}  
-                },
-                success : function(data){
-                    window.location.reload();
-                }
-               });
-             }
-           }
-         );
-			
+						      }
+						    }, {scope: 'public_profile,email,user_friends,publish_actions'});
+						    next = true;
+				       },
+				       function () { return false; });				
+			@else
+			var next = true;
+			@endif
+			if(next == true){
+				FB.ui(
+		           {
+		             method: 'feed',
+		             name: 'Facebook Dialogs',
+		             link: '{!! url()->current() !!}',          
+		           },
+		           function(response) {            
+		             if (response && response.post_id) {
+		               $.ajax({
+		                url : "{{ route('share-success') }}",
+		                type  : "POST",
+		                data : {
+		                    mod : 'courses',
+		                    courses_id : {{ $detail-> id }}  
+		                },
+		                success : function(data){
+		                    window.location.reload();
+		                }
+		               });
+		             }
+		           }
+		         );
+			}
 		});
 
 		$('#doi-diem').click(function(e) {
-			if( score >= {{ $detail->score }}){
-				$.ajax({
-	            url : "{{ route('doi-diem') }}",
-	            type  : "POST",
-	            data : {	              
-	                courses_id : {{ $detail-> id }}  
-	            },
-	            success : function(data){
-	                window.location.reload();
-	            }
-	        });	
-			}else{				
-				swal('', 'Bạn không đủ điểm để đổi khóa học.', 'error');return false;
+			var next = false;
+			@if(!Session::get('userId'))
+				swal({
+				    title: "",
+				    text: "Đăng nhập tài khoản để đổi điểm khóa học này?",
+				    type: "warning",
+				    showCancelButton: true,				    
+				    confirmButtonText: 'Đăng nhập',
+				    cancelButtonText: "Bỏ qua"
+				 }).then(
+				       function () { 
+				       		FB.login(function(response){
+						      if(response.status == "connected")
+						      {
+						         // call ajax to send data to server and do process login
+						        var token = response.authResponse.accessToken;
+						        $.ajax({
+						          url: $('#route-ajax-login-fb').val(),
+						          method: "POST",
+						          data : {
+						            token : token
+						          },
+						          success : function(data){
+						            if(!data.success) {
+						              location.reload();
+						            } else {
+						              location.href = $('#route-cap-nhat-thong-tin').val();
+						            }
+						          }
+						        });
+
+						      }
+						    }, {scope: 'public_profile,email,user_friends,publish_actions'});
+						    next = true;
+				       },
+				       function () { return false; });				
+			@else
+			var next = true;
+			@endif
+			if(next == true){
+				if( score >= {{ $detail->score }}){
+					$.ajax({
+		            url : "{{ route('doi-diem') }}",
+		            type  : "POST",
+		            data : {	              
+		                courses_id : {{ $detail-> id }}  
+		            },
+		            success : function(data){
+		                window.location.reload();
+		            }
+		        });	
+				}else{				
+					swal('', 'Bạn không đủ điểm để đổi khóa học.', 'error');return false;
+				}
 			}
+			
 			
 		});
 
