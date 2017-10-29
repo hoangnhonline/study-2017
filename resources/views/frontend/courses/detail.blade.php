@@ -37,7 +37,7 @@
 							@if ($detail->score > 0)
 								@if(Session::get('userId'))
 									@if(!in_array($detail->id, $coursesArr))
-									<button id="doi-diem" class="btn btn-info">Đổi khóa học với <span style="font-size:16px">{{ $detail->score }}</span> điểm</button>
+									<button class="btn btn-info doi-diem">Đổi khóa học với <span style="font-size:16px">{{ $detail->score }}</span> điểm</button>
 									@else
 									<a href="{!! route('lession-detail', ['slug' => $firstLession->slug, 'id' => $firstLession->id] ) !!}" title="{!! $firstLession->name !!}" class="btn">Xem Chi Tiết</a>	
 									@endif
@@ -47,7 +47,7 @@
 							@elseif( $detail->is_share == 1)
 								@if(Session::get('userId'))
 									@if(!in_array($detail->id, $coursesArr))
-									<button id="share-courses" class="btn btn-info">Share Facebook để học miễn phí</button>
+									<button class="btn btn-info share-courses">Share Facebook để học miễn phí</button>
 									@else
 									<a href="{!! route('lession-detail', ['slug' => $firstLession->slug, 'id' => $firstLession->id] ) !!}" title="{!! $firstLession->name !!}" class="btn">Xem Chi Tiết</a>	
 									@endif
@@ -78,7 +78,7 @@
 					@if ($detail->score > 0)
 					@if(Session::get('userId'))
 						@if(!in_array($detail->id, $coursesArr))
-						<button id="doi-diem" class="btn btn-info">Đổi khóa học với <span style="font-size:16px">{{ $detail->score }}</span> điểm</button>
+						<button class="btn btn-info doi-diem">Đổi khóa học với <span style="font-size:16px">{{ $detail->score }}</span> điểm</button>
 						@else
 						<a href="{!! route('lession-detail', ['slug' => $firstLession->slug, 'id' => $firstLession->id] ) !!}" title="{!! $firstLession->name !!}" class="btn">Xem Chi Tiết</a>	
 						@endif
@@ -88,7 +88,7 @@
 				@elseif( $detail->is_share == 1)
 					@if(Session::get('userId'))
 						@if(!in_array($detail->id, $coursesArr))
-						<button id="share-courses" class="btn btn-info">Share Facebook để học miễn phí</button>
+						<button class="btn btn-info share-courses">Share Facebook để học miễn phí</button>
 						@else
 						<a href="{!! route('lession-detail', ['slug' => $firstLession->slug, 'id' => $firstLession->id] ) !!}" title="{!! $firstLession->name !!}" class="btn">Xem Chi Tiết</a>	
 						@endif
@@ -162,7 +162,7 @@
 			<?php			
 		}
 		?>
-		$('#share-courses').click(function(e) {
+		$('.share-courses').click(function(e) {
 			var next = true;			
 			if(next == true){
 				FB.ui(
@@ -193,7 +193,7 @@
 			}
 		});
 
-		$('#doi-diem').click(function(e) {
+		$('.doi-diem').click(function(e) {
 			var next = true;			
 			if(next == true){
 				if( score >= {{ $detail->score }}){
