@@ -38,7 +38,9 @@ Route::group(['namespace' => 'Frontend'], function()
 {
     Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);   
     Route::get('/share/{strRandom}', ['as' => 'share', 'uses' => 'HomeController@share']);
-    Route::post('/doi-diem/', ['as' => 'doi-diem', 'uses' => 'HomeController@doiDiem']);   
+    Route::post('/doi-diem/', ['as' => 'doi-diem', 'uses' => 'HomeController@doiDiem']);
+    Route::get('/score-day/', ['as' => 'score-day', 'uses' => 'HomeController@scoreDay']);  
+     
     Route::get('/rss', ['as' => 'rss', 'uses' => 'HomeController@rss']);
     Route::post('/rating', ['as' => 'rating', 'uses' => 'HomeController@insertRating']);    
     Route::post('/send-contact', ['as' => 'send-contact', 'uses' => 'ContactController@store']);

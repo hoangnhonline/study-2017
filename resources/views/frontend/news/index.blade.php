@@ -3,6 +3,12 @@
 @include('frontend.partials.meta') 
 
 @section('content')
+<div class="block block-breadcrumb">
+    <ol class="breadcrumb">
+        <li><a href="{{ route('home') }}">Trang chủ</a></li>        
+        <li class="active">{!! $cateDetail->name !!}</li>       
+    </ol>
+</div><!-- /block-breadcrumb -->
 <div class="row">
     <div class="block-left col-sm-8">
       <div class="block-title-cm">

@@ -79,7 +79,7 @@ class QuizController extends Controller
         $quiz_id = $request->id;
         $quizDetail = Quiz::find($quiz_id);
         if($quizDetail){
-            
+            $cateDetail = QuizCate::find($quizDetail->cate_id);
             $socialImage = null;
             $seo['title'] = $seo['description'] = $seo['keywords'] = $quizDetail->name ;
 
@@ -145,7 +145,7 @@ class QuizController extends Controller
         $quiz_id = $request->id;
         $quizDetail = Quiz::find($quiz_id);
         if($quizDetail){
-            
+            $cateDetail = QuizCate::find($quizDetail->cate_id);
             $socialImage = null;
             $seo['title'] = $seo['description'] = $seo['keywords'] = 'Làm bài - '.$quizDetail->name ;
             $quizQuestions = QuizQuestions::where('quiz_id', $quiz_id)->orderByRaw('RAND()')->get();

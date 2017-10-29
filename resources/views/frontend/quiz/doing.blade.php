@@ -3,11 +3,11 @@
 @include('frontend.partials.meta')
 @section('content')
 <div class="block block-breadcrumb">
-	<ol class="breadcrumb">
-		<li><a href="#">Trang Chủ</a></li>
-		<li><a href="#">Thi THPT Quốc Gia</a></li>
-		<li class="active">Toán Học</li>
-	</ol>
+    <ol class="breadcrumb">
+        <li><a href="{{ route('home') }}">Trang chủ</a></li>
+        <li><a href="{{ route('quiz-list', $cateDetail->slug ) }}">{!! $cateDetail->name !!}</a></li>
+        <li class="active">{!! $quizDetail->name !!}</li>       
+    </ol>
 </div><!-- /block-breadcrumb -->
 <div class="block-question">
 	<form action="{{ route('nop-bai') }}" method="post">

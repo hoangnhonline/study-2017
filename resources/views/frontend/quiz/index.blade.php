@@ -4,8 +4,8 @@
 @section('content')
 <div class="block block-breadcrumb">
 	<ol class="breadcrumb">
-		<li><a href="#">Trang Chủ</a></li>
-		<li class="active">Thi Thử Danh Mục Chi Tiết</li>
+		<li><a href="{{ route('home') }}">Trang chủ</a></li>
+		<li class="active">{!! $cateDetail->name !!}</li>		
 	</ol>
 </div><!-- /block-breadcrumb -->
 <div class="row">

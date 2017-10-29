@@ -2,6 +2,13 @@
   
 @include('frontend.partials.meta')
 @section('content')
+<div class="block block-breadcrumb">
+	<ol class="breadcrumb">
+		<li><a href="{!! route('home') !!}" title="Trang chủ">Trang chủ</a></li>
+		<li><a href="{!! route('courses-list') !!}" title="Khóa học">Khóa học</a></li>		
+		<li class="active">{!! $detail->name !!}</li>
+	</ol>
+</div><!-- /block-breadcrumb -->
 <div class="block-video block-video-pg">
 	<div class="row">
 		<div class="col-sm-8">			
@@ -28,16 +35,24 @@
 							}
 						?>
 							@if ($detail->score > 0)
-								@if(!in_array($detail->id, $coursesArr))
-								<button id="doi-diem" class="btn btn-info">Đổi khóa học với <span style="font-size:16px">{{ $detail->score }}</span> điểm</button>
+								@if(Session::get('userId'))
+									@if(!in_array($detail->id, $coursesArr))
+									<button id="doi-diem" class="btn btn-info">Đổi khóa học với <span style="font-size:16px">{{ $detail->score }}</span> điểm</button>
+									@else
+									<a href="{!! route('lession-detail', ['slug' => $firstLession->slug, 'id' => $firstLession->id] ) !!}" title="{!! $firstLession->name !!}" class="btn">Xem Chi Tiết</a>	
+									@endif
 								@else
-								<a href="{!! route('lession-detail', ['slug' => $firstLession->slug, 'id' => $firstLession->id] ) !!}" title="{!! $firstLession->name !!}" class="btn">Xem Chi Tiết</a>	
+									<button class="btn btn-info facebook-login" type="button">Đăng nhập</button>
 								@endif
 							@elseif( $detail->is_share == 1)
-								@if(!in_array($detail->id, $coursesArr))
-								<button id="share-courses" class="btn btn-info">Share Facebook để học miễn phí</button>
+								@if(Session::get('userId'))
+									@if(!in_array($detail->id, $coursesArr))
+									<button id="share-courses" class="btn btn-info">Share Facebook để học miễn phí</button>
+									@else
+									<a href="{!! route('lession-detail', ['slug' => $firstLession->slug, 'id' => $firstLession->id] ) !!}" title="{!! $firstLession->name !!}" class="btn">Xem Chi Tiết</a>	
+									@endif
 								@else
-								<a href="{!! route('lession-detail', ['slug' => $firstLession->slug, 'id' => $firstLession->id] ) !!}" title="{!! $firstLession->name !!}" class="btn">Xem Chi Tiết</a>	
+									<button class="btn btn-info facebook-login" type="button">Đăng nhập</button>
 								@endif
 							@else
 							<a href="{!! route('lession-detail', ['slug' => $firstLession->slug, 'id' => $firstLession->id] ) !!}" title="{!! $firstLession->name !!}" class="btn">Xem Chi Tiết</a>				
@@ -126,45 +141,7 @@
 		}
 		?>
 		$('#share-courses').click(function(e) {
-			var next = false;
-			@if(!Session::get('userId'))
-				swal({
-				    title: "",
-				    text: "Đăng nhập tài khoản để chia sẻ khóa học này?",
-				    type: "warning",
-				    showCancelButton: true,				    
-				    confirmButtonText: 'Đăng nhập',
-				    cancelButtonText: "Bỏ qua"
-				 }).then(
-				       function () { 
-				       		FB.login(function(response){
-						      if(response.status == "connected")
-						      {
-						         // call ajax to send data to server and do process login
-						        var token = response.authResponse.accessToken;
-						        $.ajax({
-						          url: $('#route-ajax-login-fb').val(),
-						          method: "POST",
-						          data : {
-						            token : token
-						          },
-						          success : function(data){
-						            if(!data.success) {
-						              location.reload();
-						            } else {
-						              location.href = $('#route-cap-nhat-thong-tin').val();
-						            }
-						          }
-						        });
-
-						      }
-						    }, {scope: 'public_profile,email,user_friends,publish_actions'});
-						    next = true;
-				       },
-				       function () { return false; });				
-			@else
-			var next = true;
-			@endif
+			var next = true;			
 			if(next == true){
 				FB.ui(
 		           {
@@ -182,7 +159,7 @@
 		                    courses_id : {{ $detail-> id }}  
 		                },
 		                success : function(data){
-			                	swal('', 'Cảm ơn bạn đã chia sẻ.<br><p style="color:red;margin:10px 5px">Tài khoản của bạn vừa được cộng <strong>01</strong> điểm</p>Mời bạn click "Xem chi tiết" để vào học.', 'info').then(function(){
+			                	swal('', 'Cảm ơn bạn đã chia sẻ.<br><p style="color:#51A0FB;margin:10px 5px">Tài khoản của bạn vừa được cộng <strong>01</strong> điểm</p>Mời bạn click "Xem chi tiết" để vào học.', 'info').then(function(){
 			                	window.location.reload();
 			                });
 		                    
@@ -195,45 +172,7 @@
 		});
 
 		$('#doi-diem').click(function(e) {
-			var next = false;
-			@if(!Session::get('userId'))
-				swal({
-				    title: "",
-				    text: "Đăng nhập tài khoản để đổi điểm khóa học này?",
-				    type: "warning",
-				    showCancelButton: true,				    
-				    confirmButtonText: 'Đăng nhập',
-				    cancelButtonText: "Bỏ qua"
-				 }).then(
-				       function () { 
-				       		FB.login(function(response){
-						      if(response.status == "connected")
-						      {
-						         // call ajax to send data to server and do process login
-						        var token = response.authResponse.accessToken;
-						        $.ajax({
-						          url: $('#route-ajax-login-fb').val(),
-						          method: "POST",
-						          data : {
-						            token : token
-						          },
-						          success : function(data){
-						            if(!data.success) {
-						              location.reload();
-						            } else {
-						              location.href = $('#route-cap-nhat-thong-tin').val();
-						            }
-						          }
-						        });
-
-						      }
-						    }, {scope: 'public_profile,email,user_friends,publish_actions'});
-						    next = true;
-				       },
-				       function () { return false; });				
-			@else
-			var next = true;
-			@endif
+			var next = true;			
 			if(next == true){
 				if( score >= {{ $detail->score }}){
 					$.ajax({

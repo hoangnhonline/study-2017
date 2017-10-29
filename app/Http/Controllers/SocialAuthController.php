@@ -97,7 +97,7 @@ class SocialAuthController extends Controller
             Session::put('new-register', true);
             Session::flash('new-register-fb', 'true');
             return response()->json([
-                'sucess' => 1
+                'success' => 1
             ]);
 
 
@@ -105,6 +105,7 @@ class SocialAuthController extends Controller
 
             if(!$getCustomer->image_url) {
                 $getCustomer->image_url = $facebook['avatar'];
+                //$getCustomer->last_login    =  date('Y-m-d H:i:s');
                 $getCustomer->save();
             }
 
@@ -115,7 +116,7 @@ class SocialAuthController extends Controller
             Session::put('avatar', $getCustomer->image_url);
             
             return response()->json([
-                'sucess' => 0
+                'success' => 0
             ]);
         }
 

@@ -2,6 +2,12 @@
   
 @include('frontend.partials.meta')
 @section('content')
+<div class="block block-breadcrumb">
+	<ol class="breadcrumb">
+		<li><a href="{!! route('home') !!}" title="Trang chủ">Trang chủ</a></li>		
+		<li class="active">Khóa học</li>
+	</ol>
+</div><!-- /block-breadcrumb -->
 <div class="block-list-course block-title-cm">
 	<div class="block-title">
 		<h2 class="title">DANH SÁCH KHÓA HỌC</h2>

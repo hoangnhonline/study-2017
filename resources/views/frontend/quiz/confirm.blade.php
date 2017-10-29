@@ -4,8 +4,9 @@
 @section('content')
 <div class="block block-breadcrumb">
 	<ol class="breadcrumb">
-		<li><a href="#">Thi Thử</a></li>
-		<li class="active">Xác Nhận Làm Bài Thi Trắc Nghiệm</li>
+		<li><a href="{{ route('home') }}">Trang chủ</a></li>
+		<li><a href="{{ route('quiz-list', $cateDetail->slug ) }}">{!! $cateDetail->name !!}</a></li>
+		<li class="active">{!! $quizDetail->name !!}</li>		
 	</ol>
 </div><!-- /block-breadcrumb -->
 <div class="block-star-test">

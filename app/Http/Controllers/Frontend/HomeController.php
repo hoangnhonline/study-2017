@@ -189,4 +189,21 @@ class HomeController extends Controller
             echo "Bạn không đủ điểm để đổi khóa học này";
         }
     }
+    public function scoreDay(Request $request){
+        $user_id = Session::get('userId');
+        $detailUser = Customer::find($user_id);
+        $last_login = date('d', strtotime($detailUser->last_login));        
+        if( $last_login != date('d') ){ // cong 1 diem
+            $detailUser->last_login = date('Y-m-d H:i:s');
+            $detailUser->score = $detailUser->score + 1;
+            $detailUser->save();
+            return response()->json([
+                'success' => 1
+            ]);
+        }else{
+             return response()->json([
+                'success' => 0
+            ]);
+        }
+    }
 }

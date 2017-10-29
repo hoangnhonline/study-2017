@@ -58,11 +58,27 @@ $(document).ready(function() {
             token : token
           },
           success : function(data){
-            if(!data.success) {
-              location.reload();
-            } else {
-              location.href = $('#route-cap-nhat-thong-tin').val();
+            console.log(data);
+            if(data.success == 1) { // new user              
+              swal('', 'Chào mừng thành viên mới.<br><p style="color:#51A0FB;margin:10px 5px">Tài khoản của bạn được tặng <strong>10</strong> điểm</p>', 'info').then(function(){
+                      location.reload();
+                    });
+            } else { // old user              
+              $.ajax({
+                url : $('#route-score-day').val(),
+                type : 'GET',
+                success : function(response){
+                  if(response.success == 1){
+                    swal('', 'Chúc mừng bạn.<br><p style="color:#51A0FB;margin:10px 5px">Tài khoản của bạn vừa được cộng <strong>1</strong> điểm cho lần đăng nhập đầu tiên trong ngày.</p>', 'info').then(function(){
+                      location.reload();
+                    });
+                  }else{
+                    location.reload();
+                  }
+                }
+              });
             }
+            
           }
         });
 
