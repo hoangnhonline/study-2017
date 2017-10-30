@@ -27,6 +27,33 @@
     </div>
   </div>
   <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingABC">
+      <h4 class="panel-title">
+        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseABC" aria-expanded="true" aria-controls="collapseABC">
+          Danh mục khóa học
+        </a>
+      </h4>
+    </div>
+    <div id="collapseABC" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingABC">
+      <div class="panel-body">
+        <ul>
+        <?php 
+          $parentList = DB::table('courses_cate')->orderBy('display_order')->get();
+
+          ?>
+          @foreach($parentList as $cate)          
+          <li>
+            <label>
+            <input type="radio" name="menu_select" data-title="{{ $cate->name }}" data-link="{!! route('courses-cate', $cate->slug) !!}" data-value="{{ $cate->id }}" data-type="1" class="menu_select"> {{ $cate->name }}
+            </label>       
+              
+          </li>
+          @endforeach
+        </ul>                             
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
     <div class="panel-heading" role="tab" id="headingTwo">
       <h4 class="panel-title">
         <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
