@@ -56,6 +56,8 @@ Route::group(['namespace' => 'Frontend'], function()
     Route::get('/bai-hoc/{slug}-{id}.html', ['as' => 'lession-detail', 'uses' => 'CoursesController@lession']);
 
     Route::get('tag/{slug}', ['as' => 'tag', 'uses' => 'DetailController@tagDetail']);
+    Route::get('khoa-hoc/{slug}', ['as' => 'courses-cate', 'uses' => 'CoursesController@cate']);
+    
     Route::get('tin-tuc/{slug}', ['as' => 'news-list', 'uses' => 'NewsController@newsList']);
     Route::get('trac-nghiem/{slug}', ['as' => 'quiz-list', 'uses' => 'QuizController@index']);    
     Route::get('/tin-tuc/{slug}-p{id}.html', ['as' => 'news-detail', 'uses' => 'NewsController@newsDetail']);

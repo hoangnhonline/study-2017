@@ -53,6 +53,14 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'backend', 'middleware' => '
         Route::get('{id}/destroy', ['as' => 'quiz-cate.destroy', 'uses' => 'QuizCateController@destroy']);
         Route::post('/update', ['as' => 'quiz-cate.update', 'uses' => 'QuizCateController@update']);
     });
+     Route::group(['prefix' => 'courses-cate'], function () {
+        Route::get('/', ['as' => 'courses-cate.index', 'uses' => 'CoursesCateController@index']);
+        Route::get('/create', ['as' => 'courses-cate.create', 'uses' => 'CoursesCateController@create']);
+        Route::post('/store', ['as' => 'courses-cate.store', 'uses' => 'CoursesCateController@store']);
+        Route::get('{id}/edit',   ['as' => 'courses-cate.edit', 'uses' => 'CoursesCateController@edit']);       
+        Route::get('{id}/destroy', ['as' => 'courses-cate.destroy', 'uses' => 'CoursesCateController@destroy']);
+        Route::post('/update', ['as' => 'courses-cate.update', 'uses' => 'CoursesCateController@update']);
+    });
     Route::group(['prefix' => 'quiz-questions'], function () {
         Route::get('/', ['as' => 'quiz-questions.index', 'uses' => 'QuizQuestionsController@index']);
         Route::get('/create', ['as' => 'quiz-questions.create', 'uses' => 'QuizQuestionsController@create']);

@@ -11,6 +11,8 @@ use App\Models\Subjects;
 use App\Models\CoursesLession;
 use App\Models\CoursesPart;
 use App\Models\MetaData;
+use App\Models\CoursesCate;
+
 use Helper, File, Session, Auth;
 use Mail, DB;
 
@@ -25,6 +27,27 @@ class CoursesController extends Controller
         $type = 1;
         $subjectList = Subjects::getList(['limit' => 100]);
         return view('frontend.courses.index', compact('coursesList', 'seo', 'socialImage', 'type', 'subjectList'));
+    }
+    public function cate(Request $request)
+    {
+        $slug = $request->slug;
+        $cateDetail = CoursesCate::where('slug', $slug)->first();
+        if(!$cateDetail){
+            return redirect()->route('home');
+        }
+        if( $cateDetail->meta_id > 0){
+           $meta = MetaData::find( $cateDetail->meta_id )->toArray();
+           $seo['title'] = $meta['title'] != '' ? $meta['title'] : $cateDetail->name;
+           $seo['description'] = $meta['description'] != '' ? $meta['description'] : $cateDetail->name;
+           $seo['keywords'] = $meta['keywords'] != '' ? $meta['keywords'] : $cateDetail->name;
+        }else{
+            $seo['title'] = $seo['description'] = $seo['keywords'] = $cateDetail->name;
+        } 
+
+        $coursesList = Courses::getList(['single' => 0, 'cate_id' => $cateDetail->id, 'pagination' => '36']);
+        $type = 1;
+        $subjectList = Subjects::getList(['limit' => 100]);
+        return view('frontend.courses.cate', compact('coursesList', 'seo', 'socialImage', 'type', 'subjectList', 'cateDetail'));
     }
 
      public function detail(Request $request)

@@ -53,6 +53,9 @@ class Courses extends Model  {
         if( isset($params['subject_id']) && $params['subject_id'] ){
             $query->where('subject_id', $params['subject_id']);
         }
+        if( isset($params['cate_id']) && $params['cate_id'] ){
+            $query->where('cate_id', $params['cate_id']);
+        }
         if( isset($params['is_hot']) && $params['is_hot'] ){
             $query->where('is_hot', $params['is_hot']);
         }        
