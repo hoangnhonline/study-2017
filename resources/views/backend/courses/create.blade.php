@@ -39,7 +39,19 @@
                       </ul>
                   </div>
               @endif                    
-                
+                <?php 
+              $parentList = DB::table('courses_cate')->orderBy('display_order')->get();
+
+              ?>
+              <div class="form-group" >                  
+                <label>Khóa học <span class="red-star">*</span></label>
+                <select class="form-control" name="cate_id" id="cate_id">
+                    <option value="">--Chọn--</option>
+                    @foreach($parentList as $cate)          
+                    <option value="{{ $cate->id }}" {{ $cate->id == old('cate_id') ? "selected" : "" }}>{{ $cate->name }}</option>
+                    @endforeach
+                </select>
+              </div>                            
                  <div class="form-group" >
                   
                   <label>Tên khóa học <span class="red-star">*</span></label>

@@ -27,7 +27,21 @@
         </div>
         <div class="panel-body">
           <form class="form-inline" role="form" method="GET" action="{{ route('courses.index') }}" id="searchForm">           
-                     
+            <div class="form-group">
+              <label for="email">Danh mục </label>
+              <select class="form-control" name="cate_id" id="cate_id">
+                <option value="">--Tất cả--</option>
+                 <?php 
+              $parentList = DB::table('courses_cate')->orderBy('display_order')->get();
+
+              ?>
+                @if( !empty($parentList))
+                  @foreach( $parentList as $value )
+                  <option value="{{ $value->id }}" {{ $value->id == $cate_id ? "selected" : "" }}>{{ $value->name }}</option>
+                  @endforeach
+                @endif
+              </select>
+            </div>            
             <div class="form-group">
               <label for="email">Từ khóa :</label>
               <input type="text" class="form-control" name="name" value="{{ $name }}">

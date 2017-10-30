@@ -44,7 +44,15 @@
                   </div>
               @endif                
                                 
-                
+                <div class="form-group" >                  
+                <label>Khóa học <span class="red-star">*</span></label>
+                <select class="form-control" name="cate_id" id="cate_id">
+                    <option value="">--Chọn--</option>
+                    @foreach($parentList as $cate)          
+                    <option value="{{ $cate->id }}" {{ $cate->id == old('cate_id', $detail->cate_id) ? "selected" : "" }}>{{ $cate->name }}</option>
+                    @endforeach
+                </select>
+              </div> 
                 <div class="form-group" >
                   
                   <label>Tên khóa học <span class="red-star">*</span></label>

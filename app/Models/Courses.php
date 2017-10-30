@@ -28,6 +28,7 @@ class Courses extends Model  {
                             'slug', 
                             'alias', 
                             'subject_id', 
+                            'cate_id', 
                             'is_hot', 
                             'is_share',
                             'teacher_id',                              

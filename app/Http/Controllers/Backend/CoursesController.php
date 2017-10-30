@@ -27,6 +27,10 @@ class CoursesController extends Controller
         $name = isset($request->name) && $request->name != '' ? $request->name : '';         
         $query = Courses::where('status', 1);
 
+        $cate_id = isset($request->cate_id) ? $request->cate_id : null;
+        if( $cate_id > 0){
+            $query->where('cate_id', $cate_id);
+        }
         // check editor
         if( Auth::user()->role < 3 ){
             $query->where('created_user', Auth::user()->id);
@@ -39,7 +43,7 @@ class CoursesController extends Controller
         
         //subjects
         $subjectList = Subjects::orderBy('display_order')->get();
-        return view('backend.courses.index', compact( 'items', 'name', 'subjectList', 'teacherList'));
+        return view('backend.courses.index', compact( 'items', 'name', 'subjectList', 'teacherList', 'cate_id'));
     }
 
     /**
@@ -65,14 +69,17 @@ class CoursesController extends Controller
         $dataArr = $request->all();
         
         $this->validate($request,[
+            'cate_id' => 'required',
             'name' => 'required',            
             'slug' => 'required',
-            'teacher_id' => 'required',
+            'teacher_id' => 'required'            
         ],
-        [        
+        [   
+            'cate_id.required' => 'Bạn chưa chọn danh mục',         
             'name.required' => 'Bạn chưa nhập tiêu đề',
             'slug.required' => 'Bạn chưa nhập slug',  
-            'teacher_id.required' => 'Bạn chưa chọn giao vien'       
+            'teacher_id.required' => 'Bạn chưa chọn giáo viên',
+
         ]);       
         
         $dataArr['alias'] = Helper::stripUnicode($dataArr['name']);      
@@ -159,15 +166,18 @@ class CoursesController extends Controller
     {
         $dataArr = $request->all();
         
-        $this->validate($request,[
+         $this->validate($request,[
+            'cate_id' => 'required',
             'name' => 'required',            
             'slug' => 'required',
-            'teacher_id' => 'required',
+            'teacher_id' => 'required'            
         ],
-        [        
+        [   
+            'cate_id.required' => 'Bạn chưa chọn danh mục',         
             'name.required' => 'Bạn chưa nhập tiêu đề',
             'slug.required' => 'Bạn chưa nhập slug',  
-            'teacher_id.required' => 'Bạn chưa chọn giao vien'       
+            'teacher_id.required' => 'Bạn chưa chọn giáo viên',
+
         ]);   
         
         $dataArr['alias'] = Helper::stripUnicode($dataArr['name']);       
