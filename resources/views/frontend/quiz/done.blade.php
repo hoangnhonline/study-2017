@@ -63,7 +63,7 @@
                         </a>
                         
                         <a href="javascript:;" class="sharefb">
-                            <i class="icon-cus-social-share"></i>&nbsp;Chia sẻ
+                            <i class="icon-cus-social-share fa fa-facebook"></i>&nbsp;Chia sẻ
                         
                         </a>
                      </p>
@@ -202,7 +202,7 @@ p.vr-btn a {
              link: '{!! route('share', $strRandom) !!}',          
            },
            function(response) {            
-             if (response && response.post_id) {
+             
                $.ajax({
                 url : "{{ route('share-success') }}",
                 type  : "POST",
@@ -218,7 +218,7 @@ p.vr-btn a {
                     }
                 }
                });
-             }
+           
            }
          );
 			

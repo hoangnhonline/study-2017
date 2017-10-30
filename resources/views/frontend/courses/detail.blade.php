@@ -172,7 +172,7 @@
 		             link: '{!! url()->current() !!}',          
 		           },
 		           function(response) {            
-		             if (response && response.post_id) {
+		             
 		               $.ajax({
 		                url : "{{ route('share-success') }}",
 		                type  : "POST",
@@ -187,7 +187,7 @@
 		                    
 		                }
 		               });
-		             }
+		             
 		           }
 		         );
 			}
