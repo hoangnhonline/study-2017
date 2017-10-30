@@ -61,12 +61,12 @@ class NewsController extends Controller
             $otherList = Articles::getList( ['cate_id' => $detail->cate_id, 'except' => $id, 'limit' => $settingArr['article_related']] );            
 
             if( $detail->meta_id > 0){
-               $meta = MetaData::find( $detail->meta_id )->toArray();
-               $seo['title'] = $meta['title'] != '' ? $meta['title'] : $detail->name;
-               $seo['description'] = $meta['description'] != '' ? $meta['description'] : $detail->name;
-               $seo['keywords'] = $meta['keywords'] != '' ? $meta['keywords'] : $detail->name;
+               $meta = MetaData::find( $detail->meta_id )->toArray();               
+               $seo['title'] = $meta['title'] != '' ? $meta['title'] : $detail->title;
+               $seo['description'] = $meta['description'] != '' ? $meta['description'] : $detail->title;
+               $seo['keywords'] = $meta['keywords'] != '' ? $meta['keywords'] : $detail->title;
             }else{
-                $seo['title'] = $seo['description'] = $seo['keywords'] = $detail->name;
+                $seo['title'] = $seo['description'] = $seo['keywords'] = $detail->title;
             } 
 
             if($detail->image_url){
