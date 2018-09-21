@@ -42,7 +42,11 @@
                           @endforeach
                       </ul>
                   </div>
-              @endif                
+              @endif   
+              <?php 
+              $parentList = DB::table('courses_cate')->orderBy('display_order')->get();
+
+              ?>             
                                 
                 <div class="form-group" >                  
                 <label>Khóa học <span class="red-star">*</span></label>
