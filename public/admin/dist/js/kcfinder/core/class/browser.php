@@ -13,7 +13,8 @@
   */
 
 namespace kcfinder;
-
+error_reporting( E_ALL );
+ini_set('display_errors',1 );
 class browser extends uploader {
     protected $action;
     protected $thumbsDir;
@@ -21,7 +22,7 @@ class browser extends uploader {
 
     public function __construct() {
         parent::__construct();
-
+		
         // SECURITY CHECK INPUT DIRECTORY
         if (isset($_POST['dir'])) {
             $dir = $this->checkInputDir($_POST['dir'], true, false);
@@ -36,6 +37,7 @@ class browser extends uploader {
         }
 
         $thumbsDir = $this->config['uploadDir'] . "/" . $this->config['thumbsDir'];
+		$thumbsDir = "/home/vhvschool.online/public_html/public/uploads/.thumbs";
         if (!$this->config['disabled'] &&
             (
                 (
@@ -76,6 +78,7 @@ class browser extends uploader {
             is_dir("themes/{$_GET['theme']}")
         )
             $this->config['theme'] = $_GET['theme'];
+			
     }
 
     public function action() {

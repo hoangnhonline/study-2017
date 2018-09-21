@@ -13,7 +13,8 @@
   */
 
 namespace kcfinder;
-
+error_reporting( E_ALL );
+ini_set('display_errors',1 );
 class uploader {
 
 /** Release version */
@@ -120,7 +121,7 @@ class uploader {
                 ini_set('session.cookie_domain', $_CONFIG['_sessionDomain']);
             session_start();
         }
-
+	
         // LOAD SESSION CONFIGURATION IF EXISTS
         $this->config = $_CONFIG;
         $sessVar = "_sessionVar";
@@ -153,14 +154,15 @@ class uploader {
             'ip' => $_SERVER['REMOTE_ADDR'],
             'agent' => md5($_SERVER['HTTP_USER_AGENT'])
         );
+	
         if (!isset($this->session['stamp']))
             $this->session['stamp'] = $stamp;
         elseif (!is_array($this->session['stamp']) || ($this->session['stamp'] !== $stamp)) {
-            if ($this->session['stamp']['ip'] === $stamp['ip'])
-                session_destroy();
-            die;
+            //if ($this->session['stamp']['ip'] === $stamp['ip'])
+              //  session_destroy();
+            //die('aaa');
         }
-
+	//	die('debug1');
         // IMAGE DRIVER INIT
         if (isset($this->config['imageDriversPriority'])) {
             $this->config['imageDriversPriority'] =
