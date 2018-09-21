@@ -68,6 +68,12 @@
           <span>Học viên</span>          
         </a>       
       </li>
+	  <li {{ in_array(\Request::route()->getName(), ['subjects.edit', 'subjects.index', 'subjects.create']) ? "class=active" : "" }}>
+        <a href="{{ route('subjects.index') }}">
+          <i class="fa fa-pencil-square-o"></i> 
+          <span>Môn học</span>          
+        </a>       
+      </li>
       <li class="treeview {{ in_array(\Request::route()->getName(), ['pages.index', 'pages.create']) ? 'active' : '' }}">
         <a href="#">
           <i class="fa fa-twitch"></i> 
