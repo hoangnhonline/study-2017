@@ -58,7 +58,7 @@ class SubjectsController extends Controller
         $dataArr['updated_user'] = Auth::user()->id;
     
         $dataArr['display_order'] = Helper::getNextOrder('subjects');
-
+        $dataArr['slug'] = str_slug($dataArr['name'], '-');
         $rs = Subjects::create($dataArr);
 
         Session::flash('message', 'Tạo mới thành công');
@@ -110,7 +110,7 @@ class SubjectsController extends Controller
         ]);               
         
         $dataArr['updated_user'] = Auth::user()->id;
-        
+        $dataArr['slug'] = str_slug($dataArr['name'], '-');
         $model = Subjects::find($dataArr['id']);
 
         $model->update($dataArr);

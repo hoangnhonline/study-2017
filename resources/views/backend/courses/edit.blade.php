@@ -57,6 +57,15 @@
                     @endforeach
                 </select>
               </div> 
+              <div class="form-group">
+                  <label for="email">Môn học</label>                
+                  <select class="form-control" name="subject_id" id="subject_id">
+                    <option value="">--Chọn--</option>
+                    @foreach($subjectList as $cate)          
+                    <option value="{{ $cate->id }}" {{ $cate->id == old('subject_id', $detail->subject_id) ? "selected" : "" }}>{{ $cate->name }}</option>
+                    @endforeach
+                </select>                 
+                </div> 
                 <div class="form-group" >
                   
                   <label>Tên khóa học <span class="red-star">*</span></label>
