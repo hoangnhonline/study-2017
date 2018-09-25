@@ -5,7 +5,11 @@
 <div class="block block-breadcrumb">
 	<ol class="breadcrumb">
 		<li><a href="{!! route('home') !!}" title="Trang chủ">Trang chủ</a></li>
+		@if(!$subjectSlug)
 		<li><a href="{!! route('courses-list') !!}" title="Khóa học">Khóa học</a></li>		
+		@else
+		<li><a href="{!! route('courses-list') !!}" title="Giáo dục THPT">Giáo dục THPT</a></li>		
+		@endif
 		<li class="active">{!! $cateDetail->name !!}</li>
 	</ol>
 </div><!-- /block-breadcrumb -->
