@@ -294,7 +294,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /*===== Header =====*/
 #header .header-top {
-  padding: 30px 0;
+  padding: 10px 0;
 }
 .block-search form {
   position: relative;
@@ -324,6 +324,10 @@ h1, h2, h3, h4, h5, h6 {
 
 .block-user {
   position: relative;
+  padding-top: 20px;
+}
+.block-search{
+ padding-top: 20px; 
 }
 .block-user .block-content {
   margin-top: 3px;

@@ -3,7 +3,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="block-logo col-sm-3 col-xs-5">
-					<a href="{{ route('home') }}" title="LOGO"><img src="{{ Helper::showImage($settingArr['logo']) }}" alt="LOGO "></a>
+					<a href="{{ route('home') }}" title="LOGO"><img src="{{ Helper::showImage($settingArr['logo']) }}" alt="LOGO " width="140px"></a>
 				</div><!-- /block-log -->
 				<div class="block-search col-sm-6 col-xs-7">
 					<form name="frm_search" action="" class="frm-search">
