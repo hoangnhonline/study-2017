@@ -30,18 +30,21 @@ class CoursesController extends Controller
     }
     public function cate(Request $request)
     {
-        $subjectSlug = null;
-        $slug = $request->slug;       
+        $subjectSlug = $subjectDetail = $slugOriginal = null;
+        $slug  = $slugRequest = $request->slug;       
         $cateDetail = CoursesCate::where('slug', $slug)->first();
         if(!$cateDetail){
-            $tmp = explode('-', $slug);
-            $slug = str_replace($tmp[0]."-", '', $slug);           
+            $tmp = explode('-', $slug);            
+            $arr = array_slice($tmp, -2, 2, true);
+            $slug = $slugOriginal = implode($arr, '-');                  
             $cateDetail = CoursesCate::where('slug', $slug)->first();
-
-            $subjectSlug = $tmp[0];
+            $subjectSlug = str_replace("-".$slug, '', $slugRequest);        
+            $subjectDetail = Subjects::where('slug', $subjectSlug)->first();
             if(!$cateDetail){
                 return redirect()->route('home');
             }
+        }else{
+            $slugOriginal = $slug;
         }
         if( $cateDetail->meta_id > 0){
            $meta = MetaData::find( $cateDetail->meta_id )->toArray();
@@ -55,7 +58,7 @@ class CoursesController extends Controller
         $coursesList = Courses::getList(['single' => 0, 'cate_id' => $cateDetail->id, 'pagination' => '36']);
         $type = 1;
         $subjectList = Subjects::getList(['limit' => 100]);
-        return view('frontend.courses.cate', compact('coursesList', 'seo', 'socialImage', 'type', 'subjectList', 'cateDetail', 'subjectSlug'));
+        return view('frontend.courses.cate', compact('coursesList', 'seo', 'socialImage', 'type', 'subjectList', 'cateDetail', 'subjectSlug', 'subjectDetail', 'slugOriginal'));
     }
 
      public function detail(Request $request)

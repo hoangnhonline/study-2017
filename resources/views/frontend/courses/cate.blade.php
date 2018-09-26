@@ -15,9 +15,24 @@
 </div><!-- /block-breadcrumb -->
 <div class="block-list-course block-title-cm">
 	<div class="block-title">
+		@if(!$subjectSlug)
 		<h2 class="title">{!! $cateDetail->name !!}</h2>
+		@else
+		<h2 class="title">{!! $subjectDetail->name !!} - {!! $cateDetail->name !!}</h2>
+		@endif
 	</div><!-- /block-title -->
-	<div class="block-content">
+	<div class="block-content">		
+		<p>
+			<label>MÔN HỌC </label>
+			<select class="form-control" id="subject_id">
+				<option value="">--Tất cả--</option>
+				@foreach($subjectList as $sub)
+				<option value="{{ $sub->slug }}" {{ isset($subjectDetail) && $subjectDetail->id == $sub->id ? "selected" : "" }}>{!! $sub->name !!}</option>
+				@endforeach
+			</select>
+
+		</p>
+		
 		<div class="row">
 			@foreach($coursesList as $obj)
 			<div class="col-sm-4 col-xs-6">
@@ -57,4 +72,22 @@
 		</nav><!-- /block-pagination -->
 	</div><!-- /block-content -->
 </div><!-- /block-list-course -->
+@stop
+@section('js')
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		var slugOriginal = '{{ $slugOriginal }}';
+		$('#subject_id').change(function(){		
+			if($(this).val() != ''){
+				location.href = "{{ env('APP_URL') }}/giao-duc-thpt/" + $(this).val() + "-" + slugOriginal; 	
+			}else{
+				location.href = "{{ env('APP_URL') }}/giao-duc-thpt/" + slugOriginal; 	
+			}
+			
+		});
+		
+	});
+</script>
+
 @stop
