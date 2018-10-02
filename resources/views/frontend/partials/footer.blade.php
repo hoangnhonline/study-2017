@@ -34,7 +34,7 @@
                             <li class="facebook"><a href="https://www.facebook.com/CongTyCoPhanKetNoiVanHoaViet/" title="facebook Fanpage" target="_blank"><i class="fa fa-facebook"></i></a></li>
                             <li class="youtube"><a href="https://www.youtube.com/channel/UCcPS7_I2nYq1XBMid35sRAQ" title="Youtube Channel" target="_blank"><i class="fa fa-youtube-play"></i></a></li>
                             <li class="google"><a href="https://plus.google.com/u/0/117522055737075741711" title="Google+" target="_blank"><i class="fa fa-google-plus"></i></a></li>
-                            <li class="zalo"><a href="http://zalo.me/0907373317" target="_blank" title="Zalo"><img src="images/1521176194-brasol.vn-logo-zalo-vector-logo-zalo-vector.png" alt=""></a></li>
+                            <li class="zalo"><a href="http://zalo.me/0907373317" target="_blank" title="Zalo"><img src="{{ URL::asset('public/assets/images/1521176194-brasol.vn-logo-zalo-vector-logo-zalo-vector.png') }}" alt="zalo"></a></li>
                         </ul>
                     </div>
                     
