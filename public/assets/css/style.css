@@ -293,9 +293,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /*===== Header =====*/
-#header .header-top {
-  padding: 10px 0;
-}
 .block-search form {
   position: relative;
   border: 1px solid #cccccc;
@@ -2239,4 +2236,11 @@ h1, h2, h3, h4, h5, h6 {
   height: 20px;
   width: 65px;
   line-height: 25px;
+}
+#header .header-top {
+    padding: 10px 0;
+    background-image: url(../images/Education-TOP_0.jpg);
+    background-color: rgba(255, 255, 255, 0.7);
+    background-blend-mode: overlay;
+    background-repeat: no-repeat;
 }
