@@ -43,8 +43,8 @@ class ContactController extends Controller
             function($message) use ($dataArr, $settingArr) {                    
                 $message->subject('Khách hàng gửi liên hệ');
                 $message->to([$settingArr['admin_email']]);
-                $message->from('web.0917492306@gmail.com', 'Admin Website Houseland');
-                $message->sender('web.0917492306@gmail.com', 'Admin Website Houseland');
+                $message->from('web.0917492306@gmail.com', 'vhvschool.online');
+                $message->sender('web.0917492306@gmail.com', 'vhvschool.online');
         });
         Session::flash('message', 'Gửi liên hệ thành công.');
 
