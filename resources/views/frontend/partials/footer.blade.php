@@ -28,18 +28,19 @@
                 <div class="address col-sm-5">
                    {!! $settingArr['thong_tin_footer'] !!}
                 </div>
-                <div class="block-social">
-                    <div class="container">
+                <div class="fanpage col-sm-4 col-xs-4">
+                    <div class="block-social">
                         <ul>
                             <li class="facebook"><a href="#" title=""><i class="fa fa-facebook"></i></a></li>
-                            <li class="instagram"><a href="#" title=""><i class="fa fa-instagram"></i></a></li>
                             <li class="youtube"><a href="#" title=""><i class="fa fa-youtube-play"></i></a></li>
                             <li class="google"><a href="#" title=""><i class="fa fa-google-plus"></i></a></li>
+                            <li class="zalo"><a href="#" title=""><img src="images/1521176194-brasol.vn-logo-zalo-vector-logo-zalo-vector.png" alt=""></a></li>
                         </ul>
                     </div>
+                    
                 </div>
             </div>
         </div>
     </div><!-- /block-info-ft -->  
-      
+
 </footer><!-- /footer -->
