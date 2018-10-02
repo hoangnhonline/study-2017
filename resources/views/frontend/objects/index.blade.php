@@ -34,7 +34,11 @@
 						<h3 class="name-members">
 							<a href="{{ route('teacher-detail', ['slug' => $obj->slug, 'id' => $obj->id ]) }}" title="{!! $obj->name !!}">{!! $obj->name !!}</a>
 						</h3>
+						@if($obj->subjects)
 						<p class="subject">Môn: {!! $obj->subjects->name !!}</p>
+						@else
+						<p class="subject">&nbsp;</p>
+						@endif
 					</div>
 				</div>
 			</div>
