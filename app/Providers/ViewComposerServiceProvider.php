@@ -9,6 +9,7 @@ use App\Models\Articles;
 use App\Models\CustomLink;
 use App\Models\Menu;
 use App\Models\Text;
+use App\Models\Subjects;
 use App\Models\QuizCate;
 
 use Auth;
@@ -61,7 +62,7 @@ class ViewComposerServiceProvider extends ServiceProvider
 	        $routeName = \Request::route()->getName();	      
 	        
 	        $isEdit = Auth::check();	        
-
+	        $subList = Subjects::all();
 			$view->with( [
 					'settingArr' => $settingArr, 
 					'articleCate' => $articleCate, 
@@ -72,7 +73,8 @@ class ViewComposerServiceProvider extends ServiceProvider
 					'routeName' => $routeName,
 					'textList' => $textList,
 					'isEdit' => $isEdit,
-					'quizCateList' => $quizCateList
+					'quizCateList' => $quizCateList,
+					'subList' => $subList
 			] );
 			
 		});

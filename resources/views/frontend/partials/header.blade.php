@@ -107,14 +107,19 @@
 								$menuCap2List = DB::table('menu')->where('parent_id', $cap1->id)->orderBy('display_order')->get(); 
 
 								?>
-								<li class="level1 @if($menuCap2List) parent @endif">
+								<li class="level1 @if($menuCap2List || in_array($cap1->id, [28,29,30])) parent @endif">
 									<a href="{{ $cap1->url }}" title="{!! $cap1->title !!}">{!! $cap1->title !!}</a>
 									
-									@if($menuCap2List)
+									@if($menuCap2List || in_array($cap1->id, [28,29,30]))
 									<ul class="level1 submenu">
 										@foreach($menuCap2List as $cap2)
 										<li class="level2"><a href="{{ $cap2->url }}" title="{!! $cap2->title !!}">{!! $cap2->title !!}</a></li>
 										@endforeach
+										@if(in_array($cap1->id, [28,29,30]))
+											@foreach($subList as $sub)
+												<li class="level2"><a href="{{ env('APP_URL') }}/giao-duc-thpt/{{ $sub->slug }}-{{ str_slug($cap1->title ) }}" title="{!! $sub->name !!}">{!! $sub->name !!}</a></li>
+											@endforeach
+										@endif
 									</ul>
 									@endif
 								</li>
