@@ -881,13 +881,16 @@ h1, h2, h3, h4, h5, h6 {
   float: left;
   font-style: normal;
   line-height: 1.42857143;
-  padding-top: 10px;
+  padding-top: 15px;
 }
-
+.block-social{
+  padding-top: 15px;
+  text-align: right;
+}
 .block-social ul {
   padding: 0;
   margin: 0;
-  text-align: center;
+  text-align: right;
   margin-bottom: 5px;
 }
 .block-social ul li {

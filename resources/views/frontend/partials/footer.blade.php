@@ -28,11 +28,18 @@
                 <div class="address col-sm-5">
                    {!! $settingArr['thong_tin_footer'] !!}
                 </div>
-                <div class="fanpage col-sm-4">
-                    <div class="fb-page" data-href="https://www.facebook.com/CongTyCoPhanKetNoiVanHoaViet/" data-tabs="timeline" data-height="100" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/CongTyCoPhanKetNoiVanHoaViet/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/CongTyCoPhanKetNoiVanHoaViet/">vhvschool.online</a></blockquote></div>
-                    
+                <div class="block-social">
+                    <div class="container">
+                        <ul>
+                            <li class="facebook"><a href="#" title=""><i class="fa fa-facebook"></i></a></li>
+                            <li class="instagram"><a href="#" title=""><i class="fa fa-instagram"></i></a></li>
+                            <li class="youtube"><a href="#" title=""><i class="fa fa-youtube-play"></i></a></li>
+                            <li class="google"><a href="#" title=""><i class="fa fa-google-plus"></i></a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
-    </div><!-- /block-info-ft -->    
+    </div><!-- /block-info-ft -->  
+      
 </footer><!-- /footer -->
