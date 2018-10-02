@@ -866,17 +866,22 @@ h1, h2, h3, h4, h5, h6 {
 
 /*===== Footer =====*/
 #footer .block-info-ft {
-  margin-top: 15px;
-  padding-bottom: 15px;
+  background-image: url(../images/CAA-Niagara_Book-Outlet-Banner_0.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: rgba(255, 255, 255, 0.8);
+  background-blend-mode: overlay;
 }
 #footer .block-info-ft .container {
   border-bottom: 1px solid #51A0FB;
   padding-bottom: 15px;
+
 }
 #footer .address {
   float: left;
   font-style: normal;
   line-height: 1.42857143;
+  padding-top: 10px;
 }
 
 .block-social ul {
