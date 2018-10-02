@@ -299,6 +299,7 @@ h1, h2, h3, h4, h5, h6 {
   padding: 7px 0;
   margin-bottom: 0;
   margin-top: 5px;
+  background-color: #FFF;
 }
 .block-search form button[type="submit"] {
   position: absolute;
