@@ -42,7 +42,9 @@
 		</div><!-- /block-article -->
 		<div class="block-editor-content">
 			{!! $detail->content !!}
+			
 		</div><!-- /block-editor-content -->
+
 		@if($tagSelected->count() > 0)
 		<div class="block-tags">
 			<ul>
@@ -55,6 +57,8 @@
 			</ul>
 		</div><!-- /block-tags -->
 		@endif
+		<div class="clearfix" style="margin-bottom: 10px"></div>
+			<div class="fb-comments" data-href="https://www.facebook.com/CongTyCoPhanKetNoiVanHoaViet/" data-numposts="5" data-width="100%"></div>
 		@if($otherList->count() > 0 )
 		<div class="block block-news-related-bot">
 			<div class="block-title">
