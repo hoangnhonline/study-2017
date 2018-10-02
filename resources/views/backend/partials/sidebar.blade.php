@@ -42,13 +42,7 @@
           <li {{ in_array(\Request::route()->getName(), ['quiz.create']) ? "class=active" : "" }}><a href="{{ route('quiz.create') }}"><i class="fa fa-circle-o"></i> Thêm bài thi</a></li> 
           <li {{ in_array(\Request::route()->getName(), ['quiz-cate.create', 'quiz-cate.edit', 'quiz-cate.index']) ? "class=active" : "" }}><a href="{{ route('quiz-cate.index') }}"><i class="fa fa-circle-o"></i> Loại trắc nghiệm</a></li>          
         </ul>
-      </li>
-      <li {{ in_array(\Request::route()->getName(), ['contact.edit', 'contact.index']) ? "class=active" : "" }}>
-        <a href="{{ route('contact.index') }}">
-          <i class="fa fa-pencil-square-o"></i> 
-          <span>Liên hệ</span>          
-        </a>       
-      </li>  
+      </li>     
       </li> 
         <li {{ in_array(\Request::route()->getName(), ['customer.index', 'customer.edit']) ? "class=active" : "" }}>
           <a href="{{ route('customer.index') }}">
