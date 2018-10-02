@@ -59,7 +59,7 @@
 			<div class="block-sidebar">
 				<div class="block-fb">
 					<div class="fb-inner">
-						<div class="fb-page" data-href="https://www.facebook.com/facebook" data-width="300px" data-small-header="true" data-adapt-container-width="false" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/facebook" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/facebook">Facebook</a></blockquote></div>
+						<div class="fb-page" data-href="https://www.facebook.com/CongTyCoPhanKetNoiVanHoaViet/" data-width="300px" data-small-header="true" data-adapt-container-width="false" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/CongTyCoPhanKetNoiVanHoaViet/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/CongTyCoPhanKetNoiVanHoaViet/">Facebook</a></blockquote></div>
 					</div>
 				</div>
 			</div><!-- /block-sidebar -->

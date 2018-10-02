@@ -29,7 +29,7 @@
                    {!! $settingArr['thong_tin_footer'] !!}
                 </div>
                 <div class="fanpage col-sm-4">
-                    <div class="fb-page" data-href="{{ $settingArr['facebook_fanpage'] }}" data-tabs="timeline" data-height="100" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="{{ $settingArr['facebook_fanpage'] }}" class="fb-xfbml-parse-ignore"><a href="{{ $settingArr['facebook_fanpage'] }}">Study.vn</a></blockquote></div>
+                    <div class="fb-page" data-href="https://www.facebook.com/CongTyCoPhanKetNoiVanHoaViet/" data-tabs="timeline" data-height="100" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/CongTyCoPhanKetNoiVanHoaViet/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/CongTyCoPhanKetNoiVanHoaViet/">vhvschool.online</a></blockquote></div>
                     
                 </div>
             </div>

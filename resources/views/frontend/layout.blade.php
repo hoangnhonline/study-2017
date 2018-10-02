@@ -13,7 +13,7 @@
     <meta name="description" content="@yield('site_description')"/>
     <meta name="keywords" content="@yield('site_keywords')"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"/>  
-    <meta property="article:author" content="https://www.facebook.com/ONLINE STUDY"/>
+    <meta property="article:author" content="https://www.facebook.com/CongTyCoPhanKetNoiVanHoaViet/"/>
    
     <link rel="canonical" href="{{ url()->current() }}"/>        
     <meta property="og:locale" content="vi_VN" />
@@ -23,7 +23,7 @@
     <meta property="og:url" content="{{ url()->current() }}" />
     <meta property="og:site_name" content="ONLINE STUDY.vn" />
     <?php $socialImage = isset($socialImage) ? $socialImage : $settingArr['banner']; ?>
-    <meta property="og:image" content="http://houseland.xyz/public/assets/images/logo_gd.jpg" />
+    <meta property="og:image" content="http://vhvschool.online/public/assets/images/logo_gd.jpg" />
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:description" content="@yield('site_description')" />
