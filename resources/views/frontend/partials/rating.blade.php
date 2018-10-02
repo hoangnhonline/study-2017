@@ -12,6 +12,3 @@ $star = ceil($total/$totalRating);
 <div class="rating-summary">
     <input id="kartik" class="rating" data-stars="5" data-step="1" data-size="xs" title="" value="{{ $star }}" />
 </div>
-<div class="rating-action dot"  itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating">
-		<span >Xếp hạng <span itemprop="ratingValue">{{ $star }}</span> - {{ $totalRating }} phiếu bầu</span>
-</div>

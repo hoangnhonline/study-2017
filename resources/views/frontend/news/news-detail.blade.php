@@ -37,15 +37,7 @@
 				</div>
 				<div class="share-item" style="max-width: 65px;">
 					<div class="g-plus" data-action="share"></div>
-				</div>
-				<div class="share-item">
-					<a class="twitter-share-button"
-				  href="https://twitter.com/intent/tweet?text={!! $detail->title !!}">
-				Tweet</a>
-				</div>
-				<div class="share-item">
-					<div class="addthis_inline_share_toolbox"></div>
-				</div>
+				</div>				
 			</div><!-- /block-share-->			
 		</div><!-- /block-article -->
 		<div class="block-editor-content">

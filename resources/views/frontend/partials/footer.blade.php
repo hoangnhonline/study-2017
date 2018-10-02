@@ -5,7 +5,7 @@
                 <div class="col-sm-6">
                     <p>
                         <strong>ĐĂNG KÝ NHẬN EMAIL</strong>
-                        Đăng ký để nhận tài liệu bổ ích từ study.vn
+                        Đăng ký để nhận tài liệu bổ ích từ vhvschool.online
                     </p>
                 </div>
                 <div class="col-sm-6">
