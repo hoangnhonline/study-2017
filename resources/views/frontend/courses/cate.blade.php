@@ -22,6 +22,7 @@
 		@endif
 	</div><!-- /block-title -->
 	<div class="block-content">		
+		@if($is_thpt)
 		<p style="margin-bottom: 15px;">
 			<label>MÔN HỌC </label>
 			<select class="form-control" id="subject_id">
@@ -32,7 +33,7 @@
 			</select>
 
 		</p>
-		
+		@endif
 		<div class="row">
 			@foreach($coursesList as $obj)
 			<div class="col-sm-4 col-xs-6">

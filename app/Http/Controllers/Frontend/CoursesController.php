@@ -30,6 +30,7 @@ class CoursesController extends Controller
     }
     public function cate(Request $request)
     {
+        $is_thpt = false;
         $subjectSlug = $subjectDetail = $slugOriginal = null;
         $slug  = $slugRequest = $request->slug;       
         $cateDetail = CoursesCate::where('slug', $slug)->first();
@@ -43,6 +44,7 @@ class CoursesController extends Controller
             if(!$cateDetail){
                 return redirect()->route('home');
             }
+            $is_thpt = true;
         }else{
             $slugOriginal = $slug;
         }
@@ -58,7 +60,7 @@ class CoursesController extends Controller
         $coursesList = Courses::getList(['single' => 0, 'cate_id' => $cateDetail->id, 'pagination' => '36']);
         $type = 1;
         $subjectList = Subjects::getList(['limit' => 100]);
-        return view('frontend.courses.cate', compact('coursesList', 'seo', 'socialImage', 'type', 'subjectList', 'cateDetail', 'subjectSlug', 'subjectDetail', 'slugOriginal'));
+        return view('frontend.courses.cate', compact('coursesList', 'seo', 'socialImage', 'type', 'subjectList', 'cateDetail', 'subjectSlug', 'subjectDetail', 'slugOriginal', 'is_thpt'));
     }
 
      public function detail(Request $request)
