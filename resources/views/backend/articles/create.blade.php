@@ -73,6 +73,11 @@
                 </div>
                 <div style="clear:both"></div>                
                 <!-- textarea -->
+                <div class="form-group" >
+                  
+                  <label>Youtube ID VIDEO</label>
+                  <input type="text" class="form-control" name="youtube_id" id="youtube_id" value="{{ old('youtube_id') }}">
+                </div>
                 <div class="form-group">
                   <label>Mô tả</label>
                   <textarea class="form-control" rows="6" name="description" id="description">{{ old('description') }}</textarea>

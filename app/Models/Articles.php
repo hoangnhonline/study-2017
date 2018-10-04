@@ -38,7 +38,8 @@ class Articles extends Model  {
                             'content', 
                             'meta_id', 
                             'created_user', 
-                            'updated_user'];
+                            'updated_user',
+                            'youtube_id'];
     public static function getList($params = []){
         $query = self::where('status', 1);
         if( isset($params['cate_id']) && $params['cate_id'] ){
