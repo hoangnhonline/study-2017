@@ -22,7 +22,7 @@
 		@endif
 	</div><!-- /block-title -->
 	<div class="block-content">		
-		<p>
+		<p style="margin-bottom: 15px;">
 			<label>MÔN HỌC </label>
 			<select class="form-control" id="subject_id">
 				<option value="">--Tất cả--</option>

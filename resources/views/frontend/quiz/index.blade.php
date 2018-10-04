@@ -52,13 +52,13 @@
 	</div><!-- /block-left -->
 	<div class="block-right col-sm-4">
 		<div class="sidebar">
-			<div class="block-sidebar">
+			<!-- <div class="block-sidebar">
 				<div class="block-fb">
 					<div class="fb-inner">
 						<div class="fb-page" data-href="https://www.facebook.com/CongTyCoPhanKetNoiVanHoaViet/" data-width="300px" data-small-header="true" data-adapt-container-width="false" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/CongTyCoPhanKetNoiVanHoaViet/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/CongTyCoPhanKetNoiVanHoaViet/">Facebook</a></blockquote></div>
 					</div>
 				</div>
-			</div><!-- /block-sidebar -->
+			</div> -->
 			<div class="block-sidebar">
 				<div class="block-link">
 					<div class="block-title">
