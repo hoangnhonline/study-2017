@@ -42,7 +42,9 @@
 		</div><!-- /block-article -->
 		<div class="block-editor-content">
 			{!! $detail->content !!}
-			
+			@if($detail->youtube_video_id)
+			<iframe width="100%" height="400" src="https://www.youtube-nocookie.com/embed/{!! $detail->youtube_video_id !!}?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
+			@endif
 		</div><!-- /block-editor-content -->
 
 		@if($tagSelected->count() > 0)
