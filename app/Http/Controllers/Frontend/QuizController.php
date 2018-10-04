@@ -107,11 +107,9 @@ class QuizController extends Controller
          $seo['title'] = $seo['description'] = $seo['keywords'] = 'Kết quả';
         $diem = $so_cau_dung*100/$tong_so_cau;
         $diem = round( $diem, 2);
-         $socialImage = null;
-        
+        $socialImage = null;        
         $image = Image::canvas(500, 300, '#f5f5f0');
         $image->insert(Session::get('avatar'));        
-        //var_dump(public_path().'/assets/fonts/cafeta.ttf');die;
         $image->text($diem, 350, 180, function($font) {
             $font->file(public_path().'/assets/fonts/cafeta.ttf');
             $font->size(150);

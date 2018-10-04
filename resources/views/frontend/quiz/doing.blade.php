@@ -62,7 +62,7 @@
 		@endif
 	</div><!-- /box-question -->
 	<div class="group-btn">
-		<button type="submit" class="btn">Nộp Bài</button>
+		<button type="submit" id="btnSubmitQuiz" class="btn">Nộp Bài</button>
 	</div>
 	</form>
 </div><!-- /block-question -->
@@ -72,6 +72,17 @@
 </div>
 @stop
 @section('js')
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#btnSubmitQuiz').click(function(){
+            if($('ul.list-choice input:checked').length == 0){
+                alert('Bạn chưa làm bài.')
+                return false;    
+            }
+            
+        });
+    });
+</script>
 <script>
 var hoursleft = 0;
 var minutesleft = {{ $quizDetail->duration }};
