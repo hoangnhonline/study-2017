@@ -74,16 +74,7 @@
 		@include('frontend.partials.header')
 		
 		<main id="main" class="flex">
-			<div class="container">
-			    <div class="block block-study-notice">
-			      <p>
-			        <span>
-			          <i class="fa fa-exclamation-circle"></i>
-			          Thông Báo :
-			        </span>
-			        <a href="#" title="Say mê học Ngữ Văn lớp 12 với thầy Đặng Ngọc Khương tại đây!">Say mê học Ngữ Văn lớp 12 với thầy Đặng Ngọc Khương tại đây!</a>
-			      </p>
-			    </div><!-- /block-study-notice -->
+			<div class="container">			    
 			@yield('content')
 			</div>
 		</main><!-- /main -->
