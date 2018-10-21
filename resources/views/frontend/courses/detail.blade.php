@@ -55,7 +55,12 @@
 									<button class="btn btn-info facebook-login" type="button">Đăng nhập</button>
 								@endif
 							@else
-							<a href="{!! route('lession-detail', ['slug' => $firstLession->slug, 'id' => $firstLession->id] ) !!}" title="{!! $firstLession->name !!}" class="btn">Xem Chi Tiết</a>				
+							<?php 
+							dd($firstLession);
+							?>
+							@if($firstLession)
+							<a href="{!! route('lession-detail', ['slug' => $firstLession->slug, 'id' => $firstLession->id] ) !!}" title="{!! $firstLession->name !!}" class="btn">Xem Chi Tiết</a>		
+							@endif		
 							@endif
 
 						</div>

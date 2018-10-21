@@ -108,7 +108,7 @@ class Courses extends Model  {
         return $this->hasMany('App\Models\CoursesLession', 'courses_id');
     }
     public static function getFirstLession($courses_id){
-        $detailLession = (object) [];
+       $detailLession = null;
         $partFirst = DB::table('courses_part')->where('status', 1)->where('courses_id', $courses_id)->orderBy('display_order')->first();     
 
         if($partFirst){

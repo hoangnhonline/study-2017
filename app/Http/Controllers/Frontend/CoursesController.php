@@ -85,7 +85,7 @@ class CoursesController extends Controller
             $socialImage = $detail->image_url;
             Helper::counter($id, 2);
             $firstLession = Courses::getFirstLession($id);
-            //dd($firstLession);
+           
             return view('frontend.courses.detail', compact('detail', 'otherList', 'seo', 'socialImage', 'firstLession'));
 
         }else{

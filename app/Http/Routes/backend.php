@@ -101,6 +101,14 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'backend', 'middleware' => '
         Route::get('{id}/destroy', ['as' => 'courses-lession.destroy', 'uses' => 'CoursesLessionController@destroy']);
         Route::post('/update', ['as' => 'courses-lession.update', 'uses' => 'CoursesLessionController@update']);
     });
+    Route::group(['prefix' => 'thpt-baihoc'], function () {
+        Route::get('/', ['as' => 'thpt-baihoc.index', 'uses' => 'ThptBaihocController@index']);
+        Route::get('/create', ['as' => 'thpt-baihoc.create', 'uses' => 'ThptBaihocController@create']);
+        Route::post('/store', ['as' => 'thpt-baihoc.store', 'uses' => 'ThptBaihocController@store']);
+        Route::get('{id}/edit',   ['as' => 'thpt-baihoc.edit', 'uses' => 'ThptBaihocController@edit']);       
+        Route::get('{id}/destroy', ['as' => 'thpt-baihoc.destroy', 'uses' => 'ThptBaihocController@destroy']);
+        Route::post('/update', ['as' => 'thpt-baihoc.update', 'uses' => 'ThptBaihocController@update']);
+    });
     Route::group(['prefix' => 'menu'], function () {
         Route::get('/', ['as' => 'menu.index', 'uses' => 'MenuController@index']);
         Route::get('/create', ['as' => 'menu.create', 'uses' => 'MenuController@create']);

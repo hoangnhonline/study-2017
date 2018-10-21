@@ -41,7 +41,7 @@
 					<a href="{{ route('courses-detail', ['slug' => $obj->slug, 'id' => $obj->id ]) }}" title="{!! $obj->name !!}" class="image">
 						<img src="{!! Helper::showImage($obj->image_url) !!}" alt="{!! $obj->name !!}">
 					</a>
-					<h4><a href="#" title="" class="title">{!! $obj->name !!}</a></h4>
+					<h4><a  href="{{ route('courses-detail', ['slug' => $obj->slug, 'id' => $obj->id ]) }}" title="{!! $obj->name !!}" class="title">{!! $obj->name !!}</a></h4>
 					<p class="des">{!! $obj->description !!}</p>
 					<div class="statistics clearfix">
 	                    <div class="statistics-item views">

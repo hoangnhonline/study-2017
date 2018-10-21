@@ -29,6 +29,19 @@
           <li {{ in_array(\Request::route()->getName(), ['courses-cate.create', 'courses-cate.edit', 'courses-cate.index']) ? "class=active" : "" }}><a href="{{ route('courses-cate.index') }}"><i class="fa fa-circle-o"></i> Danh mục</a></li>          
         </ul>
       </li> 
+       <li class="treeview {{ in_array(\Request::route()->getName(), ['thpt-baihoc.index', 'thpt-baihoc.create', 'thpt-baihoc.edit']) ? 'active' : '' }}">
+        <a href="#">
+          <i class="fa fa-twitch"></i> 
+          <span>Giáo dục phổ thông</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li {{ in_array(\Request::route()->getName(), ['thpt-baihoc.index', 'thpt-baihoc.edit']) ? "class=active" : "" }}><a href="{{ route('thpt-baihoc.index') }}"><i class="fa fa-circle-o"></i> Bài học</a></li>
+          <li {{ in_array(\Request::route()->getName(), ['thpt-baihoc.create']) ? "class=active" : "" }}><a href="{{ route('thpt-baihoc.create') }}"><i class="fa fa-circle-o"></i> Thêm bài học</a></li>          
+        </ul>
+      </li> 
       <li class="treeview {{ in_array(\Request::route()->getName(), ['quiz.index', 'quiz.create', 'quiz.edit', 'quiz-cate.index', 'quiz-cate.create', 'quiz-cate.edit', 'quiz-question.index', 'quiz-question.create', 'quiz-question.edit', 'quiz-answers.index', 'quiz-answers.edit', 'quiz-answers.create' ]) ? 'active' : '' }}">
         <a href="#">
           <i class="fa fa-twitch"></i> 
