@@ -37,7 +37,7 @@ class browser extends uploader {
         }
 
         $thumbsDir = $this->config['uploadDir'] . "/" . $this->config['thumbsDir'];
-		$thumbsDir = "/home/vhvschool.online/public_html/public/uploads/.thumbs";
+		//$thumbsDir = "/home/vhvschool.online/public_html/public/uploads/.thumbs";
         if (!$this->config['disabled'] &&
             (
                 (

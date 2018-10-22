@@ -8,15 +8,14 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\Courses;
 use App\Models\Classthpt;
-use App\Models\ThptBaihoc;
+use App\Models\GroupBai;
 use App\Models\Objects;
 use App\Models\Subjects;
 use App\Models\MetaData;
-use App\Models\GroupBai;
 
 use Helper, File, Session, Auth, Image;
 
-class ThptBaihocController extends Controller
+class GroupBaiController extends Controller
 {
     /**
     * Display a listing of the resource.
@@ -27,22 +26,14 @@ class ThptBaihocController extends Controller
     {   
         $class_id = $request->class_id ? $request->class_id : null;
         $stem_class_id = $request->stem_class_id ? $request->stem_class_id : null;
-        $subject_id = $request->subject_id ? $request->subject_id : null;
-        $teacher_id = $request->teacher_id ? $request->teacher_id : null;
 
         $stemClassDetail = Classthpt::find($stem_class_id);
         
         $name = isset($request->name) && $request->name != '' ? $request->name : '';
         
-        $query = ThptBaihoc::where('status', 1);
+        $query = GroupBai::where('status', 1);
         if($class_id){
             $query->where('class_id', $class_id);
-        }
-        if($subject_id){
-            $query->where('subject_id', $subject_id);
-        }
-        if($teacher_id){
-            $query->where('teacher_id', $teacher_id);
         }
         if($stem_class_id){
             $query->where('stem_class_id', $stem_class_id);
@@ -55,18 +46,12 @@ class ThptBaihocController extends Controller
             $query->where('alias', 'LIKE', '%'.$name.'%');
         }
 
-        $items = $query->orderBy('display_order')->paginate(20);
+        $items = $query->orderBy('id', 'desc')->paginate(20);
         
         //subjects
         $classList = Classthpt::orderBy('display_order')->get();
         $stemClassList = Classthpt::where('type', 1)->orderBy('display_order')->get();
-         $subjectList = Subjects::where('class_id', 1)->orderBy('display_order')->get();
-        $teacherList = Objects::where('type', 1)->get();
-        $groupList = GroupBai::where('type', 1)->get();
-        if($class_id >0){
-            $subjectList = Subjects::where('class_id', $class_id)->orderBy('display_order')->get();
-        }
-        return view('backend.thpt-baihoc.index', compact( 'items', 'name', 'classList', 'coursesDetail', 'stemClassList', 'stemClassDetail', 'stem_class_id', 'class_id', 'subjectList', 'teacherList', 'groupList', 'subject_id', 'teacher_id'));
+        return view('backend.group-bai.index', compact( 'items', 'name', 'classList', 'coursesDetail', 'stemClassList', 'stemClassDetail', 'class_id', 'stem_class_id'));
     }
 
     /**
@@ -81,11 +66,10 @@ class ThptBaihocController extends Controller
         
         $classList = Classthpt::orderBy('display_order')->get();
         $stemClassList = Classthpt::where('type', 1)->orderBy('display_order')->get();
-
         $subjectList = Subjects::orderBy('display_order')->get();
         $teacherList = Objects::where('type', 1)->get();
         $groupList = GroupBai::where('type', 1)->get();
-        return view('backend.thpt-baihoc.create', compact('coursesDetail', 'class_id', 'classList', 'stem_class_id', 'stemClassList', 'subjectList', 'subjectList', 'teacherList', 'groupList'));
+        return view('backend.group-bai.create', compact('coursesDetail', 'class_id', 'classList', 'stem_class_id', 'stemClassList', 'subjectList', 'subjectList', 'teacherList', 'groupList'));
     }
 
     /**
@@ -102,16 +86,13 @@ class ThptBaihocController extends Controller
             'name' => 'required',
             'class_id' => 'required',
             'subject_id' => 'required',
-            'teacher_id' => 'required',
-            'video_id' => 'required',
+            'teacher_id' => 'required',            
         ],
         [        
             'name.required' => 'Bạn chưa nhập tiêu đề',          
             'class_id.required' => 'Bạn chưa chọn lớp',            
             'subject_id.required' => 'Bạn chưa chọn môn học',            
-            'teacher_id.required' => 'Bạn chưa chọn giáo viên',            
-            'video_id.required' => 'Bạn chưa nhập Video ID'
-
+            'teacher_id.required' => 'Bạn chưa chọn giáo viên',
         ]);       
         
         $dataArr['alias'] = str_slug($dataArr['name'], ' ');      
@@ -121,12 +102,12 @@ class ThptBaihocController extends Controller
 
         $dataArr['updated_user'] = Auth::user()->id;
 
-        $rs = ThptBaihoc::create($dataArr);
+        $rs = GroupBai::create($dataArr);
 
         Session::flash('message', 'Tạo mới thành công');
 
 
-        return redirect()->route('thpt-baihoc.index', ['class_id' => $dataArr['class_id'], 'stem_class_id' => $dataArr['stem_class_id']]);
+        return redirect()->route('group-bai.index', ['class_id' => $dataArr['class_id'], 'stem_class_id' => $dataArr['stem_class_id']]);
     }
     public function storeMeta( $id, $meta_id, $dataArr ){
        
@@ -163,7 +144,7 @@ class ThptBaihocController extends Controller
     */
     public function edit($id)
     {
-        $detail = ThptBaihoc::find($id);
+        $detail = GroupBai::find($id);
         if( Auth::user()->role < 3 ){
             if($detail->created_user != Auth::user()->id){
                 return redirect()->route('courses.index');
@@ -180,7 +161,7 @@ class ThptBaihocController extends Controller
         $teacherList = Objects::where('type', 1)->get();
         $groupList = GroupBai::where('type', 1)->get();
             
-        return view('backend.thpt-baihoc.edit', compact('detail', 'meta', 'subjectList', 'teacherList','classList', 'stemClassList', 'groupList'));
+        return view('backend.group-bai.edit', compact('detail', 'meta', 'subjectList', 'teacherList','classList', 'stemClassList', 'groupList'));
     }
 
     /**
@@ -198,15 +179,13 @@ class ThptBaihocController extends Controller
             'name' => 'required',
             'class_id' => 'required',
             'subject_id' => 'required',
-            'teacher_id' => 'required',
-            'video_id' => 'required',
+            'teacher_id' => 'required',            
         ],
         [        
             'name.required' => 'Bạn chưa nhập tiêu đề',          
             'class_id.required' => 'Bạn chưa chọn lớp',            
             'subject_id.required' => 'Bạn chưa chọn môn học',            
-            'teacher_id.required' => 'Bạn chưa chọn giáo viên',            
-            'video_id.required' => 'Bạn chưa nhập Video ID'
+            'teacher_id.required' => 'Bạn chưa chọn giáo viên',                        
 
         ]);
         
@@ -215,13 +194,13 @@ class ThptBaihocController extends Controller
         
         $dataArr['updated_user'] = Auth::user()->id;
         
-        $model = ThptBaihoc::find($dataArr['id']);
+        $model = GroupBai::find($dataArr['id']);
 
         $model->update($dataArr);
 
         Session::flash('message', 'Cập nhật thành công');        
 
-        return redirect()->route('thpt-baihoc.index', ['class_id' => $dataArr['class_id']]);
+        return redirect()->route('group-bai.index', ['class_id' => $dataArr['class_id']]);
     }
 
     /**
@@ -233,10 +212,10 @@ class ThptBaihocController extends Controller
     public function destroy($id)
     {
         // delete
-        $model = ThptBaihoc::find($id);
+        $model = GroupBai::find($id);
         $model->delete();        
         // redirect
         Session::flash('message', 'Xóa thành công');
-        return redirect()->route('thpt-baihoc.index');
+        return redirect()->route('group-bai.index');
     }
 }

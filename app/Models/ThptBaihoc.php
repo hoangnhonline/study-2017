@@ -32,6 +32,8 @@ class ThptBaihoc extends Model  {
                             'video_id',
                             'image_url',
                             'subject_id',
+                            'teacher_id',
+                            'group_id',
                             'content',                              
                             'status', 
                             'display_order',                             
@@ -53,10 +55,16 @@ class ThptBaihoc extends Model  {
     {
         return $this->belongsTo('App\Models\Account', 'updated_user');
     }
-    public function courses(){
-        return $this->hasOne('App\Models\Courses', 'id', 'courses_id');
+    public function classthpt(){
+        return $this->belongsTo('App\Models\Classthpt', 'class_id');
     }
-    public function part(){
-        return $this->hasOne('App\Models\CoursesPart', 'part_id');
+    public function subject(){
+        return $this->belongsTo('App\Models\Subjects', 'subject_id');
+    }
+    public function teacher(){
+        return $this->belongsTo('App\Models\Objects', 'subject_id');
+    }
+    public function group(){
+        return $this->belongsTo('App\Models\GroupBai', 'group_id');
     }
 }

@@ -4,19 +4,19 @@
   <!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>
-      Bài học    
+      Nhóm bài học   
     </h1>
     <ol class="breadcrumb">
       <li><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-      <li><a href="{{ route('thpt-baihoc.index') }}">Bài học</a></li>
+      <li><a href="{{ route('group-bai.index') }}">Nhóm bài học</a></li>
       <li class="active">Tạo mới</li>
     </ol>
   </section>
 
   <!-- Main content -->
   <section class="content">
-    <a class="btn btn-default btn-sm" href="{{ route('thpt-baihoc.index') }}" style="margin-bottom:5px">Quay lại</a>
-    <form role="form" method="POST" action="{{ route('thpt-baihoc.store') }}" id="dataForm">
+    <a class="btn btn-default btn-sm" href="{{ route('group-bai.index') }}" style="margin-bottom:5px">Quay lại</a>
+    <form role="form" method="POST" action="{{ route('group-bai.store') }}" id="dataForm">
     <div class="row">
       <!-- left column -->
 
@@ -41,7 +41,7 @@
               @endif                    
                 <div class="form-group">
                   <label for="email">Lớp<span class="red-star">*</span></label>
-                  <select class="form-control get-child get-child-2" data-col="class_id" name="class_id" id="class_id" data-child="subject_id" data-mod="subjects" data-col2="class_id" data-mod2="group_bai" data-child2="group_id">
+                  <select class="form-control get-child get-child-2" data-col="class_id" name="class_id" id="class_id" data-child="subject_id" data-mod="subjects" data-col-2="stem_class_id" data-mod-2="group_bai" data-child-2="group_id">
                     <option value="">-- chọn --</option>
                     @if( $classList->count() > 0)
                       @foreach( $classList as $value )
@@ -52,7 +52,7 @@
                 </div>
                 <div class="form-group stem" style="display: none;">
                   <label for="email">STEM</label>
-                  <select class="form-control get-child get-child-2" data-col="class_id" name="stem_class_id" id="stem_class_id" data-child="subject_id"  data-mod="subjects" data-col2="stem_class_id" data-mod2="group_bai" data-child2="group_id" > 
+                  <select class="form-control get-child get-child-2" data-col="class_id" name="stem_class_id" id="stem_class_id" data-child="subject_id"  data-mod="subjects" data-col-2="stem_class_id" data-mod-2="group_bai" data-child-2="group_id" > 
                     <option value="">-- chọn --</option>
                     @if( $stemClassList->count() > 0)
                       @foreach( $stemClassList as $value )
@@ -70,7 +70,7 @@
                 </div>  
                 <div class="form-group col-md-6">
                   <label for="email">Giáo viên<span class="red-star">*</span></label>
-                  <select class="form-control get-child" name="teacher_id" id="teacher_id" data-col="teacher_id" data-mod="group_bai" data-child="group_id">
+                  <select class="form-control get-child" name="teacher_id" id="teacher_id" data-col="subject_id" data-mod="group_bai" data-child="group_id">
                     <option value="">-- chọn --</option>
                     @if( $teacherList->count() > 0)
                       @foreach( $teacherList as $value )
@@ -79,28 +79,12 @@
                     @endif
                   </select>
                 </div>
-              </div>
-                <div class="form-group">
-                  <label>Nhóm bài học</label>
-                  <select class="form-control select2" name="group_id" id="group_id">  
-                  <option value="">-- chọn --</option>                
-                    @if( $groupList->count() > 0)
-                      @foreach( $groupList as $value )
-                      <option value="{{ $value->id }}" {{ (old('tags') && in_array($value->id, old('tags'))) ? "selected" : "" }}>{{ $value->name }}</option>
-                      @endforeach
-                    @endif
-                  </select>                 
-                </div> 
+              </div>                 
                  <div class="form-group" >
                   
-                  <label>Tên bài học <span class="red-star">*</span></label>
+                  <label>Tên nhóm bài học <span class="red-star">*</span></label>
                   <input type="text" class="form-control" name="name" id="name" value="{{ old('name') }}">
-                </div>                
-                <div class="form-group" >
-                  
-                  <label>Video ID <span class="red-star">*</span></label>
-                  <input type="text" class="form-control" name="video_id" id="video_id" value="{{ old('video_id') }}">
-                </div> 
+                </div>                                 
                 <div class="form-group" style="margin-top:10px;margin-bottom:10px">  
                   <label class="col-md-3 row">Thumbnail ( 300x169 px)</label>    
                   <div class="col-md-9">
@@ -118,7 +102,7 @@
                               
             <div class="box-footer">
               <button type="submit" class="btn btn-primary btn-sm">Lưu</button>
-              <a class="btn btn-default btn-sm" class="btn btn-primary btn-sm" href="{{ route('thpt-baihoc.index') }}">Hủy</a>
+              <a class="btn btn-default btn-sm" class="btn btn-primary btn-sm" href="{{ route('group-bai.index') }}">Hủy</a>
             </div>
             
         </div>
@@ -134,45 +118,7 @@
   </section>
   <!-- /.content -->
 </div>
-<div id="groupModal" class="modal fade" role="dialog">
-  <div class="modal-dialog modal-lg">
 
-    <!-- Modal content-->
-    <div class="modal-content">
-    <form method="POST" action="{{ route('group.ajax-save') }}" id="formAjaxGroup">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Tạo mới nhóm bài học</h4>
-      </div>
-      <div class="modal-body" id="contentGroup">
-          <input type="hidden" name="type" value="1">
-           <!-- text input -->
-          <div class="col-md-12">
-            <div class="form-group">
-              <label>Tên nhóm<span class="red-star">*</span></label>
-              <input class="form-control" name="name" id="name" rows="4" value="{{ old('name') }}" />
-            </div>
-            
-          </div>
-          <div class="col-md-12">
-            <div class="form-group">
-              <label>Mô tả<span class="red-star">*</span></label>
-              
-            </div>
-            
-          </div>
-          <div classs="clearfix"></div>
-      </div>
-      <div style="clear:both"></div>
-      <div class="modal-footer" style="text-align:center">
-        <button type="button" class="btn btn-primary btn-sm" id="btnSaveGroupAjax"> Save</button>
-        <button type="button" class="btn btn-default btn-sm" data-dismiss="modal" id="btnCloseModalGroup">Close</button>
-      </div>
-      </form>
-    </div>
-
-  </div>
-</div>
 @stop
 @section('js')
 <script type="text/javascript">

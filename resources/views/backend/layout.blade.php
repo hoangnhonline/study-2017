@@ -84,6 +84,7 @@
 <input type="hidden" id="url_open_kc_finder" value="{{ URL::asset('public/admin/dist/js/kcfinder/browse.php?type=images') }}">
 <input type="hidden" id="route-change-value" value="{{ route('change-value') }}">
 <input type="hidden" id="route-ajax-tag-list" value="{{ route('tag.ajax-list') }}">
+<input type="hidden" id="get-child-route" value="{{ route('get-child') }}">
 <!-- ./wrapper -->
 
 <!-- jQuery 2.2.3 -->

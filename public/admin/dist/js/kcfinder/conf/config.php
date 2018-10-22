@@ -23,7 +23,8 @@ $_CONFIG = array(
 
     'disabled' => false,
     'uploadURL' => "../../../../uploads",
-    'uploadDir' => "/home/vhvschool.online/public_html/public/uploads",
+    //'uploadDir' => "/home/vhvschool.online/public_html/public/uploads",
+    'uploadDir' => "",
     'theme' => "default",
 
     'types' => array(

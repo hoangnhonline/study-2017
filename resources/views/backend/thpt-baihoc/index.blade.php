@@ -27,28 +27,61 @@
           <h3 class="panel-title">Bộ lọc</h3>
         </div>
         <div class="panel-body">
-          <form class="form-inline" role="form" method="GET" action="{{ route('thpt-baihoc.index') }}" id="searchForm">           
+          <form class="form-inline" role="form" method="GET" action="{{ route('thpt-baihoc.index') }}" id="searchForms">           
              <div class="form-group">
               <label for="email">Lớp </label>
-              <select class="form-control" name="class_id" id="class_id"> 
-              <option value="">-- chọn --</option>               
+              <select class="form-control get-child get-child-2" data-col="class_id" name="class_id" id="class_id" data-child="subject_id" data-mod="subjects" data-col2="class_id" data-mod2="group_bai" data-child2="group_id"> 
+              <option value="">-- Tất cả --</option>               
                 @if( $classList->count() > 0)
                   @foreach( $classList as $value )
-                  <option value="{{ $value->id }}">{{ $value->name }}</option>
+                  <option value="{{ $value->id }}" {{ $class_id == $value->id ? "selected" : "" }}>{{ $value->name }}</option>
                   @endforeach
                 @endif
               </select>
             </div>     
-            <div class="form-group">
+            <div class="form-group stem">
                   <label for="email">STEM</label>
-                  <select class="form-control" name="stem_class_id" id="stem_class_id">
+                  <select class="form-control get-child get-child-2" data-col="class_id" name="stem_class_id" id="stem_class_id" data-child="subject_id"  data-mod="subjects" data-col2="stem_class_id" data-mod2="group_bai" data-child2="group_id">
                     <option value="">-- chọn --</option>
                     @if( $stemClassList->count() > 0)
                       @foreach( $stemClassList as $value )
-                      <option value="{{ $value->id }}" {{ $value->id == old('stem_class_id') ? "selected" : "" }}>{{ $value->name }}</option>
+                      <option value="{{ $value->id }}" {{ $value->id == $stem_class_id ? "selected" : "" }}>{{ $value->name }}</option>
                       @endforeach
                     @endif
                   </select>
+                </div> 
+            <div class="form-group">
+              <label for="email">Môn học</label>                
+              <select class="form-control get-child" name="subject_id" id="subject_id" data-col="subject_id" data-mod="group_bai" data-child="group_id" >
+                <option value="">--Tất cả--</option>  
+                @if( $subjectList->count() > 0)
+                      @foreach( $subjectList as $value )
+                      <option value="{{ $value->id }}" {{ $value->id == old('subject_id', $subject_id) ? "selected" : "" }}>{{ $value->name }}</option>
+                      @endforeach
+                    @endif                        
+            </select>                 
+            </div>  
+            <div class="form-group">
+              <label for="email">Giáo viên</label>
+              <select class="form-control get-child" name="teacher_id" id="teacher_id" data-col="teacher_id" data-mod="group_bai" data-child="group_id">
+                <option value="">-- Tất cả --</option>
+                @if( $teacherList->count() > 0)
+                  @foreach( $teacherList as $value )
+                  <option value="{{ $value->id }}" {{ $value->id == old('teacher_id') ? "selected" : "" }}>{{ $value->name }}</option>
+                  @endforeach
+                @endif
+              </select>
+            </div>
+            <div class="form-group">
+                  <label>Nhóm bài học</label>
+                  <select class="form-control select2" name="group_id" id="group_id">  
+                  <option value="">-- Tất cả --</option>                
+                    @if( $groupList->count() > 0)
+                      @foreach( $groupList as $value )
+                      <option value="{{ $value->id }}" {{ (old('tags') && in_array($value->id, old('tags'))) ? "selected" : "" }}>{{ $value->name }}</option>
+                      @endforeach
+                    @endif
+                  </select>                 
                 </div>           
             <div class="form-group">
               <label for="email">Từ khóa :</label>
@@ -72,7 +105,11 @@
           <table class="table table-bordered" id="table-list-data">
             <tr>
               <th style="width: 1%">#</th>
-              <th>Tên bài học</th>             
+              <th>Tên bài học</th>
+              <th>Lớp</th>             
+              <th>Môn học</th>
+              <th>Giáo viên</th>
+              <th width="150px">Nhóm bài học</th>
               <th width="1%;white-space:nowrap">Thao tác</th>
             </tr>
             <tbody>
@@ -86,9 +123,28 @@
                 <td>                  
                   <a style="font-size:15px" href="{{ route( 'thpt-baihoc.edit', [ 'id' => $item->id ]) }}">{{ $item->name }}</a>
                 </td>
+                <td>
+                  @if($item->class_id > 0)
+                  {{ $item->classthpt->name }}
+                  @endif
+                </td>
+                <td>
+                  @if($item->subject_id > 0)
+                  {{ $item->subject->name }}
+                  @endif
+                </td>
+                <td>
+                  @if($item->teacher_id > 0)
+                  {{ $item->teacher->name }}
+                  @endif
+                </td>
+                <td>
+                  @if($item->group_id > 0)
+                  {{ $item->group->name }}
+                  @endif
+                </td>
                 
-                <td style="white-space:nowrap"> 
-                  <a class="btn btn-default btn-sm" href="{{ route('news-detail', [$item->slug, $item->id ]) }}" target="_blank"><i class="fa fa-eye" aria-hidden="true"></i> Xem</a>                 
+                <td style="white-space:nowrap">                                   
                   <a href="{{ route( 'thpt-baihoc.edit', [ 'id' => $item->id ]) }}" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-pencil"></span></a>                 
                   
                   <a onclick="return callDelete('{{ $item->name }}','{{ route( 'thpt-baihoc.destroy', [ 'id' => $item->id ]) }}');" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span></a>
@@ -117,4 +173,24 @@
 <!-- /.content -->
 </div>
 <input type="hidden" id="table_name" value="articles">
+@stop
+@section('js')
+<script type="text/javascript">
+  $(document).ready(function(){
+    @if($class_id==4)
+        $('.stem').show();
+    @else
+        $('.stem').hide();
+    @endif
+    $('#class_id').change(function(){
+      var vl = $(this).val();
+      if(vl < 4){
+        $('#stem_class_id').val('');
+        $('.stem').hide();
+      }else{
+        $('.stem').show();
+      }      
+    });    
+  });
+</script>
 @stop

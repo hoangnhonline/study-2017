@@ -81,10 +81,10 @@ class HomeController extends Controller
 
     }
     public function getChild(Request $request){
-        $module = $request->mod;
+        $table = $request->table;
         $id = $request->id;
-        $column = $request->col;
-        return Helper::getChild($module, $column, $id);
+        $column = $request->column;
+        return Helper::getChild($table, $column, $id);
     }
     public function pages(Request $request){
         $slug = $request->slug;

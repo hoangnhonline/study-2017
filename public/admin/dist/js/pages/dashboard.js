@@ -33,6 +33,44 @@ function callDelete(name, url){
   })
   return flag;
 }
+$(document).on('change', '.get-child', function(){
+    var table = $(this).data('mod');
+    var child = $(this).data('child');
+    var column = $(this).data('col');
+    var value = $(this).val();
+    $.ajax({
+      url : $('#get-child-route').val(),
+      data : {
+        table : table,
+        column : column,
+        id : value
+      },
+      type : 'POST',
+      dataType : 'html',
+      success : function(data){
+        $('#' + child).html(data);
+      }
+    });
+});
+$(document).on('change', '.get-child-2', function(){
+    var table = $(this).data('mod2');
+    var child = $(this).data('child2');
+    var column = $(this).data('col2');
+    var value = $(this).val();
+    $.ajax({
+      url : $('#get-child-route').val(),
+      data : {
+        table : table,
+        column : column,
+        id : value
+      },
+      type : 'POST',
+      dataType : 'html',
+      success : function(data){
+        $('#' + child).html(data);
+      }
+    });
+});
 $(document).ready(function(){
 
   "use strict";
@@ -57,7 +95,7 @@ $(document).ready(function(){
   $('.btnSingleUpload').click(function(){        
     singleUpload($(this));
   });
-  $('#cate_id').change(function(){
+  $('#searchForm select').change(function(){
     $('#searchForm').submit();
   });
   $('#dataForm #name').change(function(){
@@ -155,6 +193,54 @@ $(document).ready(function(){
             });
          }
       });
+
+
+
+     $(document).on('click', '#btnSaveGroupAjax', function(){
+      $.ajax({
+        url : $('#formAjaxGroup').attr('action'),
+        data: $('#formAjaxGroup').serialize(),
+        type : "post", 
+        success : function(str_id){          
+          $('#btnCloseModalGroup').click();
+          $.ajax({
+            url : $('#route-ajax-tag-list').val(),
+            data: { 
+              type : 1 ,           
+              str_id : str_id
+            },
+            type : "get", 
+            success : function(data){
+                $('#group_id').html(data);
+                $('#group_id').select2('refresh');                
+            }
+          });
+        }
+      });
+   }); 
+  $('#btnAddGroup').click(function(){
+          $('#groupModal').modal('show');
+      });
+   $('#contentGroup #name').change(function(){
+       var name = $.trim( $(this).val() );
+       if( name != '' && $('#contentGroup #slug').val() == ''){
+          $.ajax({
+            url: $('#route_get_slug').val(),
+            type: "POST",
+            async: false,      
+            data: {
+              str : name
+            },              
+            success: function (response) {
+              if( response.str ){                  
+                $('#contentGroup #slug').val( response.str );
+              }                
+            }
+          });
+       }
+    });
+
+
 });
 var toolbar = [
     { name: 'document', groups: [ 'mode', 'document', 'doctools' ], items: [ 'Source' ] },

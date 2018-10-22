@@ -23,7 +23,7 @@ class Subjects extends Model  {
      *
      * @var array
      */
-    protected $fillable = ['name', 'class', 'display_order', 'status', 'created_user', 'updated_user', 'slug'];
+    protected $fillable = ['name', 'class_id', 'display_order', 'status', 'created_user', 'updated_user', 'slug'];
 
     public function giaoVien()
     {

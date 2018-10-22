@@ -85,6 +85,14 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'backend', 'middleware' => '
         Route::get('{id}/destroy', ['as' => 'courses.destroy', 'uses' => 'CoursesController@destroy']);
         Route::post('/update', ['as' => 'courses.update', 'uses' => 'CoursesController@update']);
     });
+    Route::group(['prefix' => 'group-bai'], function () {
+        Route::get('/', ['as' => 'group-bai.index', 'uses' => 'GroupBaiController@index']);
+        Route::get('/create', ['as' => 'group-bai.create', 'uses' => 'GroupBaiController@create']);
+        Route::post('/store', ['as' => 'group-bai.store', 'uses' => 'GroupBaiController@store']);
+        Route::get('{id}/edit',   ['as' => 'group-bai.edit', 'uses' => 'GroupBaiController@edit']);       
+        Route::get('{id}/destroy', ['as' => 'group-bai.destroy', 'uses' => 'GroupBaiController@destroy']);
+        Route::post('/update', ['as' => 'group-bai.update', 'uses' => 'GroupBaiController@update']);
+    });
     Route::group(['prefix' => 'courses-part'], function () {
         Route::get('/', ['as' => 'courses-part.index', 'uses' => 'CoursesPartController@index']);
         Route::get('/create', ['as' => 'courses-part.create', 'uses' => 'CoursesPartController@create']);
@@ -213,6 +221,16 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'backend', 'middleware' => '
         Route::get('{id}/edit',   ['as' => 'tag.edit', 'uses' => 'TagController@edit']);
         Route::post('/update', ['as' => 'tag.update', 'uses' => 'TagController@update']);
         Route::get('{id}/destroy', ['as' => 'tag.destroy', 'uses' => 'TagController@destroy']);
+    });
+    Route::group(['prefix' => 'group'], function () {
+        Route::get('/', ['as' => 'group.index', 'uses' => 'GroupController@index']);
+        Route::get('/create', ['as' => 'group.create', 'uses' => 'GroupController@create']);
+        Route::post('/store', ['as' => 'group.store', 'uses' => 'GroupController@store']);
+        Route::post('/ajaxSave', ['as' => 'group.ajax-save', 'uses' => 'GroupController@ajaxSave']);  
+        Route::get('/ajax-list', ['as' => 'group.ajax-list', 'uses' => 'GroupController@ajaxList']);      
+        Route::get('{id}/edit',   ['as' => 'group.edit', 'uses' => 'GroupController@edit']);
+        Route::post('/update', ['as' => 'group.update', 'uses' => 'GroupController@update']);
+        Route::get('{id}/destroy', ['as' => 'group.destroy', 'uses' => 'GroupController@destroy']);
     });
     Route::group(['prefix' => 'account'], function () {
         Route::get('/', ['as' => 'account.index', 'uses' => 'AccountController@index']);
