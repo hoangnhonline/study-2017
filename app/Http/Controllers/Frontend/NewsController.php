@@ -35,7 +35,7 @@ class NewsController extends Controller
             if($cateDetail->image_url){
                 $socialImage = $cateDetail->image_url; 
             }
-            $cateList = ArticlesCate::getList(['limit' => 100, 'except' => $cateDetail->id]);
+            $cateList = ArticlesCate::getList(['limit' => 100, 'except' => $cateDetail->id, 'type' => 1]);
             if($cateList){
                 foreach($cateList as $cate){
                     $articleByCate[$cate->id] = Articles::getList(['cate_id' => $cate->id, 'limit' => 5]);
@@ -65,7 +65,7 @@ class NewsController extends Controller
             if($cateDetail->image_url){
                 $socialImage = $cateDetail->image_url; 
             }
-            $cateList = ArticlesCate::getList(['limit' => 100, 'except' => $cateDetail->id]);
+            $cateList = ArticlesCate::getList(['limit' => 100, 'except' => $cateDetail->id, 'type' => 1]);
             if($cateList){
                 foreach($cateList as $cate){
                     $articleByCate[$cate->id] = Articles::getList(['cate_id' => $cate->id, 'limit' => 5]);
