@@ -57,9 +57,11 @@ Route::group(['namespace' => 'Frontend'], function()
 
     Route::get('tag/{slug}', ['as' => 'tag', 'uses' => 'DetailController@tagDetail']);
     Route::get('khoa-hoc/{slug}', ['as' => 'courses-cate', 'uses' => 'CoursesController@cate']);
+
     Route::get('giao-duc-thpt/{slug}', ['as' => 'courses-cate-2', 'uses' => 'CoursesController@cate']);
     Route::get('danh-muc/{slug}', ['as' => 'news-list', 'uses' => 'NewsController@newsList']);
     Route::get('danh-muc/{slug}/{slugChild}', ['as' => 'news-list-child', 'uses' => 'NewsController@newsListChild']);
+    Route::get('khoa-hoc/{slug}/{slugChild}', ['as' => 'courses-cate-child', 'uses' => 'CoursesController@cateChild']);
     Route::get('trac-nghiem/{slug}', ['as' => 'quiz-list', 'uses' => 'QuizController@index']);    
     Route::get('/tin-tuc/{slug}-p{id}.html', ['as' => 'news-detail', 'uses' => 'NewsController@newsDetail']);
     Route::get('trac-nghiem/xac-nhan/{slug}-{id}.html', ['as' => 'quiz-confirm', 'uses' => 'QuizController@confirm']);

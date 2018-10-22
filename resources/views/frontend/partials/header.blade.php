@@ -101,20 +101,20 @@
 								@endforeach
 							</ul>
 						</li>	
-						<li class="level0 parent"><a href="{{ route('home') }}" title="Khóa học">Khóa học</a>
+						<li class="level0 parent"><a href="{{ route('courses-list') }}" title="Khóa học">Khóa học</a>
 							<ul class="level0 submenu">
 								<?php
 								$courseCateList = DB::table('courses_cate')->where('status', 1)->orderBy('display_order')->get();
 								?>
 								@foreach($courseCateList as $courseCate)
 								<li class="level1 parent">
-									<a href="#" title="{!! $courseCate->name !!}">{!! $courseCate->name !!}</a>
+									<a href="{{ route('courses-cate', $courseCate->slug) }}" title="{!! $courseCate->name !!}">{!! $courseCate->name !!}</a>
 									<ul class="level1 submenu">
 										<?php
 											$courseChildList = DB::table('courses_child')->where('cate_id', $courseCate->id)->where('status', 1)->orderBy('display_order')->get();
 										?>
 										@foreach($courseChildList as $courseChild)
-										<li class="level2"><a href="$" title="{!! $courseChild->name !!}">{!! $courseChild->name !!}</a></li>
+										<li class="level2"><a href="{{ route('courses-cate-child', [$courseCate->slug, $courseChild->slug ]) }}" title="{!! $courseChild->name !!}">{!! $courseChild->name !!}</a></li>
 										@endforeach
 									</ul>
 								</li>

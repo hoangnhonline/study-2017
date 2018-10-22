@@ -5,20 +5,19 @@
 <div class="block block-breadcrumb">
 	<ol class="breadcrumb">
 		<li><a href="{!! route('home') !!}" title="Trang chủ">Trang chủ</a></li>
-		@if(!$subjectSlug)
-		<li><a href="{!! route('courses-list') !!}" title="Khóa học">Khóa học</a></li>		
-		@else
-		<li><a href="{!! route('courses-list') !!}" title="Giáo dục THPT">Giáo dục THPT</a></li>		
-		@endif
-		<li class="active">{!! $cateDetail->name !!}</li>
+		
+		<li><a href="{!! route('courses-list') !!}" title="Khóa học">Khóa học</a></li>
+		<li><a href="{!! route('courses-cate', $cateDetail->slug) !!}" title="{!! $cateDetail->name !!}">{!! $cateDetail->name !!}</a></li>			
+		
+		<li class="active">{!! $childDetail->name !!}</li>
 	</ol>
 </div><!-- /block-breadcrumb -->
 <div class="block-list-course block-title-cm">
 	<div class="block-title">
 		@if(!$subjectSlug)
-		<h2 class="title">{!! $cateDetail->name !!}</h2>
+		<h2 class="title">{!! $childDetail->name !!}</h2>
 		@else
-		<h2 class="title">{!! $subjectDetail->name !!} - {!! $cateDetail->name !!}</h2>
+		<h2 class="title">{!! $subjectDetail->name !!} - {!! $childDetail->name !!}</h2>
 		@endif
 	</div><!-- /block-title -->
 	<div class="block-content">		

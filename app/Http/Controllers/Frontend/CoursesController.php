@@ -12,6 +12,8 @@ use App\Models\CoursesLession;
 use App\Models\CoursesPart;
 use App\Models\MetaData;
 use App\Models\CoursesCate;
+use App\Models\CoursesChild;
+
 
 use Helper, File, Session, Auth;
 use Mail, DB;
@@ -62,7 +64,28 @@ class CoursesController extends Controller
         $subjectList = Subjects::getList(['limit' => 100]);
         return view('frontend.courses.cate', compact('coursesList', 'seo', 'socialImage', 'type', 'subjectList', 'cateDetail', 'subjectSlug', 'subjectDetail', 'slugOriginal', 'is_thpt'));
     }
+    public function cateChild(Request $request)
+    {
+        $is_thpt = false;
+        $subjectSlug = $subjectDetail = $slugOriginal = null;
+        $slug  = $slugRequest = $request->slug;       
+        $slugChild  = $request->slugChild;       
+        $cateDetail = CoursesCate::where('slug', $slug)->first();
+        $childDetail = CoursesChild::where('slug', $slugChild)->first();
+        if( $childDetail->meta_id > 0){
+           $meta = MetaData::find( $childDetail->meta_id )->toArray();
+           $seo['title'] = $meta['title'] != '' ? $meta['title'] : $childDetail->name;
+           $seo['description'] = $meta['description'] != '' ? $meta['description'] : $childDetail->name;
+           $seo['keywords'] = $meta['keywords'] != '' ? $meta['keywords'] : $childDetail->name;
+        }else{
+            $seo['title'] = $seo['description'] = $seo['keywords'] = $childDetail->name;
+        } 
 
+        $coursesList = Courses::getList(['single' => 0, 'child_id' => $childDetail->id, 'pagination' => '36']);
+        $type = 1;
+        $subjectList = Subjects::getList(['limit' => 100]);
+        return view('frontend.courses.child', compact('coursesList', 'seo', 'socialImage', 'type', 'subjectList', 'cateDetail', 'subjectSlug', 'subjectDetail', 'slugOriginal', 'is_thpt', 'childDetail'));
+    }
      public function detail(Request $request)
     { 
         $socialImage = null;

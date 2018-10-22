@@ -22,7 +22,7 @@
 					</a>
 					<h4><a href="{{ route('courses-detail', ['slug' => $obj->slug, 'id' => $obj->id ]) }}" title="{!! $obj->name !!}"  class="title">{!! $obj->name !!}</a></h4>
 					<p class="des">{!! $obj->description !!}</p>
-					<div class="statistics clearfix">
+					<!--<div class="statistics clearfix">
 	                    <div class="statistics-item views">
 	                    	<span class="course-item-views-number">316760</span> lượt xem
 	                   	</div>
