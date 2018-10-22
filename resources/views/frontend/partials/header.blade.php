@@ -87,51 +87,137 @@
 		            </button><!-- /navbar-toggle -->
 				</div>
 				<div class="collapse navbar-collapse menu" id="bs-example-navbar-collapse-1">
-					<ul class="nav navbar-nav navbar-left">						
-						<?php 
-						$menuLists = DB::table('menu')->where('parent_id', 0)->orderBy('display_order')->get();
-						?>
-						@foreach($menuLists as $menu)
-
-						<?php
-	                  	$menuCap1List = DB::table('menu')->where('parent_id', $menu->id)->orderBy('display_order')->get();
-	                  	?>
-	                                      
-						<li class="level0 @if($menuCap1List)  parent @endif "><a href="{{ $menu->url }}" title="{{ $menu->title }}">{{ $menu->title }}</a>
-
-							@if($menuCap1List)
-							
-							<ul class="level0 submenu">			
-								@foreach($menuCap1List as $cap1)
-								<?php 
-								$menuCap2List = DB::table('menu')->where('parent_id', $cap1->id)->orderBy('display_order')->get(); 
-
+					<ul class="nav navbar-nav navbar-left">	
+						<li class="level0"><a href="{{ route('home') }}" title="Trang chủ">Trang chủ</a></li>
+						<li class="level0 parent"><a href="#" title="Giới thiệu">Giới thiệu</a>
+							<ul class="level0 submenu">
+								<?php
+								$aboutList = DB::table('articles')->where('status', 1)->where('cate_id', 5)->orderBy('id', 'asc')->get();
 								?>
-								<li class="level1 @if($menuCap2List || in_array($cap1->id, [28,29,30])) parent @endif">
-									<a href="{{ $cap1->url }}" title="{!! $cap1->title !!}">{!! $cap1->title !!}</a>
-									
-									@if($menuCap2List || in_array($cap1->id, [28,29,30]))
-									<ul class="level1 submenu">
-										@foreach($menuCap2List as $cap2)
-										<li class="level2"><a href="{{ $cap2->url }}" title="{!! $cap2->title !!}">{!! $cap2->title !!}</a></li>
-										@endforeach
-										@if(in_array($cap1->id, [28,29,30]))
-											@foreach($subList as $sub)
-												<li class="level2"><a href="{{ env('APP_URL') }}/giao-duc-thpt/{{ $sub->slug }}-{{ str_slug($cap1->title ) }}" title="{!! $sub->name !!}">{!! $sub->name !!}</a></li>
-											@endforeach
-										@endif
-									</ul>
-									@endif
+								@foreach($aboutList as $about)
+								<li class="level1">
+									<a href="#" title="{!! $about->title !!}">{!! $about->title !!}</a>
 								</li>
 								@endforeach
 							</ul>
-							
-							@endif
-						</li>					
+						</li>	
+						<li class="level0 parent"><a href="{{ route('home') }}" title="Khóa học">Khóa học</a>
+							<ul class="level0 submenu">
+								<?php
+								$courseCateList = DB::table('courses_cate')->where('status', 1)->orderBy('display_order')->get();
+								?>
+								@foreach($courseCateList as $courseCate)
+								<li class="level1 parent">
+									<a href="#" title="{!! $courseCate->name !!}">{!! $courseCate->name !!}</a>
+									<ul class="level1 submenu">
+										<?php
+											$courseChildList = DB::table('courses_child')->where('cate_id', $courseCate->id)->where('status', 1)->orderBy('display_order')->get();
+										?>
+										@foreach($courseChildList as $courseChild)
+										<li class="level2"><a href="$" title="{!! $courseChild->name !!}">{!! $courseChild->name !!}</a></li>
+										@endforeach
+									</ul>
+								</li>
+								@endforeach
+							</ul>
 
-						@endforeach
+						</li>	
+						<li class="level0 parent"><a href="{{ route('home') }}" title="Khóa học">Giáo dục PT</a>
+							<ul class="level0 submenu">
+								<?php
+								$courseCateList = DB::table('courses_cate')->where('status', 1)->orderBy('display_order')->get();
+								?>
+								@foreach($courseCateList as $courseCate)
+								<li class="level1 parent">
+									<a href="#" title="{!! $courseCate->name !!}">{!! $courseCate->name !!}</a>
+									<ul class="level1 submenu">
+										<?php
+											$courseChildList = DB::table('courses_child')->where('cate_id', $courseCate->id)->where('status', 1)->orderBy('display_order')->get();
+										?>
+										@foreach($courseChildList as $courseChild)
+										<li class="level2"><a href="$" title="{!! $courseChild->name !!}">{!! $courseChild->name !!}</a></li>
+										@endforeach
+									</ul>
+								</li>
+								@endforeach
+							</ul>
+
+						</li>
+						<li class="level0 parent"><a href="{{ route('news-list', 'hoat-dong') }}" title="Hoạt động">Hoạt động</a>
+							<ul class="level0 submenu">
+								<?php
+								$aboutList = DB::table('cate_child')->where('status', 1)->where('cate_id', 6)->orderBy('id', 'asc')->get();
+								?>
+								@foreach($aboutList as $about)
+								<li class="level1">
+									<a href="{{ route('news-list-child', ['hoat-dong', $about->slug]) }}" title="{!! $about->name !!}">{!! $about->name !!}</a>
+								</li>
+								@endforeach
+							</ul>
+						</li>
+						<li class="level0 parent"><a href="{{ route('news-list', 'tuyen-sinh') }}" title="Tuyển sinh">Tuyển sinh</a>
+							<ul class="level0 submenu">
+								<?php
+								$aboutList = DB::table('cate_child')->where('status', 1)->where('cate_id', 7)->orderBy('id', 'asc')->get();
+								?>
+								@foreach($aboutList as $about)
+								<li class="level1">
+									<a href="{{ route('news-list-child', ['tuyen-sinh', $about->slug]) }}" title="{!! $about->name !!}">{!! $about->name !!}</a>
+								</li>
+								@endforeach
+							</ul>
+						</li>
+						<li class="level0 parent"><a href="{{ route('news-list', 'thoi-khoa-bieu') }}" title="Thời khóa biểu">Thời khóa biểu</a>
+							<ul class="level0 submenu">
+								<?php
+								$aboutList = DB::table('cate_child')->where('status', 1)->where('cate_id', 8)->orderBy('id', 'asc')->get();
+								?>
+								@foreach($aboutList as $about)
+								<li class="level1">
+									<a href="{{ route('news-list-child', ['thoi-khoa-bieu', $about->slug]) }}" title="{!! $about->name !!}">{!! $about->name !!}</a>
+								</li>
+								@endforeach
+							</ul>
+						</li>
+						<li class="level0 parent"><a href="{{ route('news-list', 'thu-vien') }}" title="Thư viện">Thư viện</a>
+							<ul class="level0 submenu">
+								<?php
+								$aboutList = DB::table('cate_child')->where('status', 1)->where('cate_id', 9)->orderBy('id', 'asc')->get();
+								?>
+								@foreach($aboutList as $about)
+								<li class="level1">
+									<a href="{{ route('news-list-child', ['thu-vien', $about->slug]) }}" title="{!! $about->name !!}">{!! $about->name !!}</a>
+								</li>
+								@endforeach
+							</ul>
+						</li>
+						<li class="level0 parent"><a href="{{ route('news-list', 'tin-tuc') }}" title="Tin tức">Tin tức</a>
+							<ul class="level0 submenu">
+								<?php
+								$aboutList = DB::table('cate_child')->where('status', 1)->where('cate_id', 10)->orderBy('id', 'asc')->get();
+								?>
+								@foreach($aboutList as $about)
+								<li class="level1">
+									<a href="{{ route('news-list-child', ['tin-tuc', $about->slug]) }}" title="{!! $about->name !!}">{!! $about->name !!}</a>
+								</li>
+								@endforeach
+							</ul>
+						</li>
+						<li class="level0 parent"><a href="{{ route('news-list', 'hanh-trinh-van-hoa') }}" title="Hành trình văn hóa">Hành trình văn hóa</a>
+							<ul class="level0 submenu">
+								<?php
+								$aboutList = DB::table('cate_child')->where('status', 1)->where('cate_id', 3)->orderBy('id', 'asc')->get();
+								?>
+								@foreach($aboutList as $about)
+								<li class="level1">
+									<a href="{{ route('news-list-child', ['hanh-trinh-van-hoa', $about->slug]) }}" title="{!! $about->name !!}">{!! $about->name !!}</a>
+								</li>
+								@endforeach
+							</ul>
+						</li>
 					</ul>
 				</div><!-- /.navbar-collapse -->
+				
 	    	</nav><!-- mainNav -->
     	</div>
 	</div><!-- /box-menu -->

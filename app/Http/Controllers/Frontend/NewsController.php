@@ -9,6 +9,8 @@ use App\Models\ArticlesCate;
 use App\Models\Articles;
 use App\Models\Settings;
 use App\Models\MetaData;
+use App\Models\CateChild;
+
 use Helper, File, Session, Auth;
 use Mail;
 
@@ -27,9 +29,9 @@ class NewsController extends Controller
             $title = trim($cateDetail->meta_title) ? $cateDetail->meta_title : $cateDetail->name;
             $settingArr = Settings::whereRaw('1')->lists('value', 'name');
             $articlesList = Articles::getList(['cate_id' => $cateDetail->id, 'pagination' => $settingArr['articles_per_page']]);            
-            $seo['title'] = $cateDetail->meta_title ? $cateDetail->meta_title : $cateDetail->title;
+            $seo['title'] = $cateDetail->meta_title ? $cateDetail->meta_title : $cateDetail->name;
             $seo['description'] = $cateDetail->meta_description ? $cateDetail->meta_description : $cateDetail->title;
-            $seo['keywords'] = $cateDetail->meta_keywords ? $cateDetail->meta_keywords : $cateDetail->title;
+            $seo['keywords'] = $cateDetail->meta_keywords ? $cateDetail->meta_keywords : $cateDetail->name;
             if($cateDetail->image_url){
                 $socialImage = $cateDetail->image_url; 
             }
@@ -40,6 +42,36 @@ class NewsController extends Controller
                 }
             }
             return view('frontend.news.index', compact('title', 'articlesList', 'cateDetail', 'seo', 'socialImage', 'cateList', 'articleByCate'));
+        }else{
+            return view('erros.404');
+        }
+    } 
+    public function newsListChild(Request $request)
+    {
+        $socialImage = null;
+        $articleByCate = [];
+        $slug = $request->slug;
+        $slugChild = $request->slugChild;
+        $cateArr = $cateActiveArr = $moviesActiveArr = [];
+       
+        $cateDetail = ArticlesCate::where('slug' , $slug)->first();
+        $childDetail = CateChild::where('slug', $slugChild)->first();
+        if($childDetail){
+            $title = $childDetail->name;
+            $settingArr = Settings::whereRaw('1')->lists('value', 'name');
+            $articlesList = Articles::getList(['cate_id' => $cateDetail->id, 'child_id' => $childDetail->id,  'pagination' => $settingArr['articles_per_page']]);            
+            $seo['title'] = $seo['description'] = $seo['keywords'] = $childDetail->name;
+
+            if($cateDetail->image_url){
+                $socialImage = $cateDetail->image_url; 
+            }
+            $cateList = ArticlesCate::getList(['limit' => 100, 'except' => $cateDetail->id]);
+            if($cateList){
+                foreach($cateList as $cate){
+                    $articleByCate[$cate->id] = Articles::getList(['cate_id' => $cate->id, 'limit' => 5]);
+                }
+            }
+            return view('frontend.news.child', compact('title', 'articlesList', 'cateDetail', 'seo', 'socialImage', 'cateList', 'articleByCate', 'childDetail'));
         }else{
             return view('erros.404');
         }

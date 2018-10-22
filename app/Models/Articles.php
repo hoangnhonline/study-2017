@@ -44,6 +44,9 @@ class Articles extends Model  {
         $query = self::where('status', 1);
         if( isset($params['cate_id']) && $params['cate_id'] ){
             $query->where('cate_id', $params['cate_id']);
+        } 
+        if( isset($params['child_id']) && $params['child_id'] ){
+            $query->where('child_id', $params['child_id']);
         }        
         if( isset($params['is_hot']) && $params['is_hot'] ){
             $query->where('is_hot', $params['is_hot']);
