@@ -28,6 +28,7 @@ class ThptBaihocController extends Controller
         $class_id = $request->class_id ? $request->class_id : null;
         $stem_class_id = $request->stem_class_id ? $request->stem_class_id : null;
         $subject_id = $request->subject_id ? $request->subject_id : null;
+        $le = $request->le ? $request->le : null;
         $teacher_id = $request->teacher_id ? $request->teacher_id : null;
 
         $stemClassDetail = Classthpt::find($stem_class_id);
@@ -40,6 +41,9 @@ class ThptBaihocController extends Controller
         }
         if($subject_id){
             $query->where('subject_id', $subject_id);
+        }
+        if($le){
+            $query->where('group_id', 0);
         }
         if($teacher_id){
             $query->where('teacher_id', $teacher_id);
