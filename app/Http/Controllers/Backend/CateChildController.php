@@ -6,10 +6,11 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Models\CateChild;
 use App\Models\ArticlesCate;
 use Helper, File, Session, Auth;
 
-class ArticlesCateController extends Controller
+class CateChildController extends Controller
 {
     /**
     * Display a listing of the resource.
@@ -18,9 +19,13 @@ class ArticlesCateController extends Controller
     */
     public function index(Request $request)
     {
-        
-        $items = ArticlesCate::where('status', 1)->where('type', 1)->orderBy('display_order')->get();
-        return view('backend.articles-cate.index', compact( 'items' ));
+        $cate_id = $request->cate_id ? $request->cate_id : null;
+        if(!$cate_id){
+            return redirect()->route('courses.index');
+        }
+        $cateDetail = ArticlesCate::find($cate_id);
+        $items = CateChild::where('status', 1)->where('cate_id', $cate_id)->orderBy('display_order')->get();
+        return view('backend.cate-child.index', compact( 'items', 'cate_id', 'cateDetail'));
     }
 
     /**
@@ -28,9 +33,14 @@ class ArticlesCateController extends Controller
     *
     * @return Response
     */
-    public function create()
+    public function create(Request $request)
     {
-        return view('backend.articles-cate.create');
+        $cate_id = $request->cate_id ? $request->cate_id : null;
+        $cateDetail = ArticlesCate::find($cate_id);
+        if(!$cate_id){
+            return redirect()->route('courses.index');
+        }
+        return view('backend.cate-child.create', compact('cate_id', 'cateDetail'));
     }
 
     /**
@@ -44,26 +54,23 @@ class ArticlesCateController extends Controller
         $dataArr = $request->all();
         
         $this->validate($request,[
-            'name' => 'required',
-            'slug' => 'required|unique:articles_cate,slug',
+            'name' => 'required',          
         ],
         [
-            'name.required' => 'Bạn chưa nhập tên danh mục',
-            'slug.required' => 'Bạn chưa nhập slug',
-            'slug.unique' => 'Slug đã được sử dụng.',
+            'name.required' => 'Bạn chưa nhập tên danh mục',            
         ]);
 
-        $dataArr['alias'] = Helper::stripUnicode($dataArr['name']);
+        $dataArr['slug'] = str_slug($dataArr['name'], '-');
         
         $dataArr['created_user'] = Auth::user()->id;
 
         $dataArr['updated_user'] = Auth::user()->id;
-        $dataArr['type'] = 1;
-        ArticlesCate::create($dataArr);
+        
+        CateChild::create($dataArr);
 
         Session::flash('message', 'Tạo mới danh mục thành công');
 
-        return redirect()->route('articles-cate.index');
+        return redirect()->route('cate-child.index', ['cate_id' => $dataArr['cate_id']]);
     }
 
     /**
@@ -85,9 +92,10 @@ class ArticlesCateController extends Controller
     */
     public function edit($id)
     {
-        $detail = ArticlesCate::find($id);
-
-        return view('backend.articles-cate.edit', compact( 'detail' ));
+        $detail = CateChild::find($id);
+        $cateDetail = ArticlesCate::find($detail->cate_id);
+        $cate_id = $detail->cate_id;
+        return view('backend.cate-child.edit', compact( 'detail', 'cateDetail', 'cate_id'));
     }
 
     /**
@@ -103,17 +111,16 @@ class ArticlesCateController extends Controller
         
         $this->validate($request,[
             'name' => 'required',
-            'slug' => 'required|unique:articles_cate,slug,'.$dataArr['id'],
+          
         ],
         [
             'name.required' => 'Bạn chưa nhập tên danh mục',
-            'slug.required' => 'Bạn chưa nhập slug',
-            'slug.unique' => 'Slug đã được sử dụng.'
+          
         ]);       
        
-        $dataArr['alias'] = Helper::stripUnicode($dataArr['name']);
-        $dataArr['type'] = 1;
-        $model = ArticlesCate::find($dataArr['id']);
+        $dataArr['slug'] = str_slug($dataArr['name'], '-');
+        
+        $model = CateChild::find($dataArr['id']);
         
         $dataArr['updated_user'] = Auth::user()->id;
 
@@ -121,7 +128,7 @@ class ArticlesCateController extends Controller
 
         Session::flash('message', 'Cập nhật danh mục thành công');
 
-        return redirect()->route('articles-cate.edit', $dataArr['id']);
+        return redirect()->route('cate-child.index', ['cate_id' => $dataArr['cate_id']]);
     }
 
     /**
@@ -133,11 +140,10 @@ class ArticlesCateController extends Controller
     public function destroy($id)
     {
         // delete
-        $model = ArticlesCate::find($id);
-        $model->delete();
-
+        $model = CateChild::find($id)->update(['status' => 0]);
+        Articles::where('cate_id', $cate_id)->update(['status' => 0]);
         // redirect
         Session::flash('message', 'Xóa danh mục thành công');
-        return redirect()->route('articles-cate.index');
+        return redirect()->route('cate-child.index');
     }
 }

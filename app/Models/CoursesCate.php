@@ -63,5 +63,8 @@ class CoursesCate extends Model  {
     public function courses(){
         return $this->hasMany('App\Models\Courses', 'cate_id');
     }
+    public function child(){
+        return $this->hasMany('App\Models\CoursesChild', 'cate_id');
+    }
 
 }

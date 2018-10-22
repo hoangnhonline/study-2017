@@ -10,6 +10,7 @@ use App\Models\Courses;
 use App\Models\Objects;
 use App\Models\Subjects;
 use App\Models\MetaData;
+use App\Models\CoursesChild;
 
 use Helper, File, Session, Auth, Image;
 
@@ -28,8 +29,14 @@ class CoursesController extends Controller
         $query = Courses::where('status', 1);
 
         $cate_id = isset($request->cate_id) ? $request->cate_id : null;
+        $child_id = isset($request->child_id) ? $request->child_id : null;
+        $childList = [];
         if( $cate_id > 0){
             $query->where('cate_id', $cate_id);
+            $childList = CoursesChild::where('status', 1)->where('cate_id', $cate_id)->get(); 
+        }
+        if( $child_id > 0){
+            $query->where('child_id', $child_id);
         }
         // check editor
         if( Auth::user()->role < 3 ){
@@ -43,7 +50,7 @@ class CoursesController extends Controller
         
         //subjects
         $subjectList = Subjects::orderBy('display_order')->get();
-        return view('backend.courses.index', compact( 'items', 'name', 'subjectList', 'teacherList', 'cate_id'));
+        return view('backend.courses.index', compact( 'items', 'name', 'subjectList', 'teacherList', 'cate_id', 'childList', 'child_id'));
     }
 
     /**
@@ -152,7 +159,11 @@ class CoursesController extends Controller
         }        
         $subjectList = Subjects::orderBy('display_order')->get();
         $teacherList = Objects::where('type', 1)->get();
-        return view('backend.courses.edit', compact('detail', 'meta', 'subjectList', 'teacherList'));
+        $childList = [];
+        if($detail->cate_id > 0){
+            $childList = CoursesChild::where('status', 1)->where('cate_id', $detail->cate_id)->get();
+        }
+        return view('backend.courses.edit', compact('detail', 'meta', 'subjectList', 'teacherList', 'childList'));
     }
 
     /**

@@ -29,6 +29,22 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'backend', 'middleware' => '
         Route::get('{id}/destroy', ['as' => 'courses.destroy', 'uses' => 'CoursesController@destroy']);
         Route::post('/update', ['as' => 'courses.update', 'uses' => 'CoursesController@update']);
     });
+    Route::group(['prefix' => 'cate-child'], function () {
+        Route::get('/', ['as' => 'cate-child.index', 'uses' => 'CateChildController@index']);
+        Route::get('/create', ['as' => 'cate-child.create', 'uses' => 'CateChildController@create']);
+        Route::post('/store', ['as' => 'cate-child.store', 'uses' => 'CateChildController@store']);
+        Route::get('{id}/edit',   ['as' => 'cate-child.edit', 'uses' => 'CateChildController@edit']);       
+        Route::get('{id}/destroy', ['as' => 'cate-child.destroy', 'uses' => 'CateChildController@destroy']);
+        Route::post('/update', ['as' => 'cate-child.update', 'uses' => 'CateChildController@update']);
+    });
+    Route::group(['prefix' => 'courses-child'], function () {
+        Route::get('/', ['as' => 'courses-child.index', 'uses' => 'CoursesChildController@index']);
+        Route::get('/create', ['as' => 'courses-child.create', 'uses' => 'CoursesChildController@create']);
+        Route::post('/store', ['as' => 'courses-child.store', 'uses' => 'CoursesChildController@store']);
+        Route::get('{id}/edit',   ['as' => 'courses-child.edit', 'uses' => 'CoursesChildController@edit']);       
+        Route::get('{id}/destroy', ['as' => 'courses-child.destroy', 'uses' => 'CoursesChildController@destroy']);
+        Route::post('/update', ['as' => 'courses-child.update', 'uses' => 'CoursesChildController@update']);
+    });
     Route::group(['prefix' => 'livestream'], function () {
         Route::get('/', ['as' => 'livestream.index', 'uses' => 'LivestreamController@index']);
         Route::get('/create', ['as' => 'livestream.create', 'uses' => 'LivestreamController@create']);

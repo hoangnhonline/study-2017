@@ -50,7 +50,7 @@
                                 
                 <div class="form-group" >                  
                 <label>Khóa học <span class="red-star">*</span></label>
-                <select class="form-control" name="cate_id" id="cate_id">
+                <select class="form-control get-child" data-child="child_id" data-mod="courses_child" data-col="cate_id" name="cate_id" id="cate_id">
                     <option value="">--Chọn--</option>
                     @foreach($parentList as $cate)          
                     <option value="{{ $cate->id }}" {{ $cate->id == old('cate_id', $detail->cate_id) ? "selected" : "" }}>{{ $cate->name }}</option>
@@ -58,11 +58,11 @@
                 </select>
               </div> 
               <div class="form-group">
-                  <label for="email">Môn học</label>                
-                  <select class="form-control" name="subject_id" id="subject_id">
+                  <label for="email">Danh mục con</label>                
+                  <select class="form-control" name="child_id" id="child_id">
                     <option value="">--Chọn--</option>
-                    @foreach($subjectList as $cate)          
-                    <option value="{{ $cate->id }}" {{ $cate->id == old('subject_id', $detail->subject_id) ? "selected" : "" }}>{{ $cate->name }}</option>
+                    @foreach($childList as $cate)          
+                    <option value="{{ $cate->id }}" {{ $cate->id == old('child_id', $detail->child_id) ? "selected" : "" }}>{{ $cate->name }}</option>
                     @endforeach
                 </select>                 
                 </div> 

@@ -8,7 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\Subjects;
 use App\Models\MetaData;
-
+use App\Models\Classthpt;
 use Helper, File, Session, Auth, Image;
 
 class SubjectsController extends Controller
@@ -20,10 +20,11 @@ class SubjectsController extends Controller
     */
     public function index(Request $request)
     {   
-        
-        $items = Subjects::orderBy('display_order')->get();
-        
-        return view('backend.subjects.index', compact( 'items' ));
+        $class_id = isset($request->class_id) ? $request->class_id : 1;
+ $classList = Classthpt::orderBy('display_order')->get();
+        $items = Subjects::where('class_id', $class_id)->orderBy('display_order')->get();
+               
+        return view('backend.subjects.index', compact( 'items', 'class_id', 'classList'));
     }
 
     /**
@@ -33,7 +34,9 @@ class SubjectsController extends Controller
     */
     public function create(Request $request)
     {
-        return view('backend.subjects.create');
+        $classList = Classthpt::orderBy('display_order')->get();
+        $class_id = isset($request->class_id) ? $request->class_id : 1;
+        return view('backend.subjects.create', compact('classList', 'class_id'));
     }
 
     /**
@@ -63,7 +66,7 @@ class SubjectsController extends Controller
 
         Session::flash('message', 'Tạo mới thành công');
 
-        return redirect()->route('subjects.index');
+        return redirect()->route('subjects.index', ['class_id' => $dataArr['class_id']]);
     }
 
     /**
@@ -87,8 +90,9 @@ class SubjectsController extends Controller
     {
 
         $detail = Subjects::find($id);
-       
-        return view('backend.subjects.edit', compact('detail'));
+       $classList = Classthpt::orderBy('display_order')->get();        
+        $class_id = $detail->class_id;
+        return view('backend.subjects.edit', compact('detail', 'classList', 'class_id'));
     }
 
     /**
@@ -117,7 +121,7 @@ class SubjectsController extends Controller
         
         Session::flash('message', 'Cập nhật thành công');        
 
-        return redirect()->route('subjects.edit', $dataArr['id']);
+        return redirect()->route('subjects.index', ['class_id' => $dataArr['class_id']]);
     }
 
     /**
@@ -130,9 +134,10 @@ class SubjectsController extends Controller
     {
         // delete
         $model = Subjects::find($id);
+        $class_id = $model->class_id;
         $model->delete();        
         // redirect
         Session::flash('message', 'Xóa thành công');
-        return redirect()->route('subjects.index');
+        return redirect()->route('subjects.index', ['class_id' => $class_id]);
     }
 }

@@ -11,6 +11,8 @@ use App\Models\Tag;
 use App\Models\TagObjects;
 use App\Models\Articles;
 use App\Models\MetaData;
+use App\Models\CateChild;
+
 use App\Models\Rating;
 
 use Helper, File, Session, Auth, Image;
@@ -26,6 +28,10 @@ class ArticlesController extends Controller
     {   
         
         $cate_id = isset($request->cate_id) ? $request->cate_id : null;
+        if(!$cate_id){
+            return redirect()->route('courses.index');
+        }
+        $child_id = isset($request->child_id) ? $request->child_id : null;
 
         $title = isset($request->title) && $request->title != '' ? $request->title : '';
         
@@ -33,6 +39,10 @@ class ArticlesController extends Controller
 
         if( $cate_id > 0){
             $query->where('cate_id', $cate_id);
+            $childList = CateChild::where('cate_id', $cate_id)->get();
+        }
+        if( $child_id > 0){
+            $query->where('child_id', $child_id);
         }
         // check editor
         if( Auth::user()->role < 3 ){
@@ -45,8 +55,8 @@ class ArticlesController extends Controller
         $items = $query->orderBy('is_hot', 'desc')->orderBy('id', 'desc')->paginate(20);
         
         $cateArr = ArticlesCate::where('type', 1)->get();
-        
-        return view('backend.articles.index', compact( 'items', 'cateArr' , 'title', 'cate_id' ));
+        $cateDetail = ArticlesCate::find($cate_id);
+        return view('backend.articles.index', compact( 'items', 'cateArr' , 'title', 'cate_id' , 'child_id', 'childList','cateDetail'));
     }
 
     /**
@@ -59,11 +69,20 @@ class ArticlesController extends Controller
         
         $cateArr = ArticlesCate::where('type', 1)->get();
         
-        $cate_id = $request->cate_id;
+        $cate_id = isset($request->cate_id) ? $request->cate_id : null;
+        $child_id = isset($request->child_id) ? $request->child_id : null;
+        if(!$cate_id){
+            return redirect()->route('courses.index');
+        }
 
+        $childDetail = null;
+        if($child_id){
+            $childDetail = CateChild::find($child_id);
+        }
+        $childList = CateChild::where('cate_id', $cate_id)->get();
         $tagArr = Tag::where('type', 2)->orderBy('id', 'desc')->get();
-
-        return view('backend.articles.create', compact( 'tagArr', 'cateArr', 'cate_id'));
+        $cateDetail = ArticlesCate::find($cate_id);
+        return view('backend.articles.create', compact( 'tagArr', 'cateArr', 'cate_id', 'childList', 'child_id', 'childDetail', 'cateDetail'));
     }
 
     /**
@@ -123,7 +142,7 @@ class ArticlesController extends Controller
 
         Session::flash('message', 'Tạo mới thành công');
 
-        return redirect()->route('articles.index',['cate_id' => $dataArr['cate_id']]);
+        return redirect()->route('articles.index',['cate_id' => $dataArr['cate_id'], 'child_id' => $dataArr['child_id']]);
     }
     public function storeMeta( $id, $meta_id, $dataArr ){
        
@@ -184,8 +203,11 @@ class ArticlesController extends Controller
         if ( $detail->meta_id > 0){
             $meta = MetaData::find( $detail->meta_id );
         }
-
-        return view('backend.articles.edit', compact('tagArr', 'tagSelected', 'detail', 'cateArr', 'meta'));
+        $cateDetail = ArticlesCate::find($detail->cate_id);
+        $child_id = $detail->child_id;
+        $cate_id = $detail->cate_id;
+        $childList = CateChild::where('cate_id', $cate_id)->get();
+        return view('backend.articles.edit', compact('tagArr', 'tagSelected', 'detail', 'cateArr', 'meta', 'cateDetail', 'child_id', 'cate_id', 'childList'));
     }
 
     /**
@@ -237,7 +259,7 @@ class ArticlesController extends Controller
         }
         Session::flash('message', 'Cập nhật thành công');        
 
-        return redirect()->route('articles.edit', $dataArr['id']);
+        return redirect()->route('articles.index', ['cate_id' => $dataArr['cate_id'], 'child_id' => $dataArr['child_id']]);
     }
 
     /**
@@ -249,8 +271,7 @@ class ArticlesController extends Controller
     public function destroy($id)
     {
         // delete
-        $model = Articles::find($id);
-        $model->delete();
+        $model = Articles::find($id)->update(['status'=>0]);
 
         // redirect
         Session::flash('message', 'Xóa thành công');

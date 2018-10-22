@@ -39,7 +39,18 @@
                       </ul>
                   </div>
               @endif                    
-                
+                <div class="form-group">
+                <label for="email">Lớp </label>
+                <select class="form-control" data-child="child_id" data-mod="courses_child" data-col="cate_id"  name="class_id" id="class_id">
+                  <option value="">--Chọn--</option>
+                  
+                  @if( !empty($classList))
+                    @foreach( $classList as $value )
+                    <option value="{{ $value->id }}" {{ $value->id == old('class_id', $class_id) ? "selected" : "" }}>{{ $value->name }}</option>
+                    @endforeach
+                  @endif
+                </select>
+              </div>
                 <div class="form-group" >
                   
                   <label>Tên môn học<span class="red-star">*</span></label>

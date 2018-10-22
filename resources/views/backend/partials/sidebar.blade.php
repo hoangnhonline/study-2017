@@ -15,7 +15,7 @@
     <!-- sidebar menu: : style can be found in sidebar.less -->
     <ul class="sidebar-menu">
       <li class="header">MAIN NAVIGATION</li>     
-      <li class="treeview {{ in_array(\Request::route()->getName(), ['courses.index', 'courses.create', 'courses.edit', 'courses-lession.index', 'courses-part.create', 'courses-part.edit', 'courses-part.index', 'courses-lession.create', 'courses-lession.edit', 'courses-cate.create', 'courses-cate.edit', 'courses-cate.index']) ? 'active' : '' }}">
+      <li class="treeview {{ in_array(\Request::route()->getName(), ['courses.index', 'courses.create', 'courses.edit', 'courses-lession.index', 'courses-part.create', 'courses-part.edit', 'courses-part.index', 'courses-lession.create', 'courses-lession.edit', 'courses-cate.create', 'courses-cate.edit', 'courses-cate.index', 'courses-child.index', 'courses-child.create', 'courses-child.edit']) ? 'active' : '' }}">
         <a href="#">
           <i class="fa fa-twitch"></i> 
           <span>Khóa học</span>
@@ -26,7 +26,7 @@
         <ul class="treeview-menu">
           <li {{ in_array(\Request::route()->getName(), ['courses.index', 'courses.edit']) ? "class=active" : "" }}><a href="{{ route('courses.index') }}"><i class="fa fa-circle-o"></i> Khóa học</a></li>
           <li {{ in_array(\Request::route()->getName(), ['courses.create']) ? "class=active" : "" }}><a href="{{ route('courses.create') }}"><i class="fa fa-circle-o"></i> Thêm khóa học</a></li>  
-          <li {{ in_array(\Request::route()->getName(), ['courses-cate.create', 'courses-cate.edit', 'courses-cate.index']) ? "class=active" : "" }}><a href="{{ route('courses-cate.index') }}"><i class="fa fa-circle-o"></i> Danh mục</a></li>          
+          <li {{ in_array(\Request::route()->getName(), ['courses-cate.create', 'courses-cate.edit', 'courses-cate.index','courses-child.index', 'courses-child.create', 'courses-child.edit']) ? "class=active" : "" }}><a href="{{ route('courses-cate.index') }}"><i class="fa fa-circle-o"></i> Danh mục</a></li>          
         </ul>
       </li> 
        <li class="treeview {{ in_array(\Request::route()->getName(), ['thpt-baihoc.index', 'thpt-baihoc.create', 'thpt-baihoc.edit']) ? 'active' : '' }}">
@@ -43,6 +43,104 @@
           <li {{ in_array(\Request::route()->getName(), ['group-bai.create']) ? "class=active" : "" }}><a href="{{ route('group-bai.create') }}"><i class="fa fa-circle-o"></i> Nhóm bài học</a></li>          
         </ul>
       </li> 
+      <li class="treeview {{ (in_array(\Request::route()->getName(), ['articles.index', 'articles.edit', 'articles.create', 'cate-child.index', 'cate-child.edit', 'cate-child.create']) && isset($cate_id)&& $cate_id == 3 ) ? "active" : "" }}">
+        <a href="#">
+          <i class="fa fa-twitch"></i> 
+          <span>Hành trình văn hóa</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li {{ (in_array(\Request::route()->getName(), ['articles.index', 'articles.edit']) && isset($cate_id)&& $cate_id == 3 ) ? "class=active" : "" }}><a href="{{ route('articles.index', ['cate_id' => 3]) }}"><i class="fa fa-circle-o"></i> Bài viết</a></li>
+          <li {{ in_array(\Request::route()->getName(), ['articles.create']) ? "class=active" : "" }}><a href="{{ route('articles.create', ['cate_id' => 3]) }}"><i class="fa fa-circle-o"></i> Thêm bài viết</a></li>
+          <li {{ in_array(\Request::route()->getName(), ['cate-child.index','cate-child.edit', 'cate-child.create', 'cate-child.index']) ? "class=active" : "" }}><a href="{{ route('cate-child.index', ['cate_id' => 3]) }}"><i class="fa fa-circle-o"></i> Danh mục</a></li>          
+        </ul>
+      </li> 
+      <li class="treeview {{ (in_array(\Request::route()->getName(), ['articles.index', 'articles.edit', 'articles.create', 'cate-child.index', 'cate-child.edit', 'cate-child.create']) && isset($cate_id)&& $cate_id == 5 ) ? "active" : "" }}">
+        <a href="#">
+          <i class="fa fa-twitch"></i> 
+          <span>Giới thiệu</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+        </a>
+
+        <ul class="treeview-menu">
+          <li {{ (in_array(\Request::route()->getName(), ['articles.index', 'articles.edit']) && isset($cate_id)&& $cate_id == 5 ) ? "class=active" : "" }}><a href="{{ route('articles.index', ['cate_id' => 5]) }}"><i class="fa fa-circle-o"></i> Bài viết</a></li>
+          <li {{ in_array(\Request::route()->getName(), ['articles.create']) ? "class=active" : "" }}><a href="{{ route('articles.create', ['cate_id' => 5]) }}"><i class="fa fa-circle-o"></i> Thêm bài viết</a></li>                    
+        </ul>
+      </li> 
+      <li class="treeview {{ (in_array(\Request::route()->getName(), ['articles.index', 'articles.edit', 'articles.create', 'cate-child.index', 'cate-child.edit', 'cate-child.create']) && isset($cate_id)&& $cate_id == 6 ) ? "active" : "" }}">
+        <a href="#">
+          <i class="fa fa-twitch"></i> 
+          <span>Hoạt động</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li {{ (in_array(\Request::route()->getName(), ['articles.index', 'articles.edit']) && isset($cate_id)&& $cate_id == 6 ) ? "class=active" : "" }}><a href="{{ route('articles.index', ['cate_id' => 6]) }}"><i class="fa fa-circle-o"></i> Bài viết</a></li>
+          <li {{ in_array(\Request::route()->getName(), ['articles.create']) ? "class=active" : "" }}><a href="{{ route('articles.create', ['cate_id' => 6]) }}"><i class="fa fa-circle-o"></i> Thêm bài viết</a></li>
+          <li {{ in_array(\Request::route()->getName(), ['cate-child.index','cate-child.edit', 'cate-child.create', 'cate-child.index']) ? "class=active" : "" }}><a href="{{ route('cate-child.index', ['cate_id' => 6]) }}"><i class="fa fa-circle-o"></i> Danh mục</a></li>          
+        </ul>
+      </li>
+      <li class="treeview {{ (in_array(\Request::route()->getName(), ['articles.index', 'articles.edit', 'articles.create', 'cate-child.index', 'cate-child.edit', 'cate-child.create']) && isset($cate_id)&& $cate_id == 7 ) ? "active" : "" }}">
+        <a href="#">
+          <i class="fa fa-twitch"></i> 
+          <span>Tuyển sinh</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li {{ (in_array(\Request::route()->getName(), ['articles.index', 'articles.edit']) && isset($cate_id)&& $cate_id == 7 ) ? "class=active" : "" }}><a href="{{ route('articles.index', ['cate_id' => 7]) }}"><i class="fa fa-circle-o"></i> Bài viết</a></li>
+          <li {{ in_array(\Request::route()->getName(), ['articles.create']) ? "class=active" : "" }}><a href="{{ route('articles.create', ['cate_id' => 7]) }}"><i class="fa fa-circle-o"></i> Thêm bài viết</a></li>
+          <li {{ in_array(\Request::route()->getName(), ['cate-child.index','cate-child.edit', 'cate-child.create', 'cate-child.index']) ? "class=active" : "" }}><a href="{{ route('cate-child.index', ['cate_id' => 7]) }}"><i class="fa fa-circle-o"></i> Danh mục</a></li>          
+        </ul>
+      </li>
+      <li class="treeview {{ (in_array(\Request::route()->getName(), ['articles.index', 'articles.edit', 'articles.create', 'cate-child.index', 'cate-child.edit', 'cate-child.create']) && isset($cate_id)&& $cate_id == 8 ) ? "active" : "" }}">
+        <a href="#">
+          <i class="fa fa-twitch"></i> 
+          <span>Thời khóa biểu</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li {{ (in_array(\Request::route()->getName(), ['articles.index', 'articles.edit']) && isset($cate_id)&& $cate_id == 8 ) ? "class=active" : "" }}><a href="{{ route('articles.index', ['cate_id' => 8]) }}"><i class="fa fa-circle-o"></i> Bài viết</a></li>
+          <li {{ in_array(\Request::route()->getName(), ['articles.create']) ? "class=active" : "" }}><a href="{{ route('articles.create', ['cate_id' => 8]) }}"><i class="fa fa-circle-o"></i> Thêm bài viết</a></li>
+          <li {{ in_array(\Request::route()->getName(), ['cate-child.index','cate-child.edit', 'cate-child.create', 'cate-child.index']) ? "class=active" : "" }}><a href="{{ route('cate-child.index', ['cate_id' => 8]) }}"><i class="fa fa-circle-o"></i> Danh mục</a></li>          
+        </ul>
+      </li>
+      <li class="treeview {{ (in_array(\Request::route()->getName(), ['articles.index', 'articles.edit', 'articles.create', 'cate-child.index', 'cate-child.edit', 'cate-child.create']) && isset($cate_id)&& $cate_id == 9 ) ? "active" : "" }}">
+        <a href="#">
+          <i class="fa fa-twitch"></i> 
+          <span>Thư viện</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li {{ (in_array(\Request::route()->getName(), ['articles.index', 'articles.edit']) && isset($cate_id)&& $cate_id == 9 ) ? "class=active" : "" }}><a href="{{ route('articles.index', ['cate_id' => 9]) }}"><i class="fa fa-circle-o"></i> Bài viết</a></li>
+          <li {{ in_array(\Request::route()->getName(), ['articles.create']) ? "class=active" : "" }}><a href="{{ route('articles.create', ['cate_id' => 9]) }}"><i class="fa fa-circle-o"></i> Thêm bài viết</a></li>
+          <li {{ in_array(\Request::route()->getName(), ['cate-child.index','cate-child.edit', 'cate-child.create', 'cate-child.index']) ? "class=active" : "" }}><a href="{{ route('cate-child.index', ['cate_id' => 9]) }}"><i class="fa fa-circle-o"></i> Danh mục</a></li>          
+        </ul>
+      </li>
+      <li class="treeview {{ (in_array(\Request::route()->getName(), ['articles.index', 'articles.edit', 'articles.create', 'cate-child.index', 'cate-child.edit', 'cate-child.create']) && isset($cate_id)&& $cate_id == 10 ) ? "active" : "" }}">
+        <a href="#">
+          <i class="fa fa-twitch"></i> 
+          <span>Tin tức</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li {{ (in_array(\Request::route()->getName(), ['articles.index', 'articles.edit']) && isset($cate_id)&& $cate_id == 10 ) ? "class=active" : "" }}><a href="{{ route('articles.index', ['cate_id' => 10]) }}"><i class="fa fa-circle-o"></i> Bài viết</a></li>
+          <li {{ in_array(\Request::route()->getName(), ['articles.create']) ? "class=active" : "" }}><a href="{{ route('articles.create', ['cate_id' => 10]) }}"><i class="fa fa-circle-o"></i> Thêm bài viết</a></li>
+          <li {{ in_array(\Request::route()->getName(), ['cate-child.index','cate-child.edit', 'cate-child.create', 'cate-child.index']) ? "class=active" : "" }}><a href="{{ route('cate-child.index', ['cate_id' => 10]) }}"><i class="fa fa-circle-o"></i> Danh mục</a></li>          
+        </ul>
+      </li>
       <li class="treeview {{ in_array(\Request::route()->getName(), ['quiz.index', 'quiz.create', 'quiz.edit', 'quiz-cate.index', 'quiz-cate.create', 'quiz-cate.edit', 'quiz-question.index', 'quiz-question.create', 'quiz-question.edit', 'quiz-answers.index', 'quiz-answers.edit', 'quiz-answers.create' ]) ? 'active' : '' }}">
         <a href="#">
           <i class="fa fa-twitch"></i> 
@@ -82,7 +180,7 @@
           <span>Học viên</span>          
         </a>       
       </li>
-	  <li {{ in_array(\Request::route()->getName(), ['subjects.edit', 'subjects.index', 'subjects.create']) ? "class=active" : "" }}>
+	   <li {{ in_array(\Request::route()->getName(), ['subjects.edit', 'subjects.index', 'subjects.create']) ? "class=active" : "" }}>
         <a href="{{ route('subjects.index') }}">
           <i class="fa fa-pencil-square-o"></i> 
           <span>Môn học</span>          
@@ -100,25 +198,8 @@
           <li {{ in_array(\Request::route()->getName(), ['pages.index', 'pages.edit']) ? "class=active" : "" }}><a href="{{ route('pages.index') }}"><i class="fa fa-circle-o"></i> Trang</a></li>
           <li {{ in_array(\Request::route()->getName(), ['pages.create']) ? "class=active" : "" }}><a href="{{ route('pages.create') }}"><i class="fa fa-circle-o"></i> Thêm trang</a></li>          
         </ul>
-      </li>
+      </li>      
       
-      <li class="treeview {{ in_array(\Request::route()->getName(), ['articles.index', 'articles.create', 'articles.edit','articles-cate.create', 'articles-cate.index', 'articles-cate.edit']) ? 'active' : '' }}">
-        <a href="#">
-          <i class="fa fa-pencil-square-o"></i> 
-          <span>Tin tức</span>
-          <span class="pull-right-container">
-            <i class="fa fa-angle-left pull-right"></i>
-          </span>
-        </a>
-        <ul class="treeview-menu">
-          <li {{ in_array(\Request::route()->getName(), ['articles.edit', 'articles.index']) ? "class=active" : "" }}><a href="{{ route('articles.index') }}"><i class="fa fa-circle-o"></i> Tin tức</a></li>
-          <li {{ in_array(\Request::route()->getName(), ['articles.create']) ? "class=active" : "" }} ><a href="{{ route('articles.create', ['cate_id' => 1]) }}"><i class="fa fa-circle-o"></i> Thêm tin tức</a></li>
-          @if(Auth::user()->role == 3)
-        <li {{ in_array(\Request::route()->getName(), ['articles-cate.create', 'articles-cate.index', 'articles-cate.edit']) ? "class=active" : "" }} ><a href="{{ route('articles-cate.index') }}"><i class="fa fa-circle-o"></i> Danh mục tin tức</a></li>      
-        @endif    
-        </ul>
-       
-      </li> 
         <li {{ in_array(\Request::route()->getName(), ['tag.edit', 'tag.index']) ? "class=active" : "" }}>
           <a href="{{ route('tag.index') }}">
             <i class="fa fa-pencil-square-o"></i> 

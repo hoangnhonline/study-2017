@@ -26,10 +26,10 @@
           <h3 class="panel-title">Bộ lọc</h3>
         </div>
         <div class="panel-body">
-          <form class="form-inline" role="form" method="GET" action="{{ route('courses.index') }}" id="searchForm">           
+          <form class="form-inline" role="form" method="GET" action="{{ route('courses.index') }}" id="searchForms">           
             <div class="form-group">
               <label for="email">Danh mục </label>
-              <select class="form-control" name="cate_id" id="cate_id">
+              <select class="form-control get-child" data-child="child_id" data-mod="courses_child" data-col="cate_id"  name="cate_id" id="cate_id">
                 <option value="">--Tất cả--</option>
                  <?php 
               $parentList = DB::table('courses_cate')->orderBy('display_order')->get();
@@ -41,7 +41,18 @@
                   @endforeach
                 @endif
               </select>
-            </div>            
+            </div> 
+            <div class="form-group">
+                  <label for="email">Danh mục con</label>                
+                  <select class="form-control" name="child_id" id="child_id">
+                    <option value="">--Tất cả--</option> 
+                    @if( !empty($childList))
+                  @foreach( $childList as $value )
+                  <option value="{{ $value->id }}" {{ $value->id == $child_id ? "selected" : "" }}>{{ $value->name }}</option>
+                  @endforeach
+                @endif                  
+                </select>                 
+                </div>           
             <div class="form-group">
               <label for="email">Từ khóa :</label>
               <input type="text" class="form-control" name="name" value="{{ $name }}">

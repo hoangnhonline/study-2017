@@ -4,11 +4,11 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
-    Danh mục khóa học
+    Danh mục con : {{ $cateDetail->name }}
   </h1>
   <ol class="breadcrumb">
     <li><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-    <li><a href="{{ route( 'courses-cate.index' ) }}">Danh mục khóa học</a></li>
+    <li><a href="{{ route( 'courses-child.index' ) }}">Danh mục</a></li>
     <li class="active">Danh sách</li>
   </ol>
 </section>
@@ -20,7 +20,7 @@
       @if(Session::has('message'))
       <p class="alert alert-info" >{{ Session::get('message') }}</p>
       @endif
-      <a href="{{ route('courses-cate.create') }}" class="btn btn-info btn-sm" style="margin-bottom:5px">Tạo mới</a>
+      <a href="{{ route('courses-child.create') }}?cate_id={{ $cateDetail->id }}" class="btn btn-info btn-sm" style="margin-bottom:5px">Tạo mới</a>
       <div class="box">
 
         <div class="box-header with-border">
@@ -33,8 +33,7 @@
             <tr>
               <th style="width: 1%">#</th>
               <th style="width: 1%;white-space:nowrap">Thứ tự</th>
-              <th>Tên</th>   
-              <th>Danh mục con</th>                                         
+              <th>Tên</th>                                         
               <th width="1%;white-space:nowrap">Thao tác</th>
             </tr>
             <tbody>
@@ -48,24 +47,19 @@
                   <img src="{{ URL::asset('public/admin/dist/img/move.png')}}" class="move img-thumbnail" alt="Cập nhật thứ tự"/>
                 </td>
                 <td>                  
-                  <a href="{{ route( 'courses-cate.edit', [ 'id' => $item->id ]) }}">{{ $item->name }}</a>
+                  <a href="{{ route( 'courses-child.edit', [ 'id' => $item->id ]) }}">{{ $item->name }}</a>
                   
                  @if( $item->is_hot == 1 )
                   <label class="label label-danger">HOT</label>
                   @endif
 
                   <p>{{ $item->description }}</p>
-                </td> 
-                <td>
-                  <a class="btn btn-primary btn-sm" href="{{ route('courses-child.index', ['cate_id' => $item->id])}}" ><span class="badge">{{ $item->child->count() }}</span> Danh mục con </a>
-                </td>               
+                </td>                
                 <td style="white-space:nowrap">
-                
-                <a class="btn btn-default btn-sm" href="{{ route('courses-cate', $item->slug ) }}" target="_blank"><i class="fa fa-eye" aria-hidden="true"></i> Xem</a>
-                  <a class="btn btn-primary btn-sm" href="{{ route('quiz.index', ['cate_id' => $item->id])}}" ><span class="badge">{{ $item->courses->count() }}</span> Khóa học </a>
-                  <a href="{{ route( 'courses-cate.edit', [ 'id' => $item->id ]) }}" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-pencil"></span></a>                 
-                  @if( $item->courses->count() == 0)
-                  <a onclick="return callDelete('{{ $item->name }}','{{ route( 'courses-cate.destroy', [ 'id' => $item->id ]) }}');" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span></a>
+                  <a class="btn btn-primary btn-sm" href="{{ route('articles.index', ['child_id' => $item->id])}}" ><span class="badge">{{ $item->articles->count() }}</span> Bài viết </a>
+                  <a href="{{ route( 'courses-child.edit', [ 'id' => $item->id ]) }}" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-pencil"></span></a>                 
+                  @if( $item->articles->count() == 0)
+                  <a onclick="return callDelete('{{ $item->name }}','{{ route( 'courses-child.destroy', [ 'id' => $item->id ]) }}');" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span></a>
                   @endif
                 </td>
               </tr> 
@@ -123,7 +117,7 @@ $(document).ready(function(){
                 strTemp = rows[i].id;
                 strOrder += strTemp.replace('row-','') + ";";
             }     
-            updateOrder("loai_sp", strOrder);
+            updateOrder("cate_child", strOrder);
         }
     });
 });

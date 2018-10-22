@@ -15,7 +15,7 @@
 
   <!-- Main content -->
   <section class="content">
-    <a class="btn btn-default btn-sm" href="{{ route('subjects.index') }}" style="margin-bottom:5px">Quay lại</a>
+    <a class="btn btn-default btn-sm" href="{{ route('subjects.index') }}?class_id={{ $class_id }}" style="margin-bottom:5px">Quay lại</a>
     <a class="btn btn-primary btn-sm" href="{{ route('news-detail', [$detail->slug, $detail->id ]) }}" target="_blank" style="margin-top:-6px"><i class="fa fa-eye" aria-hidden="true"></i> Xem</a>    
     <form role="form" method="POST" action="{{ route('subjects.update') }}">
     <div class="row">
@@ -44,7 +44,18 @@
                   </div>
               @endif                
                                 
-                
+                <div class="form-group">
+                <label for="email">Lớp </label>
+                <select class="form-control" data-child="child_id" data-mod="courses_child" data-col="cate_id"  name="class_id" id="class_id">
+                  <option value="">--Chọn--</option>
+                  
+                  @if( !empty($classList))
+                    @foreach( $classList as $value )
+                    <option value="{{ $value->id }}" {{ $value->id == old('class_id', $detail->class_id) ? "selected" : "" }}>{{ $value->name }}</option>
+                    @endforeach
+                  @endif
+                </select>
+              </div>
                  <div class="form-group" >
                   
                   <label>Tên môn học<span class="red-star">*</span></label>
@@ -55,7 +66,7 @@
            
             <div class="box-footer">
               <button type="submit" class="btn btn-primary btn-sm">Lưu</button>
-              <a class="btn btn-default btn-sm" class="btn btn-primary btn-sm" href="{{ route('subjects.index')}}">Hủy</a>
+              <a class="btn btn-default btn-sm" class="btn btn-primary btn-sm" href="{{ route('subjects.index')}}?class_id={{ $class_id }}">Hủy</a>
             </div>
             
         </div>

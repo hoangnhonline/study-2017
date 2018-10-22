@@ -4,7 +4,7 @@
   <!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>
-      Bài viết    
+      Bài viết : <span style="color:#51A0FB">{{ $cateDetail->name }}</span>
     </h1>
     <ol class="breadcrumb">
       <li><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
@@ -15,7 +15,7 @@
 
   <!-- Main content -->
   <section class="content">
-    <a class="btn btn-default btn-sm" href="{{ route('articles.index') }}" style="margin-bottom:5px">Quay lại</a>
+    <a class="btn btn-default btn-sm" href="{{ route('articles.index', ['cate_id' => $cate_id, 'child_id' => $child_id]) }}" style="margin-bottom:5px">Quay lại</a>
     <form role="form" method="POST" action="{{ route('articles.store') }}" id="dataForm">
     <div class="row">
       <!-- left column -->
@@ -39,7 +39,8 @@
                       </ul>
                   </div>
               @endif                
-                <div class="form-group">
+
+                <div class="form-group" style="display: none;">
                   <label for="email">Danh mục <span class="red-star">*</span></label>
                   <select class="form-control" name="cate_id" id="cate_id">
                     <option value="">-- chọn --</option>
@@ -49,7 +50,20 @@
                       @endforeach
                     @endif
                   </select>
-                </div>                           
+                </div>
+                @if($cate_id != 5)
+                <div class="form-group">
+                  <label for="email">Danh mục <span class="red-star">*</span></label>
+                  <select class="form-control" name="child_id" id="child_id">
+                    <option value="">-- Tất cả --</option>
+                    @if( $childList->count() > 0)
+                      @foreach( $childList as $value )
+                      <option value="{{ $value->id }}" {{ $value->id == $child_id ? "selected" : "" }}>{{ $value->name }}</option>
+                      @endforeach
+                    @endif
+                  </select>
+                </div>  
+                @endif                         
                 
                 <div class="form-group" >
                   
@@ -61,7 +75,7 @@
                   <label>Slug <span class="red-star">*</span></label>                  
                   <input type="text" class="form-control"  readonly="readonly" name="slug" id="slug" value="{{ old('slug') }}">
                 </div>
-                
+                @if($cate_id != 5)
                 <div class="form-group" style="margin-top:10px;margin-bottom:10px">  
                   <label class="col-md-3 row">Thumbnail ( 624x468 px)</label>    
                   <div class="col-md-9">
@@ -71,17 +85,20 @@
                   </div>
                   <div style="clear:both"></div>
                 </div>
-                <div style="clear:both"></div>                
+                <div style="clear:both"></div>    
+
                 <!-- textarea -->
                 <div class="form-group" >
                   
                   <label>Youtube ID VIDEO</label>
                   <input type="text" class="form-control" name="youtube_id" id="youtube_id" value="{{ old('youtube_id') }}">
                 </div>
+                @endif
                 <div class="form-group">
                   <label>Mô tả</label>
                   <textarea class="form-control" rows="6" name="description" id="description">{{ old('description') }}</textarea>
-                </div> 
+                </div>
+                @if($cate_id != 5) 
                 <div class="form-group">
                   <div class="checkbox">
                     <label>
@@ -97,6 +114,7 @@
                     <option value="1" {{ old('status') == 1 || old('status') == NULL ? "selected" : "" }}>Hiện</option>                  
                   </select>
                 </div>
+
                 <div class="input-group">
                   <label>Tags</label>
                   <select class="form-control select2" name="tags[]" id="tags" multiple="multiple">                  
@@ -111,7 +129,8 @@
                       Tạo mới
                     </button>
                   </span>
-                </div>                
+                </div> 
+                @endif               
                 <div class="form-group">
                   <label>Chi tiết</label>
                   <textarea class="form-control" rows="4" class="editor" name="content" id="content">{{ old('content') }}</textarea>
@@ -122,7 +141,7 @@
                               
             <div class="box-footer">
               <button type="submit" class="btn btn-primary btn-sm">Lưu</button>
-              <a class="btn btn-default btn-sm" class="btn btn-primary btn-sm" href="{{ route('articles.index')}}">Hủy</a>
+              <a class="btn btn-default btn-sm" class="btn btn-primary btn-sm" href="{{ route('articles.index', ['cate_id' => $cate_id, 'child_id' => $child_id])}}">Hủy</a>
             </div>
             
         </div>

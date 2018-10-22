@@ -20,8 +20,29 @@
       @if(Session::has('message'))
       <p class="alert alert-info" >{{ Session::get('message') }}</p>
       @endif
-      <a href="{{ route('subjects.create') }}" class="btn btn-info btn-sm" style="margin-bottom:5px">Tạo mới</a>
-      
+      <a href="{{ route('subjects.create') }}?class_id={{ $class_id }}" class="btn btn-info btn-sm" style="margin-bottom:5px">Tạo mới</a>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Bộ lọc</h3>
+        </div>
+        <div class="panel-body">
+          <form class="form-inline" role="form" method="GET" action="{{ route('subjects.index') }}" id="searchForm">           
+            <div class="form-group">
+              <label for="email">Lớp </label>
+              <select class="form-control" data-child="child_id" data-mod="courses_child" data-col="cate_id"  name="class_id" id="class_id">
+                <option value="">--Tất cả--</option>
+                
+                @if( !empty($classList))
+                  @foreach( $classList as $value )
+                  <option value="{{ $value->id }}" {{ $value->id == $class_id ? "selected" : "" }}>{{ $value->name }}</option>
+                  @endforeach
+                @endif
+              </select>
+            </div>            
+            <button type="submit" class="btn btn-default btn-sm">Lọc</button>
+          </form>         
+        </div>
+      </div>
       <div class="box">
 
         <div class="box-header with-border">
