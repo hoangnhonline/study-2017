@@ -54,10 +54,7 @@
 								@else
 									<button class="btn btn-info facebook-login" type="button">Đăng nhập</button>
 								@endif
-							@else
-							<?php 
-							dd($firstLession);
-							?>
+							@else							
 							@if($firstLession)
 							<a href="{!! route('lession-detail', ['slug' => $firstLession->slug, 'id' => $firstLession->id] ) !!}" title="{!! $firstLession->name !!}" class="btn">Xem Chi Tiết</a>		
 							@endif		
