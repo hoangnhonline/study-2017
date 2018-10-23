@@ -137,7 +137,7 @@ class ThptBaihocController extends Controller
             return view('frontend.courses.detail', compact('detail', 'otherList', 'seo', 'socialImage', 'firstLession'));
 
         }else{
-            return view('erros.404');
+            return view('errors.404');
         }
     }
     public function lession(Request $request)
