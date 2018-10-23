@@ -87,8 +87,7 @@
                   <a style="font-size:15px" href="{{ route( 'group-bai.edit', [ 'id' => $item->id ]) }}">{{ $item->name }}</a>
                 </td>
                 
-                <td style="white-space:nowrap"> 
-                  <a class="btn btn-default btn-sm" href="{{ route('news-detail', [$item->slug, $item->id ]) }}" target="_blank"><i class="fa fa-eye" aria-hidden="true"></i> Xem</a>                 
+                <td style="white-space:nowrap">                                 
                   <a href="{{ route( 'group-bai.edit', [ 'id' => $item->id ]) }}" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-pencil"></span></a>                 
                   
                   <a onclick="return callDelete('{{ $item->name }}','{{ route( 'group-bai.destroy', [ 'id' => $item->id ]) }}');" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span></a>

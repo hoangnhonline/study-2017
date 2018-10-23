@@ -30,6 +30,7 @@ class ThptBaihocController extends Controller
         $subject_id = $request->subject_id ? $request->subject_id : null;
         $le = $request->le ? $request->le : null;
         $teacher_id = $request->teacher_id ? $request->teacher_id : null;
+        $group_id = $request->group_id ? $request->group_id : null;
 
         $stemClassDetail = Classthpt::find($stem_class_id);
         
@@ -41,6 +42,9 @@ class ThptBaihocController extends Controller
         }
         if($subject_id){
             $query->where('subject_id', $subject_id);
+        }
+        if($group_id){
+            $query->where('group_id', $group_id);
         }
         if($le){
             $query->where('group_id', 0);
@@ -70,7 +74,7 @@ class ThptBaihocController extends Controller
         if($class_id >0){
             $subjectList = Subjects::where('class_id', $class_id)->orderBy('display_order')->get();
         }
-        return view('backend.thpt-baihoc.index', compact( 'items', 'name', 'classList', 'coursesDetail', 'stemClassList', 'stemClassDetail', 'stem_class_id', 'class_id', 'subjectList', 'teacherList', 'groupList', 'subject_id', 'teacher_id'));
+        return view('backend.thpt-baihoc.index', compact( 'items', 'name', 'classList', 'coursesDetail', 'stemClassList', 'stemClassDetail', 'stem_class_id', 'class_id', 'subjectList', 'teacherList', 'groupList', 'subject_id', 'teacher_id', 'group_id', 'le'));
     }
 
     /**
@@ -119,8 +123,10 @@ class ThptBaihocController extends Controller
         ]);       
         
         $dataArr['alias'] = str_slug($dataArr['name'], ' ');      
-        $dataArr['slug'] = str_slug($dataArr['name'], '-');      
-        
+        $dataArr['slug'] = str_slug($dataArr['name'], '-');     
+
+        $dataArr['is_hot'] = isset($dataArr['is_hot']) ? 1 : 0;           
+        $dataArr['is_share'] = isset($dataArr['is_share']) ? 1 : 0;  
         $dataArr['created_user'] = Auth::user()->id;
 
         $dataArr['updated_user'] = Auth::user()->id;
@@ -218,6 +224,8 @@ class ThptBaihocController extends Controller
         $dataArr['slug'] = str_slug($dataArr['name'], '-');        
         
         $dataArr['updated_user'] = Auth::user()->id;
+        $dataArr['is_hot'] = isset($dataArr['is_hot']) ? 1 : 0;           
+        $dataArr['is_share'] = isset($dataArr['is_share']) ? 1 : 0;  
         
         $model = ThptBaihoc::find($dataArr['id']);
 

@@ -29,7 +29,7 @@
           <li {{ in_array(\Request::route()->getName(), ['courses-cate.create', 'courses-cate.edit', 'courses-cate.index','courses-child.index', 'courses-child.create', 'courses-child.edit']) ? "class=active" : "" }}><a href="{{ route('courses-cate.index') }}"><i class="fa fa-circle-o"></i> Danh mục</a></li>          
         </ul>
       </li> 
-       <li class="treeview {{ in_array(\Request::route()->getName(), ['thpt-baihoc.index', 'thpt-baihoc.create', 'thpt-baihoc.edit']) ? 'active' : '' }}">
+       <li class="treeview {{ in_array(\Request::route()->getName(), ['thpt-baihoc.index', 'thpt-baihoc.create', 'thpt-baihoc.edit', 'group-bai.create', 'group-bai.edit', 'group-bai.index' ]) ? 'active' : '' }}">
         <a href="#">
           <i class="fa fa-twitch"></i> 
           <span>Giáo dục phổ thông</span>
@@ -40,7 +40,7 @@
         <ul class="treeview-menu">
           <li {{ in_array(\Request::route()->getName(), ['thpt-baihoc.index', 'thpt-baihoc.edit']) ? "class=active" : "" }}><a href="{{ route('thpt-baihoc.index') }}"><i class="fa fa-circle-o"></i> Bài học</a></li>
           <li {{ in_array(\Request::route()->getName(), ['thpt-baihoc.create']) ? "class=active" : "" }}><a href="{{ route('thpt-baihoc.create') }}"><i class="fa fa-circle-o"></i> Thêm bài học</a></li>
-          <li {{ in_array(\Request::route()->getName(), ['group-bai.create']) ? "class=active" : "" }}><a href="{{ route('group-bai.create') }}"><i class="fa fa-circle-o"></i> Nhóm bài học</a></li>          
+          <li {{ in_array(\Request::route()->getName(), ['group-bai.create','group-bai.edit', 'group-bai.index']) ? "class=active" : "" }}><a href="{{ route('group-bai.index') }}"><i class="fa fa-circle-o"></i> Nhóm bài học</a></li>          
         </ul>
       </li> 
       <li class="treeview {{ (in_array(\Request::route()->getName(), ['articles.index', 'articles.edit', 'articles.create', 'cate-child.index', 'cate-child.edit', 'cate-child.create']) && isset($cate_id)&& $cate_id == 3 ) ? "active" : "" }}">

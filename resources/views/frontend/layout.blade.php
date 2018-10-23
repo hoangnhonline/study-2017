@@ -101,97 +101,7 @@
 	<input type="hidden" id="route-auth-login-ajax" value="{{ route('auth-login-ajax') }}">
 	<input type="hidden" id="route-register-customer-ajax" value="{{ route('register-customer-ajax') }}">
 	<input type="hidden" id="route-register-newsletter" value="{{ route('register.newsletter') }}">
-	<input type="hidden" id="route-score-day" value="{{ route('score-day') }}">
-	<style type="text/css">
-		
-	.block-author {
-	  margin-bottom: 15px;
-	}
-	.block-author ul {
-	  padding-left: 0 !important;
-	}
-	.block-author ul li {
-	  display: inline-block;
-	  list-style-type: none;
-	  padding-right: 25px;
-	  color: #898989;
-	  position: relative;
-	}
-	.block-author ul li .name {
-	  color: #f60;
-	}
-	.block-author ul li:before {
-	  content: "\f111";
-	  font-family: "FontAwesome";
-	  color: #898989;
-	  font-size: 5px;
-	  position: absolute;
-	  top: 8px;
-	  left: -17px;
-	}
-	.block-author ul li:first-child:before {
-	  display: none;
-	}
-		
-	.reviews-summary {
-	  margin-bottom: 10px;
-	}
-	.reviews-summary .rating-title,
-	.reviews-summary .rating-summary,
-	.reviews-summary .rating-action {
-	  display: inline-block;
-	  margin-right: 5px;
-	}
-	.reviews-summary .rating-title {
-	  font-weight: bold;
-	}
-	.rating-summary .rating-xs {
-	  font-size: 18px;
-	}
-	.rating-summary .clear-rating,
-	.rating-summary .caption {
-	  display: none;
-	}
-	.rating-summary .rating-container .star {
-	  margin: 0 2px;
-	}
-	.rating-summary .rating-container .star .glyphicon {
-	  top: 0;
-	}
-	.rating-summary .rating-container .filled-stars {
-	  color: #ff6600;
-	  -webkit-text-stroke: transparent;
-	}
-	.rating-summary #kartik {
-	  display: none;
-	}
-	.rating-action span {
-	  position: relative;
-	  color: #898989;
-	  padding-left: 15px;
-	}
-	.dot>span {
-	  position: relative;
-	  padding-left: 15px;
-	}
-	.dot>span:after {
-	  content: "\f111";
-	  font-family: "FontAwesome";
-	  color: #898989;
-	  font-size: 5px;
-	  position: absolute;
-	  top: 5px;
-	  left: 0;
-	}
-	.block-share .share-item {
-	    display: inline-block;
-	    vertical-align: top;
-	    line-height: initial;
-	}
-	#error_login{
-		margin-bottom: 15px;color:red;font-style:italic;text-align:center
-	}
-	</style>
+	<input type="hidden" id="route-score-day" value="{{ route('score-day') }}">	
 	<script src="{{ URL::asset('public/assets/lib/starrating/js/star-rating.js') }}"></script>  
 	<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-59b215c2a2658a8a"></script> 	
 	<script src="https://apis.google.com/js/platform.js" async defer></script>
@@ -224,35 +134,7 @@
 				});
 			});
 		});
-	</script>
-	<style type="text/css">
-		.block-title-cm .block-title .title{
-			text-transform: uppercase;
-		}
-		.Recipepod{
-			height: 0;
-			display: none;
-		}
-		.discout-ele {
-		    color: #fff;
-		    font-size: 13px;
-		    background-color: #e5101d;
-		    text-align: center;
-		    font-weight: 300;
-		    position: absolute;
-		    width: 52px;
-		    height: 22px;
-		    line-height: 20px;
-		    border-radius: 2px;
-		    border: 1px solid #e5101d;
-		    right: 20px;
-		    top: 5px;
-		}
-		.discout-ele.free{
-			background-color: #51A0FB;
-			border: 1px solid #fff;
-		}
-	</style>
+	</script>	
 <div class="Recipepod">
  	<div itemscope itemtype="http://schema.org/Recipe">
 	    <span itemprop="name">@yield('title')</span>

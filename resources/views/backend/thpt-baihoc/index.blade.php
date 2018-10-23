@@ -40,7 +40,7 @@
               </select>
             </div>     
             <div class="form-group stem">
-                  <label for="email">STEM</label>
+                  <label for="email">&nbsp;&nbsp;&nbsp;STEM</label>
                   <select class="form-control get-child get-child-2" data-col="class_id" name="stem_class_id" id="stem_class_id" data-child="subject_id"  data-mod="subjects" data-col2="stem_class_id" data-mod2="group_bai" data-child2="group_id">
                     <option value="">-- chọn --</option>
                     @if( $stemClassList->count() > 0)
@@ -51,7 +51,7 @@
                   </select>
                 </div> 
             <div class="form-group">
-              <label for="email">Môn học</label>                
+              <label for="email">&nbsp;&nbsp;&nbsp;Môn học</label>                
               <select class="form-control get-child" name="subject_id" id="subject_id" data-col="subject_id" data-mod="group_bai" data-child="group_id" >
                 <option value="">--Tất cả--</option>  
                 @if( $subjectList->count() > 0)
@@ -62,31 +62,40 @@
             </select>                 
             </div>  
             <div class="form-group">
-              <label for="email">Giáo viên</label>
+              <label for="email">&nbsp;&nbsp;&nbsp;Giáo viên</label>
               <select class="form-control get-child" name="teacher_id" id="teacher_id" data-col="teacher_id" data-mod="group_bai" data-child="group_id">
                 <option value="">-- Tất cả --</option>
                 @if( $teacherList->count() > 0)
                   @foreach( $teacherList as $value )
-                  <option value="{{ $value->id }}" {{ $value->id == old('teacher_id') ? "selected" : "" }}>{{ $value->name }}</option>
+                  <option value="{{ $value->id }}" {{ $value->id == $teacher_id ? "selected" : "" }}>{{ $value->name }}</option>
                   @endforeach
                 @endif
               </select>
             </div>
             <div class="form-group">
-                  <label>Nhóm bài học</label>
+                  <label>&nbsp;&nbsp;&nbsp;Nhóm bài học</label>
                   <select class="form-control select2" name="group_id" id="group_id">  
                   <option value="">-- Tất cả --</option>                
                     @if( $groupList->count() > 0)
                       @foreach( $groupList as $value )
-                      <option value="{{ $value->id }}" {{ (old('tags') && in_array($value->id, old('tags'))) ? "selected" : "" }}>{{ $value->name }}</option>
+                      <option value="{{ $value->id }}" {{ $group_id == $value->id }}>{{ $value->name }}</option>
                       @endforeach
                     @endif
                   </select>                 
-                </div>           
+                </div>   
+                        
             <div class="form-group">
-              <label for="email">Từ khóa :</label>
+              <label for="email">&nbsp;&nbsp;&nbsp;Từ khóa :</label>
               <input type="text" class="form-control" name="name" value="{{ $name }}">
             </div>
+            <div class="form-group">
+                    <div class="checkbox">
+                      <label>
+                        &nbsp;&nbsp;&nbsp;<input type="checkbox" name="le" id="le" value="1" {{ $le == 1 ? "checked" : "" }}>
+                        Bài lẻ
+                      </label>
+                    </div>               
+                  </div>
             <button type="submit" class="btn btn-default btn-sm">Lọc</button>
           </form>         
         </div>
@@ -120,8 +129,18 @@
               <tr id="row-{{ $item->id }}">
                 <td><span class="order">{{ $i }}</span></td>      
                       
-                <td>                  
+                <td>   
+                @if($item->score > 0)
+                  <label class="label label-success" style="font-size:16px">{{ $item->score }} điểm</label>
+                  @elseif($item->is_share == 1)
+                  <label class="label label-warning" style="font-size:16px">Share FB</label>
+                  @else
+                  <label class="label label-default" style="font-size:16px">Free</label>
+                  @endif               
                   <a style="font-size:15px" href="{{ route( 'thpt-baihoc.edit', [ 'id' => $item->id ]) }}">{{ $item->name }}</a>
+                  @if( $item->is_hot == 1 )
+                  <label class="label label-danger">HOT</label>
+                  @endif  
                 </td>
                 <td>
                   @if($item->class_id > 0)

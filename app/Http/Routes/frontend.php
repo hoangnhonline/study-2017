@@ -48,6 +48,7 @@ Route::group(['namespace' => 'Frontend'], function()
     Route::post('/send-thiet-ke', ['as' => 'send-thiet-ke', 'uses' => 'ContactController@storeThietKe']);
     
     Route::get('/khoa-hoc', ['as' => 'courses-list', 'uses' => 'CoursesController@index']);
+    Route::get('/giao-duc-thpt', ['as' => 'thpt-list', 'uses' => 'ThptBaihocController@index']);
     Route::get('/giao-vien', ['as' => 'teacher-list', 'uses' => 'ObjectsController@teacher']);
     Route::get('/hoc-vien', ['as' => 'student-list', 'uses' => 'ObjectsController@student']);
     Route::get('/giao-vien/{slug}-{id}.html', ['as' => 'teacher-detail', 'uses' => 'ObjectsController@detail']);
@@ -58,10 +59,12 @@ Route::group(['namespace' => 'Frontend'], function()
     Route::get('tag/{slug}', ['as' => 'tag', 'uses' => 'DetailController@tagDetail']);
     Route::get('khoa-hoc/{slug}', ['as' => 'courses-cate', 'uses' => 'CoursesController@cate']);
 
-    Route::get('giao-duc-thpt/{slug}', ['as' => 'courses-cate-2', 'uses' => 'CoursesController@cate']);
+    Route::get('giao-duc-thpt/{slugClass}', ['as' => 'thpt-cate', 'uses' => 'ThptBaihocController@cate']);
+    
     Route::get('danh-muc/{slug}', ['as' => 'news-list', 'uses' => 'NewsController@newsList']);
     Route::get('danh-muc/{slug}/{slugChild}', ['as' => 'news-list-child', 'uses' => 'NewsController@newsListChild']);
     Route::get('khoa-hoc/{slug}/{slugChild}', ['as' => 'courses-cate-child', 'uses' => 'CoursesController@cateChild']);
+    Route::get('giao-duc-thpt/{slugClass}/{slugSubjects}', ['as' => 'thpt-cate-child', 'uses' => 'ThptBaihocController@cateChild']);
     Route::get('trac-nghiem/{slug}', ['as' => 'quiz-list', 'uses' => 'QuizController@index']);    
     Route::get('/tin-tuc/{slug}-p{id}.html', ['as' => 'news-detail', 'uses' => 'NewsController@newsDetail']);
     Route::get('trac-nghiem/xac-nhan/{slug}-{id}.html', ['as' => 'quiz-confirm', 'uses' => 'QuizController@confirm']);

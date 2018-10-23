@@ -36,6 +36,9 @@ class ThptBaihoc extends Model  {
                             'group_id',
                             'content',                              
                             'status', 
+                            'is_hot',
+                            'is_share',
+                            'score',
                             'display_order',                             
                             'created_user', 
                             'updated_user'];

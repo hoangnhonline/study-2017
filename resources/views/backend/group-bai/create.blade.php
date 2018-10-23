@@ -95,10 +95,9 @@
                   <div style="clear:both"></div>
                 </div> 
                 <div class="form-group">
-                  <label>Mô tả</label>
-                  <textarea class="form-control" rows="4" name="content" id="content">{{ old('content') }}</textarea>
-                </div> 
-            </div>          
+                  <label>Mô tả ngắn</label>
+                  <textarea class="form-control" rows="4" name="description" id="description">{{ old('description') }}</textarea>
+                </div>                             </div>          
                               
             <div class="box-footer">
               <button type="submit" class="btn btn-primary btn-sm">Lưu</button>

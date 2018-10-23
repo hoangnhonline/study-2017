@@ -98,12 +98,13 @@
                     <img id="thumbnail_image" src="{{ $detail->image_url ? Helper::showImage($detail->image_url ) : URL::asset('public/admin/dist/img/img.png') }}" class="img-thumbnail" width="145" height="85">
                  
                     <button class="btn btn-default btn-sm btnSingleUpload" data-set="image_url" data-image="thumbnail_image" type="button"><span class="glyphicon glyphicon-upload" aria-hidden="true"></span> Upload</button>
+                    <input type="hidden" name="image_url" id="image_url" value="{{ $detail->image_url }}"/>
                   </div>
                   <div style="clear:both"></div>
                 </div>                 
                 <div class="form-group">
                   <label>Mô tả</label>
-                  <textarea class="form-control" rows="4" name="content" id="content">{{ old('content', $detail->content) }}</textarea>
+                  <textarea class="form-control" rows="4" name="description" id="description">{{ old('description', $detail->description) }}</textarea>
                 </div> 
             </div>          
                               

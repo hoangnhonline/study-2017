@@ -71,11 +71,13 @@
 				<ul class="list-item">
 					@foreach($otherList as $obj)
 					<li class="item">
+						@if($obj->cate_id != 5)
 						<div class="image">
 							<a href="{!! route('news-detail', [ 'slug' => $obj->slug , 'id' => $obj->id ]) !!}" title="{!! $obj->title !!}">
 								<img src="{!! Helper::showImage($obj->image_url) !!}" alt="{!! $obj->title !!}">
 							</a>
-						</div>										
+						</div>				
+						@endif						
 						<div class="des">
 							<h3 class="title"><a href="{!! route('news-detail', [ 'slug' => $obj->slug , 'id' => $obj->id ]) !!}" title="{!! $obj->title !!}">{!! $obj->title !!}</a></h3>
 							<p class="date">{!! date('d/m/Y', strtotime($obj->created_at)) !!}</p>

@@ -24,7 +24,7 @@ class NewsController extends Controller
         $cateArr = $cateActiveArr = $moviesActiveArr = [];
        
         $cateDetail = ArticlesCate::where('slug' , $slug)->first();
-
+        $cate_id = $cateDetail->id;
         if($cateDetail){
             $title = trim($cateDetail->meta_title) ? $cateDetail->meta_title : $cateDetail->name;
             $settingArr = Settings::whereRaw('1')->lists('value', 'name');
@@ -41,7 +41,7 @@ class NewsController extends Controller
                     $articleByCate[$cate->id] = Articles::getList(['cate_id' => $cate->id, 'limit' => 5]);
                 }
             }
-            return view('frontend.news.index', compact('title', 'articlesList', 'cateDetail', 'seo', 'socialImage', 'cateList', 'articleByCate'));
+            return view('frontend.news.index', compact('title', 'articlesList', 'cateDetail', 'seo', 'socialImage', 'cateList', 'articleByCate', 'cate_id'));
         }else{
             return view('erros.404');
         }
@@ -55,6 +55,7 @@ class NewsController extends Controller
         $cateArr = $cateActiveArr = $moviesActiveArr = [];
        
         $cateDetail = ArticlesCate::where('slug' , $slug)->first();
+        $cate_id = $cateDetail->id;
         $childDetail = CateChild::where('slug', $slugChild)->first();
         if($childDetail){
             $title = $childDetail->name;
@@ -71,7 +72,7 @@ class NewsController extends Controller
                     $articleByCate[$cate->id] = Articles::getList(['cate_id' => $cate->id, 'limit' => 5]);
                 }
             }
-            return view('frontend.news.child', compact('title', 'articlesList', 'cateDetail', 'seo', 'socialImage', 'cateList', 'articleByCate', 'childDetail'));
+            return view('frontend.news.child', compact('title', 'articlesList', 'cateDetail', 'seo', 'socialImage', 'cateList', 'articleByCate', 'childDetail', 'cate_id'));
         }else{
             return view('erros.404');
         }
@@ -107,6 +108,7 @@ class NewsController extends Controller
           
             $tagSelected = Articles::getListTag($id);
             $cateDetail = ArticlesCate::find($detail->cate_id);
+            $cate_id = $cateDetail->id;
             Helper::counter($id, 2);
             
             $cateList = ArticlesCate::getList(['limit' => 100]);
@@ -116,7 +118,7 @@ class NewsController extends Controller
                 }
             }
 
-            return view('frontend.news.news-detail', compact('title',  'otherList', 'detail', 'otherArr', 'seo', 'socialImage', 'tagSelected', 'cateDetail', 'articleByCate', 'cateList'));
+            return view('frontend.news.news-detail', compact('title',  'otherList', 'detail', 'otherArr', 'seo', 'socialImage', 'tagSelected', 'cateDetail', 'articleByCate', 'cateList', 'cate_id'));
             
         }else{
             return view('erros.404');
