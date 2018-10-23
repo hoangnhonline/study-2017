@@ -42,6 +42,7 @@
 		</p>
 		@endif
 		<div class="row">
+			@if(count($coursesArr) > 0)
 			@foreach($coursesArr as $obj)
 			<?php 
 				$obj = $obj->group_id > 0 ? $obj->group : $obj;
@@ -70,6 +71,9 @@
 		            @endif
 			</div><!-- /col-sm-4 -->
 			@endforeach
+			@else
+			<p style="font-style: italic;color: red" class="col-md-12">Chưa có bài học nào!</p>
+			@endif
 		</div><!-- /row -->
 		<!--<nav class="block-pagination">
 			<ul class="pagination">

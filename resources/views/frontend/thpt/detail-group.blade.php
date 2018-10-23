@@ -19,10 +19,10 @@
 	<div class="row">
 		<div class="col-sm-8">	
 			
-			@if($detail->image_url)
+			@if($firstLession->image_url)
 			<div class="video">
 			
-				<img class="img-responsive" style="width: 100%" src="{{ Helper::showImage($detail->image_url) }}" alt="{!! $detail->name !!}">
+				<img class="img-responsive" style="width: 100%" src="{{ Helper::showImage($firstLession->image_url) }}" alt="{!! $detail->name !!}">
 			
 			</div>
 			@endif			
@@ -36,9 +36,9 @@
 						@if($firstLession)				
 						<div class="group-btn">
 						
-							@if ($detail->score > 0)
+							@if ($firstLession->score > 0)
 								@if(Session::get('userId'))
-									@if(!in_array($detail->id, $coursesArr))
+									@if(!in_array($firstLession->id, $coursesArr))
 									<button class="btn btn-info doi-diem">Đổi khóa học với <span style="font-size:16px">{{ $detail->score }}</span> điểm</button>
 									@else
 									<a href="{!! route('baihoc-detail', ['slug' => $firstLession->slug, 'id' => $firstLession->id] ) !!}" title="{!! $firstLession->name !!}" class="btn">Xem Chi Tiết</a>	
@@ -46,9 +46,9 @@
 								@else
 									<button class="btn btn-info facebook-login" type="button">Đăng nhập</button>
 								@endif
-							@elseif( $detail->is_share == 1)
+							@elseif( $firstLession->is_share == 1)
 								@if(Session::get('userId'))
-									@if(!in_array($detail->id, $coursesArr))
+									@if(!in_array($firstLession->id, $coursesArr))
 									<button class="btn btn-info share-courses">Share Facebook để học miễn phí</button>
 									@else
 									<a href="{!! route('baihoc-detail', ['slug' => $firstLession->slug, 'id' => $firstLession->id] ) !!}" title="{!! $firstLession->name !!}" class="btn">Xem Chi Tiết</a>	
@@ -79,19 +79,19 @@
 			</div>
 			<div class="group-btn">			
 				@if($firstLession)		
-					@if ($detail->score > 0)
+					@if ($firstLession->score > 0)
 					@if(Session::get('userId'))
-						@if(!in_array($detail->id, $coursesArr))
-						<button class="btn btn-info doi-diem">Đổi khóa học với <span style="font-size:16px">{{ $detail->score }}</span> điểm</button>
+						@if(!in_array($firstLession->id, $coursesArr))
+						<button class="btn btn-info doi-diem">Đổi khóa học với <span style="font-size:16px">{{ $firstLession->score }}</span> điểm</button>
 						@else
 						<a href="{!! route('baihoc-detail', ['slug' => $firstLession->slug, 'id' => $firstLession->id] ) !!}" title="{!! $firstLession->name !!}" class="btn">Xem Chi Tiết</a>	
 						@endif
 					@else
 						<button class="btn btn-info facebook-login" type="button">Đăng nhập</button>
 					@endif
-				@elseif( $detail->is_share == 1)
+				@elseif( $firstLession->is_share == 1)
 					@if(Session::get('userId'))
-						@if(!in_array($detail->id, $coursesArr))
+						@if(!in_array($firstLession->id, $coursesArr))
 						<button class="btn btn-info share-courses">Share Facebook để học miễn phí</button>
 						@else
 						<a href="{!! route('baihoc-detail', ['slug' => $firstLession->slug, 'id' => $firstLession->id] ) !!}" title="{!! $firstLession->name !!}" class="btn">Xem Chi Tiết</a>	
@@ -109,6 +109,7 @@
 	<div class="block-right col-sm-4">
 		<div class="sidebar">
 			
+			@if($detail->teacher_id > 0)
 			<div class="block-sidebar block-tearchers-sb">
 				<div class="block-title">
 					<p class="title">Giảng viên</p>
@@ -117,16 +118,17 @@
 					<div class="item">
 						<div class="box-head-teacher">
 							<a class="image">
-								<img src="{!! Helper::showImage($detail->teacher->image_url) !!}" alt="{!! $detail->teacher->name !!}">
+								<img src="{!! Helper::showImage($firstLession->teacher->image_url) !!}" alt="{!! $firstLession->teacher->name !!}">
 							</a>
-							<h3 class="name">{!! $detail->teacher->name !!}</h3>
+							<h3 class="name">{!! $firstLession->teacher->name !!}</h3>
 						</div><!-- /box-head-teacher -->
 						<div class="box-bottom-teacher">
-							Dẫn dắt khóa học là {!! $detail->teacher->name !!} {!! $detail->teacher->content !!}
+							Dẫn dắt khóa học là {!! $firstLession->teacher->name !!} {!! $firstLession->teacher->content !!}
 						</div><!-- /box-bottom-teacher -->
 					</div><!-- /item -->
 				</div>
-			</div><!-- /block-tearchers-sb -->			
+			</div><!-- /block-tearchers-sb -->	
+			@endif		
 		</div>
 	</div><!-- /block-right -->
 </div><!-- /row -->
@@ -159,7 +161,7 @@
 		                type  : "POST",
 		                data : {
 		                    mod : 'courses',
-		                    courses_id : {{ $detail-> id }},
+		                    courses_id : {{ $firstLession-> id }},
 		                    type : 2
 		                },
 		                success : function(data){
@@ -178,12 +180,12 @@
 		$('.doi-diem').click(function(e) {
 			var next = true;			
 			if(next == true){
-				if( score >= {{ $detail->score }}){
+				if( score >= {{ $firstLession->score }}){
 					$.ajax({
 		            url : "{{ route('doi-diem') }}",
 		            type  : "POST",
 		            data : {	              
-		                courses_id : {{ $detail-> id }}  
+		                courses_id : {{ $firstLession-> id }}  
 		            },
 		            success : function(data){
 		                

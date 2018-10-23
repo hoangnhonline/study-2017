@@ -35,6 +35,7 @@
 		</p>
 		@endif
 		<div class="row">
+			@if($coursesList->count() > 0)
 			@foreach($coursesList as $obj)
 			<div class="col-sm-4 col-xs-6">
 				<div class="item">
@@ -60,6 +61,9 @@
 		            @endif
 			</div><!-- /col-sm-4 -->
 			@endforeach
+			@else
+			<p style="font-style: italic;color: red" class="col-md-12">Chưa có bài học nào!</p>
+			@endif
 		</div><!-- /row -->
 		<!--<nav class="block-pagination">
 			<ul class="pagination">

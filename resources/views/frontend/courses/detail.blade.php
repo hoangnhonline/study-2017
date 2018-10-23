@@ -12,13 +12,13 @@
 <div class="block-video block-video-pg">
 	<div class="row">
 		<div class="col-sm-8">			
-			@if($detail->video_id)
+			@if($detail->image_url)
 			<div class="video">
 			
-				<iframe width="100%" height="350" src="https://www.youtube-nocookie.com/embed/{!! $detail->video_id !!}?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
+				<img class="img-responsive" style="width: 100%" src="{{ Helper::showImage($detail->image_url) }}" alt="{!! $detail->name !!}">
 			
 			</div>
-			@endif
+			@endif	
 		</div><!-- /col-sm-8 -->
 		<div class="col-sm-4">
 			<div class="bock-info">
@@ -31,7 +31,7 @@
 						<?php 
 							$coursesArr = [];
 							if( Session::get('userId') ){
-								 $coursesArr = DB::table('user_courses')->where('user_id', Session::get('userId'))->pluck('courses_id');
+								 $coursesArr = DB::table('user_courses')->where('user_id', Session::get('userId'))->where('type', 1)->pluck('courses_id');
 							}
 						?>
 							@if ($detail->score > 0)
@@ -180,7 +180,8 @@
 		                type  : "POST",
 		                data : {
 		                    mod : 'courses',
-		                    courses_id : {{ $detail-> id }}  
+		                    courses_id : {{ $detail-> id }}, 
+		                    type : 1
 		                },
 		                success : function(data){
 			                	swal('', 'Cảm ơn bạn đã chia sẻ.<br><p style="color:#51A0FB;margin:10px 5px">Tài khoản của bạn vừa được cộng <strong>01</strong> điểm</p>Mời bạn click "Xem chi tiết" để vào học.', 'info').then(function(){

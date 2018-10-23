@@ -129,7 +129,7 @@ class CoursesController extends Controller
         if( $coursesDetail->is_share == 1 || $coursesDetail->score > 0){
             $coursesArr = [];
             if($user_id > 0){
-                $coursesArr = DB::table('user_courses')->where('user_id', $user_id)->pluck('courses_id');
+                $coursesArr = DB::table('user_courses')->where('user_id', $user_id)->where('type', 1)->pluck('courses_id');
             }
             if( !in_array($detail->courses_id, $coursesArr)){
                 return redirect()->route('home');

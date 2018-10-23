@@ -49,10 +49,11 @@ class QuizController extends Controller
     public function shareSuccess(Request $request){
         $user_id = Session::get('userId');
         $mod = $request->mod;
+        $type = $request->type;
         if ($mod == "courses"){
-            $rs = UserCourses::where(['user_id' => $user_id, 'courses_id' => $request->courses_id])->first();
+            $rs = UserCourses::where(['user_id' => $user_id, 'courses_id' => $request->courses_id, 'type' => $type])->first();
             if( !$rs ){
-                UserCourses::create(['user_id' => $user_id, 'courses_id' => $request->courses_id, 'score' => 0]);
+                UserCourses::create(['user_id' => $user_id, 'courses_id' => $request->courses_id, 'score' => 0, 'type' => $type]);
             }
             $cus = Customer::find($user_id);            
             $cus->score++;

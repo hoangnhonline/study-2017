@@ -10,7 +10,7 @@ use App\Models\Settings;
 use App\Models\Subjects;
 use App\Models\MetaData;
 use App\Models\Classthpt;
-
+use App\Models\GroupBai;
 
 use Helper, File, Session, Auth;
 use Mail, DB;
@@ -117,10 +117,10 @@ class ThptBaihocController extends Controller
         $id = $request->id;
 
         $detail = ThptBaihoc::find($id);
-        
+       
         if( $detail ){           
             $settingArr = Settings::whereRaw('1')->lists('value', 'name');
-            $otherList = ThptBaihoc::getListOther(['id' => $id, 'limit' => 5]);
+            $otherList = ThptBaihoc::where('id', '<>', $id)->where('subject_id', $detail->subject_id)->limit(4)->get();
             if( $detail->meta_id > 0){
                $meta = MetaData::find( $detail->meta_id )->toArray();
                $seo['title'] = $meta['title'] != '' ? $meta['title'] : $detail->name;
@@ -132,9 +132,41 @@ class ThptBaihocController extends Controller
 
             $socialImage = $detail->image_url;
             Helper::counter($id, 2);
-            $firstLession = ThptBaihoc::getFirstLession($id);
-           
-            return view('frontend.courses.detail', compact('detail', 'otherList', 'seo', 'socialImage', 'firstLession'));
+            
+            $firstLession = $detail;
+            return view('frontend.thpt.detail', compact('detail', 'otherList', 'seo', 'socialImage', 'firstLession'));
+
+        }else{
+            return view('errors.404');
+        }
+    }
+    public function detailGroup(Request $request)
+    { 
+        $socialImage = null;
+        $id = $request->id;
+
+        $detail = GroupBai::find($id);
+        
+         $firstLession = ThptBaihoc::where('group_id', $id)->orderBy('id', 'asc')->limit(1)->first();
+       
+       
+        if( $firstLession ){           
+            $settingArr = Settings::whereRaw('1')->lists('value', 'name');
+            $otherList = ThptBaihoc::where('id', '<>', $firstLession->id)->where('subject_id', $firstLession->subject_id)->limit(4)->get();
+            if( $firstLession->meta_id > 0){
+               $firstLession = MetaData::find( $firstLession->meta_id )->toArray();
+               $seo['title'] = $meta['title'] != '' ? $meta['title'] : $firstLession->name;
+               $seo['description'] = $meta['description'] != '' ? $meta['description'] : $firstLession->name;
+               $seo['keywords'] = $meta['keywords'] != '' ? $meta['keywords'] : $firstLession->name;
+            }else{
+                $seo['title'] = $seo['description'] = $seo['keywords'] = $firstLession->name;
+            }           
+
+            $socialImage = $detail->image_url;
+            Helper::counter($id, 2);
+            
+            
+            return view('frontend.thpt.detail-group', compact('detail', 'otherList', 'seo', 'socialImage', 'firstLession'));
 
         }else{
             return view('errors.404');
@@ -147,16 +179,16 @@ class ThptBaihocController extends Controller
         $socialImage = null;
         $id = $request->id;
 
-        $detail = ThptBaihocLession::find($id);        
-        $coursesDetail = ThptBaihoc::find($detail->courses_id);
+        $detail = ThptBaihoc::find($id);        
+        $groupDetail = ThptBaihoc::find($detail->group_id);
 
         $user_id = Session::get('userId');
-        if( $coursesDetail->is_share == 1 || $coursesDetail->score > 0){
+        if( $detail->is_share == 1 || $detail->score > 0){
             $coursesArr = [];
             if($user_id > 0){
-                $coursesArr = DB::table('user_courses')->where('user_id', $user_id)->pluck('courses_id');
+                $coursesArr = DB::table('user_courses')->where('user_id', $user_id)->where('type', 2)->pluck('courses_id');
             }
-            if( !in_array($detail->courses_id, $coursesArr)){
+            if( !in_array($detail->id, $coursesArr)){
                 return redirect()->route('home');
             }
         }
@@ -170,13 +202,12 @@ class ThptBaihocController extends Controller
 
             $socialImage = $detail->image_url;
             Helper::counter($id, 2);
-            $partList = ThptBaihocPart::getList(['courses_id' => $detail->courses_id]);
-            if($partList){
-                foreach($partList as $part){
-                    $lessionArr[$part->id] = ThptBaihocLession::getList(['part_id' => $part->id]);
-                }
+            if($detail->group_id > 0 ){
+                $lessionArr = ThptBaihoc::where('group_id', $detail->group_id);
+            }else{
+                $lessionArr = [];
             }
-            return view('frontend.courses.lession', compact('detail', 'seo', 'socialImage', 'partList', 'lessionArr'));
+            return view('frontend.thpt.lession', compact('detail', 'seo', 'socialImage', 'partList', 'lessionArr'));
             
 
         }else{

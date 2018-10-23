@@ -14,16 +14,23 @@
 	</div><!-- /block-title -->
 	<div class="block-content">
 		<div class="row">
+			@if(count($coursesArr) > 0)
 			@foreach($coursesArr as $obj)
 			<?php 
-				$obj = $obj->group_id > 0 ? $obj->group : $obj;
+				
+				if($obj->group_id > 0){
+					$obj = $obj->group;
+					$route = 'thpt-nhom' ;
+				}else{
+					$route = 'thpt-detail';
+				}
 			?>
 			<div class="col-sm-4 col-xs-6">
 				<div class="item">
-					<a href="{{ route('thpt-detail', ['slug' => $obj->slug, 'id' => $obj->id ]) }}" title="{!! $obj->name !!}" class="image">
+					<a href="{{ route($route, ['slug' => $obj->slug, 'id' => $obj->id ]) }}" title="{!! $obj->name !!}" class="image">
 						<img src="{!! Helper::showImage($obj->image_url) !!}" alt="{!! $obj->name !!}">
 					</a>
-					<h4><a href="{{ route('thpt-detail', ['slug' => $obj->slug, 'id' => $obj->id ]) }}" title="{!! $obj->name !!}"  class="title">{!! $obj->name !!}</a></h4>
+					<h4><a href="{{ route($route, ['slug' => $obj->slug, 'id' => $obj->id ]) }}" title="{!! $obj->name !!}"  class="title">{!! $obj->name !!}</a></h4>
 					<p class="des">{!! $obj->description !!}</p>
 					<!--<div class="statistics clearfix">
 	                    <div class="statistics-item views">
@@ -42,6 +49,9 @@
 		            @endif
 			</div><!-- /col-sm-4 -->
 			@endforeach
+			@else
+			<p style="font-style: italic;color: red" class="col-md-12">Chưa có bài học nào!</p>
+			@endif
 		</div><!-- /row -->
 		<!--<nav class="block-pagination">
 			<ul class="pagination">

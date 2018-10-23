@@ -54,8 +54,11 @@ Route::group(['namespace' => 'Frontend'], function()
     Route::get('/giao-vien/{slug}-{id}.html', ['as' => 'teacher-detail', 'uses' => 'ObjectsController@detail']);
     Route::get('/hoc-vien/{slug}-{id}.html', ['as' => 'student-detail', 'uses' => 'ObjectsController@detail']);
     Route::get('/khoa-hoc/{slug}-{id}.html', ['as' => 'courses-detail', 'uses' => 'CoursesController@detail']);
+
     Route::get('/giao-duc-thpt/{slug}-{id}.html', ['as' => 'thpt-detail', 'uses' => 'ThptBaihocController@detail']);
+    Route::get('/nhom-bai-hoc/{slug}-{id}.html', ['as' => 'thpt-nhom', 'uses' => 'ThptBaihocController@detailGroup']);
     Route::get('/chi-tiet/{slug}-{id}.html', ['as' => 'lession-detail', 'uses' => 'CoursesController@lession']);
+    Route::get('/bai-hoc/{slug}-{id}.html', ['as' => 'baihoc-detail', 'uses' => 'ThptBaihocController@lession']);
 
     Route::get('tag/{slug}', ['as' => 'tag', 'uses' => 'DetailController@tagDetail']);
     Route::get('khoa-hoc/{slug}', ['as' => 'courses-cate', 'uses' => 'CoursesController@cate']);

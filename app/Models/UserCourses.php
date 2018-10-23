@@ -26,7 +26,8 @@ class UserCourses extends Model  {
     protected $fillable = [   
       'user_id',
       'courses_id',
-      'score',    
+      'score', 
+      'type'   
     ];
 
     public function courses()
