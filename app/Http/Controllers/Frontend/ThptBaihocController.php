@@ -55,10 +55,14 @@ class ThptBaihocController extends Controller
                     $courses->group_id = 'group-'.$courses->id;
                 }
                 $coursesArr[$courses->group_id] = $courses;
+
+            }
+            foreach($coursesArr as $group => $course){
+                $coursesSubject[$course->subject_id][] = $course;
             }
         }        
         $subjectList = Subjects::getList(['limit' => 100]);
-        return view('frontend.thpt.cate', compact('coursesList', 'seo', 'socialImage', 'type', 'subjectList', 'cateDetail', 'classDetail', 'subjectDetail', 'coursesArr', 'slugClass', 'class_id'));
+        return view('frontend.thpt.cate', compact('coursesList', 'seo', 'socialImage', 'type', 'subjectList', 'cateDetail', 'classDetail', 'subjectDetail', 'coursesArr', 'slugClass', 'class_id', 'coursesSubject'));
     }
     public function cateChild(Request $request)
     {

@@ -42,38 +42,39 @@
 		</p>
 		@endif
 		<div class="row">
-			@if(count($coursesArr) > 0)
-			@foreach($coursesArr as $obj)
-			<?php 
-				$obj = $obj->group_id > 0 ? $obj->group : $obj;
-			?>
-			<div class="col-sm-4 col-xs-6">
-				<div class="item">
-					<a href="{{ route('thpt-detail', ['slug' => $obj->slug, 'id' => $obj->id ]) }}" title="{!! $obj->name !!}" class="image">
-						<img src="{!! Helper::showImage($obj->image_url) !!}" alt="{!! $obj->name !!}">
-					</a>
-					<h4><a  href="{{ route('thpt-detail', ['slug' => $obj->slug, 'id' => $obj->id ]) }}" title="{!! $obj->name !!}" class="title">{{ $obj->name }}</a></h4>
-					<p class="des">{!! $obj->description !!}</p>
-					<!-- <div class="statistics clearfix">
-	                    <div class="statistics-item views">
-	                    	<span class="course-item-views-number">316760</span> lượt xem
-	                   	</div>
-	                    <div class="statistics-item learners">
-	                    	<span class="course-item-learners-number">79446</span> người học
-	                    </div>
-	                </div> --><!-- /course-item-statistics -->
+			@foreach($subjectList as $sub)
+				@if(isset($coursesSubject[$sub->id]) && !empty($coursesSubject[$sub->id]))
+				<p class="p-monhoc col-md-12"><span class="title-monhoc">{!! $sub->name !!} ( {{ count($coursesSubject[$sub->id])}} )</span></p>
+					@foreach($coursesSubject[$sub->id] as $obj)
+					<?php 
+						$obj = $obj->group_id > 0 ? $obj->group : $obj;
+					?>
+					<div class="col-sm-4 col-xs-6">
+						<div class="item">
+							<a href="{{ route('thpt-detail', ['slug' => $obj->slug, 'id' => $obj->id ]) }}" title="{!! $obj->name !!}" class="image">
+								<img src="{!! Helper::showImage($obj->image_url) !!}" alt="{!! $obj->name !!}">
+							</a>
+							<h4><a  href="{{ route('thpt-detail', ['slug' => $obj->slug, 'id' => $obj->id ]) }}" title="{!! $obj->name !!}" class="title">{{ $obj->name }}</a></h4>
+							<p class="des">{!! $obj->description !!}</p>
+							<!-- <div class="statistics clearfix">
+			                    <div class="statistics-item views">
+			                    	<span class="course-item-views-number">316760</span> lượt xem
+			                   	</div>
+			                    <div class="statistics-item learners">
+			                    	<span class="course-item-learners-number">79446</span> người học
+			                    </div>
+			                </div> --><!-- /course-item-statistics -->
 
-				</div><!-- /item -->
-				@if($obj->score > 0)
-		            <span class="discout-ele">{{ $obj->score }} điểm</span>
-		            @else
-		            <span class="discout-ele free">FREE</span>
-		            @endif
-			</div><!-- /col-sm-4 -->
-			@endforeach
-			@else
-			<p style="font-style: italic;color: red" class="col-md-12">Chưa có bài học nào!</p>
-			@endif
+						</div><!-- /item -->
+						@if($obj->score > 0)
+				            <span class="discout-ele">{{ $obj->score }} điểm</span>
+				            @else
+				            <span class="discout-ele free">FREE</span>
+				            @endif
+					</div><!-- /col-sm-4 -->
+					@endforeach
+				@endif
+			@endforeach			
 		</div><!-- /row -->
 		<!--<nav class="block-pagination">
 			<ul class="pagination">
@@ -88,9 +89,9 @@
 	</div><!-- /block-content -->
 </div><!-- /block-list-course -->
 <style type="text/css">
-#classList {
-	margin-bottom: 20px;
-}
+	#classList {
+		margin-bottom: 20px;
+	}
 	#classList li{
 		display: inline;
 		padding: 10px;

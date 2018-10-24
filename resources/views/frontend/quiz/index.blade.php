@@ -18,6 +18,7 @@
 				<div class="panel-body">
 					<?php $i = 0; ?>
 					@foreach($quizList as $obj)
+					@if($obj->questions->count() > 0)
 					<?php $i++; ?>
 					<div class="item">
                         <a href="#" class="number">
@@ -28,6 +29,7 @@
                         	{!! $obj->name !!}
                         </a>
                     </div><!-- /item -->
+                    @endif
                     @endforeach
                     
                     <!--<nav class="block-pagination-no">
@@ -50,47 +52,36 @@
 			</div>
 		</div><!-- /block-list-question -->
 	</div><!-- /block-left -->
+	@if( $cateList->count() > 0 )
 	<div class="block-right col-sm-4">
 		<div class="sidebar">
-			<!-- <div class="block-sidebar">
-				<div class="block-fb">
-					<div class="fb-inner">
-						<div class="fb-page" data-href="https://www.facebook.com/CongTyCoPhanKetNoiVanHoaViet/" data-width="300px" data-small-header="true" data-adapt-container-width="false" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/CongTyCoPhanKetNoiVanHoaViet/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/CongTyCoPhanKetNoiVanHoaViet/">Facebook</a></blockquote></div>
+			@foreach( $cateList as $cate )
+			<div class="block-sidebar block-news-sb">
+				<div class="block-title">
+					<p class="title">{!! $cate->name !!}</p>
+				</div>
+				<div class="block-content">
+					<div class="wrap-news-list">
+						@if( !empty($articleByCate[$cate->id]) )
+						@foreach( $articleByCate[$cate->id] as $obj )
+						<div class="item">
+							<a class="image"  href="{!! route('news-detail', [ 'slug' => $obj->slug , 'id' => $obj->id ]) !!}" title="{!! $obj->title !!}">
+                                <img src="{!! Helper::showImage($obj->image_url) !!}" alt="{!! $obj->title !!}">
+                            </a>
+                            <h3 class="title">
+                                <a href="{!! route('news-detail', [ 'slug' => $obj->slug , 'id' => $obj->id ]) !!}" title="{!! $obj->title !!}">
+                                    {!! $obj->title !!}
+                                </a>
+                            </h3>
+						</div><!-- /item -->
+						@endforeach
+						@endif
 					</div>
 				</div>
-			</div> -->
-			<div class="block-sidebar">
-				<div class="block-link">
-					<div class="block-title">
-						<h2 class="title">Đề thi thử nhận quà</h2>
-					</div>
-					<div class="block-content">
-						<ul>
-							<li class="first">Danh sách môn thi</li>
-							<li><a href="#" title="">Đề thi thử nhận quà môn Hóa học - (4)</a></li>
-							<li><a href="#" title="">Đề thi thử nhận quà môn Hóa học - (4)</a></li>
-							<li><a href="#" title="">Đề thi thử nhận quà môn Hóa học - (4)</a></li>
-							<li><a href="#" title="">Đề thi thử nhận quà môn Hóa học - (4)</a></li>
-							<li><a href="#" title="">Đề thi thử nhận quà môn Hóa học - (4)</a></li>
-							<li><a href="#" title="">Đề thi thử nhận quà môn Hóa học - (4)</a></li>
-							<li><a href="#" title="">Đề thi thử nhận quà môn Hóa học - (4)</a></li>
-							<li><a href="#" title="">Đề thi thử nhận quà môn Hóa học - (4)</a></li>
-							<li><a href="#" title="">Đề thi thử nhận quà môn Hóa học - (4)</a></li>
-							<li><a href="#" title="">Đề thi thử nhận quà môn Hóa học - (4)</a></li>
-							<li><a href="#" title="">Đề thi thử nhận quà môn Hóa học - (4)</a></li>
-							<li><a href="#" title="">Đề thi thử nhận quà môn Hóa học - (4)</a></li>
-							<li><a href="#" title="">Đề thi thử nhận quà môn Hóa học - (4)</a></li>
-							<li><a href="#" title="">Đề thi thử nhận quà môn Hóa học - (4)</a></li>
-							<li><a href="#" title="">Đề thi thử nhận quà môn Hóa học - (4)</a></li>
-							<li><a href="#" title="">Đề thi thử nhận quà môn Hóa học - (4)</a></li>
-							<li><a href="#" title="">Đề thi thử nhận quà môn Hóa học - (4)</a></li>
-							<li><a href="#" title="">Đề thi thử nhận quà môn Hóa học - (4)</a></li>
-							<li><a href="#" title="">Đề thi thử nhận quà môn Hóa học - (4)</a></li>
-						</ul>
-					</div>
-				</div>
-			</div><!-- /block-sidebar -->
+			</div><!-- /block-news-sb -->
+			@endforeach
 		</div>
 	</div><!-- /block-right -->
+	@endif
 </div><!-- /row -->
 @stop

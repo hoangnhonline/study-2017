@@ -64,6 +64,8 @@
 	<div class="group-btn">
 		<button type="submit" id="btnSubmitQuiz" class="btn">Nộp Bài</button>
 	</div>
+    <input type="" name="phut_use" id="phut_use" value="0">
+    <input type="" name="giay_use" id="giay_use" value="0">
 	</form>
 </div><!-- /block-question -->
 <div class="block-time">
@@ -103,12 +105,15 @@ var counter = function () {
     diff = new Date(diff);
     var sec = diff.getSeconds();
     var min = diff.getMinutes(); 
+    console.log(sec);
     if (min < 10) {
         min = "0" + min;
     }
     if (sec < 10) { 
         sec = "0" + sec;
     }     
+    $('#giay_use').val(60-sec);
+    $('#phut_use').val({{ $quizDetail->duration }}-1-min);
     if(now >= end) {     
         clearTimeout(interval);
         localStorage.setItem("end", null);

@@ -540,8 +540,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 .menu .navbar-nav>li>a {
   font-size: 13px;
-  font-weight: bold;
-  text-transform: uppercase;
+  font-weight: bold;  
   display: block;
   padding: 0 7px 0 7px;
   line-height: 40px;
@@ -2377,4 +2376,15 @@ h1, h2, h3, h4, h5, h6 {
   }
   #error_login{
     margin-bottom: 15px;color:red;font-style:italic;text-align:center
+  }
+  span.title-monhoc{
+    border-bottom: 2px solid #51A0FB;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #51A0FB;
+    padding-right: 5px;
+  }
+  p.p-monhoc{
+    margin-bottom: 10px;
   }

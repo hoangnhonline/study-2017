@@ -123,7 +123,7 @@
 								@endforeach
 							</ul>
 
-						</li>	
+						</li>
 						<li class="level0 parent {{ isset($class_id) || $routeName == "thpt-list" ? "active" : "" }}"><a href="{{ route('thpt-list') }}" title="Khóa học">Giáo dục PT</a>
 							<ul class="level0 submenu">
 								<?php
@@ -149,6 +149,19 @@
 										@endforeach
 										<?php } ?>
 									</ul>
+								</li>
+								@endforeach
+							</ul>
+
+						</li>
+						<li class="level0 parent {{ in_array($routeName, ['quiz-list', 'quiz-confirm', 'quiz-doing', 'nop-bai', 'share-success']) ? "active" : "" }}"><a href="#" title="Trắc nghiệm">Trắc nghiệm</a>
+							<ul class="level0 submenu">
+								<?php
+								$classList = DB::table('quiz_cate')->where('status', 1)->orderBy('display_order')->get();
+								?>
+								@foreach($classList as $courseCate)
+								<li class="level1 parent">
+									<a href="{{ route('quiz-list', $courseCate->slug ) }}" title="{!! $courseCate->name !!}">{!! $courseCate->name !!}</a>
 								</li>
 								@endforeach
 							</ul>

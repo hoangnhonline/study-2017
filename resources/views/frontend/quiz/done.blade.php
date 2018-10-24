@@ -29,7 +29,7 @@
                                 	Tổng thời gian làm bài:
                                 </span>
                                 <span class="bsl-sp-right">
-                                	11 phut 20 giây
+                                	{{ $phut_use }} phút {{ $giay_use }} giây
                                 </span>
                             </div>
                         </div>

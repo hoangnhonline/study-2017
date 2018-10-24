@@ -13,6 +13,9 @@ use App\Models\Settings;
 use App\Models\UserQuiz;
 use App\Models\UserCourses;
 use App\Models\Customer;
+use App\Models\ArticlesCate;
+use App\Models\Articles;
+
 
 use Helper, File, Session, Auth, Image, Hash;
 use Mail;
@@ -39,8 +42,13 @@ class QuizController extends Controller
             } 
 
             $quizList = Quiz::getList(['cate_id' => $cateDetail->id, 'pagination' => $settingArr['articles_per_page']]);      
-
-            return view('frontend.quiz.index', compact('coursesList', 'seo', 'socialImage', 'quizList', 'cateDetail'));
+            $cateList = ArticlesCate::getList(['limit' => 100, 'except' => $cateDetail->id, 'type' => 1]);
+            if($cateList){
+                foreach($cateList as $cate){
+                    $articleByCate[$cate->id] = Articles::getList(['cate_id' => $cate->id, 'limit' => 5]);
+                }
+            }
+            return view('frontend.quiz.index', compact('coursesList', 'seo', 'socialImage', 'quizList', 'cateDetail', 'cateList', 'articleByCate'));
         }else{
             return view('erros.404');
         }   
@@ -136,8 +144,9 @@ class QuizController extends Controller
                 'str_random' => $strRandom            
             ]);
         $userQuizId = $rs->id;
-
-        return view('frontend.quiz.done', compact('quizDetail', 'seo', 'socialImage', 'so_cau_dung', 'diem', 'tong_so_cau', 'userQuizId', 'strRandom'));
+        $phut_use = $request->phut_use;
+        $giay_use = $request->giay_use;
+        return view('frontend.quiz.done', compact('quizDetail', 'seo', 'socialImage', 'so_cau_dung', 'diem', 'tong_so_cau', 'userQuizId', 'strRandom', 'phut_use', 'giay_use'));
 
     }
     public function doing(Request $request){
