@@ -19,6 +19,7 @@ use App\Models\Livestream;
 use App\Models\UserQuiz;
 use App\Models\Quiz;
 use App\Models\UserCourses;
+use App\Models\ThptBaihoc;
 
 use Helper, File, Session, Auth, Hash, Response;
 
@@ -75,9 +76,22 @@ class HomeController extends Controller
 
         $studentList = Objects::getList(['type' => 2, 'is_hot' => 1, 'limit' => 10]);
 
-        $articlesList = Articles::where('is_hot', 1)->where('status', 1)->whereIn('child_id', ['18,19'])->limit(4)->get();;
+        $articlesList = Articles::where('is_hot', 1)->where('status', 1)->whereIn('child_id', ['18,19'])->limit(4)->get();
+
+        $thptList = ThptBaihoc::where('is_hot', 1)->orderBy('id', 'desc')->limit(6)->get();
+        $thptArr = [];
+        if($thptList->count() > 0){
+            foreach($thptList as $thpt){
+                if(!$thpt->group_id){
+                    $thpt->group_id = 'group-'.$thpt->id;
+                }
+                $thptArr[$thpt->group_id] = $thpt;
+            }
+        }   
+
+
         $livestream = Livestream::where('status', 2)->orderBy('id', 'desc')->first();
-        return view('frontend.home.index', compact('teacherList', 'studentList', 'coursesList', 'socialImage', 'seo', 'articlesList', 'livestream'));
+        return view('frontend.home.index', compact('teacherList', 'studentList', 'coursesList', 'socialImage', 'seo', 'articlesList', 'livestream', 'thptArr', 'thptList'));
 
     }
     public function getChild(Request $request){

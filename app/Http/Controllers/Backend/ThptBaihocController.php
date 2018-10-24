@@ -131,6 +131,7 @@ class ThptBaihocController extends Controller
             $detailGroup = GroupBai::find($dataArr['group_id']);
             $dataArr['is_share'] = $detailGroup->is_share;
             $dataArr['score'] = $detailGroup->score;
+            $dataArr['is_hot'] = $detailGroup->is_hot;
         }
         $dataArr['created_user'] = Auth::user()->id;
 
@@ -240,6 +241,7 @@ class ThptBaihocController extends Controller
             $detailGroup = GroupBai::find($dataArr['group_id']);
             $dataArr['is_share'] = $detailGroup->is_share;
             $dataArr['score'] = $detailGroup->score;
+            $dataArr['is_hot'] = $detailGroup->is_hot;
         }
         $model = ThptBaihoc::find($dataArr['id']);
 

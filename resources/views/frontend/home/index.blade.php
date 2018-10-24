@@ -113,6 +113,44 @@
         <h2 class="title">
           <a href="#" title="Học &amp; Thi">
             <i class="fa fa-book"></i>
+            Giáo dục PT
+          </a>
+        </h2>
+      </div><!-- /block-title -->
+      <div class="block-content">
+        <div class="row">
+          @foreach($thptArr as $obj)
+          <?php 
+            $obj = $obj->group_id > 0 ? $obj->group : $obj;
+          ?>
+          <div class="col-sm-4 col-xs-6 item">
+            <div class="image">
+              <a href="{!! route('thpt-detail', ['slug' => $obj->slug, 'id' => $obj->id ]) !!}" title="{!! $obj->name !!}">
+                <img src="{!! Helper::showImage($obj->image_url) !!}" alt="{!! $obj->name !!}">
+              </a>
+            </div>
+            <div class="description">
+              <h3>
+                <a href="{!! route('thpt-detail', ['slug' => $obj->slug, 'id' => $obj->id ]) !!}" title="{!! $obj->name !!}">
+                  {!! $obj->name !!}
+                </a>
+              </h3>
+            </div>
+            @if($obj->score > 0)
+            <span class="discout-ele">{{ $obj->score }} điểm</span>
+            @else
+            <span class="discout-ele free">FREE</span>
+            @endif
+          </div><!-- /item -->
+          @endforeach
+        </div>
+      </div><!-- /block-content -->
+    </div><!-- /block-cates -->
+    <div class="block block-cates block-title-cm">
+      <div class="block block-title">
+        <h2 class="title">
+          <a href="#" title="Học &amp; Thi">
+            <i class="fa fa-book"></i>
             KHÓA HỌC HOT
           </a>
         </h2>

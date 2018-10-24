@@ -145,7 +145,7 @@
                   <label class="label label-default" style="font-size:16px">Free</label>
                   @endif               
                   <a style="font-size:15px" href="{{ route( 'thpt-baihoc.edit', [ 'id' => $item->id ]) }}">{{ $item->name }}</a>
-                  @if( $item->is_hot == 1 )
+                  @if( $item->is_hot == 1 && !$item->group_id )
                   <label class="label label-danger">HOT</label>
                   @endif  
                 </td>
