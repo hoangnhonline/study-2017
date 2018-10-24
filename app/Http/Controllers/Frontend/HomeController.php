@@ -77,7 +77,7 @@ class HomeController extends Controller
         $studentList = Objects::getList(['type' => 2, 'is_hot' => 1, 'limit' => 10]);
 
         $articlesList = Articles::where('is_hot', 1)->where('status', 1)->whereIn('child_id', ['18,19'])->limit(4)->get();
-
+        $articlesList2 = Articles::where('is_hot', 1)->where('status', 1)->where('cate_id',3)->limit(4)->get();
         $thptList = ThptBaihoc::where('is_hot', 1)->orderBy('id', 'desc')->limit(6)->get();
         $thptArr = [];
         if($thptList->count() > 0){
@@ -91,7 +91,7 @@ class HomeController extends Controller
 
 
         $livestream = Livestream::where('status', 2)->orderBy('id', 'desc')->first();
-        return view('frontend.home.index', compact('teacherList', 'studentList', 'coursesList', 'socialImage', 'seo', 'articlesList', 'livestream', 'thptArr', 'thptList'));
+        return view('frontend.home.index', compact('teacherList', 'studentList', 'coursesList', 'socialImage', 'seo', 'articlesList', 'livestream', 'thptArr', 'thptList', 'articlesList2'));
 
     }
     public function getChild(Request $request){

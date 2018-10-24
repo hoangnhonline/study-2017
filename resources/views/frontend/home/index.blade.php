@@ -56,53 +56,7 @@
               <div class="author">N.Mandela</div>
       </div>
     </div><!-- /block-quotations -->
-    <div class="block block-news-home block-title-cm">
-      <div class="block-title">
-        <h2 class="title">
-          <a href="#" title="Tin Tức Giáo Dục">
-            <i class="fa fa-newspaper-o"></i>
-            Tin Tức Giáo Dục
-          </a>
-        </h2>
-      </div><!-- /block-title -->
-      <div class="block-content clearfix">
-        <div class="home-news-left">
-          <?php 
-          $articleFirst = $articlesList->first();
-          ?>
-          @if($articleFirst)
-          <div class="item">
-            <a href="{{ route('news-detail', ['slug' => $articleFirst->slug, 'id' => $articleFirst->id ] ) }}" title="{!! $articleFirst->title !!}" class="image">
-              <img src="{!! Helper::showImage($articleFirst->image_url) !!}" alt="{!! $articleFirst->title !!}">
-            </a>
-            <h3 class="title">
-                <a href="{{ route('news-detail', ['slug' => $articleFirst->slug, 'id' => $articleFirst->id ] ) }}" title="{!! $articleFirst->title !!}">
-                    {!! $articleFirst->title !!}
-                </a>
-            </h3>
-          </div>
-          @endif
-        </div><!-- /home-news-left -->
-        <div class="home-news-right">
-          <?php $i = 0; ?>
-          @foreach($articlesList as $obj)
-          <?php $i++; ?>
-          @if($i > 1)
-          <div class="item">
-            <a class="right-item-lnk-img" href="{{ route('news-detail', ['slug' => $obj->slug, 'id' => $obj->id ] ) }}" title="{!! $obj->title !!}">
-                <img src="{!! Helper::showImage($obj->image_url) !!}" alt="{!! $obj->title !!}">
-            </a>
-            <h3 class="right-item-title">
-                <a href="{{ route('news-detail', ['slug' => $obj->slug, 'id' => $obj->id ] ) }}" title="{!! $obj->title !!}">
-                    {!! $obj->title !!}
-                </a>
-            </h3>
-          </div><!-- /item -->
-          @endif
-          @endforeach
-        </div><!-- /home-news-right -->
-      </div><!-- /block-quotations -->
-    </div><!-- /block-quotations -->
+    
     <div class="block banner-news">
       <a href="#" title="" target="_self">
         <img src="images/banner/thumb11_68991203.png" alt="">
@@ -181,6 +135,100 @@
         </div>
       </div><!-- /block-content -->
     </div><!-- /block-cates -->
+    <div class="block block-news-home block-title-cm">
+      <div class="block-title">
+        <h2 class="title">
+          <a href="#" title="Tin Tức Giáo Dục">
+            <i class="fa fa-newspaper-o"></i>
+            Tin Tức Giáo Dục
+          </a>
+        </h2>
+      </div><!-- /block-title -->
+      <div class="block-content clearfix">
+        <div class="home-news-left">
+          <?php 
+          $articleFirst = $articlesList->first();
+          ?>
+          @if($articleFirst)
+          <div class="item">
+            <a href="{{ route('news-detail', ['slug' => $articleFirst->slug, 'id' => $articleFirst->id ] ) }}" title="{!! $articleFirst->title !!}" class="image">
+              <img src="{!! Helper::showImage($articleFirst->image_url) !!}" alt="{!! $articleFirst->title !!}">
+            </a>
+            <h3 class="title">
+                <a href="{{ route('news-detail', ['slug' => $articleFirst->slug, 'id' => $articleFirst->id ] ) }}" title="{!! $articleFirst->title !!}">
+                    {!! $articleFirst->title !!}
+                </a>
+            </h3>
+          </div>
+          @endif
+        </div><!-- /home-news-left -->
+        <div class="home-news-right">
+          <?php $i = 0; ?>
+          @foreach($articlesList as $obj)
+          <?php $i++; ?>
+          @if($i > 1)
+          <div class="item">
+            <a class="right-item-lnk-img" href="{{ route('news-detail', ['slug' => $obj->slug, 'id' => $obj->id ] ) }}" title="{!! $obj->title !!}">
+                <img src="{!! Helper::showImage($obj->image_url) !!}" alt="{!! $obj->title !!}">
+            </a>
+            <h3 class="right-item-title">
+                <a href="{{ route('news-detail', ['slug' => $obj->slug, 'id' => $obj->id ] ) }}" title="{!! $obj->title !!}">
+                    {!! $obj->title !!}
+                </a>
+            </h3>
+          </div><!-- /item -->
+          @endif
+          @endforeach
+        </div><!-- /home-news-right -->
+      </div><!-- /block-quotations -->
+    </div><!-- /block-quotations -->
+    <div class="block block-news-home block-title-cm">
+      <div class="block-title">
+        <h2 class="title">
+          <a href="#" title="Tin Tức Giáo Dục">
+            <i class="fa fa-newspaper-o"></i>
+            Hành trình văn hóa
+          </a>
+        </h2>
+      </div><!-- /block-title -->
+      <div class="block-content clearfix">
+        <div class="home-news-left">
+          <?php 
+          $articleFirst2 = $articlesList2->first();
+          ?>
+          @if($articleFirst2)
+          <div class="item">
+            <a href="{{ route('news-detail', ['slug' => $articleFirst2->slug, 'id' => $articleFirst2->id ] ) }}" title="{!! $articleFirst2->title !!}" class="image">
+              <img src="{!! Helper::showImage($articleFirst2->image_url) !!}" alt="{!! $articleFirst2->title !!}">
+            </a>
+            <h3 class="title">
+                <a href="{{ route('news-detail', ['slug' => $articleFirst2->slug, 'id' => $articleFirst2->id ] ) }}" title="{!! $articleFirst2->title !!}">
+                    {!! $articleFirst2->title !!}
+                </a>
+            </h3>
+          </div>
+          @endif
+        </div><!-- /home-news-left -->
+        <div class="home-news-right">
+          <?php $i = 0; ?>
+          @foreach($articlesList2 as $obj)
+          <?php $i++; ?>
+          @if($i > 1)
+          <div class="item">
+            <a class="right-item-lnk-img" href="{{ route('news-detail', ['slug' => $obj->slug, 'id' => $obj->id ] ) }}" title="{!! $obj->title !!}">
+                <img src="{!! Helper::showImage($obj->image_url) !!}" alt="{!! $obj->title !!}">
+            </a>
+            <h3 class="right-item-title">
+                <a href="{{ route('news-detail', ['slug' => $obj->slug, 'id' => $obj->id ] ) }}" title="{!! $obj->title !!}">
+                    {!! $obj->title !!}
+                </a>
+            </h3>
+          </div><!-- /item -->
+          @endif
+          @endforeach
+        </div><!-- /home-news-right -->
+      </div><!-- /block-quotations -->
+    </div><!-- /block-quotations -->
     <div class="block banner-news">
       <a href="#" title="" target="_self">
         <img src="images/banner/thumb11_38072799.png" alt="">
