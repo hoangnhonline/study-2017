@@ -64,18 +64,22 @@
                   <label>Facebook Fanpage</label>
                   <input type="text" class="form-control" name="facebook_fanpage" id="facebook_fanpage" value="{{ $settingArr['facebook_fanpage'] }}">
                 </div>
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-12">
                   <label>Facebook APP ID</label>
                   <input type="text" class="form-control" name="facebook_appid" id="facebook_appid" value="{{ $settingArr['facebook_appid'] }}">
                 </div>
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-12">
                   <label>Google +</label>
                   <input type="text" class="form-control" name="google_fanpage" id="google_fanpage" value="{{ $settingArr['google_fanpage'] }}">
                 </div>
-                <div class="form-group col-md-6">
-                  <label>Twitter</label>
-                  <input type="text" class="form-control" name="twitter_fanpage" id="twitter_fanpage" value="{{ $settingArr['twitter_fanpage'] }}">
-                </div>                
+                <div class="form-group col-md-12">
+                  <label>Youtube Channel</label>
+                  <input type="text" class="form-control" name="youtube_channel" id="youtube_channel" value="{{ $settingArr['youtube_channel'] }}">
+                </div>
+                <div class="form-group col-md-12">
+                  <label>Số điện thoại ZALO</label>
+                  <input type="text" class="form-control" name="sodt_zalo" id="sodt_zalo" value="{{ $settingArr['sodt_zalo'] }}">
+                </div>                              
                 <div class="form-group col-md-12">
                   <label>Thông tin footer</label>
                   <textarea class="form-control" rows="3" name="thong_tin_footer" id="thong_tin_footer">{{ $settingArr['thong_tin_footer'] }}</textarea>
