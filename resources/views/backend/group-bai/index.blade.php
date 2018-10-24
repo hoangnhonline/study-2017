@@ -72,7 +72,8 @@
           <table class="table table-bordered" id="table-list-data">
             <tr>
               <th style="width: 1%">#</th>
-              <th>Tên bài học</th>             
+              <th style="width: 120px">Hình ảnh</th>        
+              <th>Tên nhóm bài học</th>             
               <th width="1%;white-space:nowrap">Thao tác</th>
             </tr>
             <tbody>
@@ -82,9 +83,21 @@
                 <?php $i ++; ?>
               <tr id="row-{{ $item->id }}">
                 <td><span class="order">{{ $i }}</span></td>      
-                      
-                <td>                  
+                <td>
+                  <img class="img-thumbnail" src="{{ Helper::showImage($item->image_url)}}" width="145">
+                </td>      
+                <td>   
+                @if($item->score > 0)
+                  <label class="label label-success" style="font-size:16px">{{ $item->score }} điểm</label>
+                  @elseif($item->is_share == 1)
+                  <label class="label label-warning" style="font-size:16px">Share FB</label>
+                  @else
+                  <label class="label label-default" style="font-size:16px">Free</label>
+                  @endif                 
                   <a style="font-size:15px" href="{{ route( 'group-bai.edit', [ 'id' => $item->id ]) }}">{{ $item->name }}</a>
+                  @if( $item->is_hot == 1 )
+                  <label class="label label-danger">HOT</label>
+                  @endif  
                 </td>
                 
                 <td style="white-space:nowrap">                                 

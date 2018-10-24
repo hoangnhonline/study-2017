@@ -114,6 +114,7 @@
           <table class="table table-bordered" id="table-list-data">
             <tr>
               <th style="width: 1%">#</th>
+              <th style="width: 120px">Hình ảnh</th>
               <th>Tên bài học</th>
               <th>Lớp</th>             
               <th>Môn học</th>
@@ -128,7 +129,13 @@
                 <?php $i ++; ?>
               <tr id="row-{{ $item->id }}">
                 <td><span class="order">{{ $i }}</span></td>      
-                      
+                <td>
+                  @if($item->group_id > 0)
+                  <img class="img-thumbnail" src="{{ Helper::showImage($item->group->image_url)}}" width="145">
+                  @else
+                  <img class="img-thumbnail" src="{{ Helper::showImage($item->image_url)}}" width="145">
+                  @endif
+                </td> 
                 <td>   
                 @if($item->score > 0)
                   <label class="label label-success" style="font-size:16px">{{ $item->score }} điểm</label>

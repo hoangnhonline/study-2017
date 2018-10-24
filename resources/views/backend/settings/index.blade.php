@@ -60,8 +60,8 @@
                   <input type="text" class="form-control" name="admin_email" id="admin_email" value="{{ $settingArr['admin_email'] }}">
                 </div>                
                 <div class="clearfix"></div>      
-                <div class="form-group col-md-6">
-                  <label>Facebook</label>
+                <div class="form-group col-md-12">
+                  <label>Facebook Fanpage</label>
                   <input type="text" class="form-control" name="facebook_fanpage" id="facebook_fanpage" value="{{ $settingArr['facebook_fanpage'] }}">
                 </div>
                 <div class="form-group col-md-6">
@@ -105,6 +105,24 @@
                     <input type="file" data-value="banner" class="click-choose-file" style="display:none" />
                  
                     <button class="btn btn-default btn-sm btnUpload" data-value="banner" type="button"><span class="glyphicon glyphicon-upload" aria-hidden="true"></span> Upload</button>
+                  </div>
+                  <div style="clear:both"></div>
+                </div>
+                <div class="form-group" style="margin-top:10px;margin-bottom:10px">  
+                  <label class="col-md-3 row">Banner header ( 1920 x 264px)</label>    
+                  <div class="col-md-9">
+                    <img id="thumbnail_image_banner_header" src="{{ old('banner_header', $settingArr['banner_header']) ? Helper::showImage(old('banner_header', $settingArr['banner_header'])) : URL::asset('public/admin/dist/img/img.png') }}" class="img-thumbnail" width="300">                    
+                    <button class="btn btn-default btn-sm btnSingleUpload" data-set="banner_header" data-image="thumbnail_image_banner_header" type="button"><span class="glyphicon glyphicon-upload" aria-hidden="true"></span> Upload</button>
+                    <input type="hidden" name="banner_header" id="banner_header" value="{{ old('banner_header', $settingArr['banner_header']) }}"/>
+                  </div>
+                  <div style="clear:both"></div>
+                </div>
+                <div class="form-group" style="margin-top:10px;margin-bottom:10px">  
+                  <label class="col-md-3 row">Banner footer ( 1920 x 300 px)</label>    
+                  <div class="col-md-9">
+                    <img id="thumbnail_image_banner_footer" src="{{ old('image_url', $settingArr['banner_footer']) ? Helper::showImage(old('image_url', $settingArr['banner_footer'])) : URL::asset('public/admin/dist/img/img.png') }}" class="img-thumbnail" width="300">
+                    <button class="btn btn-default btn-sm btnSingleUpload" data-set="banner_footer" data-image="thumbnail_image_banner_footer" type="button"><span class="glyphicon glyphicon-upload" aria-hidden="true"></span> Upload</button>
+                    <input type="hidden" name="banner_footer" id="banner_footer" value="{{ old('banner_footer', $settingArr['banner_footer']) }}"/>
                   </div>
                   <div style="clear:both"></div>
                 </div>

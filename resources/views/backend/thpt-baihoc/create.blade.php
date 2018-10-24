@@ -101,12 +101,12 @@
                   <label>Video ID <span class="red-star">*</span></label>
                   <input type="text" class="form-control" name="video_id" id="video_id" value="{{ old('video_id') }}">
                 </div> 
-                <div class="form-group" >
+                <div class="form-group groupBai" >
                   
                   <label>Số điểm</label>
                   <input type="text" class="form-control" name="score" id="score" value="{{ old('score') }}">
                 </div>
-                <div class="row">
+                <div class="row groupBai">
                   <div class="form-group col-md-6">
                     <div class="checkbox">
                       <label>
@@ -124,7 +124,7 @@
                     </div>               
                   </div>
                 </div>
-                <div class="form-group" style="margin-top:10px;margin-bottom:10px">  
+                <div class="form-group groupBai" style="margin-top:10px;margin-bottom:10px">  
                   <label class="col-md-3 row">Thumbnail ( 300x169 px)</label>    
                   <div class="col-md-9">
                     <img id="thumbnail_image" src="{{ old('image_url') ? Helper::showImage(old('image_url')) : URL::asset('public/admin/dist/img/img.png') }}" class="img-thumbnail" width="145" height="85">                    
@@ -134,7 +134,11 @@
                   <div style="clear:both"></div>
                 </div> 
                 <div class="form-group">
-                  <label>Mô tả</label>
+                  <label>Mô tả ngắn</label>
+                  <textarea class="form-control" rows="4" name="description" id="description">{{ old('description') }}</textarea>
+                </div> 
+                <div class="form-group">
+                  <label>Nội dung</label>
                   <textarea class="form-control" rows="4" name="content" id="content">{{ old('content') }}</textarea>
                 </div> 
             </div>          
@@ -205,6 +209,13 @@
               $('.stem').show();
           }else{
               $('.stem').hide();
+          }
+      });
+      $('#group_id').change(function(){
+          if($(this).val() > 0){
+            $('.groupBai').hide();
+          }else{
+            $('.groupBai').show();
           }
       });
   });

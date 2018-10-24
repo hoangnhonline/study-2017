@@ -165,7 +165,6 @@ class ThptBaihocController extends Controller
             $socialImage = $detail->image_url;
             Helper::counter($id, 2);
             
-            
             return view('frontend.thpt.detail-group', compact('detail', 'otherList', 'seo', 'socialImage', 'firstLession'));
 
         }else{
@@ -178,18 +177,29 @@ class ThptBaihocController extends Controller
         
         $socialImage = null;
         $id = $request->id;
-
-        $detail = ThptBaihoc::find($id);        
-        $groupDetail = ThptBaihoc::find($detail->group_id);
-
-        $user_id = Session::get('userId');
-        if( $detail->is_share == 1 || $detail->score > 0){
-            $coursesArr = [];
-            if($user_id > 0){
-                $coursesArr = DB::table('user_courses')->where('user_id', $user_id)->where('type', 2)->pluck('courses_id');
-            }
-            if( !in_array($detail->id, $coursesArr)){
-                return redirect()->route('home');
+        $detail = ThptBaihoc::find($id);  
+         $user_id = Session::get('userId');
+         $groupDetail = null;
+        if($detail->group_id > 0){
+            $groupDetail = GroupBai::find($detail->group_id);           
+            if( $groupDetail->is_share == 1 || $groupDetail->score > 0){
+                $coursesArr = [];
+                if($user_id > 0){
+                    $coursesArr = DB::table('user_courses')->where('user_id', $user_id)->where('type', 3)->pluck('courses_id');
+                }
+                if( !in_array($groupDetail->id, $coursesArr)){
+                    return redirect()->route('home');
+                }
+            } 
+        }else{
+            if( $detail->is_share == 1 || $detail->score > 0){
+                $coursesArr = [];
+                if($user_id > 0){
+                    $coursesArr = DB::table('user_courses')->where('user_id', $user_id)->where('type', 2)->pluck('courses_id');
+                }
+                if( !in_array($detail->id, $coursesArr)){
+                    return redirect()->route('home');
+                }
             }
         }
         if( $detail ){     
@@ -202,12 +212,15 @@ class ThptBaihocController extends Controller
 
             $socialImage = $detail->image_url;
             Helper::counter($id, 2);
-            if($detail->group_id > 0 ){
-                $lessionArr = ThptBaihoc::where('group_id', $detail->group_id);
+            
+            if($groupDetail){
+                $seo['title'] = $seo['description'] = $seo['keywords'] = $groupDetail->name;    
+                $lessionList = ThptBaihoc::where('group_id', $detail->group_id)->orderBy('id', 'asc')->get();
+                return view('frontend.thpt.group-lession', compact('detail', 'seo', 'socialImage', 'partList', 'lessionList', 'groupDetail'));
             }else{
-                $lessionArr = [];
+                return view('frontend.thpt.lession', compact('detail', 'seo', 'socialImage', 'partList', 'groupDetail'));    
             }
-            return view('frontend.thpt.lession', compact('detail', 'seo', 'socialImage', 'partList', 'lessionArr'));
+            
             
 
         }else{

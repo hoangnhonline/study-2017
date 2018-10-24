@@ -23,7 +23,10 @@ class GroupBai extends Model  {
      *
      * @var array
      */
-    protected $fillable = ['name', 'slug', 'type', 'description', 'alias', 'created_user', 'updated_user', 'class_id', 'stem_class_id', 'teacher_id', 'subject_id', 'image_url'];
+    protected $fillable = ['name', 'slug', 'type', 'description', 'alias', 'created_user', 'updated_user', 'class_id', 'stem_class_id', 'teacher_id', 'subject_id', 'image_url',
+                            'is_hot',
+                            'is_share',
+                            'score'];
 
     public function baihoc()
     {

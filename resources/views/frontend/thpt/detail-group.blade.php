@@ -12,17 +12,18 @@
 <?php 
 	$coursesArr = [];
 	if( Session::get('userId') ){
-		 $coursesArr = DB::table('user_courses')->where('user_id', Session::get('userId'))->where('type', 2)->pluck('courses_id');
+		 $coursesArr = DB::table('user_courses')->where('user_id', Session::get('userId'))->where('type', 3)->pluck('courses_id');
+		 
 	}
 ?>
 <div class="block-video block-video-pg">
 	<div class="row">
 		<div class="col-sm-8">	
 			
-			@if($firstLession->image_url)
+			@if($detail->image_url)
 			<div class="video">
 			
-				<img class="img-responsive" style="width: 100%" src="{{ Helper::showImage($firstLession->image_url) }}" alt="{!! $detail->name !!}">
+				<img class="img-responsive" style="width: 100%" src="{{ Helper::showImage($detail->image_url) }}" alt="{!! $detail->name !!}">
 			
 			</div>
 			@endif			
@@ -36,9 +37,9 @@
 						@if($firstLession)				
 						<div class="group-btn">
 						
-							@if ($firstLession->score > 0)
+							@if ($detail->score > 0)
 								@if(Session::get('userId'))
-									@if(!in_array($firstLession->id, $coursesArr))
+									@if(!in_array($detail->id, $coursesArr))
 									<button class="btn btn-info doi-diem">Đổi khóa học với <span style="font-size:16px">{{ $detail->score }}</span> điểm</button>
 									@else
 									<a href="{!! route('baihoc-detail', ['slug' => $firstLession->slug, 'id' => $firstLession->id] ) !!}" title="{!! $firstLession->name !!}" class="btn">Xem Chi Tiết</a>	
@@ -46,9 +47,9 @@
 								@else
 									<button class="btn btn-info facebook-login" type="button">Đăng nhập</button>
 								@endif
-							@elseif( $firstLession->is_share == 1)
+							@elseif( $detail->is_share == 1)
 								@if(Session::get('userId'))
-									@if(!in_array($firstLession->id, $coursesArr))
+									@if(!in_array($detail->id, $coursesArr))
 									<button class="btn btn-info share-courses">Share Facebook để học miễn phí</button>
 									@else
 									<a href="{!! route('baihoc-detail', ['slug' => $firstLession->slug, 'id' => $firstLession->id] ) !!}" title="{!! $firstLession->name !!}" class="btn">Xem Chi Tiết</a>	
@@ -57,9 +58,9 @@
 									<button class="btn btn-info facebook-login" type="button">Đăng nhập</button>
 								@endif
 							@else							
-							@if($firstLession)
-							<a href="{!! route('baihoc-detail', ['slug' => $firstLession->slug, 'id' => $firstLession->id] ) !!}" title="{!! $firstLession->name !!}" class="btn">Xem Chi Tiết</a>		
-							@endif		
+								@if($firstLession)
+								<a href="{!! route('baihoc-detail', ['slug' => $firstLession->slug, 'id' => $firstLession->id] ) !!}" title="{!! $firstLession->name !!}" class="btn">Xem Chi Tiết</a>		
+								@endif		
 							@endif
 
 						</div>
@@ -79,19 +80,19 @@
 			</div>
 			<div class="group-btn">			
 				@if($firstLession)		
-					@if ($firstLession->score > 0)
+					@if ($detail->score > 0)
 					@if(Session::get('userId'))
-						@if(!in_array($firstLession->id, $coursesArr))
-						<button class="btn btn-info doi-diem">Đổi khóa học với <span style="font-size:16px">{{ $firstLession->score }}</span> điểm</button>
+						@if(!in_array($detail->id, $coursesArr))
+						<button class="btn btn-info doi-diem">Đổi khóa học với <span style="font-size:16px">{{ $detail->score }}</span> điểm</button>
 						@else
 						<a href="{!! route('baihoc-detail', ['slug' => $firstLession->slug, 'id' => $firstLession->id] ) !!}" title="{!! $firstLession->name !!}" class="btn">Xem Chi Tiết</a>	
 						@endif
 					@else
 						<button class="btn btn-info facebook-login" type="button">Đăng nhập</button>
 					@endif
-				@elseif( $firstLession->is_share == 1)
+				@elseif( $detail->is_share == 1)
 					@if(Session::get('userId'))
-						@if(!in_array($firstLession->id, $coursesArr))
+						@if(!in_array($detail->id, $coursesArr))
 						<button class="btn btn-info share-courses">Share Facebook để học miễn phí</button>
 						@else
 						<a href="{!! route('baihoc-detail', ['slug' => $firstLession->slug, 'id' => $firstLession->id] ) !!}" title="{!! $firstLession->name !!}" class="btn">Xem Chi Tiết</a>	
@@ -161,8 +162,8 @@
 		                type  : "POST",
 		                data : {
 		                    mod : 'courses',
-		                    courses_id : {{ $firstLession-> id }},
-		                    type : 2
+		                    courses_id : {{ $detail->id }},
+		                    type : 3
 		                },
 		                success : function(data){
 			                	swal('', 'Cảm ơn bạn đã chia sẻ.<br><p style="color:#51A0FB;margin:10px 5px">Tài khoản của bạn vừa được cộng <strong>01</strong> điểm</p>Mời bạn click "Xem chi tiết" để vào học.', 'info').then(function(){
@@ -180,12 +181,12 @@
 		$('.doi-diem').click(function(e) {
 			var next = true;			
 			if(next == true){
-				if( score >= {{ $firstLession->score }}){
+				if( score >= {{ $detail->score }}){
 					$.ajax({
 		            url : "{{ route('doi-diem') }}",
 		            type  : "POST",
 		            data : {	              
-		                courses_id : {{ $firstLession-> id }}  
+		                courses_id : {{ $detail->id }}  
 		            },
 		            success : function(data){
 		                

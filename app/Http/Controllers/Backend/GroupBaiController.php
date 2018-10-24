@@ -97,7 +97,8 @@ class GroupBaiController extends Controller
         
         $dataArr['alias'] = str_slug($dataArr['name'], ' ');      
         $dataArr['slug'] = str_slug($dataArr['name'], '-');      
-        
+        $dataArr['is_hot'] = isset($dataArr['is_hot']) ? 1 : 0;           
+        $dataArr['is_share'] = isset($dataArr['is_share']) ? 1 : 0;  
         $dataArr['created_user'] = Auth::user()->id;
 
         $dataArr['updated_user'] = Auth::user()->id;
@@ -191,7 +192,8 @@ class GroupBaiController extends Controller
         
         $dataArr['alias'] = str_slug($dataArr['name'], ' ');      
         $dataArr['slug'] = str_slug($dataArr['name'], '-');        
-        
+        $dataArr['is_hot'] = isset($dataArr['is_hot']) ? 1 : 0;           
+        $dataArr['is_share'] = isset($dataArr['is_share']) ? 1 : 0;  
         $dataArr['updated_user'] = Auth::user()->id;
         
         $model = GroupBai::find($dataArr['id']);

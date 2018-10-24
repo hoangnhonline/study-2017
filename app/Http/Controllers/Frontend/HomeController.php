@@ -75,7 +75,7 @@ class HomeController extends Controller
 
         $studentList = Objects::getList(['type' => 2, 'is_hot' => 1, 'limit' => 10]);
 
-        $articlesList = Articles::getList(['is_hot' => 1, 'limit' => 4]);
+        $articlesList = Articles::where('is_hot', 1)->where('status', 1)->whereIn('child_id', ['18,19'])->limit(4)->get();;
         $livestream = Livestream::where('status', 2)->orderBy('id', 'desc')->first();
         return view('frontend.home.index', compact('teacherList', 'studentList', 'coursesList', 'socialImage', 'seo', 'articlesList', 'livestream'));
 

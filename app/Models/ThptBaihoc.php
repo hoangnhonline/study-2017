@@ -41,7 +41,8 @@ class ThptBaihoc extends Model  {
                             'score',
                             'display_order',                             
                             'created_user', 
-                            'updated_user'];
+                            'updated_user',
+                            'description'];
     
     public static function getList($params = []){
         $query = self::where('status', 1);        

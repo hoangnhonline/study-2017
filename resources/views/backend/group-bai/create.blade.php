@@ -84,7 +84,30 @@
                   
                   <label>Tên nhóm bài học <span class="red-star">*</span></label>
                   <input type="text" class="form-control" name="name" id="name" value="{{ old('name') }}">
-                </div>                                 
+                </div>    
+                <div class="form-group" >
+                  
+                  <label>Số điểm</label>
+                  <input type="text" class="form-control" name="score" id="score" value="{{ old('score') }}">
+                </div>
+                <div class="row">
+                  <div class="form-group col-md-6">
+                    <div class="checkbox">
+                      <label>
+                        <input type="checkbox" name="is_hot" value="1" {{ old('is_hot') == 1 ? "checked" : "" }}>
+                        NỔI BẬT
+                      </label>
+                    </div>               
+                  </div>               
+                  <div class="form-group col-md-6">
+                    <div class="checkbox">
+                      <label>
+                        <input type="checkbox" name="is_share" id="is_share" value="1" {{ old('is_share') == 1 ? "checked" : "" }}>
+                        Share để học Free
+                      </label>
+                    </div>               
+                  </div>
+                </div>                             
                 <div class="form-group" style="margin-top:10px;margin-bottom:10px">  
                   <label class="col-md-3 row">Thumbnail ( 300x169 px)</label>    
                   <div class="col-md-9">

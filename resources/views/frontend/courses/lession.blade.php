@@ -73,7 +73,7 @@
 							</div>
 						</div>
 						<div role="tabpanel" class="tab-pane fade" id="comment">
-							Comment FB
+							<div class="fb-comments" data-href="{{ url()->current() }}"  data-width="100%" data-numposts="5"></div>
 						</div>
 					</div>
 				</div>

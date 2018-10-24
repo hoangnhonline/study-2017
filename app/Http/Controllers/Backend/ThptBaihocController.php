@@ -127,6 +127,11 @@ class ThptBaihocController extends Controller
 
         $dataArr['is_hot'] = isset($dataArr['is_hot']) ? 1 : 0;           
         $dataArr['is_share'] = isset($dataArr['is_share']) ? 1 : 0;  
+        if($dataArr['group_id'] > 0){
+            $detailGroup = GroupBai::find($dataArr['group_id']);
+            $dataArr['is_share'] = $detailGroup->is_share;
+            $dataArr['score'] = $detailGroup->score;
+        }
         $dataArr['created_user'] = Auth::user()->id;
 
         $dataArr['updated_user'] = Auth::user()->id;
@@ -186,7 +191,12 @@ class ThptBaihocController extends Controller
         }        
         $classList = Classthpt::orderBy('display_order')->get();
         $stemClassList = Classthpt::where('type', 1)->orderBy('display_order')->get();
-        $subjectList = Subjects::where('class_id', $detail->class_id)->orderBy('display_order')->get();
+        if($detail->stem_class_id > 0){
+                $subjectList = Subjects::where('class_id', $detail->stem_class_id)->orderBy('display_order')->get();
+        }else{
+                $subjectList = Subjects::where('class_id', $detail->class_id)->orderBy('display_order')->get();
+        }
+        
         $teacherList = Objects::where('type', 1)->get();
         $groupList = GroupBai::where('type', 1)->get();
             
@@ -226,7 +236,11 @@ class ThptBaihocController extends Controller
         $dataArr['updated_user'] = Auth::user()->id;
         $dataArr['is_hot'] = isset($dataArr['is_hot']) ? 1 : 0;           
         $dataArr['is_share'] = isset($dataArr['is_share']) ? 1 : 0;  
-        
+        if($dataArr['group_id'] > 0){
+            $detailGroup = GroupBai::find($dataArr['group_id']);
+            $dataArr['is_share'] = $detailGroup->is_share;
+            $dataArr['score'] = $detailGroup->score;
+        }
         $model = ThptBaihoc::find($dataArr['id']);
 
         $model->update($dataArr);

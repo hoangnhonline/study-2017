@@ -11,12 +11,20 @@
 		        <div class="panel panel-default">
 		          <div class="panel-heading">
 		            <h3 class="panel-title">
-		              {!! $detail->name !!}
+		              {!! $groupDetail->name !!}
 		            </h3>
 		          </div>
 		          <div class="panel-body block-lesson-left">
-		            	<div class="block-content">
-							{!! $detail->description !!}
+		            <div class="block-content">
+						@if($lessionList)						
+						<div class="box-item">							
+							<ul class="box-item-list">
+								@foreach($lessionList as $less)
+								<li @if( $detail->id == $less->id ) class="skill-playing" @endif><a href="{!! route('baihoc-detail', ['slug' => $less->slug, 'id' => $less->id] ) !!}" title="{!! $less->name !!}">{!! $less->name !!}</a></li>						
+								@endforeach	
+							</ul>							
+						</div>
+						@endif		
 					</div><!-- /block-content -->
 		          </div>
 		        </div>
@@ -64,8 +72,17 @@
 						</div>
 					</div>
 				</div>
-			</div><!-- /block-lesson-ct" -->			
+			</div><!-- /block-lesson-ct" -->
+			<div class="group-btn clearfix">				
+				@if( $detail->display_order > 1 )
+				<a class="btn btn-lesson pull-left" href="#">BÀI HỌC TRƯỚC</a>
+				@endif
+				@if($lessionList->count() > 1)
+				<a class="btn btn-lesson pull-right" href="#">BÀI KẾ TIẾP</a>
+				@endif
+			</div>
 		</div><!-- /block-lesson-right -->
 	</div>
 </div><!-- /block-lesson -->
+<style>.fb_iframe_widget span[style]{width:100% !important;}</style>
 @stop

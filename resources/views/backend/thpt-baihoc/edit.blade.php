@@ -107,12 +107,12 @@
                   <label>Video ID <span class="red-star">*</span></label>
                   <input type="text" class="form-control" name="video_id" id="video_id" value="{{ old('video_id', $detail->video_id) }}">
                 </div>
-                <div class="form-group" >
+                <div class="form-group groupBai" >
                   
                   <label>Số điểm</label>
                   <input type="text" class="form-control" name="score" id="score" value="{{ old('score', $detail->score) }}">
                 </div>
-                <div class="row">
+                <div class="row groupBai">
                 <div class="form-group col-md-6">
                   <div class="checkbox">
                     <label>
@@ -130,7 +130,7 @@
                   </div>               
                 </div>
                  </div><!--row-->
-                <div class="form-group" style="margin-top:10px;margin-bottom:10px">  
+                <div class="form-group groupBai" style="margin-top:10px;margin-bottom:10px">  
                   <label class="col-md-3 row">Thumbnail ( 300x169 px)</label>    
                   <div class="col-md-9">
                     <img id="thumbnail_image" src="{{ $detail->image_url ? Helper::showImage($detail->image_url ) : URL::asset('public/admin/dist/img/img.png') }}" class="img-thumbnail" width="145" height="85">
@@ -139,7 +139,11 @@
                     <input type="hidden" name="image_url" id="image_url" value="{{ $detail->image_url }}"/>
                   </div>
                   <div style="clear:both"></div>
-                </div>                 
+                </div>  
+                <div class="form-group">
+                  <label>Mô tả ngắn</label>
+                  <textarea class="form-control" rows="4" name="description" id="description">{{ old('description', $detail->description) }}</textarea>
+                </div>                
                 <div class="form-group">
                   <label>Mô tả</label>
                   <textarea class="form-control" rows="4" name="content" id="content">{{ old('content', $detail->content) }}</textarea>
@@ -175,6 +179,23 @@
               $('.stem').hide();
           }
       });
+      @if($detail->class_id == 4)
+      $('.stem').show();
+      @else
+      $('.stem').hide();
+      @endif
+      $('#group_id').change(function(){
+          if($(this).val() > 0){
+            $('.groupBai').hide();
+          }else{
+            $('.groupBai').show();
+          }
+      });
+      @if($detail->group_id > 0)
+      $('.groupBai').hide();
+      @else
+      $('.groupBai').show();
+      @endif
   });
 </script>
 @stop
