@@ -773,7 +773,9 @@ h1, h2, h3, h4, h5, h6 {
   overflow: hidden;
 }
 .block-cates .item .image img {
-  width: 100%;
+  max-height: 150px;
+  margin:0 auto;
+  width: auto;
 }
 .block-cates .item .description {
   float: left;
@@ -1066,6 +1068,9 @@ h1, h2, h3, h4, h5, h6 {
   color: #000;
   font-size: 14px;
   margin-bottom: 10px;
+  height: 78%;
+  overflow-y: hidden;
+  text-align: justify;
 }
 .block-video .bock-info .price {
   color: #6e6e6e;
