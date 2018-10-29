@@ -73,6 +73,8 @@
                     @endif
                   </select>
                 </div> 
+                @else
+                <input type="hidden" name="child_id" value="">
                 @endif
                 <div class="form-group" >
                   
