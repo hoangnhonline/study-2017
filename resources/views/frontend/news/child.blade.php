@@ -32,7 +32,7 @@
                         {!! $articleFirst->title !!}
                     </a>
                 </h3>
-                <div class="description">{!! $articleFirst->description !!}</div>
+                <div class="description">{!! strlen($articleFirst->description) > 160 ? substr($articleFirst->description, 0, 160)."…" : $articleFirst->description !!}</div>
             </div><!-- /news-item-first -->
             @endif            
             <div class="news-list clearfix">              
@@ -51,7 +51,7 @@
                       </a>
                   </h3>
                   <p class="text">
-                      {!! $obj->description !!}
+                      {!! strlen($obj->description) > 160 ? substr($obj->description, 0, 160)."…" : $obj->description !!}
                   </p>
                 </div>
               </div><!-- /item -->
