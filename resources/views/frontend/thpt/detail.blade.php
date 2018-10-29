@@ -114,18 +114,20 @@
 					<p class="title">Giảng viên</p>
 				</div>
 				<div class="block-content">					
-					<div class="item">
+					<div class="item">					
+					@if(@$detail->teacher_id > 0)
 						<div class="box-head-teacher">
+							
 							<a class="image">
-								<img src="{!! Helper::showImage($detail->teacher->image_url) !!}" alt="{!! $detail->teacher->name !!}">
-							</a>
-							@if($detail->teacher)
-							<h3 class="name">{!! $detail->teacher->name !!}</h3>
-							@endif
+								<img src="{!! Helper::showImage(@$detail->teacher->image_url) !!}" alt="{!! @$detail->teacher->name !!}">
+							</a>					
+							<h3 class="name">{!! @$detail->teacher->name !!}</h3>
+							
 						</div><!-- /box-head-teacher -->
 						<div class="box-bottom-teacher">
-							Dẫn dắt khóa học là {!! $detail->teacher->name !!} {!! $detail->teacher->content !!}
+							Dẫn dắt khóa học là {!! @$detail->teacher->name !!} {!! @$detail->teacher->content !!}
 						</div><!-- /box-bottom-teacher -->
+						@endif
 					</div><!-- /item -->
 				</div>
 			</div><!-- /block-tearchers-sb -->			

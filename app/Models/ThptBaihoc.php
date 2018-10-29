@@ -66,7 +66,7 @@ class ThptBaihoc extends Model  {
         return $this->belongsTo('App\Models\Subjects', 'subject_id');
     }
     public function teacher(){
-        return $this->belongsTo('App\Models\Objects', 'subject_id');
+        return $this->belongsTo('App\Models\Objects', 'teacher_id');
     }
     public function group(){
         return $this->belongsTo('App\Models\GroupBai', 'group_id');

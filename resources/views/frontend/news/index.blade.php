@@ -31,7 +31,7 @@
                         {!! $articleFirst->title !!}
                     </a>
                 </h3>
-                <div class="description">{!! strlen($articleFirst->description) > 255 ? substr($articleFirst->description, 0, 255)."…" : $articleFirst->description !!}</div>
+                <div class="description">{!! strlen($articleFirst->description) > 255 ? mb_substr($articleFirst->description, 0, 255)."…" : $articleFirst->description !!}</div>
             </div><!-- /news-item-first -->
             @endif            
             <div class="news-list clearfix">              
@@ -50,7 +50,7 @@
                       </a>
                   </h3>
                   <p class="text">
-                       {!! strlen($obj->description) > 255 ? substr($obj->description, 0, 255)."…" : $obj->description !!}
+                       {!! strlen($obj->description) > 255 ? mb_substr($obj->description, 0, 255)."…" : $obj->description !!}
                   </p>
                 </div>
               </div><!-- /item -->

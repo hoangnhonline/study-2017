@@ -160,7 +160,7 @@
                   @endif
                 </td>
                 <td>
-                  @if($item->teacher_id > 0)
+                  @if($item->teacher)
                   {{ $item->teacher->name }}
                   @endif
                 </td>

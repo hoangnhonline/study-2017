@@ -258,10 +258,12 @@
                   {!! $obj->name !!}
                 </a>
               </h3>
+			  @if($obj->subjects)
               <div class="info">
                 <span>Môn: {!! $obj->subjects->name !!}</span>
                 <span>{!! $obj->school_name !!}</span>
               </div>
+			  @endif
             </div>
           </div><!-- /item -->
           @endforeach

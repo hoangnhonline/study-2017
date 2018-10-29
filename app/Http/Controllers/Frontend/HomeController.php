@@ -72,12 +72,12 @@ class HomeController extends Controller
         
         $coursesList = Courses::getList(['is_hot' => 1, 'limit' => 9]);
 
-        $teacherList = Objects::getList(['type' => 1, 'is_hot' => 1, 'limit' => 10]);
+        $teacherList = Objects::getList(['type' => 1, 'limit' => 10]);
 
-        $studentList = Objects::getList(['type' => 2, 'is_hot' => 1, 'limit' => 10]);
+        $studentList = Objects::getList(['type' => 2, 'limit' => 10]);
 
-        $articlesList = Articles::where('is_hot', 1)->where('status', 1)->whereIn('child_id', ['18,19'])->limit(4)->get();
-        $articlesList2 = Articles::where('is_hot', 1)->where('status', 1)->where('cate_id',3)->limit(4)->get();
+        $articlesList = Articles::where('status', 1)->whereIn('child_id', ['18,19'])->limit(4)->get();
+        $articlesList2 = Articles::where('status', 1)->where('cate_id',3)->limit(4)->get();
         $thptList = ThptBaihoc::where('is_hot', 1)->orderBy('id', 'desc')->limit(6)->get();
         $thptArr = [];
         if($thptList->count() > 0){
