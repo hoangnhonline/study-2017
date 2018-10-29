@@ -64,8 +64,8 @@
 	<div class="group-btn">
 		<button type="submit" id="btnSubmitQuiz" class="btn">Nộp Bài</button>
 	</div>
-    <input type="" name="phut_use" id="phut_use" value="0">
-    <input type="" name="giay_use" id="giay_use" value="0">
+    <input type="hidden" name="phut_use" id="phut_use" value="0">
+    <input type="hidden" name="giay_use" id="giay_use" value="0">
 	</form>
 </div><!-- /block-question -->
 <div class="block-time">
