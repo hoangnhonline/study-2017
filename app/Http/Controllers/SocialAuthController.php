@@ -103,11 +103,11 @@ class SocialAuthController extends Controller
 
         } else {
 
-            if(!$getCustomer->image_url) {
-                $getCustomer->image_url = $facebook['avatar'];
-                //$getCustomer->last_login    =  date('Y-m-d H:i:s');
-                $getCustomer->save();
-            }
+           
+            $getCustomer->image_url = $facebook['avatar'];
+            //$getCustomer->last_login    =  date('Y-m-d H:i:s');
+            $getCustomer->save();
+            
 
             Session::put('login', true);
             Session::put('userId', $getCustomer->id);
