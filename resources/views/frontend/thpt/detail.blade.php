@@ -119,7 +119,9 @@
 							<a class="image">
 								<img src="{!! Helper::showImage($detail->teacher->image_url) !!}" alt="{!! $detail->teacher->name !!}">
 							</a>
+							@if($detail->teacher)
 							<h3 class="name">{!! $detail->teacher->name !!}</h3>
+							@endif
 						</div><!-- /box-head-teacher -->
 						<div class="box-bottom-teacher">
 							Dẫn dắt khóa học là {!! $detail->teacher->name !!} {!! $detail->teacher->content !!}
