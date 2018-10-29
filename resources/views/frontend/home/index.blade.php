@@ -20,7 +20,7 @@
               <div class="row">
                 <div class="col-sm-8">                
                   <div class="video">
-                    <iframe width="100%" height="350" src="https://www.youtube-nocookie.com/embed/{!! $livestream->video_id !!}?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
+                    <iframe width="100%" height="350" src="https://www.youtube-nocookie.com/embed/{!! $livestream->video_id !!}?rel=0&amp;showinfo=0&autoplay=1" frameborder="0" allowfullscreen></iframe>
                   </div>
                 </div><!-- /col-sm-8 -->
                 <div class="col-sm-4">
