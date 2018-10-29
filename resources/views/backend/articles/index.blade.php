@@ -88,7 +88,7 @@
                 <td><span class="order">{{ $i }}</span></td>   
                 @if($cate_id != 5)    
                 <td>
-                  <img class="img-thumbnail" src="{{ Helper::showImage($item->image_url)}}" width="145">
+                  <img class="img-thumbnail" src="{{ Helper::showImageThumb($item->image_url)}}" width="145">
                 </td>        
                 @endif
                 <td>                  

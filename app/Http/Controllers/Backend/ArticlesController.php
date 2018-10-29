@@ -94,7 +94,7 @@ class ArticlesController extends Controller
     public function store(Request $request)
     {
         $dataArr = $request->all();
-        
+        //  dd($dataArr);
         $this->validate($request,[            
             'cate_id' => 'required',            
             'title' => 'required',            
@@ -106,7 +106,7 @@ class ArticlesController extends Controller
             'slug.required' => 'Bạn chưa nhập slug',
             'slug.unique' => 'Slug đã được sử dụng.'
         ]);       
-        
+      
         $dataArr['alias'] = Helper::stripUnicode($dataArr['title']);      
         
         $dataArr['created_user'] = Auth::user()->id;
@@ -139,7 +139,34 @@ class ArticlesController extends Controller
             $amount = $i == 5 ? 1 : 0;
             Rating::create(['score' => $i, 'object_id' => $object_id, 'object_type' => 2, 'amount' => $amount]);
         }
+        if($dataArr['image_url']){
+            $image_url = $dataArr['image_url'];
+            $tmp = explode('/', $dataArr['image_url']);
+            
+            if(!is_dir('uploads/thumbs/articles/')){
+                mkdir('uploads/thumbs/articles/', 0777, true);
+            }
 
+            $origin_img = base_path().$image_url;
+            $img = Image::make($origin_img);
+            $w_img = $img->width();
+            $h_img = $img->height();
+
+            $tmpArrImg = explode('/', $origin_img);
+            
+            $new_img = config('study.upload_thumbs_path').end($tmpArrImg);
+
+            if($w_img/$h_img > 600/450){
+
+                Image::make($origin_img)->resize(null, 450, function ($constraint) {
+                        $constraint->aspectRatio();
+                })->crop(600, 450)->save($new_img);
+            }else{
+                Image::make($origin_img)->resize(600, null, function ($constraint) {
+                        $constraint->aspectRatio();
+                })->crop(600, 450)->save($new_img);
+            }
+        }
         Session::flash('message', 'Tạo mới thành công');
 
         return redirect()->route('articles.index',['cate_id' => $dataArr['cate_id'], 'child_id' => $dataArr['child_id']]);
@@ -244,7 +271,34 @@ class ArticlesController extends Controller
         $model->update($dataArr);
         
         $this->storeMeta( $dataArr['id'], $dataArr['meta_id'], $dataArr);
+        if($dataArr['image_url']){
+            $image_url = $dataArr['image_url'];
+            $tmp = explode('/', $dataArr['image_url']);
+            
+            if(!is_dir('uploads/thumbs/articles/')){
+                mkdir('uploads/thumbs/articles/', 0777, true);
+            }
 
+            $origin_img = base_path().$image_url;
+            $img = Image::make($origin_img);
+            $w_img = $img->width();
+            $h_img = $img->height();
+
+            $tmpArrImg = explode('/', $origin_img);
+            
+            $new_img = config('study.upload_thumbs_path').end($tmpArrImg);
+
+            if($w_img/$h_img > 600/450){
+
+                Image::make($origin_img)->resize(null, 450, function ($constraint) {
+                        $constraint->aspectRatio();
+                })->crop(600, 450)->save($new_img);
+            }else{
+                Image::make($origin_img)->resize(600, null, function ($constraint) {
+                        $constraint->aspectRatio();
+                })->crop(600, 450)->save($new_img);
+            }
+        }
         TagObjects::where(['object_id' => $dataArr['id'], 'type' => 2])->delete();
         // xu ly tags
         if( !empty( $dataArr['tags'] ) ){
