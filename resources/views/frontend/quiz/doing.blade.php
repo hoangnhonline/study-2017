@@ -112,8 +112,7 @@ var counter = function () {
     if (sec < 10) { 
         sec = "0" + sec;
     }     
-    $('#giay_use').val(60-sec);
-    $('#phut_use').val({{ $quizDetail->duration }}-1-min);
+    
     if(now >= end) {     
         clearTimeout(interval);
         localStorage.setItem("end", null);
@@ -122,6 +121,8 @@ var counter = function () {
     } else {
         var value = min + ":" + sec;
         localStorage.setItem("end", end);
+        $('#giay_use').val(60-sec);
+        $('#phut_use').val({{ $quizDetail->duration }}-1-min);
         document.getElementById('aTime').innerHTML = value;
     }
 }
