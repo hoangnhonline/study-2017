@@ -57,6 +57,9 @@
               @endif
               @endforeach
             </div>
+            <nav class="block-pagination">
+              {{ $articlesList->links() }}
+            </nav><!-- /block-pagination -->
           </div>
         </div>
       </div>
