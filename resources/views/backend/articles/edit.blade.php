@@ -78,7 +78,7 @@
                     <option value="">-- Chọn --</option>
                     @if( $childList->count() > 0)
                       @foreach( $childList as $value )
-                      <option value="{{ $value->id }}" {{ $value->id == $child_id ? "selected" : "" }}>{{ $value->name }}</option>
+                      <option value="{{ $value->id }}" {{ $value->id == $detail->child_id ? "selected" : "" }}>{{ $value->name }}</option>
                       @endforeach
                     @endif
                   </select>
