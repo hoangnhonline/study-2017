@@ -25,7 +25,7 @@
             @if($articleFirst)          
             <div class="news-item-first" style="margin-bottom: 20px">
               <a href="{{ route('news-detail', ['slug' => $articleFirst->slug, 'id' => $articleFirst->id ] ) }}" title="{!! $articleFirst->title !!}" class="image">
-                <img src="{!! Helper::showImage($articleFirst->image_url) !!}" alt="{!! $articleFirst->title !!}">
+                <img src="{!! Helper::showImageThumb($articleFirst->image_url) !!}" alt="{!! $articleFirst->title !!}">
               </a>
               <h3 class="name">
                     <a href="{{ route('news-detail', ['slug' => $articleFirst->slug, 'id' => $articleFirst->id ] ) }}" title="{!! $articleFirst->title !!}">
@@ -42,7 +42,7 @@
               @if($i > 1)
               <div class="item">
                 <a class="image" href="{{ route('news-detail', ['slug' => $obj->slug, 'id' => $obj->id ] ) }}" title="{!! $obj->title !!}">
-                    <img src="{!! Helper::showImage($obj->image_url) !!}" alt="{!! $obj->title !!}">
+                    <img src="{!! Helper::showImageThumb($obj->image_url) !!}" alt="{!! $obj->title !!}">
                 </a>
                 <div class="description">
                   <h3 class="title">
@@ -79,7 +79,7 @@
               @foreach( $articleByCate[$cate->id] as $obj )
               <div class="item">
                 <a class="image"  href="{!! route('news-detail', [ 'slug' => $obj->slug , 'id' => $obj->id ]) !!}" title="{!! $obj->title !!}">
-                                  <img src="{!! Helper::showImage($obj->image_url) !!}" alt="{!! $obj->title !!}">
+                                  <img src="{!! Helper::showImageThumb($obj->image_url) !!}" alt="{!! $obj->title !!}">
                               </a>
                               <h3 class="title">
                                   <a href="{!! route('news-detail', [ 'slug' => $obj->slug , 'id' => $obj->id ]) !!}" title="{!! $obj->title !!}">

@@ -35,7 +35,7 @@ class ArticlesController extends Controller
 
         $title = isset($request->title) && $request->title != '' ? $request->title : '';
         
-        $query = Articles::where('type', 1);
+        $query = Articles::where('type', 1)->where('status', 1);
 
         if( $cate_id > 0){
             $query->where('cate_id', $cate_id);
@@ -325,10 +325,12 @@ class ArticlesController extends Controller
     public function destroy($id)
     {
         // delete
-        $model = Articles::find($id)->update(['status'=>0]);
-
+        $model = Articles::find($id);
+		$model->update(['status'=>0]);
+		$cate_id = $model->cate_id;
+		$child_id = $model->child_id;
         // redirect
         Session::flash('message', 'Xóa thành công');
-        return redirect()->route('articles.index');
+        return redirect()->route('articles.index', ['cate_id' => $cate_id, 'child_id' => $child_id]);
     }
 }

@@ -20,7 +20,7 @@
               <div class="row">
                 <div class="col-sm-8">                
                   <div class="video">
-                    <iframe width="100%" height="350" src="https://www.youtube-nocookie.com/embed/{!! $livestream->video_id !!}?rel=0&amp;showinfo=0&autoplay=1" frameborder="0" allowfullscreen></iframe>
+                    <iframe width="100%" height="350" src="https://www.youtube-nocookie.com/embed/{!! $livestream->video_id !!}?rel=0&autoplay=1" frameborder="0" allowfullscreen allow='autoplay'></iframe>
                   </div>
                 </div><!-- /col-sm-8 -->
                 <div class="col-sm-4">
@@ -28,7 +28,9 @@
                     <div class="box-table">
                       <div class="box-table-cell">
                         <h1 class="title">{!! $livestream->name !!}</h1>
-                        <p class="info">{!! $livestream->description !!}</p>
+                        <p class="info">
+							{!! strlen($livestream->description) > 500 ? substr($livestream->description, 0, 500)."…" : $livestream->description !!}
+						</p>
                       </div>
                     </div>
                   </div>
@@ -152,7 +154,7 @@
           @if($articleFirst)
           <div class="item">
             <a href="{{ route('news-detail', ['slug' => $articleFirst->slug, 'id' => $articleFirst->id ] ) }}" title="{!! $articleFirst->title !!}" class="image">
-              <img src="{!! Helper::showImage($articleFirst->image_url) !!}" alt="{!! $articleFirst->title !!}">
+              <img src="{!! Helper::showImageThumb($articleFirst->image_url) !!}" alt="{!! $articleFirst->title !!}">
             </a>
             <h3 class="title">
                 <a href="{{ route('news-detail', ['slug' => $articleFirst->slug, 'id' => $articleFirst->id ] ) }}" title="{!! $articleFirst->title !!}">
@@ -199,7 +201,7 @@
           @if($articleFirst2)
           <div class="item">
             <a href="{{ route('news-detail', ['slug' => $articleFirst2->slug, 'id' => $articleFirst2->id ] ) }}" title="{!! $articleFirst2->title !!}" class="image">
-              <img src="{!! Helper::showImage($articleFirst2->image_url) !!}" alt="{!! $articleFirst2->title !!}">
+              <img src="{!! Helper::showImageThumb($articleFirst2->image_url) !!}" alt="{!! $articleFirst2->title !!}">
             </a>
             <h3 class="title">
                 <a href="{{ route('news-detail', ['slug' => $articleFirst2->slug, 'id' => $articleFirst2->id ] ) }}" title="{!! $articleFirst2->title !!}">
