@@ -61,7 +61,7 @@ class ThptBaihocController extends Controller
                 $coursesSubject[$course->subject_id][] = $course;
             }
         }        
-        $subjectList = Subjects::getList(['limit' => 100]);
+        $subjectList = Subjects::getList(['limit' => 100, 'class_id' => $class_id]);
         return view('frontend.thpt.cate', compact('coursesList', 'seo', 'socialImage', 'type', 'subjectList', 'cateDetail', 'classDetail', 'subjectDetail', 'coursesArr', 'slugClass', 'class_id', 'coursesSubject'));
     }
     public function cateChild(Request $request)

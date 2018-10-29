@@ -133,7 +133,7 @@
                   @if($item->group_id > 0)
                   <img class="img-thumbnail" src="{{ Helper::showImage($item->group->image_url)}}" width="145">
                   @else
-                  <img class="img-thumbnail" src="{{ Helper::showImage($item->image_url)}}" width="145">
+                  <img class="img-thumbnail" src="{{ Helper::showImageThumb($item->image_url)}}" width="145">
                   @endif
                 </td> 
                 <td>   

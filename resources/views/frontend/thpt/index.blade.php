@@ -28,7 +28,7 @@
 			<div class="col-sm-4 col-xs-6">
 				<div class="item">
 					<a href="{{ route($route, ['slug' => $obj->slug, 'id' => $obj->id ]) }}" title="{!! $obj->name !!}" class="image">
-						<img src="{!! Helper::showImage($obj->image_url) !!}" alt="{!! $obj->name !!}">
+						<img src="{!! Helper::showImageThumb($obj->image_url) !!}" alt="{!! $obj->name !!}">
 					</a>
 					<h4><a href="{{ route($route, ['slug' => $obj->slug, 'id' => $obj->id ]) }}" title="{!! $obj->name !!}"  class="title">{!! $obj->name !!}</a></h4>
 					<p class="des">{!! $obj->description !!}</p>

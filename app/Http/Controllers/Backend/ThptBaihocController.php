@@ -136,7 +136,34 @@ class ThptBaihocController extends Controller
         $dataArr['created_user'] = Auth::user()->id;
 
         $dataArr['updated_user'] = Auth::user()->id;
+		if($dataArr['image_url']){
+            $image_url = $dataArr['image_url'];
+            $tmp = explode('/', $dataArr['image_url']);
+            
+            if(!is_dir('uploads/thumbs/articles/')){
+                mkdir('uploads/thumbs/articles/', 0777, true);
+            }
 
+            $origin_img = base_path().$image_url;
+            $img = Image::make($origin_img);
+            $w_img = $img->width();
+            $h_img = $img->height();
+
+            $tmpArrImg = explode('/', $origin_img);
+            
+            $new_img = config('study.upload_thumbs_path').end($tmpArrImg);
+
+            if($w_img/$h_img > 600/400){
+
+                Image::make($origin_img)->resize(null, 400, function ($constraint) {
+                        $constraint->aspectRatio();
+                })->crop(600, 400)->save($new_img);
+            }else{
+                Image::make($origin_img)->resize(400, null, function ($constraint) {
+                        $constraint->aspectRatio();
+                })->crop(600, 400)->save($new_img);
+            }
+        }
         $rs = ThptBaihoc::create($dataArr);
 
         Session::flash('message', 'Tạo mới thành công');
@@ -244,7 +271,34 @@ class ThptBaihocController extends Controller
             $dataArr['is_hot'] = $detailGroup->is_hot;
         }
         $model = ThptBaihoc::find($dataArr['id']);
+		if($dataArr['image_url']){
+            $image_url = $dataArr['image_url'];
+            $tmp = explode('/', $dataArr['image_url']);
+            
+            if(!is_dir('uploads/thumbs/articles/')){
+                mkdir('uploads/thumbs/articles/', 0777, true);
+            }
 
+            $origin_img = base_path().$image_url;
+            $img = Image::make($origin_img);
+            $w_img = $img->width();
+            $h_img = $img->height();
+
+            $tmpArrImg = explode('/', $origin_img);
+            
+            $new_img = config('study.upload_thumbs_path').end($tmpArrImg);
+
+            if($w_img/$h_img > 600/400){
+
+                Image::make($origin_img)->resize(null, 400, function ($constraint) {
+                        $constraint->aspectRatio();
+                })->crop(600, 400)->save($new_img);
+            }else{
+                Image::make($origin_img)->resize(400, null, function ($constraint) {
+                        $constraint->aspectRatio();
+                })->crop(600, 400)->save($new_img);
+            }
+        }
         $model->update($dataArr);
 
         Session::flash('message', 'Cập nhật thành công');        

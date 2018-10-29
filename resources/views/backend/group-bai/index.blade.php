@@ -84,7 +84,7 @@
               <tr id="row-{{ $item->id }}">
                 <td><span class="order">{{ $i }}</span></td>      
                 <td>
-                  <img class="img-thumbnail" src="{{ Helper::showImage($item->image_url)}}" width="145">
+                  <img class="img-thumbnail" src="{{ Helper::showImageThumb($item->image_url)}}" width="145">
                 </td>      
                 <td>   
                 @if($item->score > 0)

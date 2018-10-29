@@ -33,6 +33,9 @@ class Subjects extends Model  {
         $query = self::where('status', 1);
         
         $query->orderBy('id');
+		if(isset($params['class_id']) && $params['class_id']){
+            $query->where('class_id', $params['class_id']);
+        }
         if(isset($params['limit']) && $params['limit']){
             return $query->limit($params['limit'])->get();
         }

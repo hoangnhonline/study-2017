@@ -22,7 +22,7 @@
 			@if($detail->image_url)
 			<div class="video">
 			
-				<img class="img-responsive" style="width: 100%" src="{{ Helper::showImage($detail->image_url) }}" alt="{!! $detail->name !!}">
+				<img class="img-responsive" style="width: 100%" src="{{ Helper::showImageThumb($detail->image_url) }}" alt="{!! $detail->name !!}">
 			
 			</div>
 			@endif			
