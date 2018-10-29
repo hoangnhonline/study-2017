@@ -40,17 +40,7 @@
                   </div>
               @endif                
 
-                <div class="form-group" style="display: none;">
-                  <label for="email">Danh mục <span class="red-star">*</span></label>
-                  <select class="form-control" name="cate_id" id="cate_id">
-                    <option value="">-- chọn --</option>
-                    @if( $cateArr->count() > 0)
-                      @foreach( $cateArr as $value )
-                      <option value="{{ $value->id }}" {{ $value->id == old('cate_id') || $value->id == $cate_id ? "selected" : "" }}>{{ $value->name }}</option>
-                      @endforeach
-                    @endif
-                  </select>
-                </div>
+                <input type="hidden" name="cate_id" value="{{ $cate_id }}">
                 @if($cate_id != 5)
                 <div class="form-group">
                   <label for="email">Danh mục <span class="red-star">*</span></label>
