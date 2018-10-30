@@ -91,7 +91,7 @@
                 </td>
                 
                 <td style="white-space:nowrap"> 
-                  <a class="btn btn-default btn-sm" href="{{ route('news-detail', [$item->slug, $item->id ]) }}" target="_blank"><i class="fa fa-eye" aria-hidden="true"></i> Xem</a>                 
+                  <a class="btn btn-default btn-sm" href="{!! route('lession-detail', ['slug' => $item->slug, 'id' => $item->id] ) !!}" target="_blank"><i class="fa fa-eye" aria-hidden="true"></i> Xem</a>                 
                   <a href="{{ route( 'courses-lession.edit', [ 'id' => $item->id ]) }}" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-pencil"></span></a>                 
                   
                   <a onclick="return callDelete('{{ $item->name }}','{{ route( 'courses-lession.destroy', [ 'id' => $item->id ]) }}');" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span></a>
