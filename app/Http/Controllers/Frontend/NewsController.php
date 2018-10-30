@@ -43,7 +43,7 @@ class NewsController extends Controller
             }
             return view('frontend.news.index', compact('title', 'articlesList', 'cateDetail', 'seo', 'socialImage', 'cateList', 'articleByCate', 'cate_id'));
         }else{
-            return view('erros.404');
+            return view('errors.404');
         }
     } 
     public function newsListChild(Request $request)
@@ -74,7 +74,7 @@ class NewsController extends Controller
             }
             return view('frontend.news.child', compact('title', 'articlesList', 'cateDetail', 'seo', 'socialImage', 'cateList', 'articleByCate', 'childDetail', 'cate_id'));
         }else{
-            return view('erros.404');
+            return view('errors.404');
         }
     }      
 
@@ -121,7 +121,7 @@ class NewsController extends Controller
             return view('frontend.news.news-detail', compact('title',  'otherList', 'detail', 'otherArr', 'seo', 'socialImage', 'tagSelected', 'cateDetail', 'articleByCate', 'cateList', 'cate_id'));
             
         }else{
-            return view('erros.404');
+            return view('errors.404');
         }
     }
 }

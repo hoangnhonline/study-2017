@@ -196,7 +196,7 @@ class ProductController extends Controller
             $is_kn = $detail->cate_id == 4 ? 1 : 0;
             return view('frontend.news.news-detail', compact('title',  'hotArr', 'detail', 'otherArr', 'seo', 'socialImage', 'is_km', 'is_news', 'is_kn'));
         }else{
-            return view('erros.404');
+            return view('errors.404');
         }
     }
 }

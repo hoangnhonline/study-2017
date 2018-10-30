@@ -64,7 +64,7 @@ class ObjectsController extends Controller
                 return view('frontend.objects.detail-student', compact('detail', 'otherList', 'seo', 'socialImage'));
             }
         }else{
-            return view('erros.404');
+            return view('errors.404');
         }
     }
 }

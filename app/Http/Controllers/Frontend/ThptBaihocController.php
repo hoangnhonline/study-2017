@@ -228,7 +228,7 @@ class ThptBaihocController extends Controller
             
 
         }else{
-            return view('erros.404');
+            return view('errors.404');
         }
     }
 }

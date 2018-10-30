@@ -50,7 +50,7 @@ class QuizController extends Controller
             }
             return view('frontend.quiz.index', compact('coursesList', 'seo', 'socialImage', 'quizList', 'cateDetail', 'cateList', 'articleByCate'));
         }else{
-            return view('erros.404');
+            return view('errors.404');
         }   
     }
 
@@ -94,7 +94,7 @@ class QuizController extends Controller
 
             return view('frontend.quiz.confirm', compact('quizDetail', 'seo', 'socialImage', 'quizList', 'cateDetail'));
         }else{
-            return view('erros.404');
+            return view('errors.404');
         }  
         
     }
@@ -160,7 +160,7 @@ class QuizController extends Controller
 
             return view('frontend.quiz.doing', compact('quizDetail', 'seo', 'socialImage', 'quizList', 'cateDetail', 'quizQuestions'));
         }else{
-            return view('erros.404');
+            return view('errors.404');
         }  
         
     }
@@ -188,7 +188,7 @@ class QuizController extends Controller
             return view('frontend.quiz.detail', compact('detail', 'otherList', 'seo', 'socialImage', 'firstLession'));
 
         }else{
-            return view('erros.404');
+            return view('errors.404');
         }
     }
     public function lession(Request $request)
@@ -219,7 +219,7 @@ class QuizController extends Controller
             
 
         }else{
-            return view('erros.404');
+            return view('errors.404');
         }
     }
 }

@@ -2,8 +2,7 @@
 <html>
     <head>
 	 <meta charset="UTF-8">
-        <title>Liên kết không tồn tại </title>
-		
+        <title>Đã có lỗi xảy ra</title>
         <link rel="icon" href="https://vhvschool.online/public/assets/favicon.ico" type="image/x-icon">
         <link href="https://fonts.googleapis.com/css?family=Roboto:100" rel="stylesheet" type="text/css">
 
@@ -42,7 +41,7 @@
     <body>
         <div class="container">
             <div class="content">
-                <div class="title"><h1>Không tìm thấy trang!</h1></div>
+                <div class="title"><h1>Đã có lỗi xảy ra!</h1></div>
                 <a href="{{ route('home') }}" style="color: #000000">Về trang chủ</a>
             </div>
         </div>        
