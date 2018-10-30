@@ -108,7 +108,7 @@ class CoursesController extends Controller
             $socialImage = $detail->image_url;
             Helper::counter($id, 2);
             $firstLession = Courses::getFirstLession($id);
-           
+            
             return view('frontend.courses.detail', compact('detail', 'otherList', 'seo', 'socialImage', 'firstLession'));
 
         }else{
@@ -151,7 +151,9 @@ class CoursesController extends Controller
                     $lessionArr[$part->id] = CoursesLession::getList(['part_id' => $part->id]);
                 }
             }
-            return view('frontend.courses.lession', compact('detail', 'seo', 'socialImage', 'partList', 'lessionArr'));
+            $nextVideo = CoursesLession::where('id', '>', $detail->id)->where('courses_id', $detail->courses_id)->orderBy('id', 'asc')->limit(1)->first();
+            $preVideo = CoursesLession::where('id', '<', $detail->id)->where('courses_id', $detail->courses_id)->orderBy('id', 'desc')->limit(1)->first();            
+            return view('frontend.courses.lession', compact('detail', 'seo', 'socialImage', 'partList', 'lessionArr', 'nextVideo', 'preVideo'));
             
 
         }else{

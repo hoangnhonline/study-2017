@@ -48,15 +48,7 @@
 				</div>
 				<div class="share-item" style="max-width: 65px;">
 					<div class="g-plus" data-action="share"></div>
-				</div>
-				<div class="share-item">
-					<a class="twitter-share-button"
-				  href="https://twitter.com/intent/tweet?text={!! $detail->title !!}">
-				Tweet</a>
-				</div>
-				<div class="share-item">
-					<div class="addthis_inline_share_toolbox"></div>
-				</div>
+				</div>				
 			</div><!-- /block-share-->	
 			<div class="block-lesson-ct">
 				<div class="block-lesson-tab">
@@ -79,10 +71,12 @@
 				</div>
 			</div><!-- /block-lesson-ct" -->
 			<div class="group-btn clearfix">				
-				@if( $detail->display_order > 1 )
-				<a class="btn btn-lesson pull-left" href="#">BÀI HỌC TRƯỚC</a>
+				@if( $preVideo )
+				<a class="btn btn-lesson pull-left" href="{!! route('lession-detail', ['slug' => $preVideo->slug, 'id' => $preVideo->id] ) !!}">BÀI HỌC TRƯỚC</a>
+				@endif			
+				@if($nextVideo)
+				<a class="btn btn-lesson pull-right" href="{!! route('lession-detail', ['slug' => $nextVideo->slug, 'id' => $nextVideo->id] ) !!}">BÀI KẾ TIẾP</a>
 				@endif
-				<a class="btn btn-lesson pull-right" href="#">BÀI KẾ TIẾP</a>
 			</div>
 		</div><!-- /block-lesson-right -->
 	</div>
