@@ -201,6 +201,6 @@ class CoursesPartController extends Controller
         }
         // redirect
         Session::flash('message', 'Xóa thành công');
-        return redirect()->route('courses-part.index');
+        return redirect()->route('courses-part.index', ['courses_id' => $model->courses_id]);
     }
 }

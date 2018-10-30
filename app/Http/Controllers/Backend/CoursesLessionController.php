@@ -216,6 +216,6 @@ class CoursesLessionController extends Controller
         }
         // redirect
         Session::flash('message', 'Xóa thành công');
-        return redirect()->route('courses-lession.index');
+        return redirect()->route('courses-lession.index', ['courses_id' => $model->courses_id]);
     }
 }
