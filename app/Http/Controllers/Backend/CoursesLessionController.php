@@ -26,14 +26,15 @@ class CoursesLessionController extends Controller
     {   
         $courses_id = $request->courses_id;
         $part_id = $request->has('part_id') ? $request->part_id : -1;
-
-        $partDetail = CoursesPart::find($part_id);
-        
+        $partDetail = null;
+        if($part_id > 0){
+            $partDetail = CoursesPart::find($part_id);
+        }
         $name = isset($request->name) && $request->name != '' ? $request->name : '';
         
         $query = CoursesLession::where('status', 1)->where('courses_id', $courses_id);
 
-        if($part_id){
+        if($part_id > 0){
             $query->where('part_id', $part_id);
         }
         // check editor
@@ -47,7 +48,7 @@ class CoursesLessionController extends Controller
         $items = $query->orderBy('display_order')->paginate(20);
         
         //subjects
-        $coursesList = Courses::orderBy('display_order')->get();
+        $coursesList = Courses::orderBy('display_order')->get();        
         $partList = CoursesPart::where('courses_id', $courses_id)->orderBy('display_order')->get();
 
         $coursesDetail = Courses::find($courses_id);
@@ -208,7 +209,7 @@ class CoursesLessionController extends Controller
     public function destroy($id)
     {
         // delete
-        $model = CoursesPart::find($id);
+        $model = CoursesLession::find($id);
         $model->delete();
         MetaData::find( $model->meta_id )->delete();
         // redirect
