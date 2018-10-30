@@ -105,8 +105,9 @@
                   @endif                  
                   <p>{{ $item->description }}</p>
                 </td>
-                <td>
+                <td style="white-space: nowrap;">
                   <a class="btn btn-primary btn-sm" href="{{ route('courses-part.index', ['courses_id' => $item->id])}}" ><span class="badge">{{ $item->part->count() }}</span> Mục lục </a>
+                  <a class="btn btn-primary btn-sm" href="{{ route('courses-lession.index', ['courses_id' => $item->id])}}" ><span class="badge">{{ $item->lession->count() }}</span> Bài học </a>
                 </td>
                 
                 <td style="white-space:nowrap"> 
