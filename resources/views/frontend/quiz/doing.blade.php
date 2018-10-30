@@ -76,13 +76,7 @@
 @section('js')
 <script type="text/javascript">
     $(document).ready(function(){
-        $('#btnSubmitQuiz').click(function(){
-            if($('ul.list-choice input:checked').length == 0){
-                alert('Bạn chưa làm bài.')
-                return false;    
-            }
-            
-        });
+        
     });
 </script>
 <script>
@@ -116,7 +110,8 @@ var counter = function () {
     if(now >= end) {     
         clearTimeout(interval);
         localStorage.setItem("end", null);
-        alert('Đã hết giờ làm bài.');
+        $('#btnSubmitQuiz').click();
+
         //document.getElementById('aTime').innerHTML = finishedtext;
     } else {
         var value = min + ":" + sec;

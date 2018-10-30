@@ -106,7 +106,7 @@ class QuizController extends Controller
         $tong_so_cau = count($arrDapAn);
         $so_cau_dung = 0;
         $quizDetail = Quiz::find($quiz_id);
-        if(!empty($dataArr)){
+        if(!empty($dataArr['ans'])){
             foreach($dataArr['ans'] as $question_id => $answer_id){
                 if($arrDapAn[$question_id] == $answer_id){
                     $so_cau_dung++;
