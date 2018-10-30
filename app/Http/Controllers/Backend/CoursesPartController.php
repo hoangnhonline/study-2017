@@ -196,7 +196,9 @@ class CoursesPartController extends Controller
         // delete
         $model = CoursesPart::find($id);
         $model->delete();
-        MetaData::find( $model->meta_id )->delete();
+        if($model->meta_id > 0){
+            MetaData::find( $model->meta_id )->delete();
+        }
         // redirect
         Session::flash('message', 'Xóa thành công');
         return redirect()->route('courses-part.index');
