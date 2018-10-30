@@ -68,6 +68,7 @@
     <div class="block-right col-sm-4">
       <div class="sidebar">
         @foreach( $cateList as $cate )
+        @if($cate->id != 5)
         <div class="block-sidebar block-news-sb">
           <div class="block-title">
             <p class="title">{!! $cate->name !!}</p>
@@ -91,6 +92,7 @@
             </div>
           </div>
         </div><!-- /block-news-sb -->
+        @endif
         @endforeach
       </div>
     </div><!-- /block-right -->
