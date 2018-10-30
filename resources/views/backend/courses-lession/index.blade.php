@@ -44,7 +44,11 @@
                     <option value="">-- chọn --</option>
                     @if( $partList->count() > 0)
                       @foreach( $partList as $value )
+                      @if($partDetail)
                       <option value="{{ $value->id }}" {{ $value->id == old('part_id', $partDetail->id) ? "selected" : "" }}>{{ $value->name }}</option>
+                      @else
+                      <option value="{{ $value->id }}" {{ $value->id == old('part_id') ? "selected" : "" }}>{{ $value->name }}</option>
+                      @endif
                       @endforeach
                     @endif
                   </select>
