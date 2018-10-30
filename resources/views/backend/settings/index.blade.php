@@ -79,6 +79,14 @@
                 <div class="form-group col-md-12">
                   <label>Số điện thoại ZALO</label>
                   <input type="text" class="form-control" name="sodt_zalo" id="sodt_zalo" value="{{ $settingArr['sodt_zalo'] }}">
+                </div>
+                <div class="form-group col-md-12">
+                  <label>Slogan trang chủ</label>
+                  <input type="text" class="form-control" name="slogan" id="slogan" value="{{ $settingArr['slogan'] }}">
+                </div>
+                <div class="form-group col-md-12">
+                  <label>Tác giả slogan</label>
+                  <input type="text" class="form-control" name="slogan_author" id="slogan_author" value="{{ $settingArr['slogan_author'] }}">
                 </div>                              
                 <div class="form-group col-md-12">
                   <label>Thông tin footer</label>

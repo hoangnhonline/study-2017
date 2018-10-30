@@ -52,10 +52,10 @@
       <div class="inner-quotations">
         <span class="qoute">“&nbsp;&nbsp;</span>
         <div class="content">
-                  <p>Giáo dục là vũ khí mạnh nhất mà người ta có thể sử dụng để thay đổi cả thế giới.</p>
+                  <p>{!! $settingArr['slogan'] !!}</p>
               </div>
               <span class="qoute">&nbsp;&nbsp;”</span>
-              <div class="author">N.Mandela</div>
+              <div class="author">{{ $settingArr['slogan_author'] }}</div>
       </div>
     </div><!-- /block-quotations -->
     
