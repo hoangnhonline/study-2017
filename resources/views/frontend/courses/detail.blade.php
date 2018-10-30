@@ -12,13 +12,17 @@
 <div class="block-video block-video-pg">
 	<div class="row">
 		<div class="col-sm-8">			
-			@if($detail->image_url)
-			<div class="video">
 			
-				<img class="img-responsive" style="width: 100%" src="{{ Helper::showImage($detail->image_url) }}" alt="{!! $detail->name !!}">
+			<div class="video">
+				@if($detail->video_id)
+					<iframe width="100%" height="365" src="https://www.youtube-nocookie.com/embed/{!! $detail->video_id !!}?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
+				@else
+					<img class="img-responsive" style="width: 100%" src="{{ Helper::showImage($detail->image_url) }}" alt="{!! $detail->name !!}">
+				@endif
+				
 			
 			</div>
-			@endif	
+		
 		</div><!-- /col-sm-8 -->
 		<div class="col-sm-4">
 			<div class="bock-info">
